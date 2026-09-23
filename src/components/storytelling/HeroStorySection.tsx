@@ -15,6 +15,7 @@ import { PRESENTATION_CONTENT } from "@/content/presentation-content";
 import { useSmoothScroll } from "@/components/shared/SmoothScrollProvider";
 import { playSubtleClick } from "@/lib/sound-effects";
 import EditorialReveal from "@/components/shared/EditorialReveal";
+import KineticNumber from "@/components/shared/KineticNumber";
 import { HeritageSeal } from "@/components/shared/HeritageIcons";
 import CurriculumOverviewModal from "@/components/shared/CurriculumOverviewModal";
 
@@ -53,7 +54,7 @@ export default function HeroStorySection() {
             <div className="flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#7a1818]/10 text-[#7a1818] border border-[#7a1818]/20 font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-wider">
                 <Sparkles className="w-3 h-3 text-[#b58319]" />
-                CHUYÊN ĐỀ TRỌNG TÂM • KỶ NIỆM 80 NĂM HIẾN PHÁP (1946 - 2026)
+                CHUYÊN ĐỀ TRỌNG TÂM • KỶ NIỆM <KineticNumber value={80} /> NĂM HIẾN PHÁP (1946 - 2026)
               </span>
               <span className="text-[11px] font-mono text-ink-muted">
                 Giáo trình Bộ GD&ĐT
@@ -145,7 +146,7 @@ export default function HeroStorySection() {
                     {/* Gateway Card 1: 4.2.1 Dân chủ */}
                     <div
                       onClick={() => handleNavigate("dan-chu")}
-                      className="group p-2.5 bg-[#fdfcf9] hover:bg-[#fffdfa] border border-[#dfd3bf] hover:border-[#7a1818] rounded-lg transition-all duration-200 shadow-3xs hover:shadow-2xs cursor-pointer flex items-center justify-between gap-2.5"
+                      className="group p-2.5 bg-[#fdfcf9] hover:bg-[#fffdfa] border border-[#dfd3bf] hover:border-[#7a1818] rounded-lg transition-all duration-200 shadow-3xs hover:shadow-2xs cursor-pointer flex items-center justify-between gap-2.5 gold-foil-card"
                     >
                       <div className="space-y-0.5 flex-1 min-w-0">
                         <div className="flex items-center gap-1.5">
@@ -170,7 +171,7 @@ export default function HeroStorySection() {
                     {/* Gateway Card 2: 4.2.2 Pháp quyền */}
                     <div
                       onClick={() => handleNavigate("phap-quyen")}
-                      className="group p-2.5 bg-[#fdfcf9] hover:bg-[#fffdfa] border border-[#dfd3bf] hover:border-[#7a1818] rounded-lg transition-all duration-200 shadow-3xs hover:shadow-2xs cursor-pointer flex items-center justify-between gap-2.5"
+                      className="group p-2.5 bg-[#fdfcf9] hover:bg-[#fffdfa] border border-[#dfd3bf] hover:border-[#7a1818] rounded-lg transition-all duration-200 shadow-3xs hover:shadow-2xs cursor-pointer flex items-center justify-between gap-2.5 gold-foil-card"
                     >
                       <div className="space-y-0.5 flex-1 min-w-0">
                         <div className="flex items-center gap-1.5">
@@ -195,7 +196,7 @@ export default function HeroStorySection() {
                     {/* Gateway Card 3: 4.2.3 Trong sạch vững mạnh */}
                     <div
                       onClick={() => handleNavigate("trong-sach-vung-manh")}
-                      className="group p-2.5 bg-[#fdfcf9] hover:bg-[#fffdfa] border border-[#dfd3bf] hover:border-[#7a1818] rounded-lg transition-all duration-200 shadow-3xs hover:shadow-2xs cursor-pointer flex items-center justify-between gap-2.5"
+                      className="group p-2.5 bg-[#fdfcf9] hover:bg-[#fffdfa] border border-[#dfd3bf] hover:border-[#7a1818] rounded-lg transition-all duration-200 shadow-3xs hover:shadow-2xs cursor-pointer flex items-center justify-between gap-2.5 gold-foil-card"
                     >
                       <div className="space-y-0.5 flex-1 min-w-0">
                         <div className="flex items-center gap-1.5">
@@ -246,7 +247,7 @@ export default function HeroStorySection() {
                   <div>
                     <div className="flex items-center justify-between mb-0.5">
                       <span className="text-[11px] font-mono font-bold text-[#7a1818] uppercase tracking-wider">
-                        MỐC 01 • NĂM 1919
+                        MỐC 01 • NĂM <KineticNumber value={1919} />
                       </span>
                       <span className="text-xs text-[#6e5014] font-serif font-bold">Paris</span>
                     </div>
@@ -263,7 +264,7 @@ export default function HeroStorySection() {
                   <div>
                     <div className="flex items-center justify-between mb-0.5">
                       <span className="text-[11px] font-mono font-bold text-[#7a1818] uppercase tracking-wider">
-                        MỐC 02 • NĂM 1945
+                        MỐC 02 • NĂM <KineticNumber value={1945} />
                       </span>
                       <span className="text-xs text-[#6e5014] font-serif font-bold">Ba Đình</span>
                     </div>
@@ -278,12 +279,12 @@ export default function HeroStorySection() {
               <EditorialReveal delay={240}>
                 <div
                   onClick={() => handleNavigate("dan-chu")}
-                  className="p-2.5 sm:p-3 bg-[#fdfbf7] hover:bg-[#fff9ef] border border-[#d4af37]/70 hover:border-[#7a1818] rounded-lg shadow-2xs space-y-1.5 h-full flex flex-col justify-between transition-all cursor-pointer group"
+                  className="p-2.5 sm:p-3 bg-[#fdfbf7] hover:bg-[#fff9ef] border border-[#d4af37]/70 hover:border-[#7a1818] rounded-lg shadow-2xs space-y-1.5 h-full flex flex-col justify-between transition-all cursor-pointer group gold-foil-card"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-0.5">
                       <span className="text-[11px] font-mono font-bold text-[#7a1818] uppercase tracking-wider">
-                        MỐC 03 • NĂM 1946
+                        MỐC 03 • NĂM <KineticNumber value={1946} />
                       </span>
                       <span className="text-xs text-[#7a1818] font-serif font-bold">Quốc hội Khóa I</span>
                     </div>

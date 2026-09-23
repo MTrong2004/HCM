@@ -308,10 +308,123 @@ html[data-reduced-motion="true"] *::after {
 
 html[data-reduced-motion="true"] .editorial-reveal,
 html[data-reduced-motion="true"] .editorial-tab-panel,
-html[data-reduced-motion="true"] [data-reveal-state],
-html[data-reduced-motion="true"] .chapter-opening__image {
+html[data-reduced-motion="true"] [data-reveal-state] {
   opacity: 1 !important;
   transform: none !important;
   transition: none !important;
   animation: none !important;
+}
+
+/* ==========================================================================
+   2D ACADEMIC HERITAGE ANIMATIONS (CSS-ONLY & HARDWARE-ACCELERATED)
+   ========================================================================== */
+
+/* 1. Ấn Triện Mực Son (Heritage Seal Stamping) */
+@keyframes sealStampImpact {
+  0% {
+    transform: scale(1.3) rotate(-8deg);
+    opacity: 0;
+  }
+  65% {
+    transform: scale(0.96) rotate(-2deg);
+    opacity: 1;
+  }
+  85% {
+    transform: scale(1.03) rotate(-2.5deg);
+  }
+  100% {
+    transform: scale(1) rotate(-2deg);
+    opacity: 1;
+  }
+}
+
+@keyframes sealInkEcho {
+  0% {
+    opacity: 0.65;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+.heritage-seal-animated {
+  display: inline-flex;
+  position: relative;
+  transform-origin: center center;
+  animation: sealStampImpact 0.45s cubic-bezier(0.18, 0.89, 0.32, 1.15) forwards;
+}
+
+.heritage-seal-animated .seal-echo {
+  position: absolute;
+  inset: -3px;
+  border: 1.5px solid rgba(161, 27, 27, 0.45);
+  border-radius: 4px;
+  pointer-events: none;
+  animation: sealInkEcho 0.65s cubic-bezier(0.2, 0.6, 0.35, 1) forwards;
+}
+
+/* 2. Ánh Kim Nhũ Vàng Phản Chiếu (Subtle Gold Foil Sheen) */
+@keyframes goldFoilSweep {
+  0% {
+    transform: translateX(-160%) skewX(-22deg);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(220%) skewX(-22deg);
+    opacity: 0;
+  }
+}
+
+.gold-foil-card {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gold-foil-card::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  bottom: -50%;
+  left: 0;
+  width: 48%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212, 175, 55, 0.05) 25%,
+    rgba(255, 238, 180, 0.25) 50%,
+    rgba(212, 175, 55, 0.05) 75%,
+    transparent 100%
+  );
+  transform: translateX(-180%) skewX(-22deg);
+  pointer-events: none;
+}
+
+.gold-foil-card:hover::after {
+  animation: goldFoilSweep 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 3. Vòng Xung Ánh Vàng Hổ Phách Cho Nút Nghe Giọng Bác */
+@keyframes amberVoicePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgba(212, 175, 55, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+  }
+}
+
+.amber-voice-active {
+  animation: amberVoicePulse 1.8s infinite cubic-bezier(0.66, 0, 0, 1);
 }

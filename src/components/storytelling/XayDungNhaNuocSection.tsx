@@ -10,18 +10,18 @@ export default function XayDungNhaNuocSection() {
   const tabs: TabItem[] = [
     {
       id: "phap-luat-quyen-luc",
-      label: "a. Hoàn thiện pháp luật",
-      badge: "Hiệu lực & Nhân quyền",
+      label: "a. Hoàn thiện pháp luật & Kiểm soát quyền lực",
+      badge: "Thể chế & Kiểm soát",
       content: (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-start">
-          {/* Cột trái: Mục tiêu & Hai mặt biện chứng của pháp luật */}
+          {/* Cột trái (6 cols trên LG): Hoàn thiện hệ thống pháp luật gắn với thi hành */}
           <div className="lg:col-span-6 space-y-3">
             <EditorialReveal delay={80}>
               <div className="p-3.5 sm:p-4 bg-[#fdfbf7] border border-[#e2d7c5] border-l-4 border-l-[#7a1818] rounded-lg shadow-2xs space-y-2.5">
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
                   <h3 className="font-serif font-bold text-sm sm:text-base text-[#7a1818] tracking-tight">
-                    Đẩy mạnh hoàn thiện hệ thống pháp luật gắn với thi hành
+                    1. Hoàn thiện hệ thống pháp luật gắn với thi hành
                   </h3>
                 </div>
 
@@ -30,7 +30,7 @@ export default function XayDungNhaNuocSection() {
                     Mục tiêu cốt lõi
                   </div>
                   <p className="text-xs sm:text-[13px] text-ink leading-relaxed">
-                    Nâng cao hiệu lực, hiệu quả quản lý của Nhà nước, quản lý đất nước theo Hiến pháp và pháp luật, đồng thời coi trọng xây dựng nền tảng đạo đức xã hội.
+                    Nâng cao hiệu lực, hiệu quả quản lý của Nhà nước theo Hiến pháp và pháp luật; bảo đảm quyền con người, quyền và nghĩa vụ cơ bản của công dân.
                   </p>
                 </div>
 
@@ -39,75 +39,46 @@ export default function XayDungNhaNuocSection() {
                     Bản chất “hai mặt biện chứng” của pháp luật:
                   </div>
 
-                  <div className="p-2.5 bg-[#fcf8f0] border border-[#e8dac5] rounded-md space-y-1">
-                    <strong className="text-xs sm:text-[13px] text-[#7a1818] block">
-                      1. Công cụ sắc bén của Nhà nước:
-                    </strong>
-                    <p className="text-xs sm:text-[13px] text-ink leading-relaxed">
-                      Pháp luật là công cụ sắc bén để Nhà nước quản lý mọi mặt đời sống kinh tế - xã hội.
-                    </p>
-                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-[13px] text-ink">
+                    <div className="p-2.5 bg-[#fcf8f0] border border-[#e8dac5] rounded-md space-y-1">
+                      <strong className="text-xs text-[#7a1818] block font-serif">
+                        Công cụ của Nhà nước:
+                      </strong>
+                      <p className="text-xs leading-relaxed text-ink/90">
+                        Quản lý mọi mặt đời sống kinh tế - xã hội, giữ vững kỷ cương phép nước.
+                      </p>
+                    </div>
 
-                  <div className="p-2.5 bg-[#fcf8f0] border border-[#e8dac5] rounded-md space-y-1">
-                    <strong className="text-xs sm:text-[13px] text-[#7a1818] block">
-                      2. Công cụ pháp lý tối thượng của Nhân dân:
-                    </strong>
-                    <p className="text-xs sm:text-[13px] text-ink leading-relaxed">
-                      Pháp luật đồng thời là công cụ pháp lý tối thượng để Nhân dân làm chủ, kiểm tra, giám sát quyền lực nhà nước, ngăn ngừa sự <strong>tùy tiện, lộng quyền</strong> của cơ quan công quyền.
-                    </p>
+                    <div className="p-2.5 bg-[#fcf8f0] border border-[#e8dac5] rounded-md space-y-1">
+                      <strong className="text-xs text-[#7a1818] block font-serif">
+                        Công cụ của Nhân dân:
+                      </strong>
+                      <p className="text-xs leading-relaxed text-ink/90">
+                        Thực thi quyền làm chủ, giám sát công quyền, ngăn ngừa tùy tiện, lộng quyền.
+                      </p>
+                    </div>
                   </div>
+                </div>
+
+                <div className="p-2.5 bg-[#f6efe4] border border-[#e5dac8] rounded-md text-xs sm:text-[13px] text-ink leading-relaxed">
+                  <span className="font-bold text-[#7a1818]">Gắn lập pháp với thi hành:</span> Pháp luật chỉ phát huy trọn vẹn giá trị khi đi vào đời sống; tinh thần thượng tôn pháp luật phải trở thành chuẩn mực tự giác của mọi cơ quan và mỗi công dân.
                 </div>
               </div>
             </EditorialReveal>
           </div>
 
-          {/* Cột phải: Bảo vệ quyền con người, quyền công dân */}
+          {/* Cột phải (6 cols trên LG): Phân công, phối hợp & kiểm soát quyền lực */}
           <div className="lg:col-span-6 space-y-3">
             <EditorialReveal delay={160}>
               <div className="p-3.5 sm:p-4 bg-[#fdfbf7] border border-[#e2d7c5] rounded-lg shadow-2xs space-y-2.5">
                 <div className="flex items-center gap-2 pb-1.5 border-b border-[#dfd2be]">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
                   <h4 className="font-serif font-bold text-sm sm:text-base text-[#7a1818] tracking-tight">
-                    Bảo vệ quyền con người, quyền công dân
+                    2. Phân công, phối hợp & kiểm soát quyền lực
                   </h4>
                 </div>
 
-                <p className="text-xs sm:text-[13px] text-ink leading-relaxed">
-                  Tiếp tục hoàn thiện hệ thống pháp luật theo hướng tôn trọng, bảo đảm, bảo vệ <strong>quyền con người</strong>, <strong>quyền và nghĩa vụ cơ bản của công dân</strong>.
-                </p>
-
-                <div className="p-3 bg-[#f6efe4] border border-[#e5dac8] rounded-md text-xs sm:text-[13px] text-ink leading-relaxed space-y-1.5">
-                  <div className="font-serif font-bold text-[#7a1818]">
-                    Gắn lập pháp với tổ chức thi hành:
-                  </div>
-                  <p>
-                    Luật pháp chỉ phát huy trọn vẹn giá trị khi đi vào đời sống thực tiễn. Tinh thần thượng tôn pháp luật phải trở thành chuẩn mực ứng xử tự giác của mọi cơ quan, tổ chức và mỗi người dân.
-                  </p>
-                </div>
-              </div>
-            </EditorialReveal>
-          </div>
-        </div>
-      ),
-    },
-    {
-      id: "co-che-kiem-soat-quyen-luc",
-      label: "b. Kiểm soát 3 nhánh quyền lực",
-      badge: "Phân công & Phối hợp",
-      content: (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-start">
-          {/* Cột trái: Cơ chế phân công, phối hợp và kiểm soát quyền lực */}
-          <div className="lg:col-span-6 space-y-3">
-            <EditorialReveal delay={80}>
-              <div className="p-3.5 sm:p-4 bg-[#fdfbf7] border border-[#e2d7c5] border-l-4 border-l-[#7a1818] rounded-lg shadow-2xs space-y-2.5">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
-                  <h3 className="font-serif font-bold text-sm sm:text-base text-[#7a1818] tracking-tight">
-                    Cơ chế phân công, phối hợp & kiểm soát quyền lực
-                  </h3>
-                </div>
-
-                <div className="p-3 bg-[#f8f1e2] border-l-3 border-[#7a1818] rounded-r space-y-1">
+                <div className="p-2.5 bg-[#f8f1e2] border-l-3 border-[#7a1818] rounded-r space-y-1">
                   <div className="font-serif font-bold text-xs text-[#7a1818] uppercase tracking-wider">
                     Nguyên tắc nền tảng tối cao
                   </div>
@@ -134,65 +105,13 @@ export default function XayDungNhaNuocSection() {
                       Phân định rành mạch thẩm quyền giữa Trung ương và địa phương; hoàn thiện cơ chế phối hợp và kiểm soát quyền lực ở từng cấp chính quyền.
                     </p>
                   </div>
-                </div>
-              </div>
-            </EditorialReveal>
-          </div>
 
-          {/* Cột phải: 3 Nhánh quyền lực nhà nước thống nhất */}
-          <div className="lg:col-span-6 space-y-3">
-            <EditorialReveal delay={160}>
-              <div className="p-3.5 sm:p-4 bg-[#fdfbf7] border border-[#e2d7c5] rounded-lg shadow-2xs space-y-2.5">
-                <div className="flex items-center gap-2 pb-1.5 border-b border-[#dfd2be]">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
-                  <h4 className="font-serif font-bold text-sm sm:text-base text-[#7a1818] tracking-tight">
-                    Ba nhánh quyền lực nhà nước thống nhất
-                  </h4>
-                </div>
-
-                <div className="space-y-2 text-xs sm:text-[13px] text-ink">
-                  {/* Nhánh 1: Lập pháp */}
-                  <div className="p-2.5 bg-[#fcf8f0] border border-[#e8dac5] rounded-md space-y-1">
-                    <div className="flex items-center justify-between">
-                      <strong className="text-[#7a1818] font-serif text-[13px]">
-                        1. Nhánh Lập pháp
-                      </strong>
-                      <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-[#7a1818]/10 text-[#7a1818] uppercase">
-                        Quốc hội
-                      </span>
-                    </div>
+                  <div className="p-2.5 bg-[#f6efe4] border border-[#e5dac8] rounded-md space-y-1">
+                    <strong className="text-[#7a1818] block font-serif text-[13px]">
+                      • Kiểm soát quyền lực chặt chẽ:
+                    </strong>
                     <p className="leading-relaxed text-ink/90">
-                      Cơ quan đại biểu cao nhất của Nhân dân, thực hiện quyền lập hiến, lập pháp, quyết định các chính sách quốc gia trọng đại và giám sát tối cao hoạt động của bộ máy.
-                    </p>
-                  </div>
-
-                  {/* Nhánh 2: Hành pháp */}
-                  <div className="p-2.5 bg-[#fcf8f0] border border-[#e8dac5] rounded-md space-y-1">
-                    <div className="flex items-center justify-between">
-                      <strong className="text-[#7a1818] font-serif text-[13px]">
-                        2. Nhánh Hành pháp
-                      </strong>
-                      <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-[#7a1818]/10 text-[#7a1818] uppercase">
-                        Chính phủ
-                      </span>
-                    </div>
-                    <p className="leading-relaxed text-ink/90">
-                      Cơ quan hành chính nhà nước cao nhất, chấp hành Hiến pháp và pháp luật, điều hành quản trị quốc gia và tổ chức thực hiện các mục tiêu phát triển kinh tế - xã hội.
-                    </p>
-                  </div>
-
-                  {/* Nhánh 3: Tư pháp */}
-                  <div className="p-2.5 bg-[#fcf8f0] border border-[#e8dac5] rounded-md space-y-1">
-                    <div className="flex items-center justify-between">
-                      <strong className="text-[#7a1818] font-serif text-[13px]">
-                        3. Nhánh Tư pháp
-                      </strong>
-                      <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-[#7a1818]/10 text-[#7a1818] uppercase">
-                        Tòa án & Viện kiểm sát
-                      </span>
-                    </div>
-                    <p className="leading-relaxed text-ink/90">
-                      Cơ quan xét xử và kiểm sát hoạt động tư pháp, bảo vệ công lý, quyền con người, quyền công dân, bảo đảm tính nghiêm minh của pháp luật.
+                      Thiết lập cơ chế kiểm soát đa tầng (Đảng lãnh đạo, Nhà nước tự kiểm tra, Nhân dân giám sát tối cao) để không một quyền lực nào đứng ngoài pháp luật.
                     </p>
                   </div>
                 </div>
@@ -204,7 +123,7 @@ export default function XayDungNhaNuocSection() {
     },
     {
       id: "doi-ngu-can-bo",
-      label: "c. Cán bộ 'Công bộc'",
+      label: "b. Cán bộ 'Công bộc'",
       badge: "Vừa hồng vừa chuyên",
       content: (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-start">
@@ -291,7 +210,7 @@ export default function XayDungNhaNuocSection() {
     },
     {
       id: "phong-chong-giac-noi-xam",
-      label: "d. Phòng, chống 'Giặc nội xâm'",
+      label: "c. Phòng, chống 'Giặc nội xâm'",
       badge: "Không vùng cấm",
       content: (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-start">
@@ -363,7 +282,7 @@ export default function XayDungNhaNuocSection() {
     },
     {
       id: "doi-moi-phuong-thuc-lanh-dao",
-      label: "e. Đổi mới lãnh đạo của Đảng",
+      label: "d. Đổi mới lãnh đạo của Đảng",
       badge: "Gương mẫu & Tiền đề",
       content: (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-start">
@@ -467,7 +386,7 @@ export default function XayDungNhaNuocSection() {
       parentPath="4.3. Vận dụng xây dựng Đảng và Nhà nước"
       quote="Cán bộ là cái gốc của mọi công việc. Muôn việc thành công hoặc thất bại, đều do cán bộ tốt hoặc kém. Cán bộ là người đầy tớ trung thành, tận tụy của nhân dân."
       quoteAuthor="Hồ Chí Minh"
-      summary="Vận dụng 5 nội dung trọng yếu: a. Hoàn thiện pháp luật và thi hành; b. Phân công, phối hợp và kiểm soát 3 quyền; c. Xây dựng cán bộ 'vừa hồng vừa chuyên'; d. Đấu tranh chống 'giặc nội xâm' không vùng cấm; e. Đổi mới phương thức lãnh đạo của Đảng đối với Nhà nước."
+      summary="Vận dụng 4 nội dung trọng yếu: a. Hoàn thiện pháp luật & kiểm soát quyền lực; b. Xây dựng cán bộ 'vừa hồng vừa chuyên'; c. Đấu tranh chống 'giặc nội xâm' không vùng cấm; d. Đổi mới phương thức lãnh đạo của Đảng đối với Nhà nước."
       tabs={tabs}
       prevSection={{
         id: "xay-dung-dang",

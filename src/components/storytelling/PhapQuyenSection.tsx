@@ -5,6 +5,7 @@ import AcademicPortalSection, {
   TabItem,
 } from "@/components/shared/AcademicPortalSection";
 import { JusticeScalesIcon } from "@/components/shared/HeritageIcons";
+import KineticNumber from "@/components/shared/KineticNumber";
 
 export default function PhapQuyenSection() {
   const tabs: TabItem[] = [
@@ -180,12 +181,12 @@ export default function PhapQuyenSection() {
               <ul className="space-y-1.5 text-xs sm:text-[13px] text-ink leading-relaxed">
                 <li className="flex items-start gap-2">
                   <span className="text-[#7a1818] font-bold">▪</span>
-                  <span>Hồ Chí Minh <strong>2 lần tham gia chỉ đạo soạn thảo Hiến pháp</strong> (Hiến pháp năm 1946 và Hiến pháp 1959).</span>
+                  <span>Hồ Chí Minh <strong><KineticNumber value={2} /> lần tham gia chỉ đạo soạn thảo Hiến pháp</strong> (Hiến pháp năm 1946 và Hiến pháp 1959).</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#7a1818] font-bold">▪</span>
                   <span>
-                    Ký lệnh công bố <strong>16 đạo luật</strong>, <strong>613 sắc lệnh</strong> (trong đó có <strong>243 sắc lệnh về tổ chức Nhà nước và pháp luật</strong>) cùng nhiều văn bản dưới luật.
+                    Ký lệnh công bố <strong><KineticNumber value={16} /> đạo luật</strong>, <strong><KineticNumber value={613} /> sắc lệnh</strong> (trong đó có <strong><KineticNumber value={243} /> sắc lệnh về tổ chức Nhà nước và pháp luật</strong>) cùng nhiều văn bản dưới luật.
                   </span>
                 </li>
               </ul>

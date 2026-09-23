@@ -164,7 +164,7 @@ export default function AcademicPortalSection({
               transition={{ duration: 0.22, ease: "easeOut" }}
               className="overflow-hidden flex-shrink-0"
             >
-              <div className="bg-gradient-to-r from-[#fbf8f0] via-[#f7efe1] to-[#f4e8d4] border border-[#d8c8a8] rounded-xl p-3.5 sm:p-5 shadow-sm relative">
+              <div className="bg-gradient-to-r from-[#fbf8f0] via-[#f7efe1] to-[#f4e8d4] border border-[#d8c8a8] rounded-xl p-3.5 sm:p-5 shadow-sm relative gold-foil-card">
                 <div className="flex items-start justify-between gap-3">
                   <div className="space-y-2 flex-1 min-w-0">
                     <div className="flex items-center gap-2.5">

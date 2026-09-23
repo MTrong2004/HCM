@@ -4,7 +4,6 @@ import React from "react";
 import AcademicPortalSection, {
   TabItem,
 } from "@/components/shared/AcademicPortalSection";
-import InfographicDuongLoiDenHanhDong from "@/components/infographics/InfographicDuongLoiDenHanhDong";
 import EditorialReveal from "@/components/shared/EditorialReveal";
 
 export default function XayDungDangSection() {
@@ -94,14 +93,14 @@ export default function XayDungDangSection() {
       badge: "Hành động & Nêu gương",
       content: (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-start">
-          {/* Cột trái: Khâu tổ chức thực hiện & Nêu gương người đứng đầu */}
+          {/* Cột trái: Khâu tổ chức thực hiện & Thể chế hóa */}
           <div className="lg:col-span-6 space-y-3">
             <EditorialReveal delay={80}>
               <div className="p-3.5 sm:p-4 bg-[#fdfbf7] border border-[#e2d7c5] border-l-4 border-l-[#7a1818] rounded-lg shadow-2xs space-y-2.5">
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
                   <h3 className="font-serif font-bold text-sm sm:text-base text-[#7a1818] tracking-tight">
-                    Phải tổ chức thực hiện thật tốt đường lối, chủ trương
+                    1. Tổ chức thực hiện thật tốt đường lối, chủ trương
                   </h3>
                 </div>
 
@@ -127,15 +126,29 @@ export default function XayDungDangSection() {
                       Phải biến đường lối thành hành động tích cực, tự giác của tất cả các tổ chức trong hệ thống chính trị và mọi tầng lớp nhân dân.
                     </p>
                   </div>
+                </div>
+              </div>
+            </EditorialReveal>
+          </div>
 
-                  <div className="p-2.5 bg-[#fcf8f0] border border-[#e8dac5] rounded-md space-y-1">
-                    <strong className="text-xs sm:text-[13px] text-[#7a1818] block">
-                      • Trách nhiệm đội ngũ cán bộ, đảng viên:
-                    </strong>
-                    <p className="text-xs sm:text-[13px] text-ink leading-relaxed">
-                      Thực thi và phát huy đầy đủ vai trò, trách nhiệm của đội ngũ cán bộ, đảng viên, đặc biệt là đội ngũ cán bộ cấp chiến lược.
-                    </p>
-                  </div>
+          {/* Cột phải: Trách nhiệm cán bộ & Nêu gương người đứng đầu */}
+          <div className="lg:col-span-6 space-y-3">
+            <EditorialReveal delay={160}>
+              <div className="p-3.5 sm:p-4 bg-[#fdfbf7] border border-[#e2d7c5] rounded-lg shadow-2xs space-y-2.5">
+                <div className="flex items-center gap-2 pb-1.5 border-b border-[#dfd2be]">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
+                  <h4 className="font-serif font-bold text-sm sm:text-base text-[#7a1818] tracking-tight">
+                    2. Trách nhiệm cán bộ & Gương mẫu của người đứng đầu
+                  </h4>
+                </div>
+
+                <div className="p-2.5 bg-[#fcf8f0] border border-[#e8dac5] rounded-md space-y-1">
+                  <strong className="text-xs sm:text-[13px] text-[#7a1818] block">
+                    • Trách nhiệm đội ngũ cán bộ, đảng viên:
+                  </strong>
+                  <p className="text-xs sm:text-[13px] text-ink leading-relaxed">
+                    Thực thi và phát huy đầy đủ vai trò, trách nhiệm của đội ngũ cán bộ, đảng viên, đặc biệt là đội ngũ cán bộ cấp chiến lược; sâu sát thực tiễn cơ sở.
+                  </p>
                 </div>
 
                 {/* Trách nhiệm làm gương của người đứng đầu */}
@@ -152,11 +165,6 @@ export default function XayDungDangSection() {
                 </div>
               </div>
             </EditorialReveal>
-          </div>
-
-          {/* Cột phải: Infographic Đường lối đến Hành động */}
-          <div className="lg:col-span-6 flex flex-col justify-start">
-            <InfographicDuongLoiDenHanhDong />
           </div>
         </div>
       ),

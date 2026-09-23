@@ -458,7 +458,7 @@ export default function UncleHoVoicePlayer({
             aria-label={isPlaying ? "Tạm dừng đoạn ghi âm" : "Nghe giọng Bác Hồ"}
             className={`flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-xs sm:text-[13px] font-serif font-bold transition-all duration-200 cursor-pointer shadow-sm select-none border whitespace-nowrap flex-shrink-0 ${
               isPlaying
-                ? "bg-gradient-to-r from-[#6e1313] to-[#8a1c1c] text-[#fff8ea] border-[#ffd700] ring-2 ring-[#ffd700]/60 shadow-[0_4px_15px_rgba(122,24,24,0.3)]"
+                ? "bg-gradient-to-r from-[#6e1313] to-[#8a1c1c] text-[#fff8ea] border-[#ffd700] ring-2 ring-[#ffd700]/60 shadow-[0_4px_15px_rgba(122,24,24,0.3)] amber-voice-active"
                 : "bg-gradient-to-r from-[#7a1818] to-[#661212] text-[#fff8ea] border-[#d4af37]/60 hover:from-[#8d1c1c] hover:to-[#751616] hover:border-[#ffd700] hover:shadow-md"
             }`}
           >
@@ -533,9 +533,13 @@ export default function UncleHoVoicePlayer({
       <div className="relative z-10 mt-2 pt-2 border-t border-[#dfd0ba] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-3 select-none bg-[#fcf9f2] rounded-b-md px-1 py-0.5">
         {/* Cụm sóng âm & Seeker Bar */}
         <div className="flex-1 flex items-center gap-3">
-          {/* EQUALIZER HOẠT HỌA 16 TẦN SỐ CHUYÊN NGHIỆP - RỰC RỠ SỐNG ĐỘNG KHI PHÁT */}
+          {/* EQUALIZER HOẠT HỌA 16 TẦN SỐ HỔ PHÁCH - THỜI GIAN THỰC */}
           <div
-            className="flex items-end gap-[2px] h-6 px-1.5 py-0.5 bg-[#ebe0cb]/60 rounded-md border border-[#dac8a8]/70 flex-shrink-0"
+            className={`flex items-end gap-[2px] h-6 px-2 py-0.5 rounded-md border flex-shrink-0 transition-all duration-300 ${
+              isPlaying
+                ? "bg-[#21160d] border-[#d4af37]/80 shadow-[0_0_8px_rgba(212,175,55,0.25)]"
+                : "bg-[#ebe0cb]/60 border-[#dac8a8]/70"
+            }`}
             aria-hidden="true"
           >
             {EQUALIZER_BARS.map((bar, index) => {
@@ -544,7 +548,7 @@ export default function UncleHoVoicePlayer({
                   key={index}
                   className={`w-[2.5px] rounded-full transition-all ${
                     isPlaying
-                      ? "bg-gradient-to-t from-[#8b1e1e] via-[#b83828] to-[#d4af37]"
+                      ? "bg-gradient-to-t from-[#8b1e1e] via-[#d4af37] to-[#ffe58f]"
                       : "bg-[#8b1e1e]/35"
                   }`}
                   style={{
@@ -603,21 +607,28 @@ export default function UncleHoVoicePlayer({
         </div>
       </div>
 
-      {/* Style nhúng Animation Keyframe chuyên biệt cho Equalizer */}
+      {/* Style nhúng Animation Keyframe chuyên biệt cho Equalizer Quang phổ Hổ phách */}
       <style jsx>{`
         @keyframes hcmSpectrum {
           0% {
-            height: 15%;
-            opacity: 0.6;
+            height: 18%;
+            opacity: 0.65;
+            filter: drop-shadow(0 0 1px rgba(212, 175, 55, 0.4));
           }
-          50% {
-            height: 95%;
+          45% {
+            height: 98%;
             opacity: 1;
-            filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.8));
+            filter: drop-shadow(0 0 3.5px rgba(255, 215, 0, 0.95));
+          }
+          75% {
+            height: 60%;
+            opacity: 0.88;
+            filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.6));
           }
           100% {
-            height: 35%;
-            opacity: 0.8;
+            height: 32%;
+            opacity: 0.75;
+            filter: drop-shadow(0 0 1px rgba(212, 175, 55, 0.4));
           }
         }
       `}</style>

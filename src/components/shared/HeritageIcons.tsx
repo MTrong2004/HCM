@@ -110,18 +110,36 @@ export function LotusWatermark({ className = "w-28 h-28 opacity-15" }: { classNa
 }
 
 /**
- * Con dấu son đỏ "DÂN VI BẢN" / "LẬP QUỐC"
+ * Con dấu son đỏ "DÂN VI BẢN" / "LẬP QUỐC" - Hiệu ứng Ấn Triện Mực Son
  */
-export function HeritageSeal({ text = "DÂN VI BẢN", className = "w-10 h-10" }: { text?: string; className?: string }) {
+export function HeritageSeal({
+  text = "DÂN VI BẢN",
+  className = "w-10 h-10",
+  animate = true,
+}: {
+  text?: string;
+  className?: string;
+  animate?: boolean;
+}) {
   return (
     <div
-      className={`border-2 border-primary/80 text-primary font-serif font-black flex items-center justify-center p-1 rounded-sm rotate-[-3deg] select-none shadow-xs ${className}`}
+      className={`relative inline-flex items-center justify-center select-none group ${
+        animate ? "heritage-seal-animated" : ""
+      } ${className}`}
       aria-label={text}
     >
-      <div className="border border-primary/50 w-full h-full flex flex-col items-center justify-center text-[8px] leading-tight font-serif tracking-widest uppercase">
-        {text.split(" ").map((w, i) => (
-          <span key={i}>{w}</span>
-        ))}
+      {/* Vòng lan tỏa mực son khi đóng triện */}
+      {animate && <span className="seal-echo" aria-hidden="true" />}
+
+      {/* Thân triện son truyền thống: Viền kép (ngoài dày, trong mảnh), màu mực son cổ điển */}
+      <div className="w-full h-full border-[1.5px] border-[#8b1e1e] bg-[#fbf5eb]/90 rounded-[2px] p-[2px] shadow-[0_1px_3px_rgba(139,30,30,0.18)] transition-transform duration-200 group-hover:scale-105">
+        <div className="w-full h-full border border-[#8b1e1e]/60 rounded-[1px] flex flex-col items-center justify-center text-[#8b1e1e] font-serif font-black tracking-widest uppercase leading-none p-0.5">
+          {text.split(" ").map((w, i) => (
+            <span key={i} className="text-[7.5px] leading-tight font-serif tracking-wider">
+              {w}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
