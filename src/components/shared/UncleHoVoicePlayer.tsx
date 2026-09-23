@@ -116,7 +116,17 @@ export default function UncleHoVoicePlayer({
   const [duration, setDuration] = useState<number>(initialDuration);
   const [useMp3Fallback, setUseMp3Fallback] = useState<boolean>(false);
   const [showMissingNotice, setShowMissingNotice] = useState<boolean>(false);
-  const [isLocalEnv, setIsLocalEnv] = useState<boolean>(false);
+  const [isLocalEnv] = useState<boolean>(() => {
+    if (process.env.NODE_ENV === "development") return true;
+    if (typeof window !== "undefined") {
+      return (
+        window.location.hostname === "localhost" ||
+        window.location.hostname === "127.0.0.1" ||
+        window.location.hostname.endsWith(".local")
+      );
+    }
+    return false;
+  });
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -130,17 +140,6 @@ export default function UncleHoVoicePlayer({
     context: imageHistoricalContext || defaultBg.context,
     position: imagePosition || defaultBg.position || "object-center",
   };
-
-  // Chỉ kích hoạt chức năng nạp file khi ở môi trường Local Development
-  useEffect(() => {
-    const isLocal =
-      process.env.NODE_ENV === "development" ||
-      (typeof window !== "undefined" &&
-        (window.location.hostname === "localhost" ||
-          window.location.hostname === "127.0.0.1" ||
-          window.location.hostname.endsWith(".local")));
-    setIsLocalEnv(isLocal);
-  }, []);
 
   // Đường dẫn tệp âm thanh lịch sử thật bảo đảm chạy đúng cả local lẫn GitHub Pages
   const rawPath =
@@ -433,12 +432,12 @@ export default function UncleHoVoicePlayer({
 
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-1.5 mb-0.5">
-              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[8.5px] sm:text-[9px] font-mono font-bold uppercase tracking-wider bg-[#7a1818]/10 text-[#7a1818] border border-[#7a1818]/20 shadow-2xs">
+              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9.5px] sm:text-[10.5px] font-mono font-bold uppercase tracking-wider bg-[#7a1818]/10 text-[#7a1818] border border-[#7a1818]/20 shadow-2xs">
                 <Sparkles className="w-2.5 h-2.5 text-[#8b1e1e]" />
                 <span>GIỌNG NÓI CHỦ TỊCH HỒ CHÍ MINH</span>
               </span>
             </div>
-            <h5 className="font-serif font-bold text-xs sm:text-[13px] text-[#1f1a14] leading-snug line-clamp-2">
+            <h5 className="font-serif font-bold text-xs sm:text-sm text-[#1f1a14] leading-snug line-clamp-2">
               {title}
             </h5>
           </div>
@@ -463,7 +462,7 @@ export default function UncleHoVoicePlayer({
             onClick={handleTogglePlay}
             disabled={isLoading}
             aria-label={isPlaying ? "Tạm dừng đoạn ghi âm" : "Nghe giọng Bác Hồ"}
-            className={`flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-serif font-bold transition-all duration-200 cursor-pointer shadow-sm select-none border whitespace-nowrap flex-shrink-0 ${
+            className={`flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-xs sm:text-[13px] font-serif font-bold transition-all duration-200 cursor-pointer shadow-sm select-none border whitespace-nowrap flex-shrink-0 ${
               isPlaying
                 ? "bg-gradient-to-r from-[#6e1313] to-[#8a1c1c] text-[#fff8ea] border-[#ffd700] ring-2 ring-[#ffd700]/60 shadow-[0_4px_15px_rgba(122,24,24,0.3)]"
                 : "bg-gradient-to-r from-[#7a1818] to-[#661212] text-[#fff8ea] border-[#d4af37]/60 hover:from-[#8d1c1c] hover:to-[#751616] hover:border-[#ffd700] hover:shadow-md"
@@ -486,10 +485,10 @@ export default function UncleHoVoicePlayer({
 
       {/* 2. NỘI DUNG CÂU NÓI CỦA BÁC: TRANG TRỌNG TRÊN NỀN GIẤY NGÀ SẮC NÉT */}
       <div className="relative z-10 pl-3 sm:pl-3.5 border-l-3 border-[#7a1818] my-2 bg-[#fcf9f2]/85 backdrop-blur-[2px] py-1.5 px-2 rounded-r-md max-w-[92%] sm:max-w-[85%] shadow-2xs">
-        <p className="font-serif text-[12px] sm:text-[13px] italic text-[#1f1a14] font-medium leading-relaxed">
+        <p className="font-serif text-[13px] sm:text-sm md:text-[14.5px] italic text-[#1f1a14] font-medium leading-relaxed">
           &ldquo;{quote.replace(/\(VOICE\)/gi, "").trim()}&rdquo;
         </p>
-        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 mt-1.5 pt-1 border-t border-[#ebd8c2]/70 text-[9.5px] sm:text-[10px] text-[#735d43] font-sans">
+        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 mt-1.5 pt-1 border-t border-[#ebd8c2]/70 text-[10.5px] sm:text-[11.5px] text-[#735d43] font-sans">
           {sourceContext && (
             <span className="font-medium">— {sourceContext}</span>
           )}
@@ -501,7 +500,7 @@ export default function UncleHoVoicePlayer({
         </div>
         {/* Chú thích học thuật minh bạch tư liệu nếu là bức thư 17/10/1945 */}
         {id === "voice-chinh-phu-vi-dan" && (
-          <div className="mt-2 pt-1 border-t border-[#ebd8c2] flex items-center gap-1.5 text-[9.5px] text-[#8a3800] font-sans">
+          <div className="mt-2 pt-1 border-t border-[#ebd8c2] flex items-center gap-1.5 text-[10.5px] sm:text-[11px] text-[#8a3800] font-sans">
             <span className="w-1.5 h-1.5 rounded-full bg-[#c5a059]" />
             <span>Âm thanh tư liệu: Giọng Bác Hồ tại Lễ Độc lập 1945 (Bức thư 17/10/1945 lưu hành dạng văn bản báo chí).</span>
           </div>

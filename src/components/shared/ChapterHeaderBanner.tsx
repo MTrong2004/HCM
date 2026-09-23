@@ -81,11 +81,11 @@ const SECTION_BANNER_MAP: Record<string, SectionBannerInfo> = {
   },
   "ket-luan": {
     code: "5.0",
-    title: "Ứng dụng AI & Tổng kết",
-    parentPath: "Di sản trường tồn của Chủ tịch Hồ Chí Minh",
+    title: "Ứng dụng AI",
+    parentPath: "Ứng dụng công nghệ",
     image: "/images/soan-thao-hien-phap-1946.webp",
     quote:
-      "Dân ta phải biết sử ta, Cho tường gốc tích nước nhà Việt Nam.",
+      "Công nghệ AI giúp nhóm hiện thực hóa ý tưởng website tương tác nhanh chóng, kết hợp sự chuẩn xác của từng trang giáo trình được đối chiếu.",
     badge: "ỨNG DỤNG AI",
   },
 };
@@ -101,7 +101,13 @@ export default function ChapterHeaderBanner({
   currentSectionTitle,
   parentPath,
 }: ChapterHeaderBannerProps) {
-  const { activeSection, scrollTo, isBannerCollapsed, toggleBannerCollapsed } = useSmoothScroll();
+  const {
+    activeSection,
+    scrollTo,
+    isBannerCollapsed,
+    toggleBannerCollapsed,
+    isTOCDrawerOpen,
+  } = useSmoothScroll();
 
   const data = SECTION_BANNER_MAP[activeSection] || SECTION_BANNER_MAP["phap-quyen"];
   const displayCode = currentSectionCode || data.code;
@@ -201,6 +207,8 @@ export default function ChapterHeaderBanner({
       {/* 4. DẢI BREADCRUMB & NÚT ĐIỀU KHIỂN THU GỌN / MỞ RỘNG BANNER */}
       <div
         className={`absolute left-0 right-0 z-30 pointer-events-auto flex items-center justify-between px-3 sm:px-6 md:px-8 transition-all duration-300 ${
+          isTOCDrawerOpen ? "lg:pl-[164px]" : "lg:pl-8"
+        } ${
           isBannerCollapsed ? "inset-0 h-full" : "bottom-0 h-11 sm:h-12"
         }`}
       >
@@ -233,9 +241,9 @@ export default function ChapterHeaderBanner({
           
           <ChevronRight className="w-3.5 h-3.5 text-[#a89785] flex-shrink-0" />
           
-          <span className="text-[#7a1818] font-bold truncate tracking-tight">
+          <h1 className="text-[#7a1818] font-bold truncate tracking-tight text-xs sm:text-xs font-sans inline m-0 p-0 font-normal">
             {displayCode} {displayTitle}
-          </span>
+          </h1>
         </div>
 
         {/* Nhóm điều khiển: Thu gọn / mở rộng banner */}

@@ -7,6 +7,7 @@ import { useSmoothScroll } from "./SmoothScrollProvider";
 import { playSubtleClick } from "@/lib/sound-effects";
 import { CANONICAL_SECTIONS } from "@/content/canonical-sections";
 import EditorialReveal from "./EditorialReveal";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export interface TabItem {
   id: string;
@@ -48,7 +49,10 @@ export default function AcademicPortalSection({
     stepPrev,
     scrollTo,
     isBannerCollapsed,
+    subtabDirection,
   } = useSmoothScroll();
+
+  const isReduced = useReducedMotion();
 
   // Trạng thái bật/tắt tóm lược luận điểm (mặc định luôn hiển thị)
   const [showSummary, setShowSummary] = useState<boolean>(true);
@@ -240,14 +244,21 @@ export default function AcademicPortalSection({
           {/* Khung Hiển Thị Chi Tiết Nội Dung Tiểu Mục Đang Chọn: Trải rộng tự nhiên, cuộn mượt cùng toàn trang */}
           <div
             ref={contentScrollRef}
-            className="w-full min-h-[300px] sm:min-h-[340px] bg-[#fbf9f4] border-x border-b border-[#e2d7c5] rounded-b-lg p-3 sm:p-5 shadow-2xs relative flex flex-col justify-between"
+            className="w-full min-h-[300px] sm:min-h-[340px] bg-[#fbf9f4] border-x border-b border-[#e2d7c5] rounded-b-lg p-3 sm:p-5 shadow-2xs relative flex flex-col justify-between overflow-hidden"
           >
-            <div
-              key={activeTab.id}
-              className="w-full pb-4 transition-opacity duration-200"
-            >
-              {activeTab?.content}
-            </div>
+            <AnimatePresence mode="wait" custom={subtabDirection}>
+              <motion.div
+                key={activeTab.id}
+                custom={subtabDirection}
+                initial={{ opacity: 0, x: isReduced ? 0 : subtabDirection * 12 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: isReduced ? 0 : -subtabDirection * 12 }}
+                transition={{ duration: isReduced ? 0.01 : 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full pb-4"
+              >
+                {activeTab?.content}
+              </motion.div>
+            </AnimatePresence>
 
             {/* Phần mở rộng nếu có */}
             {children && <div className="space-y-3 pt-1 pb-4">{children}</div>}

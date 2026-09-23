@@ -97,7 +97,7 @@ export default function InfographicCuaDoViDan() {
       </div>
 
       {/* Active Pillar Details */}
-      <div className="p-2.5 sm:p-3 rounded bg-paper border border-accent/25">
+      <div key={activeTab} className="p-2.5 sm:p-3 rounded bg-paper border border-accent/25 editorial-tab-panel">
         <h5 className="font-serif text-xs sm:text-sm font-bold text-primary mb-1">
           Ý nghĩa cốt lõi: Nhà nước {pillars[activeTab].title}
         </h5>

@@ -196,8 +196,8 @@ export const CANONICAL_SECTIONS: readonly CanonicalSection[] = [
     id: "ket-luan",
     number: "5",
     shortTitle: "Ứng dụng AI",
-    fullTitle: "Ứng dụng AI & Tổng kết",
-    subtitle: "Ứng dụng Trí tuệ nhân tạo trong nghiên cứu Tư tưởng Hồ Chí Minh",
+    fullTitle: "5.0 Ứng dụng AI",
+    subtitle: "Báo cáo thực tế về các công cụ AI và quy trình đối chiếu giáo trình của nhóm",
     hash: "#ket-luan",
   },
 ] as const;

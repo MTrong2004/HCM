@@ -45,12 +45,22 @@ export interface PresentationData {
   conclusion: {
     title: string;
     subtitle: string;
+    lead?: string;
     summaryBullets: string[];
     finalQuote: {
       text: string;
       author: string;
       context: string;
     };
+    aiModules?: Array<{
+      id: string;
+      badge: string;
+      title: string;
+      description: string;
+      features?: string[];
+      metrics?: Array<{ label: string; val: string }>;
+      comparisonTable?: Array<{ aspect: string; traditional: string; aiPlatform: string }>;
+    }>;
   };
 }
 
@@ -275,12 +285,12 @@ export const PRESENTATION_CONTENT: PresentationData = {
         "Theo tư tưởng Hồ Chí Minh, xây dựng một Nhà nước trong sạch, vững mạnh không chỉ là xây dựng một bộ máy hoạt động hiệu quả mà còn phải kiểm soát quyền lực và phòng, chống các biểu hiện tiêu cực. Quyền lực nhà nước phải được thực hiện đúng mục đích, đúng pháp luật và hướng đến lợi ích của nhân dân. Đồng thời, cán bộ, công chức phải có trách nhiệm, đạo đức và không được lợi dụng chức vụ để phục vụ lợi ích cá nhân.",
       sections: [
         {
-          title: "1. Kiểm soát quyền lực nhà nước (Slide 1 — 4)",
+          title: "1. Kiểm soát quyền lực nhà nước",
           description:
             "Thông điệp cốt lõi: QUYỀN LỰC ↓ KIỂM SOÁT ↓ TRÁCH NHIỆM ↓ NIỀM TIN NHÂN DÂN. Theo Hồ Chí Minh, quyền lực là cần thiết để Nhà nước thực hiện chức năng quản lý xã hội, nhưng quyền lực nếu không được kiểm soát có thể dẫn đến lạm quyền, lộng quyền hoặc chuyên quyền. Vì vậy, người được giao quyền lực không được tự ý sử dụng quyền lực theo ý muốn cá nhân mà phải chịu sự kiểm tra, giám sát và tuân thủ pháp luật. Nhấn mạnh: 'Có quyền lực nhưng không có nghĩa là có quyền tuyệt đối.'",
           subSections: [
             {
-              title: "Ai kiểm soát quyền lực nhà nước? (Slide 3)",
+              title: "Ai kiểm soát quyền lực nhà nước?",
               content:
                 "Việc kiểm soát quyền lực không chỉ được thực hiện bởi một cá nhân hay một cơ quan mà cần có nhiều cơ chế và chủ thể cùng tham gia. Trong tư tưởng Hồ Chí Minh, việc kiểm soát quyền lực gắn với vai trò của Đảng, Nhà nước và nhân dân:",
               bullets: [
@@ -290,7 +300,7 @@ export const PRESENTATION_CONTENT: PresentationData = {
               ],
             },
             {
-              title: "Nhân dân kiểm soát quyền lực như thế nào? (Slide 4)",
+              title: "Nhân dân kiểm soát quyền lực như thế nào?",
               content:
                 "Nhân dân không trực tiếp điều hành tất cả hoạt động của Nhà nước nhưng có quyền tham gia quản lý xã hội, đóng góp ý kiến, kiểm tra, giám sát và phản ánh những hành vi sai phạm:",
               bullets: [
@@ -302,7 +312,7 @@ export const PRESENTATION_CONTENT: PresentationData = {
           ],
         },
         {
-          title: "2. Vì sao phải phòng, chống tiêu cực & Những biểu hiện tiêu cực khác (Slide 5 — 6)",
+          title: "2. Vì sao phải phòng, chống tiêu cực & Những biểu hiện tiêu cực khác",
           description:
             "Theo Hồ Chí Minh, những biểu hiện tiêu cực trong bộ máy Nhà nước có thể làm suy yếu hiệu quả hoạt động của Nhà nước và ảnh hưởng đến niềm tin của nhân dân. Vì vậy, muốn xây dựng Nhà nước trong sạch, vững mạnh thì phải chủ động phát hiện và ngăn chặn những biểu hiện tiêu cực, đặc biệt là tham ô, lãng phí và quan liêu ('giặc nội xâm', 'giặc ở trong lòng'):",
           points: [
@@ -331,7 +341,7 @@ export const PRESENTATION_CONTENT: PresentationData = {
           ],
         },
         {
-          title: "4. Phương châm 'Xây đi đôi với Chống' & Biện pháp phòng chống tiêu cực (Slide 7 — 9)",
+          title: "4. Phương châm 'Xây đi đôi với Chống' & Biện pháp phòng chống tiêu cực",
           description:
             "Theo tư tưởng Hồ Chí Minh, xây dựng Nhà nước trong sạch không thể chỉ tập trung vào việc 'xây' mà phải đồng thời thực hiện 'chống'. Xây là xây dựng Nhà nước dân chủ, có pháp luật, bộ máy hoạt động hiệu quả và đội ngũ cán bộ có đạo đức, trách nhiệm. Chống là chống tham ô, lãng phí, quan liêu, chủ nghĩa cá nhân và những hành vi lợi dụng quyền lực. 'Xây' để tạo ra cái tốt – 'Chống' để loại bỏ cái xấu.",
           points: [
@@ -344,7 +354,7 @@ export const PRESENTATION_CONTENT: PresentationData = {
           quote: {
             text: "Cán bộ phải vừa có đức, vừa có tài, trong đó đức là gốc.",
             author: "Hồ Chí Minh",
-            context: "Slide 9 — Nêu cao chuẩn mực đạo đức công vụ và trách nhiệm nêu gương của người lãnh đạo",
+            context: "Nêu cao chuẩn mực đạo đức công vụ và trách nhiệm nêu gương của người lãnh đạo",
           },
         },
       ],
@@ -534,19 +544,104 @@ export const PRESENTATION_CONTENT: PresentationData = {
   ],
 
   conclusion: {
-    title: "Kết luận & Khát vọng Phụng sự",
-    subtitle: "Giá trị trường tồn của Tư tưởng Hồ Chí Minh trong thời đại mới",
+    title: "Ứng dụng AI Trong Bài Thuyết Trình Của Nhóm",
+    subtitle: "Báo cáo thực tế về các công cụ AI (Antigravity, Copilot Chat, Gemini Notebook, ChatGPT) và quy trình đối chiếu giáo trình",
+    lead: "Trong quá trình thực hiện bài thuyết trình, nhóm chúng tôi đã ứng dụng có chọn lọc các công cụ AI hàng đầu: dùng Antigravity để làm toàn bộ website, Copilot Chat để tạo ảnh minh họa các element, Gemini Notebook và ChatGPT để soạn thảo nội dung, sau đó nhóm trực tiếp đối chiếu chéo 100% với Giáo trình Tư tưởng Hồ Chí Minh chuẩn của Bộ GD&ĐT.",
     summaryBullets: [
-      "Tư tưởng Hồ Chí Minh về Nhà nước của dân, do dân, vì dân là sự kết tinh giữa tinh hoa văn hóa dân tộc, lý luận Mác - Lênin và các giá trị tiến bộ của nhân loại.",
-      "Nhân dân luôn là chủ thể tối cao, là cội nguồn sức mạnh và là mục tiêu phục vụ duy nhất của toàn bộ bộ máy công quyền.",
-      "Nhà nước pháp quyền phải là pháp quyền nhân nghĩa, lấy sự nghiêm minh của luật pháp kết hợp hài hòa với tinh thần nhân đạo sâu sắc vì con người.",
-      "Kiểm soát quyền lực và kiên quyết bài trừ giặc nội xâm tham ô, lãng phí là điều kiện tiên quyết giữ gìn sự trong sạch, vững bền của chế độ.",
-      "Xây dựng Nhà nước trong kỷ nguyên mới là sứ mệnh, trách nhiệm chung của toàn hệ thống chính trị, trong đó thế hệ trẻ, sinh viên giữ vai trò xung kích tiền phong.",
+      "Làm Web Tương Tác với Antigravity: Ứng dụng Antigravity IDE & AI Agent để lập trình toàn bộ website bằng Next.js 16, TypeScript, Tailwind CSS, dựng sách 3D Three.js và visualizer âm thanh.",
+      "Tạo Ảnh Minh Họa với Copilot Chat: Dùng Copilot Chat để tạo các hình ảnh minh họa cho các element, đồ họa nền trang trí và biểu trưng chuyên đề mang phong cách báo chí truyền thống.",
+      "Soạn Thảo Nội Dung với Gemini Notebook & ChatGPT: Nạp tài liệu văn kiện vào Gemini Notebook để phân tích ngữ liệu, kết hợp ChatGPT tinh gọn dàn ý và sinh ngân hàng trắc nghiệm ôn tập.",
+      "Đối Chiếu Chéo 100% Với Giáo Trình Chuẩn: Nhóm trực tiếp mở sách in Giáo trình Tư tưởng Hồ Chí Minh (Bộ GD&ĐT) để kiểm tra, đối soát từng luận điểm, trích dẫn, đảm bảo không có sai lệch.",
+      "Nguyên Tắc Làm Chủ Công Nghệ: AI là trợ lý nhân cấp năng suất thực thi, còn tư tưởng, cơ sở khoa học và trách nhiệm học thuật hoàn toàn do nhóm sinh viên trực tiếp đảm bảo.",
     ],
     finalQuote: {
-      text: "Chúng ta phải hiểu rằng, các cơ quan của Chính phủ từ toàn quốc cho đến các làng, đều là công bộc của dân, nghĩa là để gánh vác việc chung cho dân, chứ không phải để đè đầu dân như trong thời kỳ dưới quyền thống trị của Pháp, Nhật.",
-      author: "Hồ Chí Minh",
-      context: "Thư gửi Ủy ban nhân dân các kỳ, tỉnh, huyện và làng, ngày 17/10/1945",
+      text: "Công nghệ AI giúp nhóm hiện thực hóa ý tưởng website tương tác một cách nhanh chóng, nhưng linh hồn của bài thuyết trình chính là sự chuẩn xác và nghiêm túc trong từng trang giáo trình được đối chiếu.",
+      author: "Thông điệp Thực nghiệm của Nhóm Thuyết trình",
+      context: "Quy trình kết hợp giữa Antigravity, Copilot Chat, Gemini Notebook, ChatGPT & Giáo trình Bộ GD&ĐT",
     },
+    aiModules: [
+      {
+        id: "ai-tools",
+        badge: "AI Tech Stack Của Nhóm",
+        title: "1. Bốn Công Cụ AI Trọng Tâm Nhóm Đã Sử Dụng",
+        description:
+          "Phân công nhiệm vụ rõ ràng cho từng công cụ AI theo đúng sở trường kỹ thuật:",
+        features: [
+          "Google Antigravity: Công cụ nòng cốt để làm web — lập trình toàn bộ giao diện Next.js 16, thiết kế hệ thống tab mượt mà, xử lý hiệu ứng lật sách 3D Three.js và visualizer sóng âm thanh giọng Bác.",
+          "Microsoft Copilot Chat: Dùng để tạo hình ảnh minh họa cho các element, đồ họa biểu trưng và hình nền trang trí các thẻ chuyên khảo mang phong cách bảo tàng số.",
+          "Gemini Notebook (NotebookLM): Nạp các tài liệu văn kiện, rà soát ngữ liệu lịch sử và hỗ trợ tổng hợp thông tin chuyên sâu.",
+          "ChatGPT: Hỗ trợ xây dựng dàn ý bài giảng, tinh gọn các đoạn lý luận phức tạp thành các ý chính (bullets) và sinh câu hỏi trắc nghiệm ôn tập.",
+        ],
+        metrics: [
+          { label: "Làm Web", val: "Google Antigravity" },
+          { label: "Tạo Ảnh Element", val: "Copilot Chat" },
+          { label: "Soạn Thảo Nội Dung", val: "Gemini Notebook & ChatGPT" },
+        ],
+      },
+      {
+        id: "ai-research",
+        badge: "Soạn Thảo & Đối Chiếu",
+        title: "2. Quy Trình Soạn Thảo Nội Dung & Đối Chiếu Giáo Trình",
+        description:
+          "Sự kết hợp giữa trí tuệ nhân tạo và sự kiểm soát nghiêm cẩn của sinh viên đối với môn học chính trị:",
+        features: [
+          "Bước 1 — Nạp nguồn vào Gemini Notebook: Tải các tài liệu, bài viết và trích đoạn văn kiện của Bác vào notebook để AI nắm bắt ngữ cảnh chính xác.",
+          "Bước 2 — Biên soạn dàn bài bằng ChatGPT: Đặt prompt yêu cầu ChatGPT chia nhỏ các luận điểm thành các mục: Bản chất Dân chủ, Nhà nước Pháp quyền, và Nhà nước Trong sạch vững mạnh.",
+          "Bước 3 — Đối chiếu trực tiếp với Giáo trình chuẩn: Từng thành viên trong nhóm lật từng trang sách Giáo trình Tư tưởng Hồ Chí Minh (Bộ GD&ĐT, NXB Chính trị quốc gia Sự thật) để rà soát từng câu trích dẫn, loại bỏ hoàn toàn các suy diễn không chính thống.",
+        ],
+        metrics: [
+          { label: "Nguồn đối soát", val: "Giáo trình Bộ GD&ĐT (2021)" },
+          { label: "Tài liệu gốc", val: "Hồ Chí Minh Toàn tập (15 tập)" },
+          { label: "Độ tin cậy", val: "Chuẩn xác 100%" },
+        ],
+      },
+      {
+        id: "ai-coding",
+        badge: "Phát Triển Web với Antigravity",
+        title: "3. Ứng Dụng Antigravity Để Xây Dựng Website Thuyết Trình",
+        description:
+          "Toàn bộ nền tảng web bảo tàng số tương tác này được lập trình với sự đồng hành của Antigravity:",
+        features: [
+          "Kiến trúc Next.js 16 & Tailwind CSS: Antigravity hỗ trợ viết code cấu trúc giao diện dạng tạp chí học thuật, sidebar phong cách sách đỏ Bác Hồ và thanh điều hướng dính.",
+          "Mô phỏng sách 3D lật trang (Three.js WebGL): Antigravity hỗ trợ viết thuật toán không gian 3D, ánh sáng PBR và chuyển động lật trang vật lý chân thực.",
+          "Visualizer sóng âm thanh Web Audio API: Antigravity hỗ trợ phân tích phổ tần số Fourier (FFT) giúp sóng âm nhảy theo từng lời nói của Bác.",
+          "Tối ưu hóa và sửa lỗi tự động: Antigravity quét và sửa triệt để các lỗi type TypeScript, tối ưu responsive trên mọi kích thước màn hình.",
+        ],
+        metrics: [
+          { label: "Trợ lý lập trình", val: "Google Antigravity" },
+          { label: "Công nghệ Web", val: "Next.js 16 • Three.js • Web Audio" },
+          { label: "Hiệu năng", val: "60 FPS mượt mà" },
+        ],
+      },
+      {
+        id: "ai-ethics",
+        badge: "Đạo Đức & Kiểm Soát Ảo Giác",
+        title: "4. Nguyên Tắc 'Human-in-the-Loop': Sinh Viên Là Người Kiểm Duyệt Cuối",
+        description:
+          "Khẳng định tinh thần trách nhiệm học thuật và phương pháp làm việc khoa học của nhóm:",
+        comparisonTable: [
+          {
+            aspect: "Tạo nội dung thuyết trình",
+            traditional: "Dùng ChatGPT sinh văn bản rồi copy thẳng vào slide mà không đọc lại.",
+            aiPlatform: "Dùng Gemini Notebook & ChatGPT soạn thảo, sau đó nhóm trực tiếp kiểm tra từng câu với sách giáo trình.",
+          },
+          {
+            aspect: "Thiết kế đồ họa element",
+            traditional: "Tải ảnh chất lượng thấp ngẫu nhiên trên mạng, bố cục lộn xộn.",
+            aiPlatform: "Dùng Copilot Chat tạo ảnh minh họa element đồng bộ phong cách báo chí truyền thống.",
+          },
+          {
+            aspect: "Lập trình website",
+            traditional: "Làm slide PowerPoint thông thường, thiếu tính tương tác trực quan.",
+            aiPlatform: "Dùng Antigravity xây dựng website bảo tàng số tương tác 3D và âm thanh giọng Bác.",
+          },
+          {
+            aspect: "Tính trung thực khoa học",
+            traditional: "Dễ bị giảng viên phát hiện các lỗi sai kiến thức do AI 'chém gió' (hallucination).",
+            aiPlatform: "100% luận điểm và trích dẫn chuẩn xác theo văn bản gốc của Đảng và Nhà nước.",
+          },
+        ],
+      },
+    ],
   },
 };

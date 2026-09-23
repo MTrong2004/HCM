@@ -147,7 +147,7 @@ export default function InfographicQuyenLucKiemSoat() {
         </div>
 
         {/* Selected Solution Detail */}
-        <div className="p-2 sm:p-2.5 rounded bg-paper border border-accent/25">
+        <div key={selectedSolution} className="p-2 sm:p-2.5 rounded bg-paper border border-accent/25 editorial-tab-panel">
           <h6 className="font-serif text-xs sm:text-sm font-bold text-primary mb-1">
             Trụ cột {solutions[selectedSolution].num}: {solutions[selectedSolution].keyword} — {solutions[selectedSolution].title}
           </h6>

@@ -30,11 +30,27 @@ export default function SettingsModal({
   onOpenPresentation,
   onOpenBook3D,
 }: SettingsModalProps) {
-  const [soundOn, setSoundOn] = useState(false);
-  const [fontSize, setFontSize] = useState<"normal" | "large" | "xlarge">("normal");
+  const [soundOn, setSoundOn] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      return !isSoundMuted();
+    }
+    return false;
+  });
+  const [fontSize, setFontSize] = useState<"normal" | "large" | "xlarge">(() => {
+    if (typeof window !== "undefined") {
+      const savedFontSize = localStorage.getItem("hcm_font_size") as
+        | "normal"
+        | "large"
+        | "xlarge"
+        | null;
+      if (savedFontSize) return savedFontSize;
+    }
+    return "normal";
+  });
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (!isOpen || typeof window === "undefined") return;
+    const timer = setTimeout(() => {
       setSoundOn(!isSoundMuted());
       const savedFontSize = localStorage.getItem("hcm_font_size") as
         | "normal"
@@ -44,7 +60,8 @@ export default function SettingsModal({
       if (savedFontSize) {
         setFontSize(savedFontSize);
       }
-    }
+    }, 0);
+    return () => clearTimeout(timer);
   }, [isOpen]);
 
   useEffect(() => {
@@ -238,7 +255,7 @@ export default function SettingsModal({
                     Chế độ Thuyết trình
                   </div>
                   <div className="text-[10.5px] text-[#6b5847]">
-                    Chiếu slide toàn màn hình
+                    Trình chiếu toàn màn hình
                   </div>
                 </div>
               </button>

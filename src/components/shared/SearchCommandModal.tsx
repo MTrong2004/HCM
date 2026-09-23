@@ -80,9 +80,9 @@ const SEARCH_ITEMS: SearchItem[] = [
   },
   {
     id: "ket-luan",
-    category: "Trích dẫn",
-    title: "Danh mục Nguồn Tư liệu & Trích dẫn",
-    desc: "Hồ Chí Minh Toàn tập, Hiến pháp 1946, 1959, Nghị quyết 27-NQ/TW.",
+    category: "Chuyên đề",
+    title: "5.0 Ứng dụng AI Trong Bài Thuyết Trình Của Nhóm",
+    desc: "Báo cáo công cụ AI (Antigravity, Copilot Chat, Gemini Notebook, ChatGPT) và quy trình đối chiếu giáo trình.",
   },
 ];
 

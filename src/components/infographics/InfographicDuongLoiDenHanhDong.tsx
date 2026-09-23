@@ -75,7 +75,7 @@ export default function InfographicDuongLoiDenHanhDong() {
       </div>
 
       {/* Active Step Panel */}
-      <div className="p-2 sm:p-2.5 rounded bg-paper border border-accent/25 mb-2">
+      <div key={activeStep} className="p-2 sm:p-2.5 rounded bg-paper border border-accent/25 mb-2 editorial-tab-panel">
         <span className="text-[10px] font-mono uppercase text-accent-dark font-bold block mb-1">
           BƯỚC {steps[activeStep].num}: {steps[activeStep].title}
         </span>

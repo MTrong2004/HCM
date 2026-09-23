@@ -110,7 +110,7 @@ export default function InfographicPhapQuyenBaTang() {
         </div>
 
         {/* Detailed Explanation Panel (Right) */}
-        <div className="lg:col-span-7 p-5 sm:p-6 rounded bg-paper border border-accent/30">
+        <div key={activeTier} className="lg:col-span-7 p-5 sm:p-6 rounded bg-paper border border-accent/30 editorial-tab-panel">
           <div className="flex items-center gap-2 mb-1.5">
             <span className="text-xs font-mono font-bold text-accent-dark uppercase">
               {tiers[activeTier].level} —

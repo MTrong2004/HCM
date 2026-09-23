@@ -20,8 +20,6 @@ export default function SectionNavigation() {
   const {
     activeSection,
     scrollTo,
-    isStudyNotebookOpen,
-    toggleStudyNotebook,
   } = useSmoothScroll();
 
   const [presentationOpen, setPresentationOpen] = useState(false);

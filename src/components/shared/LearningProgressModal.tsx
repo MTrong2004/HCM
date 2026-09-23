@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { X, CheckCircle2, ChevronRight, BookOpen, Clock } from "lucide-react";
+import { X, CheckCircle2, ChevronRight } from "lucide-react";
 import { CANONICAL_SECTIONS } from "@/content/canonical-sections";
 import { playSubtleClick } from "@/lib/sound-effects";
 

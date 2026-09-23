@@ -3,8 +3,10 @@
 
 import React, { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, Maximize2, Minimize2, Quote } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { PRESENTATION_CONTENT } from "@/content/presentation-content";
 import { playPageTurn, playSubtleClick } from "@/lib/sound-effects";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface PresentationSlide {
   id: string;
@@ -145,13 +147,13 @@ const SLIDES: PresentationSlide[] = [
   },
   {
     id: "ket-luan",
-    chapter: "TỔNG KẾT HỌC THUẬT",
-    watermark: "DI SẢN",
-    sealTag: "VĨNH CỬU",
-    title: "5 Luận điểm Cốt lõi & Giá trị Thời đại",
-    subtitle: "Đúc kết từ công trình nghiên cứu và ý nghĩa xây dựng Nhà nước hiện nay",
-    image: "/images/can-bo-phuc-vu-nhan-dan.webp",
-    imageCaption: "Chủ tịch Hồ Chí Minh gặp gỡ nhân dân và kiều bào năm 1946",
+    chapter: "MỤC 5.0 • ỨNG DỤNG CÔNG NGHỆ",
+    watermark: "TRÍ TUỆ NHÂN TẠO",
+    sealTag: "CÔNG NGHỆ & LÝ LUẬN",
+    title: "Ứng dụng AI Trong Bài Thuyết Trình Của Nhóm",
+    subtitle: "Báo cáo thực tế về các công cụ AI và quy trình nhóm đã ứng dụng trong nghiên cứu & làm web",
+    image: "/images/soan-thao-hien-phap-1946.webp",
+    imageCaption: "Ứng dụng AI sáng tạo kết hợp kiểm chứng học thuật có trách nhiệm của sinh viên",
     theses: PRESENTATION_CONTENT.conclusion.summaryBullets,
     keyTakeaway: PRESENTATION_CONTENT.conclusion.finalQuote.text,
   },
@@ -165,7 +167,9 @@ export default function PresentationModeModal({
   onClose: () => void;
 }) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [slideDirection, setSlideDirection] = useState<1 | -1>(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const isReduced = useReducedMotion();
 
   useEffect(() => {
     if (!isOpen) return;
@@ -177,10 +181,12 @@ export default function PresentationModeModal({
       } else if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
         e.preventDefault();
         playPageTurn();
+        setSlideDirection(1);
         setCurrentSlide((prev) => Math.min(SLIDES.length - 1, prev + 1));
       } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
         e.preventDefault();
         playPageTurn();
+        setSlideDirection(-1);
         setCurrentSlide((prev) => Math.max(0, prev - 1));
       }
     };
@@ -202,16 +208,19 @@ export default function PresentationModeModal({
 
   const handleGoToSlide = (idx: number) => {
     playPageTurn();
+    setSlideDirection(idx >= currentSlide ? 1 : -1);
     setCurrentSlide(idx);
   };
 
   const handlePrevSlide = () => {
     playPageTurn();
+    setSlideDirection(-1);
     setCurrentSlide((prev) => Math.max(0, prev - 1));
   };
 
   const handleNextSlide = () => {
     playPageTurn();
+    setSlideDirection(1);
     setCurrentSlide((prev) => Math.min(SLIDES.length - 1, prev + 1));
   };
 
@@ -274,84 +283,94 @@ export default function PresentationModeModal({
       </div>
 
       {/* Main Slide Content Area */}
-      <div className="relative z-10 max-w-6xl mx-auto w-full my-auto py-4 sm:py-6 space-y-5">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          {/* Main Slide Text Info (8 cols) */}
-          <div className="lg:col-span-8 space-y-3">
-            <div className="flex items-center gap-2">
-              <span className="inline-block px-3 py-1 rounded-full bg-accent/15 border border-accent/30 text-accent-light font-mono text-xs font-bold uppercase tracking-wider">
-                {slide.chapter}
-              </span>
-              {/* Slender Vertical Seal Tag */}
-              <span className="px-2 py-0.5 rounded bg-primary/40 border border-accent/40 text-accent-light font-serif text-[11px] font-bold tracking-widest uppercase">
-                {slide.sealTag}
-              </span>
-            </div>
-            <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl font-black text-paper-light leading-tight">
-              {slide.title}
-            </h2>
-            <p className="font-serif italic text-base sm:text-xl text-accent-light/90">
-              {slide.subtitle}
-            </p>
-
-            {/* Quote if present */}
-            {slide.highlightQuote && (
-              <div className="p-4 rounded-xl bg-[#1C1715] border-l-4 border-primary border-t border-r border-b border-accent/25 my-3">
-                <p className="font-serif italic text-sm sm:text-base text-paper-light/90 leading-relaxed">
-                  &ldquo;{slide.highlightQuote.text}&rdquo;
-                </p>
-                <span className="block mt-1 text-right font-serif text-xs text-accent-light font-bold">
-                  — {slide.highlightQuote.author}
+      <AnimatePresence mode="wait" custom={slideDirection}>
+        <motion.div
+          key={currentSlide}
+          custom={slideDirection}
+          initial={{ opacity: 0, x: isReduced ? 0 : slideDirection * 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: isReduced ? 0 : -slideDirection * 20 }}
+          transition={{ duration: isReduced ? 0.01 : 0.22, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-10 max-w-6xl mx-auto w-full my-auto py-4 sm:py-6 space-y-5"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            {/* Main Slide Text Info (8 cols) */}
+            <div className="lg:col-span-8 space-y-3">
+              <div className="flex items-center gap-2">
+                <span className="inline-block px-3 py-1 rounded-full bg-accent/15 border border-accent/30 text-accent-light font-mono text-xs font-bold uppercase tracking-wider">
+                  {slide.chapter}
                 </span>
+                {/* Slender Vertical Seal Tag */}
+                <span className="px-2 py-0.5 rounded bg-primary/40 border border-accent/40 text-accent-light font-serif text-[11px] font-bold tracking-widest uppercase">
+                  {slide.sealTag}
+                </span>
+              </div>
+              <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl font-black text-paper-light leading-tight">
+                {slide.title}
+              </h2>
+              <p className="font-serif italic text-base sm:text-xl text-accent-light/90">
+                {slide.subtitle}
+              </p>
+
+              {/* Quote if present */}
+              {slide.highlightQuote && (
+                <div className="p-4 rounded-xl bg-[#1C1715] border-l-4 border-primary border-t border-r border-b border-accent/25 my-3">
+                  <p className="font-serif italic text-sm sm:text-base text-paper-light/90 leading-relaxed">
+                    &ldquo;{slide.highlightQuote.text}&rdquo;
+                  </p>
+                  <span className="block mt-1 text-right font-serif text-xs text-accent-light font-bold">
+                    — {slide.highlightQuote.author}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* Right Column: Historical Archival Image Plate (4 cols) */}
+            {slide.image && (
+              <div className="lg:col-span-4">
+                <div className="relative overflow-hidden rounded-xl border-2 border-accent/40 bg-black/60 shadow-xl group">
+                  <img
+                    src={slide.image}
+                    alt={slide.imageCaption || slide.title}
+                    className="w-full h-44 sm:h-52 object-cover object-center filter sepia-[0.08] contrast-[1.05] group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                  <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-[11px] font-mono pointer-events-none">
+                    <span className="font-serif font-bold text-accent-light drop-shadow">
+                      {slide.imageCaption}
+                    </span>
+                  </div>
+                </div>
               </div>
             )}
           </div>
 
-          {/* Right Column: Historical Archival Image Plate (4 cols) */}
-          {slide.image && (
-            <div className="lg:col-span-4">
-              <div className="relative overflow-hidden rounded-xl border-2 border-accent/40 bg-black/60 shadow-xl group">
-                <img
-                  src={slide.image}
-                  alt={slide.imageCaption || slide.title}
-                  className="w-full h-44 sm:h-52 object-cover object-center filter sepia-[0.08] contrast-[1.05] group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
-                <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-[11px] font-mono pointer-events-none">
-                  <span className="font-serif font-bold text-accent-light drop-shadow">
-                    {slide.imageCaption}
-                  </span>
-                </div>
+          {/* Theses Bullets */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+            {slide.theses.map((t, i) => (
+              <div
+                key={i}
+                className="p-3.5 rounded-xl bg-[#1E1816] border border-accent/25 flex items-start gap-3 shadow-sm"
+              >
+                <span className="flex-shrink-0 mt-0.5 w-6 h-6 rounded-full bg-accent/20 border border-accent/40 text-accent-light font-mono text-xs font-bold flex items-center justify-center">
+                  {i + 1}
+                </span>
+                <p className="font-sans text-xs sm:text-sm text-paper-light/90 leading-relaxed">
+                  {t}
+                </p>
               </div>
-            </div>
-          )}
-        </div>
+            ))}
+          </div>
 
-        {/* Theses Bullets */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
-          {slide.theses.map((t, i) => (
-            <div
-              key={i}
-              className="p-3.5 rounded-xl bg-[#1E1816] border border-accent/25 flex items-start gap-3 shadow-sm"
-            >
-              <span className="flex-shrink-0 mt-0.5 w-6 h-6 rounded-full bg-accent/20 border border-accent/40 text-accent-light font-mono text-xs font-bold flex items-center justify-center">
-                {i + 1}
-              </span>
-              <p className="font-sans text-xs sm:text-sm text-paper-light/90 leading-relaxed">
-                {t}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Key Takeaway Banner */}
-        <div className="p-3.5 rounded-xl bg-primary/20 border border-primary/40 flex items-center gap-3">
-          <Quote className="w-5 h-5 text-accent-light flex-shrink-0" />
-          <p className="font-serif text-xs sm:text-sm font-semibold text-accent-light">
-            {slide.keyTakeaway}
-          </p>
-        </div>
-      </div>
+          {/* Key Takeaway Banner */}
+          <div className="p-3.5 rounded-xl bg-primary/20 border border-primary/40 flex items-center gap-3">
+            <Quote className="w-5 h-5 text-accent-light flex-shrink-0" />
+            <p className="font-serif text-xs sm:text-sm font-semibold text-accent-light">
+              {slide.keyTakeaway}
+            </p>
+          </div>
+        </motion.div>
+      </AnimatePresence>
 
       {/* Bottom Navigation Controls & Timeline */}
       <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-accent/30 pt-4">

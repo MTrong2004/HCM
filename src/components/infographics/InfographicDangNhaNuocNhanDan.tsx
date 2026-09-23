@@ -141,7 +141,7 @@ export default function InfographicDangNhaNuocNhanDan() {
         </div>
 
         {/* Selected Branch Detail */}
-        <div className="p-2 sm:p-2.5 rounded bg-paper border border-accent/25">
+        <div key={selectedBranch} className="p-2 sm:p-2.5 rounded bg-paper border border-accent/25 editorial-tab-panel">
           <h6 className="font-serif text-xs sm:text-sm font-bold text-primary mb-0.5">
             Nhánh {branches[selectedBranch].title} ({branches[selectedBranch].org})
           </h6>

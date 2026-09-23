@@ -151,16 +151,16 @@ export default function TrongSachVungManhSection() {
     {
       id: "phong-chong-tieu-cuc",
       label: "b. Phòng, chống các biểu hiện tiêu cực",
-      badge: "Slide 5 — 6",
+      badge: "Nhận diện & Phòng chống",
       content: (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
-          {/* Cột trái: Slide 5 - Vì sao phải phòng, chống tiêu cực */}
+          {/* Cột trái: Luận điểm 1 - Vì sao phải phòng, chống tiêu cực */}
           <div className="lg:col-span-6 space-y-2.5">
             <div className="p-2.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-md space-y-2">
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#7a1818]" />
                 <h3 className="font-serif font-bold text-xs sm:text-sm text-ink">
-                  Slide 5: Vì sao phải phòng, chống tiêu cực?
+                  1. Vì sao phải phòng, chống tiêu cực?
                 </h3>
               </div>
               <p className="text-[11px] sm:text-xs text-ink leading-relaxed">
@@ -208,13 +208,13 @@ export default function TrongSachVungManhSection() {
             </div>
           </div>
 
-          {/* Cột phải: Slide 6 - Những biểu hiện tiêu cực khác */}
+          {/* Cột phải: Luận điểm 2 - Những biểu hiện tiêu cực khác */}
           <div className="lg:col-span-6 space-y-2.5">
             <div className="p-2.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-md space-y-2">
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#7a1818]" />
                 <h3 className="font-serif font-bold text-xs sm:text-sm text-ink">
-                  Slide 6: Những biểu hiện tiêu cực khác
+                  2. Những biểu hiện tiêu cực khác
                 </h3>
               </div>
               <p className="text-[11px] sm:text-xs text-ink-muted leading-snug">
@@ -263,17 +263,17 @@ export default function TrongSachVungManhSection() {
     {
       id: "xay-di-doi-voi-chong",
       label: "c. 'Xây' đi đôi với 'Chống' & Nêu gương",
-      badge: "Slide 7 — 9",
+      badge: "Xây đi đôi với Chống",
       content: (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
-          {/* Cột trái: Slide 7 & Slide 9 */}
+          {/* Cột trái: Luận điểm 1 & 3 */}
           <div className="lg:col-span-6 space-y-2.5">
-            {/* Slide 7: "Xây" đi đôi với "Chống" */}
+            {/* Luận điểm 1: "Xây" đi đôi với "Chống" */}
             <div className="p-2.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-md space-y-1.5">
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#7a1818]" />
                 <h3 className="font-serif font-bold text-xs sm:text-sm text-ink">
-                  Slide 7: &ldquo;Xây&rdquo; đi đôi với &ldquo;chống&rdquo;
+                  1. &ldquo;Xây&rdquo; đi đôi với &ldquo;chống&rdquo;
                 </h3>
               </div>
               <p className="text-[11px] text-ink leading-relaxed">
@@ -305,12 +305,12 @@ export default function TrongSachVungManhSection() {
               </div>
             </div>
 
-            {/* Slide 9: Cán bộ phải nêu gương */}
+            {/* Luận điểm 3: Cán bộ phải nêu gương */}
             <div className="p-2.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-md space-y-1.5">
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#7a1818]" />
                 <h3 className="font-serif font-bold text-xs sm:text-sm text-ink">
-                  Slide 9: Cán bộ phải nêu gương
+                  3. Cán bộ phải nêu gương
                 </h3>
               </div>
               <p className="text-[11px] text-ink leading-relaxed">
@@ -329,13 +329,13 @@ export default function TrongSachVungManhSection() {
             </div>
           </div>
 
-          {/* Cột phải: Slide 8 - Các biện pháp phòng, chống tiêu cực */}
+          {/* Cột phải: Luận điểm 2 - Các biện pháp phòng, chống tiêu cực */}
           <div className="lg:col-span-6 space-y-2">
             <div className="p-2.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-md space-y-1.5">
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#7a1818]" />
                 <h3 className="font-serif font-bold text-xs sm:text-sm text-ink">
-                  Slide 8: Các biện pháp phòng, chống tiêu cực
+                  2. Các biện pháp phòng, chống tiêu cực
                 </h3>
               </div>
               <p className="text-[11px] text-ink-muted leading-snug">

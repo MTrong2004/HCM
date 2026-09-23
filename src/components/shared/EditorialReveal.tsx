@@ -63,7 +63,7 @@ export default function EditorialReveal({
 }: EditorialRevealProps) {
   const ref = useRef<HTMLElement | null>(null);
   const isReduced = useReducedMotion();
-  const [revealed, setRevealed] = useState(true);
+  const [revealed, setRevealed] = useState(() => isReduced);
 
   useEffect(() => {
     if (isReduced) {
@@ -73,6 +73,14 @@ export default function EditorialReveal({
     if (!node) {
       return;
     }
+
+    // Fast-path: nếu phần tử đã nằm trong viewport ngay lúc mount, lập tức kích hoạt revealed
+    const rect = node.getBoundingClientRect();
+    if (rect.top < window.innerHeight + 60 && rect.bottom > -60) {
+      const timer = setTimeout(() => setRevealed(true), 0);
+      return () => clearTimeout(timer);
+    }
+
     return registerRevealElement(node, () => {
       setRevealed(true);
     });

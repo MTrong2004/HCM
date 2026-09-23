@@ -89,7 +89,7 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
         id="hcm-heritage-sidebar"
         data-testid="academic-app-sidebar"
         aria-label="Thanh điều hướng di sản"
-        className={`fixed top-0 bottom-0 left-0 z-40 w-[152px] select-none transition-transform duration-300 ease-out flex flex-col justify-between overflow-hidden bg-[#f9f5ec] rounded-tr-3xl rounded-br-3xl shadow-[5px_0_30px_rgba(0,0,0,0.22)] border-r border-[#d4af37]/35 ${
+        className={`fixed top-0 bottom-0 left-0 z-40 w-[152px] select-none transition-transform duration-300 ease-out flex flex-col justify-between overflow-hidden bg-transparent rounded-tr-3xl rounded-br-3xl shadow-[5px_0_30px_rgba(0,0,0,0.22)] border-r border-t border-[#d4af37]/35 ${
           isTOCDrawerOpen ? "translate-x-0" : "-translate-x-full"
         } ${className}`}
       >
@@ -101,7 +101,7 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
             setIsTOCDrawerOpen(false);
           }}
           aria-label="Thu gọn thanh điều hướng"
-          className="absolute right-1 top-2 z-30 w-5 h-5 rounded-full bg-[#4a0d0d]/80 hover:bg-[#7a1818] text-[#ffd700] flex items-center justify-center cursor-pointer transition-colors shadow-xs"
+          className="absolute right-1.5 top-2.5 z-30 w-5 h-5 rounded-full bg-[#4a0d0d]/80 hover:bg-[#7a1818] text-[#ffd700] flex items-center justify-center cursor-pointer transition-colors shadow-xs"
         >
           <ChevronLeft className="w-3.5 h-3.5" />
         </button>
@@ -110,17 +110,17 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
         <div
           onClick={() => handleNavigate("hero")}
           aria-label="Về đầu trang: Tư tưởng Hồ Chí Minh"
-          className="relative w-full h-[150px] cursor-pointer flex-shrink-0 group overflow-hidden bg-[#6b100e]"
+          className="relative w-full h-[150px] cursor-pointer flex-shrink-0 group overflow-hidden bg-[#6b100e] rounded-tr-3xl"
         >
           <img
             src={getAssetPath("/images/sidebar-top-2x.png")}
             alt="Tư tưởng Hồ Chí Minh"
-            className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-102"
+            className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-102 rounded-tr-3xl"
           />
         </div>
 
         {/* 2. MENU ĐIỀU HƯỚNG CHÍNH & MỤC LỤC BÀI HỌC (TINH GỌN THÔNG THOÁNG) */}
-        <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar flex flex-col px-1.5 pt-1.5 pb-1 space-y-1">
+        <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar flex flex-col px-1.5 pt-1.5 pb-1 space-y-1 bg-[#f9f5ec]">
           {/* Mục: Trang chủ */}
           <button
             type="button"
@@ -292,11 +292,11 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
         </div>
 
         {/* 3. HOA SEN NGHỆ THUẬT & DẢI LỤA ĐỎ Ở ĐÁY */}
-        <div className="relative w-full h-[120px] pointer-events-none overflow-hidden mt-auto flex-shrink-0">
+        <div className="relative w-full h-[120px] pointer-events-none overflow-hidden mt-auto flex-shrink-0 rounded-br-3xl bg-[#f9f5ec]">
           <img
             src={getAssetPath("/images/sidebar-bottom-2x.png")}
             alt="Hoa sen và trống đồng"
-            className="w-full h-full object-cover object-bottom"
+            className="w-full h-full object-cover object-bottom rounded-br-3xl"
           />
         </div>
       </aside>
