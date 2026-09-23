@@ -95,12 +95,14 @@ async function checkViewport(viewport) {
         firstOverflow: overflowingElements[0] || null
       });
     })()`,
+    returnByValue: true,
   });
 
   ws.close();
   edge.kill();
 
-  const result = JSON.parse(evalRes.result?.result?.value || "{}");
+  const rawVal = evalRes.result?.result?.value || evalRes.result?.value;
+  const result = JSON.parse(rawVal || "{}");
   return result;
 }
 

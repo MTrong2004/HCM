@@ -1,21 +1,19 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import {
   Home,
   BookOpen,
-  ChevronDown,
-  Target,
-  Award,
-  Users,
-  Scale,
-  ShieldCheck,
-  Flag,
-  Landmark,
-  ShieldAlert,
+  FileText,
+  FileEdit,
+  BarChart3,
+  Settings,
+  ChevronLeft,
+  ChevronRight,
+  Check,
 } from "lucide-react";
 import { useSmoothScroll } from "./SmoothScrollProvider";
-import { HoChiMinhEmblem, LotusWatermark } from "./HeritageIcons";
+import { getAssetPath } from "@/lib/assets";
 import { playSubtleClick } from "@/lib/sound-effects";
 
 interface AppSidebarProps {
@@ -24,40 +22,14 @@ interface AppSidebarProps {
 }
 
 export default function AppSidebar({ onItemClick, className = "" }: AppSidebarProps) {
-  const { activeSection, scrollTo } = useSmoothScroll();
-  const [isHovered, setIsHovered] = useState(false);
-  const asideRef = useRef<HTMLElement>(null);
-  const triggerRef = useRef<HTMLDivElement>(null);
-  const panelRef = useRef<HTMLDivElement>(null);
+  const { activeSection, scrollTo, isTOCDrawerOpen, setIsTOCDrawerOpen } = useSmoothScroll();
+  // Toast thông báo tương tác nhanh gọn, không chiếm dụng màn hình
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  useEffect(() => {
-    const trigger = triggerRef.current;
-    if (!trigger) return;
-    const onEnter = () => {
-      setIsHovered(true);
-    };
-    trigger.addEventListener("mouseenter", onEnter);
-    trigger.addEventListener("pointerenter", onEnter);
-    trigger.addEventListener("mouseover", onEnter);
-    return () => {
-      trigger.removeEventListener("mouseenter", onEnter);
-      trigger.removeEventListener("pointerenter", onEnter);
-      trigger.removeEventListener("mouseover", onEnter);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!isHovered) return;
-    const panel = panelRef.current || document.getElementById("editorial-toc-drawer");
-    if (!panel) return;
-    const onLeave = () => setIsHovered(false);
-    panel.addEventListener("mouseleave", onLeave);
-    panel.addEventListener("pointerleave", onLeave);
-    return () => {
-      panel.removeEventListener("mouseleave", onLeave);
-      panel.removeEventListener("pointerleave", onLeave);
-    };
-  }, [isHovered]);
+  const showToast = (msg: string) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(null), 2500);
+  };
 
   const handleNavigate = (id: string) => {
     playSubtleClick();
@@ -67,241 +39,259 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
     }
   };
 
-  const navTree = [
-    {
-      groupTitle: "4.2. Tư tưởng Hồ Chí Minh về Nhà nước của dân, do dân, vì dân",
-      items: [
-        {
-          id: "dan-chu",
-          code: "4.2.1",
-          title: "Nhà nước dân chủ",
-          icon: Users,
-        },
-        {
-          id: "phap-quyen",
-          code: "4.2.2",
-          title: "Nhà nước pháp quyền",
-          icon: Scale,
-        },
-        {
-          id: "trong-sach-vung-manh",
-          code: "4.2.3",
-          title: "Nhà nước trong sạch, vững mạnh",
-          icon: ShieldCheck,
-        },
-      ],
-    },
-    {
-      groupTitle: "4.3. Vận dụng tư tưởng Hồ Chí Minh",
-      items: [
-        {
-          id: "xay-dung-dang",
-          code: "4.3.1",
-          title: "Xây dựng Đảng thật sự trong sạch, vững mạnh",
-          icon: Flag,
-        },
-        {
-          id: "xay-dung-nha-nuoc",
-          code: "4.3.2",
-          title: "Xây dựng Nhà nước & Đổi mới phương thức lãnh đạo",
-          icon: Landmark,
-        },
-        {
-          id: "phong-chong-tham-nhung",
-          code: "4.3.3",
-          title: "Phòng, chống tham nhũng, lãng phí, quan liêu",
-          icon: ShieldAlert,
-        },
-      ],
-    },
+  // Tính phần trăm tiến độ học tập
+  const allSectionIds = [
+    "hero",
+    "dan-chu",
+    "phap-quyen",
+    "trong-sach-vung-manh",
+    "xay-dung-dang",
+    "xay-dung-nha-nuoc",
+    "phong-chong-tham-nhung",
+    "ket-luan",
   ];
+  const currentStepIdx = allSectionIds.indexOf(activeSection);
+  const currentStep = currentStepIdx >= 0 ? currentStepIdx + 1 : 1;
+  const progressPercent = Math.round((currentStep / allSectionIds.length) * 100);
+
+  const isHomeActive = activeSection === "hero";
+  const isChapterActive = activeSection !== "hero";
 
   return (
     <>
-      {/* Vùng kích hoạt mở Sidebar khi chuột di vào mép trái (Hover Trigger Zone) */}
-      <div
-        ref={triggerRef}
-        data-testid="left-hover-trigger"
-        onMouseEnter={() => setIsHovered(true)}
-        onPointerEnter={() => setIsHovered(true)}
-        className="fixed inset-y-0 left-0 w-3.5 sm:w-4.5 z-40 cursor-pointer pointer-events-auto hover:bg-[#d4af37]/20 transition-colors"
-        title="Rê chuột để mở mục lục chương trình học"
-        aria-hidden="true"
-      />
-
-      {/* Nút chỉ báo mỏng nhẹ sát mép trái giúp người dùng nhận biết có thể mở Sidebar */}
-      {!isHovered && (
-        <div
-          onClick={() => setIsHovered(true)}
-          onMouseEnter={() => setIsHovered(true)}
-          className="fixed left-0 top-1/2 -translate-y-1/2 z-30 hidden md:flex items-center justify-center py-3.5 px-1 rounded-r-md bg-[#5c1313]/90 text-[#ffd700] border-y border-r border-[#d4af37]/50 shadow-md cursor-pointer hover:bg-[#7a1818] hover:px-1.5 transition-all select-none"
-          title="Mở mục lục chương 4"
+      {/* NÚT MỞ NHANH KHI SIDEBAR ĐANG BỊ ẨN HOÀN TOÀN */}
+      {!isTOCDrawerOpen && (
+        <button
+          type="button"
+          onClick={() => {
+            playSubtleClick();
+            setIsTOCDrawerOpen(true);
+          }}
+          title="Mở thanh điều hướng mục lục"
+          aria-label="Mở thanh điều hướng"
+          className="fixed left-0 top-1/2 -translate-y-1/2 z-40 bg-[#7a1818] hover:bg-[#8f1e1e] text-[#ffd700] border-r-2 border-y-2 border-[#d4af37] px-2 py-3 rounded-r-xl shadow-lg flex flex-col items-center gap-1.5 cursor-pointer transition-all hover:scale-105"
         >
-          <div className="flex flex-col items-center gap-1">
-            <span className="text-[10px] font-serif font-black">★</span>
-            <div className="w-2.5 h-[1px] bg-[#ffd700]/50" />
-            <span className="text-[9px] font-mono font-bold writing-mode-vertical">
-              MỤC LỤC
-            </span>
-          </div>
-        </div>
+          <span className="text-[10px] font-mono font-bold tracking-widest writing-mode-vertical uppercase">
+            MỤC LỤC
+          </span>
+          <ChevronRight className="w-3.5 h-3.5 text-[#ffd700]" />
+        </button>
       )}
 
-      {/* Backdrop mờ khi Sidebar mở để người dùng bấm ra ngoài là đóng ngay */}
-      {isHovered && (
-        <div
-          onClick={() => setIsHovered(false)}
-          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-[1px] transition-opacity animate-in fade-in duration-200"
-          aria-hidden="true"
-        />
-      )}
-
-      {/* Sidebar dạng Floating Drawer Overlay chỉ trượt ra khi hover */}
+      {/* 1. KHỐI SIDEBAR THU GỌN 152px THEO ĐÚNG 100% HÌNH MẪU CỦA NGƯỜI DÙNG */}
       <aside
-        ref={asideRef}
-        id="academic-app-sidebar"
-        aria-label="Thanh điều hướng học thuật"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        className={`fixed inset-y-0 left-0 z-50 flex flex-col justify-between overflow-x-hidden select-none bg-gradient-to-b from-[#5c1313] via-[#4a0e0e] to-[#340808] text-paper-light border-r border-[#782323] transition-transform duration-300 ease-in-out custom-scrollbar w-64 sm:w-72 shadow-[12px_0_40px_rgba(0,0,0,0.85)] ${
-          isHovered
-            ? "translate-x-0 pointer-events-auto"
-            : "-translate-x-full pointer-events-none"
+        id="hcm-heritage-sidebar"
+        data-testid="academic-app-sidebar"
+        aria-label="Thanh điều hướng di sản"
+        className={`fixed top-0 bottom-0 left-0 z-40 w-[152px] select-none transition-transform duration-300 ease-out flex flex-col justify-start overflow-hidden bg-[#f9f5ec] rounded-tr-3xl rounded-br-3xl shadow-[5px_0_30px_rgba(0,0,0,0.22)] border-r border-[#d4af37]/35 ${
+          isTOCDrawerOpen ? "translate-x-0" : "-translate-x-full"
         } ${className}`}
       >
-        <div
-          ref={panelRef}
-          id="editorial-toc-drawer"
-          onMouseLeave={() => setIsHovered(false)}
-          className="w-full h-full flex flex-col justify-between overflow-y-auto custom-scrollbar"
+        {/* NÚT THU GỌN GẮN Ở MÉP PHẢI SIDEBAR */}
+        <button
+          type="button"
+          onClick={() => {
+            playSubtleClick();
+            setIsTOCDrawerOpen(false);
+          }}
+          title="Thu gọn thanh điều hướng sang trái"
+          aria-label="Thu gọn thanh điều hướng"
+          className="absolute right-1 top-2 z-30 w-5 h-5 rounded-full bg-[#4a0d0d]/80 hover:bg-[#7a1818] text-[#ffd700] flex items-center justify-center cursor-pointer transition-colors shadow-xs"
         >
-          {/* Header Chân dung Bác & Thương hiệu */}
-          <div className="px-3.5 py-3 border-b border-[#732121]/60 bg-[#420c0c]/50 text-center relative z-10 flex-shrink-0">
-            <div className="flex justify-center mb-1.5">
-              <div className="relative p-0.5 rounded-full bg-gradient-to-b from-[#d4af37]/30 to-transparent shadow-inner">
-                <HoChiMinhEmblem className="w-12 h-12 drop-shadow-sm" />
-              </div>
-            </div>
-            <h1 className="font-serif text-xs font-bold tracking-wider text-[#f5e6b8] uppercase leading-tight drop-shadow-xs">
-              TƯ TƯỞNG HỒ CHÍ MINH
-            </h1>
-            <p className="font-serif italic text-[10px] text-[#e8d29b]/80 mt-0.5 leading-snug">
-              Giá trị dẫn đường cho tương lai
-            </p>
+          <ChevronLeft className="w-3.5 h-3.5" />
+        </button>
+
+        {/* 1. HEADER CỘT ĐỎ VỚI HÌNH BÁC HỒ & TƯ TƯỞNG HỒ CHÍ MINH (THEO CHUẨN MẪU) */}
+        <div
+          onClick={() => handleNavigate("hero")}
+          title="Bấm để về đầu trang: Tư tưởng Hồ Chí Minh"
+          className="relative w-full h-[150px] cursor-pointer flex-shrink-0 group overflow-hidden"
+        >
+          <img
+            src={getAssetPath("/images/sidebar-top-2x.png")}
+            alt="Tư tưởng Hồ Chí Minh"
+            className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-102"
+          />
+        </div>
+
+        {/* 2. MENU ĐIỀU HƯỚNG CHÍNH & MỤC LỤC BÀI HỌC (THEO ĐÚNG MOCKUP) */}
+        <div className="flex-shrink-0 flex flex-col px-1.5 pt-1 pb-0 space-y-0.5">
+          {/* Mục: Trang chủ */}
+          <button
+            type="button"
+            onClick={() => handleNavigate("hero")}
+            className={`relative w-full h-[29px] px-2 rounded-lg flex items-center gap-2 text-left transition-all cursor-pointer ${
+              isHomeActive
+                ? "bg-[#eddcc6] text-[#5c1313] font-bold shadow-2xs"
+                : "text-[#4a3225] hover:bg-[#ede5d5] hover:text-[#7a1818] font-medium"
+            }`}
+          >
+            {/* Thanh vạch đỏ mép trái khi Active */}
+            {isHomeActive && (
+              <span className="absolute left-0 top-1 bottom-1 w-1 rounded-r bg-[#7a1818]" />
+            )}
+            <Home className={`w-3.5 h-3.5 flex-shrink-0 ${isHomeActive ? "text-[#7a1818]" : "text-[#5c3a28]"}`} />
+            <span className="text-[11px] truncate">Trang chủ</span>
+          </button>
+
+          {/* Mục: Chương học (Bấm để cuộn mượt ngay đến bài học Chương 4) */}
+          <button
+            type="button"
+            onClick={() => handleNavigate("dan-chu")}
+            className={`relative w-full h-[29px] px-2 rounded-lg flex items-center gap-2 text-left transition-all cursor-pointer ${
+              isChapterActive
+                ? "bg-[#eddcc6] text-[#5c1313] font-bold shadow-2xs"
+                : "text-[#4a3225] hover:bg-[#ede5d5] hover:text-[#7a1818] font-medium"
+            }`}
+          >
+            {isChapterActive && (
+              <span className="absolute left-0 top-1 bottom-1 w-1 rounded-r bg-[#7a1818]" />
+            )}
+            <BookOpen className={`w-3.5 h-3.5 flex-shrink-0 ${isChapterActive ? "text-[#7a1818]" : "text-[#5c3a28]"}`} />
+            <span className="text-[11px] truncate">Chương học</span>
+          </button>
+
+          {/* Mục: Tài liệu */}
+          <button
+            type="button"
+            onClick={() => {
+              playSubtleClick();
+              window.dispatchEvent(new CustomEvent("toggle-study-notebook"));
+            }}
+            className="w-full h-[29px] px-2 rounded-lg flex items-center gap-2 text-left text-[#4a3225] hover:bg-[#ede5d5] hover:text-[#7a1818] font-medium transition-all cursor-pointer"
+          >
+            <FileText className="w-3.5 h-3.5 text-[#5c3a28] flex-shrink-0" />
+            <span className="text-[11px] truncate">Tài liệu</span>
+          </button>
+
+          {/* Mục: Kiểm tra */}
+          <button
+            type="button"
+            onClick={() => {
+              playSubtleClick();
+              handleNavigate("ket-luan");
+              showToast("Đã chuyển đến phần Ôn tập & Trắc nghiệm kiến thức!");
+            }}
+            className="w-full h-[29px] px-2 rounded-lg flex items-center gap-2 text-left text-[#4a3225] hover:bg-[#ede5d5] hover:text-[#7a1818] font-medium transition-all cursor-pointer"
+          >
+            <FileEdit className="w-3.5 h-3.5 text-[#5c3a28] flex-shrink-0" />
+            <span className="text-[11px] truncate">Kiểm tra</span>
+          </button>
+
+          {/* Mục: Tiến độ học tập */}
+          <button
+            type="button"
+            onClick={() => {
+              playSubtleClick();
+              showToast(`Tiến độ nghiên cứu Chương 4: ${progressPercent}% (${currentStep}/8 phần)`);
+            }}
+            className="w-full h-[29px] px-2 rounded-lg flex items-center gap-2 text-left text-[#4a3225] hover:bg-[#ede5d5] hover:text-[#7a1818] font-medium transition-all cursor-pointer"
+          >
+            <BarChart3 className="w-3.5 h-3.5 text-[#5c3a28] flex-shrink-0" />
+            <span className="text-[11px] truncate">Tiến độ ({progressPercent}%)</span>
+          </button>
+
+          {/* Mục: Cài đặt */}
+          <button
+            type="button"
+            onClick={() => {
+              playSubtleClick();
+              showToast("Âm thanh hiệu ứng đã được tắt theo yêu cầu.");
+            }}
+            className="w-full h-[29px] px-2 rounded-lg flex items-center gap-2 text-left text-[#4a3225] hover:bg-[#ede5d5] hover:text-[#7a1818] font-medium transition-all cursor-pointer"
+          >
+            <Settings className="w-3.5 h-3.5 text-[#5c3a28] flex-shrink-0" />
+            <span className="text-[11px] truncate">Cài đặt</span>
+          </button>
+
+          {/* DẢI TIÊU ĐỀ: MỤC LỤC */}
+          <div className="pt-1.5 pb-0.5 px-2 flex items-center gap-2">
+            <span className="font-serif font-bold text-[9px] uppercase tracking-wider text-[#6a1515]">
+              MỤC LỤC
+            </span>
+            <div className="flex-1 h-[1px] bg-[#d5c3a6]" />
           </div>
 
-          {/* Menu Điều Hướng Chi Tiết Cây Cấu Trúc */}
-          <div className="flex-1 px-2.5 py-2.5 space-y-2.5 overflow-y-auto text-xs relative z-10 custom-scrollbar">
-            {/* Quick Links */}
-            <div className="space-y-0.5">
-              <button
-                onClick={() => handleNavigate("hero")}
-                className={`w-full min-h-[34px] flex items-center gap-2 px-2.5 py-1.5 rounded-md text-left transition-colors font-sans ${
-                  activeSection === "hero"
-                    ? "bg-[#f5e6b8] text-[#4a0808] font-bold shadow-xs border border-[#d4af37]"
-                    : "text-[#e8dac3] hover:bg-[#2a0505] hover:text-[#ffd700]"
-                }`}
-              >
-                <Home className="w-3.5 h-3.5 flex-shrink-0" />
-                <span className="font-medium text-[11.5px]">Trang chủ</span>
-              </button>
+          {/* STEPPER CÁC CHƯƠNG THEO MOCKUP */}
+          <div className="relative pl-3.5 pr-1 py-0.5 space-y-1.5">
+            {/* Đường gióng dọc nối các nút tròn */}
+            <div className="absolute left-[20px] top-1.5 bottom-2 w-[1.5px] bg-[#c5a059]/70" />
 
-              <button
-                onClick={() => handleNavigate("hero")}
-                className="w-full min-h-[34px] flex items-center gap-2 px-2.5 py-1.5 rounded-md text-left text-[#e8dac3] hover:bg-[#2a0505] hover:text-[#ffd700] transition-colors font-sans"
-              >
-                <BookOpen className="w-3.5 h-3.5 flex-shrink-0" />
-                <span className="font-medium text-[11.5px]">Giới thiệu môn học</span>
-              </button>
-            </div>
-
-            {/* Cụm Chương 4 */}
-            <div className="pt-2 border-t border-[#6b1d1d]/60">
-              <div className="flex items-start gap-1.5 px-1 py-0.5 text-[#f3dfa7] font-serif font-bold text-[11px] uppercase tracking-wide">
-                <ChevronDown className="w-3.5 h-3.5 mt-0.5 text-[#d4af37] flex-shrink-0" />
-                <span className="leading-snug">
-                  Chương 4: Đảng & Nhà nước
-                </span>
+            {/* Ch. 1: Hoàn thành */}
+            <div
+              onClick={() => showToast("Chương 1: Cơ sở, quá trình hình thành Tư tưởng Hồ Chí Minh")}
+              className="relative flex items-center gap-2 cursor-pointer group"
+              title="Chương 1"
+            >
+              <div className="w-3 h-3 rounded-full bg-[#c5a059] text-white flex items-center justify-center flex-shrink-0 z-10 shadow-2xs group-hover:scale-110 transition-transform">
+                <Check className="w-2 h-2 stroke-[3]" />
               </div>
+              <span className="text-[10px] font-medium text-[#6b5847] group-hover:text-[#7a1818]">Ch. 1</span>
+            </div>
 
-              <div className="mt-1.5 ml-1 pl-1.5 border-l border-[#782323] space-y-3">
-                {navTree.map((group, gIdx) => (
-                  <div key={gIdx} className="space-y-1">
-                    <div className="text-[10px] font-sans font-semibold text-[#e0c99a] px-1 leading-snug line-clamp-2">
-                      {group.groupTitle}
-                    </div>
-
-                    <div className="space-y-0.5">
-                      {group.items.map((item) => {
-                        const isActive = activeSection === item.id;
-                        const ItemIcon = item.icon;
-                        return (
-                          <button
-                            key={item.id}
-                            onClick={() => handleNavigate(item.id)}
-                            className={`w-full min-h-[30px] flex items-center justify-between gap-1.5 px-2 py-1 rounded-md text-left transition-all ${
-                              isActive
-                                ? "bg-[#f5e6b8] text-[#4a0808] font-bold shadow-xs border border-[#d4af37]"
-                                : "text-[#e8dac3] hover:bg-[#2a0505] hover:text-[#ffd700] font-medium"
-                            }`}
-                            title={`${item.code} ${item.title}`}
-                          >
-                            <div className="flex items-center gap-1.5 min-w-0">
-                              {isActive ? (
-                                <Target className="w-3 h-3 text-[#8b1e1e] flex-shrink-0 animate-pulse" />
-                              ) : (
-                                <ItemIcon className="w-3 h-3 text-[#d4af37]/70 flex-shrink-0" />
-                              )}
-                              <span className="truncate text-[11px]">
-                                <strong className="mr-1">{item.code}</strong>
-                                {item.title}
-                              </span>
-                            </div>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
-
-                {/* Mục Kết luận */}
-                <div className="pt-0.5">
-                  <button
-                    onClick={() => handleNavigate("ket-luan")}
-                    className={`w-full min-h-[32px] flex items-center gap-1.5 px-2 py-1 rounded-md text-left transition-all ${
-                      activeSection === "ket-luan"
-                        ? "bg-[#f5e6b8] text-[#4a0808] font-bold shadow-xs border border-[#d4af37]"
-                        : "text-[#e8dac3] hover:bg-[#2a0505] hover:text-[#ffd700] font-medium"
-                    }`}
-                  >
-                    <Award className="w-3 h-3 text-[#d4af37] flex-shrink-0" />
-                    <span className="truncate text-[11px]">5.0 Kết luận & Nguồn tư liệu</span>
-                  </button>
-                </div>
+            {/* Ch. 2: Hoàn thành */}
+            <div
+              onClick={() => showToast("Chương 2: Tư tưởng Hồ Chí Minh về độc lập dân tộc & CNXH")}
+              className="relative flex items-center gap-2 cursor-pointer group"
+              title="Chương 2"
+            >
+              <div className="w-3 h-3 rounded-full bg-[#c5a059] text-white flex items-center justify-center flex-shrink-0 z-10 shadow-2xs group-hover:scale-110 transition-transform">
+                <Check className="w-2 h-2 stroke-[3]" />
               </div>
-            </div>
-          </div>
-
-          {/* Footer Chân Trang Trích Dẫn Thơ Bác & Hoa Sen */}
-          <div className="px-3 py-2 border-t border-[#732121]/60 bg-[#350707]/70 relative overflow-hidden z-10 flex-shrink-0">
-            <div className="relative z-10">
-              <blockquote className="font-serif italic text-[10px] leading-snug text-[#f3e5c0] text-center">
-                “Dân ta phải biết sử ta
-                <br />
-                Cho tường gốc tích nước nhà Việt Nam”
-              </blockquote>
-              <p className="text-right text-[9px] font-serif text-[#d4af37] font-semibold mt-0.5 mr-1">
-                — Hồ Chí Minh —
-              </p>
+              <span className="text-[10px] font-medium text-[#6b5847] group-hover:text-[#7a1818]">Ch. 2</span>
             </div>
 
-            {/* Họa tiết hoa sen chìm góc chân trang */}
-            <div className="absolute -bottom-3 -right-3 pointer-events-none text-[#d4af37]">
-              <LotusWatermark className="w-16 h-16 opacity-10" />
+            {/* Ch. 3: Hoàn thành */}
+            <div
+              onClick={() => showToast("Chương 3: Tư tưởng Hồ Chí Minh về Đảng Cộng sản Việt Nam")}
+              className="relative flex items-center gap-2 cursor-pointer group"
+              title="Chương 3"
+            >
+              <div className="w-3 h-3 rounded-full bg-[#c5a059] text-white flex items-center justify-center flex-shrink-0 z-10 shadow-2xs group-hover:scale-110 transition-transform">
+                <Check className="w-2 h-2 stroke-[3]" />
+              </div>
+              <span className="text-[10px] font-medium text-[#6b5847] group-hover:text-[#7a1818]">Ch. 3</span>
+            </div>
+
+            {/* Ch. 4: ĐANG HỌC (ACTIVE CHAPTER THEO CHUẨN TRANG WEB) */}
+            <div
+              onClick={() => handleNavigate("dan-chu")}
+              className="relative flex items-center gap-2 cursor-pointer group"
+              title="Chương 4: Nhà nước của dân, do dân, vì dân (Bấm để cuộn đến bài học)"
+            >
+              <div className="w-3.5 h-3.5 rounded-full bg-[#7a1818] ring-3 ring-[#7a1818]/25 flex items-center justify-center flex-shrink-0 z-10 shadow-2xs group-hover:scale-110 transition-transform animate-pulse" />
+              <span className="text-[10.5px] font-bold text-[#7a1818] group-hover:underline">Ch. 4</span>
+              <span className="text-[8px] px-1 py-0.2 rounded bg-[#7a1818]/15 text-[#7a1818] font-bold font-mono">Đang học</span>
+            </div>
+
+            {/* Ch. 5: Chưa học */}
+            <div
+              onClick={() => showToast("Chương 5: Tư tưởng Hồ Chí Minh về đại đoàn kết dân tộc")}
+              className="relative flex items-center gap-2 cursor-pointer group"
+              title="Chương 5"
+            >
+              <div className="w-3 h-3 rounded-full border-2 border-[#b5a593] bg-[#f9f5ec] flex items-center justify-center flex-shrink-0 z-10 group-hover:border-[#7a1818] transition-colors" />
+              <span className="text-[10px] font-medium text-[#7a6b58] group-hover:text-[#7a1818]">Ch. 5</span>
             </div>
           </div>
         </div>
+
+        {/* 3. HOA SEN NGHỆ THUẬT & DẢI LỤA ĐỎ Ở ĐÁY: TỰ ĐỘNG LẤP ĐẦY CHIỀU DÀI DƯỚI STEPPER (KHÔNG KHOẢNG TRỐNG THỪA) */}
+        <div className="relative w-full flex-1 min-h-[140px] pointer-events-none overflow-hidden mt-1">
+          <img
+            src={getAssetPath("/images/sidebar-bottom-2x.png")}
+            alt="Hoa sen và trống đồng"
+            className="w-full h-full object-cover object-bottom"
+          />
+        </div>
       </aside>
+
+      {/* TOAST THÔNG BÁO NHẸ NHÀNG, KHÔNG CHE KHUẤT NỘI DUNG */}
+      {toastMessage && (
+        <div className="fixed bottom-4 left-[165px] z-50 px-3 py-1.5 rounded-lg bg-[#330707] text-[#ffd700] border border-[#d4af37]/60 text-xs font-serif shadow-xl animate-in fade-in duration-200">
+          {toastMessage}
+        </div>
+      )}
     </>
   );
 }

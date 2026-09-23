@@ -48,8 +48,8 @@ function HistoricalIllustration({
         <path d="M190 50 L202 50" stroke={strokeColor} strokeWidth="1.5" strokeLinecap="round" />
         {/* Ballot star */}
         <polygon points="200,95 204,107 217,107 206,115 210,127 200,119 190,127 194,115 183,107 196,107" fill={accentColor} />
-        <text x="200" y="155" textAnchor="middle" fill={strokeColor} fontSize="14" fontFamily="serif" fontWeight="bold" letterSpacing="3">6 - 1 - 1946</text>
-        <text x="200" y="172" textAnchor="middle" fill={accentColor} fontSize="9" fontFamily="sans-serif" letterSpacing="1">TỔNG TUYỂN CỬ ĐẦU TIÊN</text>
+        <text x="200" y="155" textAnchor="middle" fill={strokeColor} fontSize="14" className="font-serif font-bold" letterSpacing="3">6 - 1 - 1946</text>
+        <text x="200" y="172" textAnchor="middle" fill={accentColor} fontSize="9" className="font-sans" letterSpacing="1">TỔNG TUYỂN CỬ ĐẦU TIÊN</text>
         <path d="M100 160 C90 120 100 80 125 65" stroke={accentColor} strokeWidth="1.25" strokeDasharray="2 3" />
         <path d="M300 160 C310 120 300 80 275 65" stroke={accentColor} strokeWidth="1.25" strokeDasharray="2 3" />
       </svg>
@@ -72,7 +72,7 @@ function HistoricalIllustration({
         <path d="M110 145 C110 130 120 125 130 125 C140 125 150 130 150 145" stroke={accentColor} strokeWidth="1.25" />
         <circle cx="270" cy="105" r="15" stroke={accentColor} strokeWidth="1.25" />
         <path d="M250 145 C250 130 260 125 270 125 C280 125 290 130 290 145" stroke={accentColor} strokeWidth="1.25" />
-        <text x="200" y="175" textAnchor="middle" fill={strokeColor} fontSize="11" fontFamily="serif" fontStyle="italic">Cán bộ là người đầy tớ trung thành của nhân dân</text>
+        <text x="200" y="175" textAnchor="middle" fill={strokeColor} fontSize="11" className="font-serif italic">Cán bộ là người đầy tớ trung thành của nhân dân</text>
       </svg>
     );
   }
@@ -89,8 +89,8 @@ function HistoricalIllustration({
         <rect x="140" y="35" width="120" height="150" rx="3" stroke={strokeColor} strokeWidth="1.5" fill={isDark ? "#1C1715" : "#FAF6ED"} />
         <rect x="148" y="43" width="104" height="134" stroke={accentColor} strokeWidth="1" strokeDasharray="2 2" fill="none" />
         <polygon points="200,60 203,69 212,69 205,75 208,84 200,78 192,84 195,75 188,69 197,69" fill={accentColor} />
-        <text x="200" y="102" textAnchor="middle" fill={strokeColor} fontSize="11" fontFamily="serif" fontWeight="bold" letterSpacing="1">HIẾN PHÁP</text>
-        <text x="200" y="118" textAnchor="middle" fill={accentColor} fontSize="9" fontFamily="serif" letterSpacing="2">NĂM 1946</text>
+        <text x="200" y="102" textAnchor="middle" fill={strokeColor} fontSize="11" className="font-serif font-bold" letterSpacing="1">HIẾN PHÁP</text>
+        <text x="200" y="118" textAnchor="middle" fill={accentColor} fontSize="9" className="font-serif font-bold" letterSpacing="2">NĂM 1946</text>
         <line x1="230" y1="175" x2="280" y2="125" stroke={accentColor} strokeWidth="3" strokeLinecap="round" />
         <line x1="280" y1="125" x2="288" y2="117" stroke={strokeColor} strokeWidth="1.5" />
       </svg>
@@ -111,7 +111,7 @@ function HistoricalIllustration({
         <line x1="175" y1="90" x2="225" y2="90" stroke={accentColor} strokeWidth="1.5" />
         <path d="M175 90 L168 112 H182 Z" stroke={strokeColor} strokeWidth="1.2" fill={fillColor} />
         <path d="M225 90 L218 112 H232 Z" stroke={strokeColor} strokeWidth="1.2" fill={fillColor} />
-        <text x="200" y="150" textAnchor="middle" fill={accentColor} fontSize="8" fontFamily="sans-serif" letterSpacing="1">LIÊM CHÍNH</text>
+        <text x="200" y="150" textAnchor="middle" fill={accentColor} fontSize="8" className="font-sans" letterSpacing="1">LIÊM CHÍNH</text>
       </svg>
     );
   }
@@ -129,7 +129,7 @@ function HistoricalIllustration({
         <path d="M192 110 L196 150 H204 L208 110 Z" stroke={strokeColor} strokeWidth="1.5" fill={fillColor} />
         <path d="M200 70 C210 80 215 95 200 110 C185 95 190 80 200 70 Z" stroke={accentColor} strokeWidth="1.5" fill="rgba(198, 161, 91, 0.2)" />
         <rect x="130" y="155" width="140" height="25" rx="3" stroke={strokeColor} strokeWidth="1.25" fill={isDark ? "#241E1C" : "#FAF6ED"} />
-        <text x="200" y="171" textAnchor="middle" fill={strokeColor} fontSize="10" fontFamily="serif" fontWeight="bold" letterSpacing="1">VĂN KIỆN ĐƯỜNG LỐI</text>
+        <text x="200" y="171" textAnchor="middle" fill={strokeColor} fontSize="10" className="font-serif font-bold" letterSpacing="1">VĂN KIỆN ĐƯỜNG LỐI</text>
       </svg>
     );
   }
@@ -149,7 +149,7 @@ function HistoricalIllustration({
       ))}
       <polygon points="200,60 100,95 300,95" stroke={strokeColor} strokeWidth="1.5" fill={isDark ? "#241E1C" : "#FAF6ED"} />
       <polygon points="200,75 203,82 210,82 204,87 207,94 200,89 193,94 196,87 190,82 197,82" fill={accentColor} />
-      <text x="200" y="160" textAnchor="middle" fill={strokeColor} fontSize="9" fontFamily="serif" fontWeight="bold" letterSpacing="2">QUỐC HỘI VIỆT NAM</text>
+      <text x="200" y="160" textAnchor="middle" fill={strokeColor} fontSize="9" className="font-serif font-bold" letterSpacing="2">QUỐC HỘI VIỆT NAM</text>
     </svg>
   );
 }

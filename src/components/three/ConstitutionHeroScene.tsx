@@ -107,20 +107,27 @@ function CanvasComponent({ isInView }: { isInView: boolean }) {
       ctx.lineWidth = 12;
       ctx.strokeRect(24, 24, 464, 464);
 
+      const computedHeading = typeof window !== "undefined"
+        ? getComputedStyle(document.documentElement).getPropertyValue("--font-heading").trim() || "'Playfair Display', Georgia, serif"
+        : "'Playfair Display', Georgia, serif";
+      const computedBody = typeof window !== "undefined"
+        ? getComputedStyle(document.documentElement).getPropertyValue("--font-body").trim() || "Inter, -apple-system, sans-serif"
+        : "Inter, -apple-system, sans-serif";
+
       // Star
       ctx.fillStyle = "#C6A15B";
-      ctx.font = "bold 56px serif";
+      ctx.font = `bold 56px ${computedHeading}, serif`;
       ctx.textAlign = "center";
       ctx.fillText("★", 256, 170);
 
       // Title
-      ctx.font = "bold 32px serif";
+      ctx.font = `bold 32px ${computedHeading}, serif`;
       ctx.fillText("HIẾN PHÁP", 256, 230);
-      ctx.font = "bold 26px serif";
+      ctx.font = `bold 26px ${computedHeading}, serif`;
       ctx.fillText("NƯỚC VIỆT NAM", 256, 280);
-      ctx.font = "24px serif";
+      ctx.font = `24px ${computedHeading}, serif`;
       ctx.fillText("DÂN CHỦ CỘNG HÒA", 256, 330);
-      ctx.font = "bold 28px sans-serif";
+      ctx.font = `bold 28px ${computedBody}, sans-serif`;
       ctx.fillText("1946", 256, 400);
     }
     const bookTexture = new THREE.CanvasTexture(bookCanvas);

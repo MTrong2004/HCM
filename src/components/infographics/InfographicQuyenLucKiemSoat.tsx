@@ -53,41 +53,41 @@ export default function InfographicQuyenLucKiemSoat() {
   ];
 
   return (
-    <EditorialReveal className="my-10 p-5 sm:p-7 rounded-lg bg-paper-light/90 border border-accent/30 shadow-sm text-ink">
-      <div className="text-center max-w-2xl mx-auto mb-6">
-        <span className="font-mono text-[11px] font-bold tracking-widest text-accent-dark uppercase block mb-1">
+    <EditorialReveal className="my-0.5 p-3 sm:p-4 rounded-lg bg-paper-light/95 border border-accent/30 shadow-2xs text-ink">
+      <div className="text-center max-w-2xl mx-auto mb-2">
+        <span className="font-mono text-[9.5px] font-bold tracking-widest text-accent-dark uppercase block mb-0.5">
           HỆ GIẢI PHÁP ĐỒNG BỘ
         </span>
-        <h4 className="font-serif text-xl sm:text-2xl font-bold text-primary">
+        <h4 className="font-serif text-sm sm:text-base font-bold text-primary">
           Kiểm soát Quyền lực & Phòng chống Giặc nội xâm
         </h4>
-        <p className="font-sans text-xs sm:text-sm text-ink-muted mt-1.5">
+        <p className="font-sans text-[11px] text-ink-muted mt-0.5">
           Chuỗi giá trị niềm tin và phương châm &ldquo;Xây đi đôi với Chống&rdquo;
         </p>
       </div>
 
       {/* The 4-Step Chain */}
-      <div className="mb-7 p-4 sm:p-5 rounded bg-paper border border-accent/25">
-        <span className="text-[11px] font-mono uppercase tracking-wider text-accent-dark font-bold block mb-3 text-center">
+      <div className="mb-2 p-2 sm:p-2.5 rounded bg-paper border border-accent/25">
+        <span className="text-[10px] font-mono uppercase tracking-wider text-accent-dark font-bold block mb-1 text-center">
           CHUỖI VẬN HÀNH QUYỀN LỰC MINH BẠCH
         </span>
-        <div className="flex flex-col md:flex-row items-center justify-between gap-2.5">
+        <div className="flex flex-row items-center justify-between gap-1.5">
           {chain.map((c, idx) => {
             const isLast = idx === chain.length - 1;
             return (
               <React.Fragment key={idx}>
                 <div
-                  className={`w-full md:w-auto flex-1 p-3 rounded border text-center transition-all ${
+                  className={`flex-1 p-1.5 rounded border text-center transition-all ${
                     isLast
                       ? "bg-primary text-paper-light border-primary"
                       : "bg-paper-light border-accent/30 text-ink"
                   }`}
                 >
-                  <div className="font-serif font-bold text-base tracking-wide">
+                  <div className="font-serif font-bold text-xs tracking-wide">
                     {c.step}
                   </div>
                   <div
-                    className={`font-sans text-xs mt-0.5 ${
+                    className={`font-sans text-[9.5px] mt-0.5 truncate ${
                       isLast ? "text-paper-light/85" : "text-ink-muted"
                     }`}
                   >
@@ -95,7 +95,7 @@ export default function InfographicQuyenLucKiemSoat() {
                   </div>
                 </div>
                 {idx < chain.length - 1 && (
-                  <ArrowRight className="w-4 h-4 text-accent-dark hidden md:block flex-shrink-0" />
+                  <ArrowRight className="w-3 h-3 text-accent-dark hidden sm:block flex-shrink-0" />
                 )}
               </React.Fragment>
             );
@@ -104,12 +104,12 @@ export default function InfographicQuyenLucKiemSoat() {
       </div>
 
       {/* 5 Solutions */}
-      <div className="space-y-3.5">
-        <span className="text-[11px] font-mono uppercase tracking-wider text-accent-dark font-bold block text-center">
+      <div className="space-y-2">
+        <span className="text-[10px] font-mono uppercase tracking-wider text-accent-dark font-bold block text-center">
           NĂM TRỤ CỘT BẢO ĐẢM NHÀ NƯỚC TRONG SẠCH, VỮNG MẠNH
         </span>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2" role="tablist">
+        <div className="grid grid-cols-5 gap-1" role="tablist">
           {solutions.map((sol, idx) => {
             const isSelected = selectedSolution === idx;
             return (
@@ -118,24 +118,24 @@ export default function InfographicQuyenLucKiemSoat() {
                 role="tab"
                 aria-selected={isSelected}
                 onClick={() => setSelectedSolution(idx)}
-                className={`p-3 rounded border text-center transition-all min-h-[44px] flex flex-col items-center justify-center gap-1 ${
+                className={`p-1 sm:p-1.5 rounded border text-center transition-all min-h-[44px] flex flex-col items-center justify-center gap-0.5 ${
                   isSelected
-                    ? "bg-primary text-paper-light border-primary shadow-sm"
+                    ? "bg-primary text-paper-light border-primary shadow-2xs"
                     : "bg-paper/50 border-accent/25 text-ink hover:border-accent hover:bg-paper"
                 }`}
               >
                 <span
-                  className={`font-mono text-[10px] font-bold ${
+                  className={`font-mono text-[8.5px] font-bold ${
                     isSelected ? "text-accent-light" : "text-accent-dark"
                   }`}
                 >
-                  TRỤ CỘT {sol.num}
+                  {sol.num}
                 </span>
-                <span className="font-serif text-sm font-bold tracking-wide uppercase">
+                <span className="font-serif text-[10.5px] sm:text-xs font-bold tracking-wide uppercase truncate">
                   {sol.keyword}
                 </span>
                 <span
-                  className={`text-[11px] font-sans ${
+                  className={`text-[9px] font-sans truncate ${
                     isSelected ? "text-paper-light/80" : "text-ink-muted"
                   }`}
                 >
@@ -147,11 +147,11 @@ export default function InfographicQuyenLucKiemSoat() {
         </div>
 
         {/* Selected Solution Detail */}
-        <div className="p-4 sm:p-5 rounded bg-paper border border-accent/25">
-          <h6 className="font-serif text-base sm:text-lg font-bold text-primary mb-1.5">
+        <div className="p-2 sm:p-2.5 rounded bg-paper border border-accent/25">
+          <h6 className="font-serif text-xs sm:text-sm font-bold text-primary mb-1">
             Trụ cột {solutions[selectedSolution].num}: {solutions[selectedSolution].keyword} — {solutions[selectedSolution].title}
           </h6>
-          <p className="font-sans text-[15px] text-ink leading-relaxed">
+          <p className="font-sans text-[11px] sm:text-xs text-ink leading-snug">
             {solutions[selectedSolution].summary}
           </p>
         </div>

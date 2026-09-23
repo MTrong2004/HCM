@@ -30,21 +30,21 @@ export default function InfographicDuongLoiDenHanhDong() {
   ];
 
   return (
-    <EditorialReveal className="my-10 p-5 sm:p-7 rounded-lg bg-paper-light/90 border border-accent/30 shadow-sm text-ink">
-      <div className="text-center max-w-2xl mx-auto mb-6">
-        <span className="font-mono text-[11px] font-bold tracking-widest text-accent-dark uppercase block mb-1">
+    <EditorialReveal className="my-0.5 p-3 sm:p-4 rounded-lg bg-paper-light/95 border border-accent/30 shadow-2xs text-ink">
+      <div className="text-center max-w-2xl mx-auto mb-2">
+        <span className="font-mono text-[9.5px] font-bold tracking-widest text-accent-dark uppercase block mb-0.5">
           QUY TRÌNH CHUYỂN HÓA LÃNH ĐẠO
         </span>
-        <h4 className="font-serif text-xl sm:text-2xl font-bold text-primary">
+        <h4 className="font-serif text-sm sm:text-base font-bold text-primary">
           Từ Chủ trương của Đảng đến Hiện thực Đời sống
         </h4>
-        <p className="font-sans text-xs sm:text-sm text-ink-muted mt-1.5">
+        <p className="font-sans text-[11px] text-ink-muted mt-0.5">
           Đường lối đúng mới là một nửa chặng đường; tổ chức thực hiện và chỉnh đốn là khâu quyết định
         </p>
       </div>
 
       {/* Step Indicators */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 mb-5" role="tablist">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 mb-2" role="tablist">
         {steps.map((st, idx) => {
           const isActive = activeStep === idx;
           return (
@@ -53,20 +53,20 @@ export default function InfographicDuongLoiDenHanhDong() {
               role="tab"
               aria-selected={isActive}
               onClick={() => setActiveStep(idx)}
-              className={`p-3.5 rounded border text-left transition-all min-h-[44px] ${
+              className={`p-2 rounded border text-left transition-all min-h-[44px] ${
                 isActive
-                  ? "bg-primary text-paper-light border-primary shadow-sm"
+                  ? "bg-primary text-paper-light border-primary shadow-2xs"
                   : "bg-paper/50 border-accent/25 text-ink hover:border-accent hover:bg-paper"
               }`}
             >
               <span
-                className={`font-mono text-[10px] font-bold block mb-1 ${
+                className={`font-mono text-[8.5px] sm:text-[9px] font-bold block mb-0.5 ${
                   isActive ? "text-accent-light" : "text-accent-dark"
                 }`}
               >
                 BƯỚC {st.num}
               </span>
-              <h5 className="font-serif text-sm sm:text-base font-bold leading-snug">
+              <h5 className="font-serif text-xs sm:text-[13px] font-bold leading-snug truncate">
                 {st.title}
               </h5>
             </button>
@@ -75,22 +75,22 @@ export default function InfographicDuongLoiDenHanhDong() {
       </div>
 
       {/* Active Step Panel */}
-      <div className="p-5 rounded bg-paper border border-accent/25 mb-5">
-        <span className="text-[11px] font-mono uppercase text-accent-dark font-bold block mb-1.5">
+      <div className="p-2 sm:p-2.5 rounded bg-paper border border-accent/25 mb-2">
+        <span className="text-[10px] font-mono uppercase text-accent-dark font-bold block mb-1">
           BƯỚC {steps[activeStep].num}: {steps[activeStep].title}
         </span>
-        <p className="font-sans text-[15px] text-ink leading-relaxed">
+        <p className="font-sans text-[11px] sm:text-xs text-ink leading-snug">
           {steps[activeStep].desc}
         </p>
       </div>
 
       {/* Student Responsibilities Highlight Box */}
-      <div className="p-4 sm:p-5 rounded border-l-4 border-accent-dark bg-paper/60 border-t border-r border-b border-accent/20">
-        <h6 className="font-serif text-base font-bold text-primary mb-1">
+      <div className="p-2 sm:p-2.5 rounded border-l-4 border-accent-dark bg-paper/60 border-t border-r border-b border-accent/20">
+        <h6 className="font-serif text-xs sm:text-[13px] font-bold text-primary mb-0.5">
           Trách nhiệm của Thế hệ Sinh viên, Trí thức trẻ
         </h6>
-        <p className="font-sans text-xs sm:text-sm text-ink/85 leading-relaxed">
-          Sinh viên là đảng viên phải tuyệt đối gương mẫu trong học tập và tác phong; sinh viên nói chung cần trau dồi chuyên môn, rèn đức luyện tài, nắm vững lý luận và sẵn sàng dấn thân cống hiến cho công cuộc đổi mới đất nước.
+        <p className="font-sans text-[10.5px] sm:text-[11px] text-ink/85 leading-snug">
+          Sinh viên là đảng viên phải tuyệt đối gương mẫu; sinh viên nói chung cần trau dồi chuyên môn, rèn đức luyện tài, nắm vững lý luận và sẵn sàng dấn thân cống hiến cho công cuộc đổi mới.
         </p>
       </div>
     </EditorialReveal>

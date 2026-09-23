@@ -2,7 +2,7 @@
 "use client";
 
 import React from "react";
-import { Home, ChevronRight } from "lucide-react";
+import { Home, ChevronRight, ChevronUp, ChevronDown } from "lucide-react";
 import { getAssetPath } from "@/lib/assets";
 import { useSmoothScroll } from "./SmoothScrollProvider";
 import { playSubtleClick } from "@/lib/sound-effects";
@@ -102,7 +102,7 @@ export default function ChapterHeaderBanner({
   currentSectionTitle,
   parentPath,
 }: ChapterHeaderBannerProps) {
-  const { activeSection, scrollTo } = useSmoothScroll();
+  const { activeSection, scrollTo, isBannerCollapsed, toggleBannerCollapsed, isTOCDrawerOpen } = useSmoothScroll();
 
   const data = SECTION_BANNER_MAP[activeSection] || SECTION_BANNER_MAP["phap-quyen"];
   const displayCode = currentSectionCode || data.code;
@@ -115,52 +115,40 @@ export default function ChapterHeaderBanner({
   };
 
   return (
-    <div className="relative w-full h-[125px] sm:h-[135px] lg:h-[142px] overflow-hidden bg-[#e8decb] text-paper-light border-b border-[#e2d7c5] shadow-xs select-none">
-      {/* 1. HÌNH ẢNH NỀN BANNER NGHỆ THUẬT (CỜ ĐỎ SAO VÀNG + BÁC HỒ + TÒA NHÀ QUỐC HỘI) */}
+    <div
+      className={`relative w-full overflow-hidden bg-[#240404] text-paper-light border-b border-[#e2d7c5] shadow-xs select-none transition-[height] duration-300 ease-in-out ${
+        isBannerCollapsed
+          ? "h-[38px] sm:h-[42px]"
+          : "h-[135px] sm:h-[150px] md:h-[165px] lg:h-[175px] xl:h-[185px]"
+      }`}
+    >
+      {/* 1. HÌNH ẢNH NỀN BANNER NGHỆ THUẬT (ĐỒNG BỘ HOÀN HẢO VỚI BẢN VẼ GỐC DESIGNER 77) */}
       <img
-        src={getAssetPath("/images/chapter-banner-bg.png")}
+        src={getAssetPath("/images/banner-designer-77.png")}
         alt="Tư tưởng Hồ Chí Minh về Đảng và Nhà nước của dân, do dân, vì dân"
-        className="w-full h-full object-cover object-center absolute inset-0 pointer-events-none select-none z-0"
+        className={`w-full h-full object-cover object-center absolute inset-0 pointer-events-none select-none z-0 transition-all duration-300 ease-in-out ${
+          isBannerCollapsed ? "opacity-15 blur-[0.5px] scale-105" : "opacity-100 scale-100"
+        }`}
       />
 
-      {/* 2. LỚP NỘI DUNG CHỮ TRÊN BANNER */}
-      <div className="relative z-20 px-4 sm:px-6 lg:px-8 pt-2 sm:pt-2.5 flex flex-col justify-between h-full pointer-events-none">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-2 sm:gap-4 items-start">
-          {/* Cụm thông tin chương bên trái (Nằm trên nền cờ đỏ) */}
-          <div className="md:col-span-5 lg:col-span-5 space-y-0.5 pointer-events-auto">
-            <div className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-[#fdf9f0] text-[#5c0d0d] font-mono font-bold text-[9.5px] rounded shadow-xs uppercase tracking-wider border border-[#d4af37]/50">
-              {data.badge}
-            </div>
-            <h1 className="font-serif text-sm sm:text-base lg:text-lg font-black text-white tracking-tight leading-tight uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]">
-              TƯ TƯỞNG HỒ CHÍ MINH
-            </h1>
-            <p className="font-sans text-[9.5px] sm:text-[10px] font-bold text-[#fff7e6] tracking-wide uppercase leading-snug drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)] max-w-md">
-              VỀ ĐẢNG CỘNG SẢN VIỆT NAM VÀ NHÀ NƯỚC CỦA DÂN, DO DÂN VÀ VÌ DÂN
-            </p>
-          </div>
+      {/* Lớp phủ chuyển sắc di sản khi ở chế độ thu gọn */}
+      <div
+        className={`absolute inset-0 z-5 transition-opacity duration-300 pointer-events-none ${
+          isBannerCollapsed
+            ? "bg-gradient-to-r from-[#fcfbf7] via-[#f7f2e6]/95 to-[#fcfbf7] opacity-100"
+            : "opacity-0"
+        }`}
+      />
 
-          {/* Khoảng trống trung tâm để lộ rõ hình Bác Hồ làm việc */}
-          <div className="hidden md:block md:col-span-3 lg:col-span-3" />
+      {/* 2. LỚP ĐƯỆM KHÔNG GIAN BANNER - Chữ và danh ngôn đã được tích hợp sẵn trong hình ảnh nghệ thuật */}
+      <div className="relative z-10 w-full h-full pointer-events-none" />
 
-          {/* Khối trích dẫn danh ngôn Bác ở khoảng sáng trước Tòa nhà Quốc hội */}
-          <div className="md:col-span-4 lg:col-span-4 flex flex-col items-end text-right pt-0.5 pointer-events-auto">
-            <div
-              key={activeSection}
-              className="max-w-[270px] sm:max-w-[320px] text-right animate-in fade-in duration-300"
-            >
-              <blockquote className="font-serif italic text-[11px] sm:text-[11.5px] lg:text-[12px] text-[#5e1212] leading-snug font-semibold drop-shadow-[0_1px_2px_rgba(255,255,255,0.7)] line-clamp-2">
-                “{data.quote}”
-              </blockquote>
-              <div className="font-serif font-bold text-[10px] sm:text-[10.5px] text-[#7a1818] mt-0.5 tracking-wide drop-shadow-[0_1px_2px_rgba(255,255,255,0.7)]">
-                ― Hồ Chí Minh ―
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 3. ĐƯỜNG CONG ĐỒ HỌA CHUYỂN TIẾP CHÂN BANNER & BREADCRUMB TAB (THEO CHUẨN MOCKUP) */}
-      <div className="absolute bottom-0 left-0 right-0 z-30 pointer-events-auto h-9 sm:h-10">
+      {/* 3. ĐƯỜNG CONG ĐỒ HỌA CHUYỂN TIẾP CHÂN BANNER (THEO CHUẨN MOCKUP) - ẨN MỜ KHI BANNER THU GỌN */}
+      <div
+        className={`absolute bottom-0 left-0 right-0 z-20 pointer-events-none transition-opacity duration-300 ${
+          isBannerCollapsed ? "opacity-0" : "opacity-100 h-8 sm:h-9"
+        }`}
+      >
         {/* SVG Đường cong lượn mềm: Tab phẳng bên trái, chuyển bậc mềm, lượn dốc xuống bên phải theo mockup */}
         <svg
           viewBox="0 0 1200 60"
@@ -181,32 +169,42 @@ export default function ChapterHeaderBanner({
 
           {/* Vùng mảng nền màu kem #fbf9f4 ăn khớp hoàn hảo với nền trang */}
           <path
-            d="M 0,18 
-               L 660,18 
-               C 695,18 725,28 760,28 
-               L 1000,28 
-               C 1065,28 1135,44 1200,60 
+            d="M 0,22 
+               L 940,22 
+               C 1035,22 1120,38 1200,60 
                L 1200,60 
                L 0,60 Z"
             fill="#fbf9f4"
             filter="url(#curveShadow)"
           />
 
-          {/* Đường viền vàng đồng uốn lượn mềm mại dọc theo mép cong */}
+          {/* Đường viền vàng đồng: Chạy thẳng ngang toàn bộ và CHỈ uốn lượn xuống ở mép phải */}
           <path
-            d="M 0,18 
-               L 660,18 
-               C 695,18 725,28 760,28 
-               L 1000,28 
-               C 1065,28 1135,44 1200,60"
+            d="M 0,22 
+               L 940,22 
+               C 1035,22 1120,38 1200,60"
             fill="none"
             stroke="url(#goldCurveStroke)"
             strokeWidth="1.75"
           />
         </svg>
+      </div>
 
-        {/* Nội dung thanh Breadcrumb nằm lồng bên trong tab cong bên trái */}
-        <div className="absolute bottom-1.5 sm:bottom-2 left-4 sm:left-6 flex items-center gap-1.5 text-[11px] font-sans text-ink-muted max-w-[95%] overflow-hidden">
+      {/* Đường viền vàng ánh kim siêu mảnh ở chân banner khi thu gọn */}
+      <div
+        className={`absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-[#d4af37]/30 via-[#c5a059]/80 to-[#d4af37]/30 z-30 pointer-events-none transition-opacity duration-300 ${
+          isBannerCollapsed ? "opacity-100" : "opacity-0"
+        }`}
+      />
+
+      {/* 4. DẢI BREADCRUMB & NÚT ĐIỀU KHIỂN THU GỌN / MỞ RỘNG BANNER */}
+      <div
+        className={`absolute left-0 right-0 z-30 pointer-events-auto flex items-center justify-between px-3 sm:px-6 md:px-12 transition-all duration-300 ${
+          isBannerCollapsed ? "inset-0 h-full" : "bottom-0 h-8 sm:h-9"
+        }`}
+      >
+        {/* Nội dung thanh Breadcrumb */}
+        <div className="flex items-center gap-1.5 text-[11px] font-sans text-ink-muted min-w-0 max-w-[calc(100%-110px)] sm:max-w-[calc(100%-140px)] overflow-hidden">
           <button
             onClick={() => handleNavClick("hero")}
             className="inline-flex items-center gap-1 text-[#6b1212] font-semibold hover:underline cursor-pointer focus:outline-none flex-shrink-0"
@@ -231,6 +229,33 @@ export default function ChapterHeaderBanner({
             {displayCode} {displayTitle}
           </span>
         </div>
+
+        {/* Nút bấm chuyển đổi thu gọn / mở rộng banner thủ công (Chế độ đọc tập trung) */}
+        <button
+          onClick={() => {
+            playSubtleClick();
+            toggleBannerCollapsed();
+          }}
+          className="inline-flex items-center gap-1 sm:gap-1.5 px-2 py-0.5 sm:py-1 rounded-md text-[11px] font-sans font-medium text-[#7a1818] bg-[#fbf9f4]/90 hover:bg-[#ede3d1] border border-[#d4af37]/50 shadow-2xs transition-all cursor-pointer flex-shrink-0 group"
+          title={
+            isBannerCollapsed
+              ? "Mở rộng ảnh bìa chủ đề"
+              : "Thu gọn ảnh bìa để mở rộng tối đa không gian học tập"
+          }
+          aria-label={isBannerCollapsed ? "Mở rộng ảnh bìa" : "Thu gọn ảnh bìa"}
+        >
+          {isBannerCollapsed ? (
+            <>
+              <ChevronDown className="w-3.5 h-3.5 text-[#7a1818] transition-transform group-hover:translate-y-0.5" />
+              <span className="hidden sm:inline">Mở ảnh bìa</span>
+            </>
+          ) : (
+            <>
+              <ChevronUp className="w-3.5 h-3.5 text-[#7a1818] transition-transform group-hover:-translate-y-0.5" />
+              <span className="hidden sm:inline">Thu gọn ảnh</span>
+            </>
+          )}
+        </button>
       </div>
     </div>
   );

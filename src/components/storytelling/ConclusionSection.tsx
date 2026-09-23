@@ -1,17 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
-import StorySection from "@/components/shared/StorySection";
-import PullQuote from "@/components/shared/PullQuote";
+import React from "react";
+import AcademicPortalSection, {
+  TabItem,
+} from "@/components/shared/AcademicPortalSection";
 import { PRESENTATION_CONTENT } from "@/content/presentation-content";
 import { ASSET_MANIFEST } from "@/content/asset-manifest";
-import { BookOpen, Database, ChevronDown } from "lucide-react";
-import EditorialReveal from "@/components/shared/EditorialReveal";
 
 export default function ConclusionSection() {
   const { conclusion } = PRESENTATION_CONTENT;
-  const [showManifest, setShowManifest] = useState(false);
-  const [showSources, setShowSources] = useState(true);
 
   const academicSources = [
     {
@@ -21,7 +18,8 @@ export default function ConclusionSection() {
       note: "Nguồn văn kiện gốc và các bài nói, bài viết của Chủ tịch Hồ Chí Minh.",
     },
     {
-      title: "Giáo trình Tư tưởng Hồ Chí Minh (Dành cho bậc đại học không chuyên lý luận chính trị)",
+      title:
+        "Giáo trình Tư tưởng Hồ Chí Minh (Dành cho bậc đại học không chuyên lý luận chính trị)",
       publisher: "Bộ Giáo dục và Đào tạo, NXB Chính trị quốc gia Sự thật",
       year: "2021",
       note: "Khung chương trình chuẩn và hệ thống hóa các luận điểm cốt lõi.",
@@ -46,200 +44,189 @@ export default function ConclusionSection() {
     },
   ];
 
-  return (
-    <StorySection id="ket-luan" theme="light">
-      <div className="space-y-12">
-        {/* Header */}
-        <EditorialReveal>
-          <header className="text-center max-w-3xl mx-auto space-y-3">
-            <span className="font-mono text-xs font-bold tracking-widest text-accent-dark uppercase">
-              TỔNG KẾT & SUY NGẪM
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-primary tracking-tight">
-              {conclusion.title}
-            </h2>
-            {conclusion.subtitle && (
-              <p className="font-serif text-lg sm:text-xl text-ink-muted italic">
-                {conclusion.subtitle}
+  const tabs: TabItem[] = [
+    {
+      id: "luan-diem-cot-loi",
+      label: "a. Năm Luận Điểm Cốt Lõi",
+      badge: "5 Trụ cột tư tưởng",
+      content: (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
+          {/* Cột trái: 3 Luận điểm đầu */}
+          <div className="lg:col-span-6 space-y-2">
+            <h4 className="font-serif font-bold text-xs sm:text-sm text-[#7a1818]">
+              1. Nền tảng Bản chất & Thượng tôn pháp luật
+            </h4>
+
+            <div className="space-y-1.5">
+              {conclusion.summaryBullets.slice(0, 3).map((point: string, idx: number) => (
+                <div
+                  key={idx}
+                  className="p-2 sm:p-2.5 rounded-md border border-[#e8dfcf] bg-[#fbf8f0] flex gap-2.5 items-start"
+                >
+                  <span className="font-serif font-bold text-base sm:text-lg text-[#7a1818] leading-none pt-0.5">
+                    0{idx + 1}
+                  </span>
+                  <p className="font-sans text-[11px] sm:text-xs text-ink leading-snug">
+                    {point}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Cột phải: 2 Luận điểm tiếp theo & Thông điệp kết luận */}
+          <div className="lg:col-span-6 space-y-2">
+            <h4 className="font-serif font-bold text-xs sm:text-sm text-[#7a1818]">
+              2. Kỷ cương, Đạo đức & Khát vọng phát triển
+            </h4>
+
+            <div className="space-y-1.5">
+              {conclusion.summaryBullets.slice(3, 5).map((point: string, idx: number) => (
+                <div
+                  key={idx + 3}
+                  className="p-2 sm:p-2.5 rounded-md border border-[#e8dfcf] bg-[#fbf8f0] flex gap-2.5 items-start"
+                >
+                  <span className="font-serif font-bold text-base sm:text-lg text-[#7a1818] leading-none pt-0.5">
+                    0{idx + 4}
+                  </span>
+                  <p className="font-sans text-[11px] sm:text-xs text-ink leading-snug">
+                    {point}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="p-2.5 bg-[#f8f1e2] border-l-4 border-[#7a1818] rounded-r-md space-y-1">
+              <span className="font-serif font-bold text-[10px] text-[#7a1818] uppercase">
+                Thông điệp thời đại
+              </span>
+              <p className="text-[11px] sm:text-xs text-ink leading-snug">
+                Xây dựng Nhà nước liêm chính, kiến tạo, phục vụ nhân dân là dòng chảy xuyên suốt từ bản Hiến pháp 1946 đến kỷ nguyên vươn mình của dân tộc hôm nay.
               </p>
-            )}
-            <div className="w-24 h-0.5 bg-accent/40 mx-auto mt-4" />
-          </header>
-        </EditorialReveal>
-
-        {/* 5 Core Theses */}
-        <EditorialReveal delay={80} className="space-y-3.5">
-          <h3 className="font-serif text-xl sm:text-2xl font-bold text-primary text-center">
-            Năm Luận Điểm Cốt Lõi
-          </h3>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 pt-2">
-            {conclusion.summaryBullets.map((point: string, idx: number) => (
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: "tai-lieu-tham-khao",
+      label: "b. Căn Cứ Học Thuật",
+      badge: "5 Nguồn văn kiện gốc",
+      content: (
+        <div className="space-y-2">
+          <h4 className="font-serif font-bold text-xs sm:text-sm text-[#7a1818]">
+            Danh mục tài liệu tham khảo chính yếu & Căn cứ pháp lý
+          </h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            {academicSources.map((source, idx) => (
               <div
                 key={idx}
-                className={`p-4 sm:p-5 rounded-lg border border-accent/25 bg-paper-light/90 flex gap-3.5 items-start ${
-                  idx === conclusion.summaryBullets.length - 1 ? "md:col-span-2" : ""
-                }`}
+                className="p-2 sm:p-2.5 rounded-md border border-[#e8dfcf] bg-[#fbf8f0] flex items-start gap-2.5"
               >
-                <span className="font-serif font-bold text-2xl text-accent-dark leading-none pt-0.5">
-                  0{idx + 1}
+                <span className="font-serif font-bold text-xs text-[#7a1818] pt-0.5">
+                  [{idx + 1}]
                 </span>
-                <p className="font-sans text-[15px] sm:text-base text-ink leading-relaxed">
-                  {point}
-                </p>
+                <div className="space-y-0.5 text-left">
+                  <div className="font-serif font-bold text-xs text-ink">
+                    {source.title}
+                  </div>
+                  <div className="text-[10.5px] text-ink-muted">
+                    {source.publisher} ({source.year})
+                  </div>
+                  <div className="text-[10px] text-ink/75 italic">
+                    {source.note}
+                  </div>
+                </div>
               </div>
             ))}
           </div>
-        </EditorialReveal>
+        </div>
+      ),
+    },
+    {
+      id: "danh-muc-tu-lieu",
+      label: "c. Danh Mục Tư Liệu Số",
+      badge: `${ASSET_MANIFEST.length} Tệp tư liệu`,
+      content: (
+        <div className="space-y-2">
+          <div className="flex items-center justify-between text-xs text-ink-muted">
+            <span className="font-medium text-[11px]">
+              Bảng kiểm {ASSET_MANIFEST.length} tư liệu số phục vụ thuyết trình:
+            </span>
+            <span className="font-mono text-[10px] text-[#7a1818]">
+              Chuẩn hóa tỷ lệ 16:9 • 4:3 • 3:2
+            </span>
+          </div>
 
-        {/* Final Quote */}
-        {conclusion.finalQuote && (
-          <PullQuote
-            quote={conclusion.finalQuote.text}
-            author={conclusion.finalQuote.author}
-            context={conclusion.finalQuote.context}
-            theme="light"
-          />
-        )}
-
-        {/* Academic References / Bibliography */}
-        <div className="border border-accent/30 rounded-lg p-5 sm:p-7 bg-paper-light/80 space-y-4">
-          <button
-            onClick={() => setShowSources(!showSources)}
-            className="w-full flex items-center justify-between text-left group min-h-[44px]"
-            aria-expanded={showSources}
-          >
-            <div className="flex items-center gap-2.5">
-              <BookOpen className="w-5 h-5 text-primary" />
-              <h4 className="font-serif text-lg sm:text-xl font-bold text-primary group-hover:text-primary-dark transition-colors">
-                Tài Liệu Tham Khảo & Căn Cứ Học Thuật
-              </h4>
-            </div>
-            <div className="flex items-center gap-1.5 text-xs font-mono text-accent-dark">
-              <span>{showSources ? "Thu gọn" : "Xem chi tiết"}</span>
-              <ChevronDown
-                className={`w-4 h-4 transition-transform duration-200 ${
-                  showSources ? "rotate-180" : ""
-                }`}
-              />
-            </div>
-          </button>
-
-          {showSources && (
-            <div className="pt-3 border-t border-accent/20">
-              <ul className="space-y-3.5 divide-y divide-accent/15">
-                {academicSources.map((source, idx) => (
-                  <li key={idx} className="pt-3 first:pt-0">
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-serif font-bold text-accent-dark text-xs">
-                        [{idx + 1}]
+          <div className="max-h-[220px] overflow-y-auto border border-[#e8dfcf] rounded-md bg-[#fbf8f0]">
+            <table className="w-full text-left text-[11px] font-sans border-collapse">
+              <thead>
+                <tr className="border-b border-[#e8dfcf] bg-[#f4ebe1] text-[#7a1818] font-mono uppercase text-[10px] sticky top-0">
+                  <th className="py-1.5 px-2">Tên File / ID</th>
+                  <th className="py-1.5 px-2">Phần sử dụng</th>
+                  <th className="py-1.5 px-2">Loại</th>
+                  <th className="py-1.5 px-2">Tỷ lệ</th>
+                  <th className="py-1.5 px-2">Trạng thái</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#ece2d4]">
+                {ASSET_MANIFEST.map((item) => (
+                  <tr key={item.id} className="hover:bg-[#f6efe4]">
+                    <td className="py-1 px-2 font-mono text-[#7a1818]">
+                      {item.filename}
+                    </td>
+                    <td className="py-1 px-2 text-ink-muted">{item.section}</td>
+                    <td className="py-1 px-2 font-mono text-ink-muted">
+                      {item.type}
+                    </td>
+                    <td className="py-1 px-2 font-mono text-ink-muted">
+                      {item.aspectRatio}
+                    </td>
+                    <td className="py-1 px-2">
+                      <span
+                        className={`px-1.5 py-0.2 rounded text-[9.5px] font-mono font-bold ${
+                          item.status === "ready"
+                            ? "bg-emerald-100 text-emerald-800"
+                            : "bg-amber-100 text-amber-800"
+                        }`}
+                      >
+                        {item.status === "ready" ? "Sẵn sàng" : "Placeholder"}
                       </span>
-                      <div>
-                        <span className="font-serif font-bold text-ink text-sm sm:text-base">
-                          {source.title}
-                        </span>
-                        <div className="font-sans text-xs sm:text-sm text-ink-muted mt-0.5">
-                          {source.publisher} ({source.year})
-                        </div>
-                        <div className="font-sans text-xs text-ink/75 italic mt-0.5">
-                          {source.note}
-                        </div>
-                      </div>
-                    </div>
-                  </li>
+                    </td>
+                  </tr>
                 ))}
-              </ul>
-            </div>
-          )}
+              </tbody>
+            </table>
+          </div>
         </div>
+      ),
+    },
+  ];
 
-        {/* Digital Asset Manifest */}
-        <div className="border border-accent/25 rounded-lg p-5 bg-paper/60 space-y-3">
-          <button
-            onClick={() => setShowManifest(!showManifest)}
-            className="w-full flex items-center justify-between text-left group min-h-[44px]"
-            aria-expanded={showManifest}
-          >
-            <div className="flex items-center gap-2">
-              <Database className="w-4 h-4 text-accent-dark" />
-              <span className="font-mono text-xs font-bold text-accent-dark uppercase tracking-wider">
-                Danh mục tư liệu số (Asset Manifest)
-              </span>
-            </div>
-            <div className="flex items-center gap-1 text-xs font-mono text-ink-muted">
-              <span>{showManifest ? "Đóng" : "Mở bảng kiểm"}</span>
-              <ChevronDown
-                className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                  showManifest ? "rotate-180" : ""
-                }`}
-              />
-            </div>
-          </button>
-
-          {showManifest && (
-            <div className="pt-3 border-t border-accent/15">
-              <div className="text-xs text-ink-muted mb-2 font-sans">
-                Tổng cộng {ASSET_MANIFEST.length} tệp tư liệu được quản lý:
-              </div>
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-xs font-sans border-collapse">
-                  <thead>
-                    <tr className="border-b border-accent/30 text-accent-dark font-mono uppercase text-[11px]">
-                      <th className="py-2 px-2.5">Tên File / ID</th>
-                      <th className="py-2 px-2.5">Phần sử dụng</th>
-                      <th className="py-2 px-2.5">Loại</th>
-                      <th className="py-2 px-2.5">Tỷ lệ</th>
-                      <th className="py-2 px-2.5">Trạng thái</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-accent/15">
-                    {ASSET_MANIFEST.map((item) => (
-                      <tr key={item.id} className="hover:bg-paper-dark/20">
-                        <td className="py-2 px-2.5 font-mono text-primary">
-                          {item.filename}
-                        </td>
-                        <td className="py-2 px-2.5 text-ink-muted">
-                          {item.section}
-                        </td>
-                        <td className="py-2 px-2.5 font-mono text-accent-dark">
-                          {item.type}
-                        </td>
-                        <td className="py-2 px-2.5 font-mono text-ink-muted">
-                          {item.aspectRatio}
-                        </td>
-                        <td className="py-2 px-2.5">
-                          <span
-                            className={`px-1.5 py-0.5 rounded text-[10px] font-mono font-bold ${
-                              item.status === "ready"
-                                ? "bg-emerald-100 text-emerald-800"
-                                : "bg-amber-100 text-amber-800"
-                            }`}
-                          >
-                            {item.status === "ready" ? "Sẵn sàng" : "Placeholder"}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Footer Credit */}
-        <footer className="text-center pt-8 border-t border-accent/25 text-xs text-ink-muted space-y-1">
-          <p className="font-serif font-bold text-sm text-primary">
-            CÔNG TRÌNH THUYẾT TRÌNH TƯ TƯỞNG HỒ CHÍ MINH
-          </p>
-          <p className="font-sans">
-            Đề tài: Nhà nước của dân, do dân và vì dân • Chuyển thể định dạng Digital Magazine & Scroll Storytelling
-          </p>
-          <p className="font-mono text-[11px] text-accent-dark">
-            Next.js 16 • GSAP ScrollTrigger • Lenis • Tailwind CSS
-          </p>
-        </footer>
-      </div>
-    </StorySection>
+  return (
+    <AcademicPortalSection
+      id="ket-luan"
+      code="TỔNG KẾT"
+      title="TỔNG KẾT & SUY NGẪM"
+      parentPath="Chương 4: Tư tưởng Hồ Chí Minh về Đảng Cộng sản và Nhà nước Việt Nam"
+      quote={
+        conclusion.finalQuote?.text ||
+        "Nước ta là nước dân chủ, địa vị cao nhất là dân, vì dân là chủ."
+      }
+      quoteAuthor={conclusion.finalQuote?.author || "Hồ Chí Minh"}
+      summary={
+        conclusion.subtitle ||
+        "Năm luận điểm cốt lõi và hệ thống căn cứ học thuật chuẩn mực về Nhà nước của nhân dân, do nhân dân, vì nhân dân."
+      }
+      tabs={tabs}
+      prevSection={{
+        id: "phong-chong-tham-nhung",
+        label: "← 4.3.2 Phòng, chống giặc nội xâm",
+      }}
+      nextSection={{
+        id: "hero",
+        label: "Quay lại Đầu Trang ⟲",
+      }}
+    />
   );
 }

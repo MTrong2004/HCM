@@ -4,10 +4,11 @@
 // Synthesizes natural UI acoustics: paper flips, delicate clicks, chimes, and slide transitions
 
 let audioCtx: AudioContext | null = null;
-let soundEnabled = true;
+let soundEnabled = false; // Mặc định tắt hoàn toàn âm thanh khi ấn theo yêu cầu
 
 function getAudioContext(): AudioContext | null {
   if (typeof window === "undefined") return null;
+  if (!soundEnabled) return null;
   if (!audioCtx) {
     const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
     if (AudioContextClass) {
@@ -21,7 +22,7 @@ function getAudioContext(): AudioContext | null {
 }
 
 export function isSoundMuted(): boolean {
-  if (typeof window === "undefined") return false;
+  if (typeof window === "undefined") return true;
   return !soundEnabled;
 }
 
@@ -43,9 +44,11 @@ export function initSoundPreference(): void {
     const stored = localStorage.getItem("hcm_sound_enabled");
     if (stored !== null) {
       soundEnabled = stored === "1";
+    } else {
+      soundEnabled = false;
     }
   } catch {
-    // fallback default
+    soundEnabled = false;
   }
 }
 
@@ -99,33 +102,11 @@ export function playPageTurn(): void {
 }
 
 /**
- * Tiếng gõ nút tương tác nhẹ nhàng (Subtle Acoustic Tap)
+ * Tiếng gõ nút tương tác nhẹ nhàng (Đã tắt theo yêu cầu)
  */
 export function playSubtleClick(): void {
-  if (!soundEnabled) return;
-  const ctx = getAudioContext();
-  if (!ctx) return;
-
-  try {
-    const now = ctx.currentTime;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(950, now);
-    osc.frequency.exponentialRampToValueAtTime(220, now + 0.04);
-
-    gain.gain.setValueAtTime(0.15, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
-
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-
-    osc.start(now);
-    osc.stop(now + 0.04);
-  } catch {
-    // Graceful fallback
-  }
+  // Đã tắt âm thanh khi ấn
+  return;
 }
 
 /**
@@ -193,32 +174,9 @@ export function playBuzzer(): void {
 }
 
 /**
- * Âm thanh mở hộp thoại / Chuyển cảnh (Swoosh Whoosh Transition)
+ * Âm thanh mở hộp thoại / Chuyển cảnh (Đã tắt theo yêu cầu)
  */
 export function playSwoosh(): void {
-  if (!soundEnabled) return;
-  const ctx = getAudioContext();
-  if (!ctx) return;
-
-  try {
-    const now = ctx.currentTime;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(180, now);
-    osc.frequency.exponentialRampToValueAtTime(460, now + 0.08);
-    osc.frequency.exponentialRampToValueAtTime(120, now + 0.22);
-
-    gain.gain.setValueAtTime(0.12, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
-
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-
-    osc.start(now);
-    osc.stop(now + 0.22);
-  } catch {
-    // Graceful fallback
-  }
+  // Đã tắt âm thanh khi ấn
+  return;
 }

@@ -13,77 +13,70 @@ export default function XayDungDangSection() {
       label: "(1) Phương diện đường lối",
       badge: "Đúng đắn & Sinh tử",
       content: (
-        <div className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            {/* Cột trái: Tầm quan trọng sinh tử */}
-            <div className="lg:col-span-6 space-y-4">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
-                <h3 className="font-serif font-bold text-base sm:text-lg text-ink">
-                  Phải đề ra đường lối, chủ trương đúng đắn
-                </h3>
-              </div>
-              <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-                Đường lối, chủ trương của Đảng giữ vai trò quyết định định hướng
-                cho sự phát triển của toàn bộ dân tộc và đất nước.
-              </p>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
+          {/* Cột trái: Tầm quan trọng sinh tử */}
+          <div className="lg:col-span-6 space-y-2">
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-[#7a1818]" />
+              <h3 className="font-serif font-bold text-xs sm:text-sm text-ink">
+                Phải đề ra đường lối, chủ trương đúng đắn
+              </h3>
+            </div>
+            <p className="text-[11px] sm:text-xs text-ink-muted leading-snug">
+              Đường lối, chủ trương của Đảng giữ vai trò quyết định định hướng
+              cho sự phát triển của toàn bộ dân tộc và đất nước.
+            </p>
 
-              <div className="p-4 bg-[#f8f1e2] border-l-4 border-[#7a1818] rounded-r-lg space-y-2">
-                <div className="font-serif font-bold text-xs text-[#7a1818] uppercase">
-                  Tầm quan trọng sinh tử
-                </div>
-                <blockquote className="font-serif italic text-xs sm:text-sm text-ink font-semibold leading-relaxed">
-                  “Sai một ly thì đi một dặm, đó là tầm quan trọng của đường lối,
-                  chủ trương của Đảng.”
-                </blockquote>
-                <p className="text-xs text-ink-muted leading-relaxed">
-                  Một đường lối sai lầm về chính trị hoặc kinh tế sẽ kéo lùi sự phát
-                  triển của cả dân tộc, làm tổn hại sinh mạng và hạnh phúc của hàng
-                  chục triệu người dân.
-                </p>
+            <div className="p-2 sm:p-2.5 bg-[#f8f1e2] border-l-4 border-[#7a1818] rounded-r-md space-y-1">
+              <div className="font-serif font-bold text-[10px] text-[#7a1818] uppercase">
+                Tầm quan trọng sinh tử
               </div>
+              <blockquote className="font-serif italic text-[11px] sm:text-xs text-ink font-semibold leading-snug">
+                “Sai một ly thì đi một dặm, đó là tầm quan trọng của đường lối,
+                chủ trương của Đảng.”
+              </blockquote>
+              <p className="text-[10.5px] text-ink-muted leading-snug">
+                Một đường lối sai lầm về chính trị hoặc kinh tế sẽ kéo lùi sự phát
+                triển của cả dân tộc, làm tổn hại sinh mạng và hạnh phúc của nhân dân.
+              </p>
+            </div>
+          </div>
+
+          {/* Cột phải: 3 Cơ sở khoa học hoạch định */}
+          <div className="lg:col-span-6 space-y-1.5">
+            <div className="flex items-center gap-1.5 mb-0.5">
+              <span className="w-2 h-2 rounded-full bg-[#7a1818]" />
+              <h3 className="font-serif font-bold text-xs sm:text-sm text-ink">
+                3 Cơ sở khoa học để hoạch định đường lối
+              </h3>
             </div>
 
-            {/* Cột phải: 3 Cơ sở khoa học hoạch định */}
-            <div className="lg:col-span-6 space-y-3">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
-                <h3 className="font-serif font-bold text-base sm:text-lg text-ink">
-                  3 Cơ sở khoa học để hoạch định đường lối
-                </h3>
+            <div className="space-y-1">
+              <div className="p-2 bg-[#fbf8f0] border border-[#e8dfcf] rounded-md">
+                <span className="font-bold text-[10.5px] text-[#7a1818] block mb-0.5">
+                  • Kiên định nền tảng lý luận
+                </span>
+                <p className="text-[10.5px] text-ink leading-snug">
+                  Kiên định và vận dụng sáng tạo chủ nghĩa Mác - Lênin và tư tưởng Hồ Chí Minh vào điều kiện cụ thể của Việt Nam.
+                </p>
               </div>
 
-              <div className="space-y-2.5">
-                <div className="p-3 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
-                  <span className="font-bold text-xs text-[#7a1818] block mb-1">
-                    • Kiên định nền tảng lý luận
-                  </span>
-                  <p className="text-xs text-ink leading-relaxed">
-                    Phải kiên định và vận dụng sáng tạo nền tảng lý luận chủ nghĩa
-                    Mác - Lênin và tư tưởng Hồ Chí Minh.
-                  </p>
-                </div>
+              <div className="p-2 bg-[#fbf8f0] border border-[#e8dfcf] rounded-md">
+                <span className="font-bold text-[10.5px] text-[#7a1818] block mb-0.5">
+                  • Xuất phát từ thực tiễn khách quan
+                </span>
+                <p className="text-[10.5px] text-ink leading-snug">
+                  Xuất phát từ thực tiễn khách quan, tôn trọng các quy luật kinh tế - xã hội trong từng thời kỳ phát triển.
+                </p>
+              </div>
 
-                <div className="p-3 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
-                  <span className="font-bold text-xs text-[#7a1818] block mb-1">
-                    • Xuất phát từ thực tiễn khách quan
-                  </span>
-                  <p className="text-xs text-ink leading-relaxed">
-                    Phải xuất phát từ điều kiện thực tiễn khách quan của đất nước,
-                    tôn trọng quy luật kinh tế - xã hội trong từng thời kỳ, từng giai
-                    đoạn lịch sử cụ thể.
-                  </p>
-                </div>
-
-                <div className="p-3 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
-                  <span className="font-bold text-xs text-[#7a1818] block mb-1">
-                    • Xuất phát từ lợi ích chân chính của Nhân dân
-                  </span>
-                  <p className="text-xs text-ink leading-relaxed italic font-serif">
-                    “Việc gì có lợi cho dân, ta phải hết sức làm. Việc gì hại đến
-                    dân, ta phải hết sức tránh.”
-                  </p>
-                </div>
+              <div className="p-2 bg-[#fbf8f0] border border-[#e8dfcf] rounded-md">
+                <span className="font-bold text-[10.5px] text-[#7a1818] block mb-0.5">
+                  • Xuất phát từ lợi ích của Nhân dân
+                </span>
+                <p className="text-[10.5px] text-ink leading-snug italic font-serif">
+                  “Việc gì có lợi cho dân, ta phải hết sức làm. Việc gì hại đến dân, ta phải hết sức tránh.”
+                </p>
               </div>
             </div>
           </div>
@@ -95,159 +88,112 @@ export default function XayDungDangSection() {
       label: "(2) Phương diện tổ chức, thực hiện",
       badge: "Hành động & Nêu gương",
       content: (
-        <div className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            {/* Cột trái: Khâu tổ chức thực hiện */}
-            <div className="lg:col-span-6 space-y-4">
-              <h4 className="font-serif font-bold text-base text-[#7a1818]">
-                Tổ chức thực hiện thật tốt đường lối, chủ trương
-              </h4>
-              <div className="p-3.5 bg-[#f6efe4] border border-[#e5dac8] rounded-lg text-xs text-ink">
-                <strong>Ý nghĩa quyết định:</strong> Đề ra đường lối đúng mới chỉ
-                là một nửa chặng đường; khâu tổ chức thực hiện có ý nghĩa quyết định
-                thắng lợi trong thực tế.
-              </div>
-
-              <div className="space-y-3">
-                <div className="p-3.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
-                  <div className="font-bold text-xs text-[#7a1818] mb-1">
-                    • Thể chế hóa thành chính sách, pháp luật
-                  </div>
-                  <p className="text-xs text-ink leading-relaxed">
-                    Phải thể chế hóa đường lối của Đảng thành chính sách, pháp luật
-                    của Nhà nước và các đề án, kế hoạch hành động cụ thể.
-                  </p>
-                </div>
-
-                <div className="p-3.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
-                  <div className="font-bold text-xs text-[#7a1818] mb-1">
-                    • Biến thành hành động tự giác toàn dân
-                  </div>
-                  <p className="text-xs text-ink leading-relaxed">
-                    Phải biến đường lối thành hành động tích cực, tự giác của tất cả
-                    các tổ chức trong hệ thống chính trị và mọi tầng lớp nhân dân.
-                  </p>
-                </div>
-
-                <div className="p-3.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
-                  <div className="font-bold text-xs text-[#7a1818] mb-1">
-                    • Phát huy trách nhiệm cán bộ chiến lược
-                  </div>
-                  <p className="text-xs text-ink leading-relaxed">
-                    Thực thi và phát huy đầy đủ vai trò, trách nhiệm của đội ngũ cán
-                    bộ, đảng viên, đặc biệt là đội ngũ cán bộ cấp chiến lược.
-                  </p>
-                </div>
-              </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
+          {/* Cột trái: Khâu tổ chức thực hiện */}
+          <div className="lg:col-span-6 space-y-2">
+            <h4 className="font-serif font-bold text-xs sm:text-sm text-[#7a1818]">
+              Tổ chức thực hiện thật tốt đường lối, chủ trương
+            </h4>
+            <div className="p-2 sm:p-2.5 bg-[#f6efe4] border border-[#e5dac8] rounded-md text-[11px] text-ink">
+              <strong>Ý nghĩa quyết định:</strong> Đề ra đường lối đúng mới chỉ
+              là một nửa chặng đường; khâu tổ chức thực hiện có ý nghĩa quyết định thắng lợi trong thực tế.
             </div>
 
-            {/* Cột phải: Trách nhiệm làm gương của người đứng đầu */}
-            <div className="lg:col-span-6 space-y-4">
-              <h4 className="font-serif font-bold text-base text-[#7a1818]">
-                Nêu cao trách nhiệm làm gương của người đứng đầu
-              </h4>
-              <div className="p-5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg space-y-3">
-                <p className="text-xs sm:text-sm text-ink leading-relaxed">
-                  Giáo trình chỉ rõ:{" "}
-                  <em>
-                    “Đặc biệt quan trọng nữa là người đứng đầu phải nêu cao trách
-                    nhiệm làm gương tốt để mọi người noi theo.”
-                  </em>
-                </p>
-                <div className="p-4 bg-[#f8f1e2] border-l-3 border-[#7a1818] rounded-r text-xs font-serif italic text-ink space-y-1">
-                  <span className="font-bold text-[#7a1818] block not-italic">
-                    Lời Bác căn dặn:
-                  </span>
-                  “Một tấm gương sống còn có giá trị hơn một trăm bài diễn văn tuyên
-                  truyền.”
+            <div className="space-y-1.5">
+              <div className="p-2 bg-[#fbf8f0] border border-[#e8dfcf] rounded-md">
+                <div className="font-bold text-[10.5px] text-[#7a1818] mb-0.5">
+                  • Thể chế hóa thành chính sách, pháp luật
                 </div>
+                <p className="text-[10.5px] text-ink leading-snug">
+                  Thể chế hóa đường lối của Đảng thành chính sách, pháp luật của Nhà nước và các kế hoạch hành động cụ thể.
+                </p>
+              </div>
+
+              <div className="p-2 bg-[#fbf8f0] border border-[#e8dfcf] rounded-md">
+                <div className="font-bold text-[10.5px] text-[#7a1818] mb-0.5">
+                  • Biến thành hành động tự giác toàn dân
+                </div>
+                <p className="text-[10.5px] text-ink leading-snug">
+                  Biến đường lối thành hành động tích cực, tự giác của mọi tổ chức trong hệ thống chính trị và toàn dân.
+                </p>
               </div>
             </div>
           </div>
 
-          <InfographicDuongLoiDenHanhDong />
+          {/* Cột phải: Trách nhiệm làm gương của người đứng đầu */}
+          <div className="lg:col-span-6 space-y-2">
+            <h4 className="font-serif font-bold text-xs sm:text-sm text-[#7a1818]">
+              Nêu cao trách nhiệm làm gương của người đứng đầu
+            </h4>
+            <div className="p-2.5 sm:p-3 bg-[#fbf8f0] border border-[#e8dfcf] rounded-md space-y-2">
+              <p className="text-[11px] sm:text-xs text-ink leading-snug">
+                Giáo trình chỉ rõ:{" "}
+                <em>
+                  “Đặc biệt quan trọng nữa là người đứng đầu phải nêu cao trách nhiệm làm gương tốt để mọi người noi theo.”
+                </em>
+              </p>
+              <div className="p-2 bg-[#f8f1e2] border-l-3 border-[#7a1818] rounded-r text-[10.5px] sm:text-[11px] font-serif italic text-ink space-y-0.5">
+                <span className="font-bold text-[#7a1818] block not-italic">
+                  Lời Bác căn dặn:
+                </span>
+                “Một tấm gương sống còn có giá trị hơn một trăm bài diễn văn tuyên truyền.”
+              </div>
+              <div className="pt-1 border-t border-[#ebd8c2] text-[10.5px] text-ink-muted">
+                Thực thi và phát huy đầy đủ vai trò, trách nhiệm của cán bộ, đặc biệt là đội ngũ cán bộ cấp chiến lược.
+              </div>
+            </div>
+          </div>
         </div>
       ),
     },
     {
       id: "chinh-don-dang-va-sinh-vien",
-      label: "(3) Chỉnh đốn & (4) Trách nhiệm SV",
-      badge: "Nói đi đôi với làm",
+      label: "(3) Chỉnh đốn & Trách nhiệm SV",
+      badge: "Di chúc & Infographic",
       content: (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          {/* Cột trái: (3) Phương diện công tác chỉnh đốn Đảng */}
-          <div className="lg:col-span-6 space-y-4">
-            <h4 className="font-serif font-bold text-base text-[#7a1818]">
-              (3) Chú trọng hơn nữa công tác chỉnh đốn nội bộ
-            </h4>
-            <div className="p-4 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg space-y-2">
-              <div className="font-bold text-xs text-[#7a1818]">
-                Tính tất yếu sống còn & Bản chất Đảng
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-stretch">
+          {/* Cột trái: (3) Chỉnh đốn Đảng & Trách nhiệm sinh viên */}
+          <div className="lg:col-span-6 space-y-2 flex flex-col justify-between">
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#7a1818]" />
+                <h4 className="font-serif font-bold text-xs sm:text-sm text-[#7a1818]">
+                  (3) Chú trọng công tác chỉnh đốn nội bộ Đảng
+                </h4>
               </div>
-              <p className="text-xs text-ink leading-relaxed">
-                Chất lượng, năng lực lãnh đạo và sự trong sạch của bản thân Đảng quyết
-                định sự thành bại của cách mạng và đổi mới.
-              </p>
-              <p className="text-xs text-ink leading-relaxed">
-                Thường xuyên tự chỉnh đốn để mỗi đảng viên luôn xứng đáng{" "}
-                <em>“vừa là người lãnh đạo, vừa là người đầy tớ thật trung thành của nhân dân”</em>.
-                Làm cho Đảng luôn luôn là <strong>“Đảng là đạo đức, là văn minh”</strong>.
-              </p>
-            </div>
 
-            <div className="p-4 bg-[#f8f1e2] border-l-4 border-[#7a1818] rounded-r-lg space-y-1.5">
-              <div className="font-serif font-bold text-xs text-[#7a1818] uppercase">
-                Khắc phục khâu yếu kém nhất hiện nay
-              </div>
-              <p className="text-xs sm:text-sm text-ink leading-relaxed">
-                Giáo trình chỉ rõ điểm nghẽn nghiêm trọng nhất:{" "}
-                <em>
-                  “Cái thiếu nhất hiện nay là sự thống nhất giữa nói và làm trong
-                  Đảng.”
-                </em>
-              </p>
-              <p className="text-xs text-ink-muted leading-relaxed">
-                Toàn Đảng phải quán triệt sâu sắc nguyên tắc thống nhất giữa nói và
-                làm; tăng cường kiểm tra, giám sát để sử dụng đúng đắn quyền lực
-                chính trị do Nhân dân giao phó.
-              </p>
-            </div>
-          </div>
-
-          {/* Cột phải: (4) Phương diện phát triển và trách nhiệm của sinh viên */}
-          <div className="lg:col-span-6 space-y-4">
-            <h4 className="font-serif font-bold text-base text-[#7a1818]">
-              (4) Trách nhiệm của sinh viên đối với xây dựng Đảng
-            </h4>
-            <div className="space-y-3">
-              <div className="p-3.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
-                <span className="font-bold text-xs text-[#7a1818] block mb-1">
-                  • Đối với sinh viên đang là đảng viên
-                </span>
-                <p className="text-xs text-ink leading-relaxed">
-                  Cần chú trọng thực hiện thật tốt đường lối, quan điểm, chủ trương,
-                  Điều lệ Đảng; gương mẫu trong học tập và rèn luyện; phải là công dân
-                  gương mẫu và là sinh viên tốt.
+              <div className="p-2 sm:p-2.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-md space-y-1">
+                <p className="text-[10.5px] sm:text-[11px] text-ink leading-snug">
+                  Trong <strong>Di chúc lịch sử năm 1969</strong>, Bác Hồ căn dặn: Việc cần làm trước tiên là chỉnh đốn lại Đảng. Phải giữ gìn sự đoàn kết nhất trí của Đảng như giữ gìn con ngươi của mắt mình. Làm cho <strong>“Đảng là đạo đức, là văn minh”</strong>.
                 </p>
-              </div>
-
-              <div className="p-3.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
-                <span className="font-bold text-xs text-[#7a1818] block mb-1">
-                  • Đối với sinh viên chưa là đảng viên
-                </span>
-                <p className="text-xs text-ink leading-relaxed">
-                  Cần tích cực nghiên cứu, học tập thật tốt lý luận chính trị và tư
-                  tưởng Hồ Chí Minh; tu dưỡng đạo đức cách mạng; phấn đấu trở thành
-                  đảng viên Đảng Cộng sản Việt Nam hoặc người công dân tích cực ủng
-                  hộ Đảng.
-                </p>
-                <div className="mt-2 pt-2 border-t border-[#ebd8c2] text-xs font-serif italic text-ink">
-                  Góp phần đưa nước nhà <em>“sánh vai với các cường quốc năm châu”</em> như
-                  Bác Hồ đã gửi gắm trong Thư gửi học sinh nhân ngày khai trường đầu
-                  tiên (tháng 9/1945).
+                <div className="p-1.5 bg-[#f8f1e2] border-l-3 border-[#7a1818] rounded-r text-[10px] text-ink-muted">
+                  <em>“Cái thiếu nhất hiện nay là sự thống nhất giữa nói và làm trong Đảng.”</em> Toàn Đảng phải kiên quyết khắc phục, nói đi đôi với làm.
                 </div>
               </div>
             </div>
+
+            <div className="space-y-1 pt-1">
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#7a1818]" />
+                <h4 className="font-serif font-bold text-xs sm:text-sm text-[#7a1818]">
+                  (4) Trách nhiệm của sinh viên đối với xây dựng Đảng
+                </h4>
+              </div>
+
+              <div className="p-2 bg-[#f6efe4] border border-[#e5dac8] rounded-md space-y-1 text-[10.5px] sm:text-[11px] text-ink">
+                <div>
+                  <strong className="text-[#7a1818]">• Sinh viên là đảng viên:</strong> Gương mẫu trong học tập và rèn luyện; là công dân gương mẫu.
+                </div>
+                <div>
+                  <strong className="text-[#7a1818]">• Sinh viên chưa là đảng viên:</strong> Học tập tốt lý luận chính trị và tư tưởng Hồ Chí Minh; phấn đấu trở thành đảng viên Đảng Cộng sản Việt Nam, góp phần đưa nước nhà <em>“sánh vai với các cường quốc năm châu”</em>.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Cột phải: Infographic chuyển hóa đường lối */}
+          <div className="lg:col-span-6 flex flex-col justify-start">
+            <InfographicDuongLoiDenHanhDong />
           </div>
         </div>
       ),
@@ -258,11 +204,11 @@ export default function XayDungDangSection() {
     <AcademicPortalSection
       id="xay-dung-dang"
       code="4.3.1"
-      title="XÂY DỰNG ĐẢNG THẬT SỰ TRONG SẠCH, VỮNG MẠNH"
-      parentPath="4.3. Vận dụng xây dựng Đảng và Nhà nước"
-      quote="Sai một ly thì đi một dặm, đó là tầm quan trọng của đường lối, chủ trương của Đảng. Đảng ta là một Đảng cầm quyền. Mỗi đảng viên và cán bộ phải thật sự thấm nhuần đạo đức cách mạng, thật sự cần kiệm liêm chính, chí công vô tư."
-      quoteAuthor="Hồ Chí Minh"
-      summary="Vận dụng 4 phương diện chiến lược: (1) Hoạch định đường lối đúng đắn; (2) Tổ chức thực hiện hiệu quả gắn với trách nhiệm nêu gương của người đứng đầu; (3) Tự chỉnh đốn nội bộ, khắc phục sự thiếu thống nhất giữa nói và làm; (4) Nâng cao vai trò, trách nhiệm của thế hệ sinh viên."
+      title="XÂY DỰNG ĐẢNG TRONG SẠCH, VỮNG MẠNH"
+      parentPath="4.3. Vận dụng tư tưởng Hồ Chí Minh trong giai đoạn hiện nay"
+      quote="Đảng ta là một Đảng cầm quyền. Mỗi đảng viên và cán bộ phải thật sự thấm nhuần đạo đức cách mạng, thật sự cần kiệm liêm chính, chí công vô tư. Phải giữ gìn Đảng ta thật trong sạch, phải xứng đáng là người lãnh đạo, là người đầy tớ thật trung thành của nhân dân."
+      quoteAuthor="Hồ Chí Minh — Di chúc (1969)"
+      summary="Công tác xây dựng Đảng trong thời kỳ mới phải được tiến hành toàn diện trên cả 4 phương diện: Đường lối đúng đắn (nền tảng sống còn); Tổ chức thực hiện nghiêm minh; Thường xuyên tự chỉnh đốn nội bộ và Phát huy trách nhiệm của thế hệ trẻ, sinh viên."
       tabs={tabs}
       prevSection={{
         id: "trong-sach-vung-manh",
@@ -270,7 +216,7 @@ export default function XayDungDangSection() {
       }}
       nextSection={{
         id: "xay-dung-nha-nuoc",
-        label: "4.3.2 Xây dựng Nhà nước →",
+        label: "4.3.2 Xây dựng Nhà nước pháp quyền →",
       }}
     />
   );

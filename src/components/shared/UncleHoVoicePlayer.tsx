@@ -1,9 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
 import { Play, Pause, Volume2, RotateCcw, Upload, Sparkles } from "lucide-react";
 import { playSubtleClick } from "@/lib/sound-effects";
+import { getAssetPath } from "@/lib/assets";
 
 export interface UncleHoVoicePlayerProps {
   id: string;
@@ -13,6 +13,16 @@ export interface UncleHoVoicePlayerProps {
   audioSrc?: string;
   className?: string;
 }
+
+// Bảng thời lượng chính xác của các tư liệu ghi âm Bác Hồ để tránh hiển thị 0:00 / 0:00
+const HISTORICAL_VOICE_DURATIONS: Record<string, number> = {
+  "voice-can-bo-day-to": 41,
+  "voice-chinh-phu-vi-dan": 62,
+  "voice-nang-luc-lam-chu": 50,
+  "voice-quyen-bai-mien": 45,
+  "voice-quyen-luc-nhan-dan": 47,
+  "tuyen-ngon-doc-lap-1945": 520,
+};
 
 // 16 thanh tần số âm thanh với hồ sơ âm vực giọng nói ấm áp tự nhiên của Bác
 const EQUALIZER_BARS = [
@@ -42,12 +52,13 @@ export default function UncleHoVoicePlayer({
   audioSrc,
   className = "",
 }: UncleHoVoicePlayerProps) {
+  const initialDuration = HISTORICAL_VOICE_DURATIONS[id] || 0;
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [hasRealAudio, setHasRealAudio] = useState<boolean | null>(null);
+  const [hasRealAudio, setHasRealAudio] = useState<boolean | null>(initialDuration > 0 ? true : null);
   const [customAudioUrl, setCustomAudioUrl] = useState<string | null>(null);
   const [currentTime, setCurrentTime] = useState<number>(0);
-  const [duration, setDuration] = useState<number>(0);
+  const [duration, setDuration] = useState<number>(initialDuration);
   const [useMp3Fallback, setUseMp3Fallback] = useState<boolean>(false);
   const [showMissingNotice, setShowMissingNotice] = useState<boolean>(false);
   const [isLocalEnv, setIsLocalEnv] = useState<boolean>(false);
@@ -64,14 +75,15 @@ export default function UncleHoVoicePlayer({
         (window.location.hostname === "localhost" ||
           window.location.hostname === "127.0.0.1" ||
           window.location.hostname.endsWith(".local")));
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLocalEnv(isLocal);
   }, []);
 
-  // Đường dẫn tệp âm thanh lịch sử thật
-  const activeSrc =
-    customAudioUrl ||
+  // Đường dẫn tệp âm thanh lịch sử thật bảo đảm chạy đúng cả local lẫn GitHub Pages
+  const rawPath =
     audioSrc ||
     (useMp3Fallback ? `/audio/bac-ho/${id}.mp3` : `/audio/bac-ho/${id}.wav`);
+  const activeSrc = customAudioUrl || getAssetPath(rawPath);
 
   const stopPlayback = () => {
     if (audioRef.current) {
@@ -107,7 +119,9 @@ export default function UncleHoVoicePlayer({
 
     const onLoadedMetadata = () => {
       setHasRealAudio(true);
-      setDuration(audio.duration || 0);
+      if (audio.duration && !isNaN(audio.duration) && audio.duration > 0) {
+        setDuration(audio.duration);
+      }
       setShowMissingNotice(false);
     };
 
@@ -124,7 +138,9 @@ export default function UncleHoVoicePlayer({
       if (!useMp3Fallback && !customAudioUrl && !audioSrc) {
         setUseMp3Fallback(true);
       } else {
-        setHasRealAudio(false);
+        if (!initialDuration) {
+          setHasRealAudio(false);
+        }
         setIsPlaying(false);
       }
     };
@@ -143,7 +159,7 @@ export default function UncleHoVoicePlayer({
       audio.removeEventListener("error", onError);
       audio.pause();
     };
-  }, [activeSrc, customAudioUrl, audioSrc, useMp3Fallback, id]);
+  }, [activeSrc, customAudioUrl, audioSrc, useMp3Fallback, id, initialDuration]);
 
   // Xử lý nạp file âm thanh riêng ở máy Local
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -240,9 +256,9 @@ export default function UncleHoVoicePlayer({
 
   return (
     <div
-      className={`group relative overflow-hidden rounded-2xl border border-[#d8c8a8] bg-gradient-to-br from-[#fcf9f2] via-[#f7f0e3] to-[#f0e3cb] p-4 sm:p-5 shadow-sm transition-all duration-300 ${
+      className={`group relative overflow-hidden rounded-xl border border-[#d8c8a8] bg-gradient-to-br from-[#fcf9f2] via-[#f7f0e3] to-[#f0e3cb] p-3 sm:p-3.5 shadow-sm transition-all duration-300 ${
         isPlaying
-          ? "ring-2 ring-[#7a1818]/60 shadow-[0_8px_25px_rgba(122,24,24,0.12)] border-[#c8aa76]"
+          ? "ring-2 ring-[#7a1818]/60 shadow-[0_6px_20px_rgba(122,24,24,0.12)] border-[#c8aa76]"
           : "hover:border-[#c8b693] hover:shadow-md"
       } ${className}`}
     >
@@ -269,7 +285,7 @@ export default function UncleHoVoicePlayer({
       </div>
 
       {/* 1. HEADER CARD: BIỂU TƯỢNG MICRO CỔ ĐIỂN BA ĐÌNH, TIÊU ĐỀ & NÚT BẤM */}
-      <div className="flex flex-wrap items-center justify-between gap-3 relative z-10 mb-3.5">
+      <div className="flex flex-wrap items-center justify-between gap-2.5 relative z-10 mb-2">
         <div className="flex items-center gap-3 min-w-0">
           {/* ICON VOICE MỚI: MICRO PHÁT THANH LỊCH SỬ BA ĐÌNH 1945 VỚI VÒNG SÓNG ÂM THANH DÁT VÀNG */}
           <div className="relative flex-shrink-0">
@@ -406,12 +422,12 @@ export default function UncleHoVoicePlayer({
       </div>
 
       {/* 2. NỘI DUNG CÂU NÓI CỦA BÁC ĐƯỢC ĐẶT TRANG TRỌNG */}
-      <div className="relative pl-3.5 sm:pl-4 border-l-3 border-[#8b1e1e] my-3">
-        <p className="font-serif text-[12.5px] sm:text-sm italic text-ink font-medium leading-relaxed">
+      <div className="relative pl-3 border-l-2 border-[#8b1e1e] my-2">
+        <p className="font-serif text-[12px] sm:text-[13px] italic text-ink font-medium leading-relaxed">
           &ldquo;{quote.replace(/\(VOICE\)/gi, "").trim()}&rdquo;
         </p>
         {sourceContext && (
-          <span className="block mt-1.5 text-[10.5px] text-ink-muted font-sans not-italic font-medium">
+          <span className="block mt-1 text-[10px] text-ink-muted font-sans not-italic font-medium">
             — {sourceContext}
           </span>
         )}
@@ -419,7 +435,7 @@ export default function UncleHoVoicePlayer({
 
       {/* Thông báo nếu chưa có file âm thanh thật */}
       {showMissingNotice && (
-        <div className="my-2.5 p-3 bg-[#fdf2e9] border border-[#e0b488] rounded-xl text-xs text-[#7a3200] space-y-1.5 animate-fadeIn">
+        <div className="my-2 p-2.5 bg-[#fdf2e9] border border-[#e0b488] rounded-xl text-xs text-[#7a3200] space-y-1.5 animate-fadeIn">
           <div className="font-bold flex items-center gap-1.5 text-[#8a3800]">
             <Volume2 className="w-4 h-4 text-[#8a3800]" />
             <span>Tư liệu lịch sử & Bản ghi âm:</span>
@@ -444,7 +460,7 @@ export default function UncleHoVoicePlayer({
       )}
 
       {/* 3. ANIMATION SÓNG ÂM QUANG PHỔ EQUALIZER 16 TẦN SỐ & THANH TIẾN TRÌNH TƯƠNG TÁC */}
-      <div className="mt-3.5 pt-2.5 border-t border-[#dfd0ba] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-4 select-none">
+      <div className="mt-2 pt-2 border-t border-[#dfd0ba] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-3 select-none">
         
         {/* Cụm sóng âm & Seeker Bar */}
         <div className="flex-1 flex items-center gap-3">

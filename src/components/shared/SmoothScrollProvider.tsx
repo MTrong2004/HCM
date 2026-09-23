@@ -44,6 +44,11 @@ interface ScrollContextType {
   setSubtabDirection: (dir: 1 | -1) => void;
   stepNext: () => void;
   stepPrev: () => void;
+
+  // Trạng thái thu gọn/mở rộng ChapterHeaderBanner khi cuộn đọc bài
+  isBannerCollapsed: boolean;
+  setIsBannerCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleBannerCollapsed: () => void;
 }
 
 const ScrollContext = createContext<ScrollContextType>({
@@ -67,6 +72,10 @@ const ScrollContext = createContext<ScrollContextType>({
   setSubtabDirection: () => {},
   stepNext: () => {},
   stepPrev: () => {},
+
+  isBannerCollapsed: false,
+  setIsBannerCollapsed: () => {},
+  toggleBannerCollapsed: () => {},
 });
 
 export function useSmoothScroll() {
@@ -92,7 +101,7 @@ export default function SmoothScrollProvider({
   });
 
   const [scrollProgress, setScrollProgress] = useState<number>(0);
-  const [isTOCDrawerOpen, setIsTOCDrawerOpen] = useState<boolean>(false);
+  const [isTOCDrawerOpen, setIsTOCDrawerOpen] = useState<boolean>(true);
   const [isStudyNotebookOpen, setIsStudyNotebookOpen] = useState<boolean>(false);
   const [notebookTab, setNotebookTab] = useState<NotebookTabType>("notes");
 
@@ -106,6 +115,12 @@ export default function SmoothScrollProvider({
     "phong-chong-tham-nhung": "nhan-dien-van-de",
   });
   const [subtabDirection, setSubtabDirection] = useState<1 | -1>(1);
+
+  // Trạng thái thu gọn ChapterHeaderBanner khi cuộn đọc
+  const [isBannerCollapsed, setIsBannerCollapsed] = useState<boolean>(false);
+  const toggleBannerCollapsed = useCallback(() => {
+    setIsBannerCollapsed((prev) => !prev);
+  }, []);
 
   const isNavigatingRef = useRef<boolean>(false);
 
@@ -219,6 +234,7 @@ export default function SmoothScrollProvider({
 
       isNavigatingRef.current = true;
       setActiveSection(targetId);
+      setIsBannerCollapsed(false);
 
       if (pushHash && targetId && typeof window !== "undefined") {
         const newHash = `#${targetId}`;
@@ -279,17 +295,17 @@ export default function SmoothScrollProvider({
     setIsStudyNotebookOpen(true);
   }, []);
 
-  // Body scroll lock when TOC drawer or Study Notebook is open
+  // Body scroll lock ONLY when Study Notebook drawer modal is open (TOC sidebar is a layout column, not a modal)
   useEffect(() => {
     if (typeof document === "undefined") return;
-    if (isTOCDrawerOpen || isStudyNotebookOpen) {
+    if (isStudyNotebookOpen) {
       const originalOverflow = document.body.style.overflow;
       document.body.style.overflow = "hidden";
       return () => {
         document.body.style.overflow = originalOverflow;
       };
     }
-  }, [isTOCDrawerOpen, isStudyNotebookOpen]);
+  }, [isStudyNotebookOpen]);
 
   // Escape key listener to close drawer or notebook
   useEffect(() => {
@@ -422,6 +438,13 @@ export default function SmoothScrollProvider({
             setScrollProgress(Math.min(100, Math.max(0, Math.round(progress))));
           }
 
+          // Thu gọn banner khi cuộn xuống trên mobile/cửa sổ toàn trang
+          if (scrollY > 35) {
+            setIsBannerCollapsed(true);
+          } else if (scrollY < 12) {
+            setIsBannerCollapsed(false);
+          }
+
           if (!isNavigatingRef.current) {
             const triggerY = scrollY + window.innerHeight * 0.35;
             for (let i = CANONICAL_SECTION_IDS.length - 1; i >= 0; i--) {
@@ -476,6 +499,10 @@ export default function SmoothScrollProvider({
         setSubtabDirection,
         stepNext,
         stepPrev,
+
+        isBannerCollapsed,
+        setIsBannerCollapsed,
+        toggleBannerCollapsed,
       }}
     >
       {children}

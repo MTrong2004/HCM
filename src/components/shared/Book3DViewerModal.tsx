@@ -201,6 +201,13 @@ export function Book3DViewerModal({ isOpen, onClose }: Book3DViewerModalProps) {
       c.height = 1400;
       const ctx = c.getContext("2d")!;
 
+      const computedHeading = typeof window !== "undefined"
+        ? getComputedStyle(document.documentElement).getPropertyValue("--font-heading").trim() || "'Playfair Display', Georgia, serif"
+        : "'Playfair Display', Georgia, serif";
+      const computedBody = typeof window !== "undefined"
+        ? getComputedStyle(document.documentElement).getPropertyValue("--font-body").trim() || "Inter, -apple-system, sans-serif"
+        : "Inter, -apple-system, sans-serif";
+
       if (isCover) {
         // Red Velvet Leather Cover with Gold Ornaments
         const grad = ctx.createLinearGradient(0, 0, 1024, 1400);
@@ -237,20 +244,20 @@ export function Book3DViewerModal({ isOpen, onClose }: Book3DViewerModalProps) {
 
         // Titles
         ctx.fillStyle = "#FFF2B2";
-        ctx.font = "bold 56px 'Playfair Display', serif";
+        ctx.font = `bold 56px ${computedHeading}, serif`;
         ctx.textAlign = "center";
         ctx.fillText("HIẾN PHÁP NĂM 1946", 512, 600);
 
         ctx.fillStyle = "#D4AF37";
-        ctx.font = "bold 32px 'Plus Jakarta Sans', sans-serif";
+        ctx.font = `bold 32px ${computedBody}, sans-serif`;
         ctx.fillText("VIỆT NAM DÂN CHỦ CỘNG HÒA", 512, 670);
 
         ctx.fillStyle = "rgba(255, 245, 230, 0.8)";
-        ctx.font = "italic 28px 'Playfair Display', serif";
+        ctx.font = `italic 28px ${computedHeading}, serif`;
         ctx.fillText("Tư tưởng Hồ Chí Minh về Nhà nước & Pháp quyền", 512, 850);
 
         ctx.fillStyle = "#D4AF37";
-        ctx.font = "24px 'Plus Jakarta Sans', sans-serif";
+        ctx.font = `24px ${computedBody}, sans-serif`;
         ctx.fillText("• TỔNG TUYỂN CỬ ĐẦU TIÊN 6-1-1946 •", 512, 1200);
       } else {
         // Parchment paper
@@ -264,7 +271,7 @@ export function Book3DViewerModal({ isOpen, onClose }: Book3DViewerModalProps) {
 
         // Chapter tag
         ctx.fillStyle = "#8B1E1E";
-        ctx.font = "bold 26px 'Plus Jakarta Sans', sans-serif";
+        ctx.font = `bold 26px ${computedBody}, sans-serif`;
         ctx.textAlign = "left";
         ctx.fillText(titleText.slice(0, 40).toUpperCase(), 90, 130);
 
@@ -274,7 +281,7 @@ export function Book3DViewerModal({ isOpen, onClose }: Book3DViewerModalProps) {
 
         // Body Lines
         ctx.fillStyle = "#2D221E";
-        ctx.font = "32px 'Playfair Display', serif";
+        ctx.font = `32px ${computedHeading}, serif`;
         const words = bodyText.split(" ");
         let line = "";
         let y = 230;
@@ -298,10 +305,10 @@ export function Book3DViewerModal({ isOpen, onClose }: Book3DViewerModalProps) {
         ctx.arc(820, 1180, 80, 0, Math.PI * 2);
         ctx.stroke();
         ctx.fillStyle = "rgba(168, 39, 39, 0.8)";
-        ctx.font = "bold 22px 'Playfair Display', serif";
+        ctx.font = `bold 22px ${computedHeading}, serif`;
         ctx.textAlign = "center";
         ctx.fillText("QUỐC ẤN", 820, 1175);
-        ctx.font = "16px sans-serif";
+        ctx.font = `16px ${computedBody}, sans-serif`;
         ctx.fillText("1946", 820, 1205);
       }
 

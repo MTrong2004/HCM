@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Playfair_Display, Inter, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/shared/SmoothScrollProvider";
@@ -8,14 +8,20 @@ const playfair = Playfair_Display({
   variable: "--font-heading",
   subsets: ["latin", "vietnamese"],
   display: "swap",
-  weight: ["400", "600", "700", "900"],
+  style: ["normal", "italic"],
 });
 
 const inter = Inter({
   variable: "--font-body",
   subsets: ["latin", "vietnamese"],
   display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin", "vietnamese"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -50,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="vi"
-      className={`${playfair.variable} ${inter.variable}`}
+      className={`${playfair.variable} ${inter.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
       <head>
