@@ -40,7 +40,7 @@ export default function Home() {
         }`}
       >
         {/* Chapter 4 Hero Banner ở trên cùng chuyển đổi theo chủ đề */}
-        <div className="w-full flex-shrink-0 sticky top-[48px] sm:top-[52px] z-30">
+        <div className="w-full flex-shrink-0 relative z-10">
           <ChapterHeaderBanner />
         </div>
 

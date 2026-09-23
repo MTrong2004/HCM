@@ -438,13 +438,6 @@ export default function SmoothScrollProvider({
             setScrollProgress(Math.min(100, Math.max(0, Math.round(progress))));
           }
 
-          // Thu gọn banner khi cuộn xuống trên mobile/cửa sổ toàn trang
-          if (scrollY > 35) {
-            setIsBannerCollapsed(true);
-          } else if (scrollY < 12) {
-            setIsBannerCollapsed(false);
-          }
-
           if (!isNavigatingRef.current) {
             const triggerY = scrollY + window.innerHeight * 0.35;
             for (let i = CANONICAL_SECTION_IDS.length - 1; i >= 0; i--) {

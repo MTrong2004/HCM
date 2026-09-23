@@ -102,7 +102,7 @@ export default function ChapterHeaderBanner({
   currentSectionTitle,
   parentPath,
 }: ChapterHeaderBannerProps) {
-  const { activeSection, scrollTo, isBannerCollapsed, toggleBannerCollapsed, isTOCDrawerOpen } = useSmoothScroll();
+  const { activeSection, scrollTo, isBannerCollapsed, toggleBannerCollapsed } = useSmoothScroll();
 
   const data = SECTION_BANNER_MAP[activeSection] || SECTION_BANNER_MAP["phap-quyen"];
   const displayCode = currentSectionCode || data.code;

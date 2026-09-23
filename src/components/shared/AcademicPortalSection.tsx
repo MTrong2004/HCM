@@ -48,16 +48,11 @@ export default function AcademicPortalSection({
     stepNext,
     stepPrev,
     scrollTo,
-    setIsBannerCollapsed,
   } = useSmoothScroll();
 
   // Trạng thái bật/tắt tóm lược luận điểm (mặc định đóng để tiết kiệm tối đa diện tích màn hình)
   const [showSummary, setShowSummary] = useState<boolean>(false);
-
-  // Trạng thái hiển thị panel điều hướng ở đáy: chỉ hiện khi lướt xuống cuối trang
-  const [isAtBottom, setIsAtBottom] = useState<boolean>(true);
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
-  const bottomSentinelRef = useRef<HTMLDivElement | null>(null);
 
   // Xác định tab hiện tại từ context (ưu tiên) hoặc fallback về tab đầu
   const activeTabId = activeSubtabMap[id] || tabs[0]?.id || "";
@@ -66,100 +61,13 @@ export default function AcademicPortalSection({
   const activeTab = tabs[activeTabIdx] || tabs[0];
   const activeSectionIdx = CANONICAL_SECTIONS.findIndex((s) => s.id === id);
 
-  const checkIsAtBottom = useCallback(() => {
-    // 1. Kiểm tra cuộn toàn trang (window scroll)
-    if (typeof window !== "undefined") {
-      const doc = document.documentElement;
-      const isDocOverflowing = doc.scrollHeight > window.innerHeight + 60;
-      if (!isDocOverflowing) {
-        setIsAtBottom(true);
-        return;
-      }
-      const atWinBottom =
-        window.scrollY + window.innerHeight >= doc.scrollHeight - 96;
-      if (atWinBottom) {
-        setIsAtBottom(true);
-        return;
-      }
-    }
-
-    // 2. Kiểm tra container nếu có cuộn nội bộ
-    const el = contentScrollRef.current;
-    if (el) {
-      const isOverflowing = el.scrollHeight > el.clientHeight + 20;
-      if (!isOverflowing) {
-        setIsAtBottom(true);
-        return;
-      }
-      const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 64;
-      if (atBottom) {
-        setIsAtBottom(true);
-        return;
-      }
-    }
-
-    setIsAtBottom(false);
-  }, []);
-
-  // Cuộn lên đầu và tính toán lại overflow mỗi khi đổi tab
+  // Cuộn lên đầu mỗi khi đổi tab
   useEffect(() => {
     const el = contentScrollRef.current;
     if (el) {
       el.scrollTop = 0;
     }
-    const timer = setTimeout(() => {
-      checkIsAtBottom();
-    }, 100);
-    return () => clearTimeout(timer);
-  }, [activeTabId, checkIsAtBottom]);
-
-  // Observer theo dõi khi người dùng lướt tới cuối trang
-  useEffect(() => {
-    const sentinel = bottomSentinelRef.current;
-    if (!sentinel) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting) {
-          setIsAtBottom(true);
-        } else {
-          if (typeof window !== "undefined") {
-            const doc = document.documentElement;
-            if (doc.scrollHeight > window.innerHeight + 60) {
-              setIsAtBottom(false);
-            }
-          }
-        }
-      },
-      {
-        threshold: 0.1,
-      }
-    );
-
-    observer.observe(sentinel);
-    return () => observer.disconnect();
   }, [activeTabId]);
-
-  // Lắng nghe scroll trên window
-  useEffect(() => {
-    const handleWinScroll = () => {
-      checkIsAtBottom();
-      if (window.scrollY > 35) {
-        setIsBannerCollapsed(true);
-      } else if (window.scrollY < 12) {
-        setIsBannerCollapsed(false);
-      }
-    };
-    window.addEventListener("scroll", handleWinScroll, { passive: true });
-    const rafId = requestAnimationFrame(() => {
-      checkIsAtBottom();
-    });
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener("scroll", handleWinScroll);
-    };
-  }, [checkIsAtBottom, setIsBannerCollapsed]);
 
   const handleTabChange = useCallback(
     (tabId: string) => {
@@ -257,7 +165,7 @@ export default function AcademicPortalSection({
 
         {/* 1. Hệ Thống Tabs Chuyển Đổi Tiểu Mục Liền Khối & Khung Nội Dung */}
         <div className="flex flex-col flex-1 relative">
-          <EditorialReveal delay={80} className="flex-shrink-0 sticky top-[86px] sm:top-[94px] z-20">
+          <EditorialReveal delay={80} className="flex-shrink-0 sticky top-[48px] sm:top-[52px] z-20 bg-[#fbf9f4] pt-1">
             <div
               className="flex w-full rounded-t-lg overflow-hidden border-b-2 border-[#7a1818] bg-[#eae4d7]"
               role="tablist"
@@ -312,7 +220,6 @@ export default function AcademicPortalSection({
           {/* Khung Hiển Thị Chi Tiết Nội Dung Tiểu Mục Đang Chọn: Trải rộng tự nhiên, cuộn mượt cùng toàn trang */}
           <div
             ref={contentScrollRef}
-            data-lenis-prevent
             className="w-full bg-[#fbf9f4] border-x border-b border-[#e2d7c5] rounded-b-lg p-3 sm:p-5 shadow-2xs relative"
           >
             <AnimatePresence mode="wait" initial={false}>
@@ -330,22 +237,11 @@ export default function AcademicPortalSection({
 
             {/* Phần mở rộng nếu có */}
             {children && <div className="space-y-2 pt-0.5 pb-16">{children}</div>}
-
-            {/* Điểm neo (sentinel) ở cuối trang để nhận diện khi lướt xuống đáy */}
-            <div
-              ref={bottomSentinelRef}
-              className="h-4 w-full pointer-events-none opacity-0"
-              aria-hidden="true"
-            />
           </div>
 
-          {/* 2. Dải Phân Trang Chân Trang (Floating Bottom Stepper Dock) - Tự động trượt lên khi lướt xuống cuối trang */}
+          {/* 2. Dải Phân Trang Chân Trang (Floating Bottom Stepper Dock) */}
           <div
-            className={`fixed bottom-3 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-24px)] max-w-4xl min-h-[44px] px-3 sm:px-4 py-1.5 bg-[#fbf9f4]/95 backdrop-blur-md border border-[#e2d7c5] rounded-xl flex items-center justify-between text-xs font-sans transition-all duration-300 ease-out shadow-lg ${
-              isAtBottom
-                ? "opacity-100 translate-y-0 pointer-events-auto"
-                : "opacity-0 translate-y-6 pointer-events-none"
-            }`}
+            className="fixed bottom-3 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-24px)] max-w-4xl min-h-[44px] px-3 sm:px-4 py-1.5 bg-[#fbf9f4]/95 backdrop-blur-md border border-[#e2d7c5] rounded-xl flex items-center justify-between text-xs font-sans shadow-lg opacity-100 translate-y-0 pointer-events-auto"
           >
             {/* Nút Lùi (Cột Trái) */}
             <div className="flex-1 flex justify-start z-10 pr-2 min-w-0">

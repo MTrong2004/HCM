@@ -4,6 +4,7 @@ import React from "react";
 import AcademicPortalSection, {
   TabItem,
 } from "@/components/shared/AcademicPortalSection";
+import AcademicQuizSection from "./AcademicQuizSection";
 import { PRESENTATION_CONTENT } from "@/content/presentation-content";
 import { ASSET_MANIFEST } from "@/content/asset-manifest";
 
@@ -200,6 +201,12 @@ export default function ConclusionSection() {
           </div>
         </div>
       ),
+    },
+    {
+      id: "kiem-tra-trac-nghiem",
+      label: "d. Trắc Nghiệm Ôn Tập",
+      badge: "5 Câu hỏi trắc nghiệm",
+      content: <AcademicQuizSection />,
     },
   ];
 
