@@ -6,6 +6,7 @@ import AcademicPortalSection, {
 } from "@/components/shared/AcademicPortalSection";
 import { JusticeScalesIcon } from "@/components/shared/HeritageIcons";
 import KineticNumber from "@/components/shared/KineticNumber";
+import ArchivalPhotoPlate from "@/components/shared/ArchivalPhotoPlate";
 
 export default function PhapQuyenSection() {
   const tabs: TabItem[] = [
@@ -149,6 +150,18 @@ export default function PhapQuyenSection() {
                 </div>
               </div>
             </div>
+
+            {/* Tư liệu hình ảnh: Quốc hội khóa I năm 1946 */}
+            <ArchivalPhotoPlate
+              src="/images/archival/quoc-hoi-khoa-1-1946.webp"
+              alt="Kỳ họp thứ nhất Quốc hội khóa I tại Nhà hát Lớn Hà Nội năm 1946"
+              caption="Kỳ họp thứ nhất Quốc hội khóa I tại Nhà hát Lớn Hà Nội (02/03/1946) — thông qua cơ cấu bộ máy Nhà nước và bầu Chủ tịch Chính phủ hợp hiến."
+              year="1946"
+              badgeText="QUỐC HỘI KHÓA I • 1946"
+              source="Trung tâm Lưu trữ Quốc gia III"
+              aspectRatio="16/9"
+              compact
+            />
           </div>
         </div>
       ),
@@ -191,6 +204,18 @@ export default function PhapQuyenSection() {
                 </li>
               </ul>
             </div>
+
+            {/* Tư liệu hình ảnh: Soạn thảo Hiến pháp 1946 */}
+            <ArchivalPhotoPlate
+              src="/images/soan-thao-hien-phap-1946.webp"
+              alt="Chủ tịch Hồ Chí Minh chủ trì Ban Soạn thảo Hiến pháp 1946"
+              caption="Chủ tịch Hồ Chí Minh chủ trì Ban Dự thảo Hiến pháp năm 1946 — bản Hiến pháp lịch sử đặt nền móng pháp quyền đầu tiên của Việt Nam."
+              year="1946"
+              badgeText="HIẾN PHÁP 1946"
+              source="Bảo tàng Hồ Chí Minh"
+              aspectRatio="16/9"
+              compact
+            />
 
             {/* Box 2: Đưa pháp luật vào cuộc sống & Thực thi */}
             <div className="p-3 sm:p-3.5 bg-[#fdfbf7] border border-[#e2d7c5] rounded-lg shadow-2xs space-y-2">

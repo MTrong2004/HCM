@@ -5,6 +5,7 @@ import AcademicPortalSection, {
   TabItem,
 } from "@/components/shared/AcademicPortalSection";
 import EditorialReveal from "@/components/shared/EditorialReveal";
+import ArchivalPhotoPlate from "@/components/shared/ArchivalPhotoPlate";
 
 export default function TrongSachVungManhSection() {
   const tabs: TabItem[] = [
@@ -338,6 +339,20 @@ export default function TrongSachVungManhSection() {
                   </blockquote>
                 </div>
               </div>
+            </EditorialReveal>
+
+            {/* Tư liệu hình ảnh: Bác Hồ làm việc tại Phủ Chủ tịch 1957 */}
+            <EditorialReveal delay={240}>
+              <ArchivalPhotoPlate
+                src="/images/archival/bac-ho-lam-viec-phu-chu-tich-1957.webp"
+                alt="Chủ tịch Hồ Chí Minh làm việc tại Phủ Chủ tịch năm 1957"
+                caption="Chủ tịch Hồ Chí Minh làm việc trong căn phòng mộc mạc tại Phủ Chủ tịch (1957) — tấm gương mẫu mực về cần, kiệm, liêm, chính, chí công vô tư."
+                year="1957"
+                badgeText="TẤM GƯƠNG LIÊM CHÍNH"
+                source="Khu di tích Chủ tịch Hồ Chí Minh tại Phủ Chủ tịch"
+                aspectRatio="16/9"
+                compact
+              />
             </EditorialReveal>
           </div>
 

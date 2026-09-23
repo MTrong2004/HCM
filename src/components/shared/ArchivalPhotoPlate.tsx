@@ -1,8 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
-import { Maximize2, X, Sparkles } from "lucide-react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { getAssetPath } from "@/lib/assets";
 import { playSubtleClick } from "@/lib/sound-effects";
 
@@ -34,38 +33,155 @@ export default function ArchivalPhotoPlate({
   allowZoom = true,
 }: ArchivalPhotoPlateProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [scale, setScale] = useState(1);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isDraggingRef = useRef(false);
+  const dragStartRef = useRef({ x: 0, y: 0 });
+  const posStartRef = useRef({ x: 0, y: 0 });
+  const hasMovedRef = useRef(false);
+
   const resolvedSrc = getAssetPath(src);
 
-  // Xử lý phím Escape để đóng Lightbox
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.key === "Escape") {
-      setIsOpen(false);
-    }
+  const handleClose = useCallback(() => {
+    playSubtleClick();
+    setIsOpen(false);
+    setScale(1);
+    setPosition({ x: 0, y: 0 });
+    setIsDragging(false);
+    isDraggingRef.current = false;
+    hasMovedRef.current = false;
   }, []);
 
+  // Xử lý phím ESC: thoát ngay lập tức
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        handleClose();
+      }
+    },
+    [handleClose]
+  );
+
+  // Khóa cuộn trang khi mở Lightbox
   useEffect(() => {
     if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
       document.body.style.overflow = "hidden";
       window.addEventListener("keydown", handleKeyDown);
-    } else {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = originalOverflow;
+        window.removeEventListener("keydown", handleKeyDown);
+      };
     }
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", handleKeyDown);
-    };
   }, [isOpen, handleKeyDown]);
+
+  // Lăn chuột để phóng to / thu nhỏ mượt mà & chặn cuộn trang web
+  useEffect(() => {
+    if (!isOpen) return;
+    const container = containerRef.current;
+    if (!container) return;
+
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const zoomStep = e.deltaY < 0 ? 0.35 : -0.35;
+      setScale((prev) => {
+        const next = Math.min(Math.max(Number((prev + zoomStep).toFixed(2)), 1), 4);
+        if (next === 1) {
+          setPosition({ x: 0, y: 0 });
+        }
+        return next;
+      });
+    };
+
+    container.addEventListener("wheel", onWheel, { passive: false });
+    return () => {
+      container.removeEventListener("wheel", onWheel);
+    };
+  }, [isOpen]);
 
   const handleOpen = () => {
     if (!allowZoom) return;
     playSubtleClick();
+    setScale(1);
+    setPosition({ x: 0, y: 0 });
+    setIsDragging(false);
+    isDraggingRef.current = false;
+    hasMovedRef.current = false;
     setIsOpen(true);
   };
 
-  const handleClose = () => {
+  // Nhấp vào ảnh: nếu không kéo rê thì chuyển đổi giữa 100% và 220%
+  const handleImageClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (hasMovedRef.current) {
+      hasMovedRef.current = false;
+      return;
+    }
     playSubtleClick();
-    setIsOpen(false);
+    if (scale > 1) {
+      setScale(1);
+      setPosition({ x: 0, y: 0 });
+    } else {
+      setScale(2.2);
+    }
+  };
+
+  // Nhấp ra ngoài vùng ảnh: tự động thoát chế độ phóng to ngay lập tức
+  const handleBackdropClick = () => {
+    if (hasMovedRef.current) {
+      hasMovedRef.current = false;
+      return;
+    }
+    playSubtleClick();
+    handleClose();
+  };
+
+  // Bắt đầu kéo rê di chuyển bằng Pointer Capture (hoạt động hoàn hảo trên mọi thiết bị)
+  const handlePointerDown = (e: React.PointerEvent) => {
+    if (scale <= 1) return;
+    e.preventDefault();
+    e.stopPropagation();
+    isDraggingRef.current = true;
+    hasMovedRef.current = false;
+    dragStartRef.current = { x: e.clientX, y: e.clientY };
+    posStartRef.current = { x: position.x, y: position.y };
+    setIsDragging(true);
+    try {
+      (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    } catch {}
+  };
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (!isDraggingRef.current || scale <= 1) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const dx = e.clientX - dragStartRef.current.x;
+    const dy = e.clientY - dragStartRef.current.y;
+    if (Math.hypot(dx, dy) > 4) {
+      hasMovedRef.current = true;
+    }
+    // Giới hạn biên độ kéo để ảnh không bị trượt mất khỏi màn hình
+    const maxPanX = (window.innerWidth * (scale - 0.7)) / 2;
+    const maxPanY = (window.innerHeight * (scale - 0.7)) / 2;
+    const nextX = Math.max(-maxPanX, Math.min(maxPanX, posStartRef.current.x + dx));
+    const nextY = Math.max(-maxPanY, Math.min(maxPanY, posStartRef.current.y + dy));
+    setPosition({ x: nextX, y: nextY });
+  };
+
+  const handlePointerUp = (e: React.PointerEvent) => {
+    if (isDraggingRef.current) {
+      e.preventDefault();
+      e.stopPropagation();
+      isDraggingRef.current = false;
+      setIsDragging(false);
+      try {
+        (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+      } catch {}
+    }
   };
 
   const ratioClass = {
@@ -73,17 +189,17 @@ export default function ArchivalPhotoPlate({
     "4/3": "aspect-[4/3]",
     "3/2": "aspect-[3/2]",
     "1/1": "aspect-square",
-    "auto": "",
+    auto: "",
   }[aspectRatio];
 
   return (
     <>
+      {/* THẺ HÌNH ẢNH TRÊN TRANG (ACADEMIC ARCHIVAL CARD) */}
       <figure
         className={`group relative rounded-lg border border-[#dfd3bf] bg-[#fbf9f4] p-1.5 sm:p-2 shadow-2xs hover:shadow-xs hover:border-[#b58319]/70 transition-all duration-300 flex flex-col justify-between ${
           compact ? "space-y-1.5" : "space-y-2"
         } ${className}`}
       >
-        {/* Khung ảnh chính với lớp phủ nghệ thuật di sản */}
         <div
           onClick={handleOpen}
           className={`relative w-full overflow-hidden rounded bg-[#1c140e] ${ratioClass} ${
@@ -93,39 +209,30 @@ export default function ArchivalPhotoPlate({
           <img
             src={resolvedSrc}
             alt={alt}
-            className={`w-full h-full object-cover ${objectPosition} filter sepia-[0.06] contrast-[1.03] transition-all duration-500 group-hover:scale-105 group-hover:sepia-0`}
+            className={`w-full h-full object-cover ${objectPosition} filter sepia-[0.05] contrast-[1.03] transition-transform duration-500 group-hover:scale-105 group-hover:sepia-0`}
             loading="lazy"
           />
 
-          {/* Lớp phủ chuyển sắc nhẹ ở góc dưới để bảo đảm tương phản */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 opacity-70 group-hover:opacity-40 transition-opacity pointer-events-none" />
 
-          {/* Nhãn Huy hiệu Di sản / Năm lịch sử ở góc trên */}
-          <div className="absolute top-2 left-2 flex items-center gap-1.5 pointer-events-none">
-            {(year || badgeText) && (
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#7a1818]/90 text-[#fff8ea] text-[10px] sm:text-[10.5px] font-mono font-bold uppercase tracking-wider backdrop-blur-xs shadow-xs border border-[#ffd700]/30">
-                <Sparkles className="w-2.5 h-2.5 text-[#ffd700]" />
+          {/* Huy hiệu năm / tư liệu */}
+          {(year || badgeText) && (
+            <div className="absolute top-2 left-2 flex items-center pointer-events-none">
+              <span className="px-2 py-0.5 rounded bg-[#7a1818]/90 text-[#fff8ea] text-[10px] sm:text-[10.5px] font-mono font-bold uppercase tracking-wider backdrop-blur-xs border border-[#ffd700]/30 shadow-xs">
                 {badgeText || `NĂM ${year}`}
               </span>
-            )}
-          </div>
-
-          {/* Nút phóng to ở góc trên bên phải khi hover */}
-          {allowZoom && (
-            <div className="absolute top-2 right-2 p-1.5 rounded-full bg-black/60 text-[#fff8ea] opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-xs shadow-xs">
-              <Maximize2 className="w-3.5 h-3.5 text-[#ffd700]" />
             </div>
           )}
 
-          {/* Nhãn gợi ý bấm xem ở chân ảnh khi hover */}
+          {/* Nhãn gợi ý khi hover */}
           {allowZoom && (
-            <div className="absolute bottom-1.5 right-2 opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-mono text-[#ffd700] bg-black/75 px-1.5 py-0.5 rounded backdrop-blur-xs pointer-events-none">
+            <div className="absolute bottom-1.5 right-2 opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-mono text-zinc-200 bg-black/75 px-1.5 py-0.5 rounded backdrop-blur-xs pointer-events-none">
               Phóng to tư liệu
             </div>
           )}
         </div>
 
-        {/* Khối Chú thích học thuật */}
+        {/* Chú thích học thuật */}
         <figcaption className="space-y-0.5 px-0.5 text-left">
           <p
             className={`font-serif text-ink leading-snug font-medium ${
@@ -149,60 +256,44 @@ export default function ArchivalPhotoPlate({
         </figcaption>
       </figure>
 
-      {/* LIGHTBOX MODAL TOÀN MÀN HÌNH KHI BẤM PHÓNG TO */}
+      {/* CHẾ ĐỘ PHÓNG TO: 100% KHÔNG CHỮ, KHÔNG ICON - CHỈ CÓ BỨC ẢNH LỊCH SỬ TRÀN MÀN HÌNH */}
       {isOpen && (
         <div
+          ref={containerRef}
           role="dialog"
           aria-modal="true"
           aria-label={caption}
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
-          onClick={handleClose}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/92 backdrop-blur-md animate-in fade-in duration-200 select-none overflow-hidden cursor-zoom-out"
+          onClick={handleBackdropClick}
         >
+          {/* Vùng ảnh chính phóng to cực đại, hỗ trợ nắm kéo và lăn chuột zoom */}
           <div
-            className="relative max-w-4xl w-full max-h-[90vh] bg-[#fbf9f4] rounded-xl border border-[#d4af37]/60 shadow-2xl overflow-hidden flex flex-col gold-foil-card"
-            onClick={(e) => e.stopPropagation()}
+            className={`relative flex items-center justify-center select-none ${
+              isDragging ? "transition-none" : "transition-transform duration-200 ease-out"
+            }`}
+            style={{
+              transform: `translate3d(${position.x}px, ${position.y}px, 0) scale(${scale})`,
+              transformOrigin: "center center",
+              touchAction: "none",
+            }}
+            onClick={handleImageClick}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerCancel={handlePointerUp}
           >
-            {/* Header Modal */}
-            <div className="flex items-center justify-between px-4 py-2.5 bg-[#f4ebe1] border-b border-[#dfd2be]">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
-                <span className="font-mono text-xs font-bold text-[#7a1818] uppercase tracking-wider">
-                  TƯ LIỆU HÌNH ẢNH LỊCH SỬ {year ? `• NĂM ${year}` : ""}
-                </span>
-              </div>
-              <button
-                type="button"
-                onClick={handleClose}
-                className="p-1.5 rounded-lg text-ink-muted hover:text-[#7a1818] hover:bg-[#ebd8c2] transition-colors cursor-pointer"
-                aria-label="Đóng xem ảnh"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Vùng hiển thị ảnh phóng to */}
-            <div className="relative flex-1 min-h-[300px] max-h-[68vh] bg-[#140e0b] flex items-center justify-center overflow-hidden p-2">
-              <img
-                src={resolvedSrc}
-                alt={alt}
-                className="max-h-full max-w-full object-contain filter contrast-[1.03]"
-              />
-            </div>
-
-            {/* Footer chú thích chi tiết và nguồn xuất xứ */}
-            <div className="p-3.5 sm:p-4 bg-[#fbf8f0] border-t border-[#dfd2be] space-y-1">
-              <h4 className="font-serif font-bold text-sm sm:text-base text-ink leading-snug">
-                {caption}
-              </h4>
-              <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-ink-muted font-sans pt-1">
-                <span>
-                  <strong>Nguồn lưu trữ:</strong> {source}
-                </span>
-                <span className="font-mono text-[11px] text-[#7a1818] bg-[#7a1818]/10 px-2 py-0.5 rounded border border-[#7a1818]/20 font-semibold">
-                  Tư liệu gốc phục vụ nghiên cứu & giảng dạy
-                </span>
-              </div>
-            </div>
+            <img
+              src={resolvedSrc}
+              alt={alt}
+              draggable={false}
+              className={`max-w-[96vw] max-h-[94vh] w-auto h-auto object-contain rounded shadow-[0_0_80px_rgba(0,0,0,0.95)] filter contrast-[1.03] select-none ${
+                scale > 1
+                  ? isDragging
+                    ? "cursor-grabbing"
+                    : "cursor-grab"
+                  : "cursor-zoom-in"
+              }`}
+            />
           </div>
         </div>
       )}

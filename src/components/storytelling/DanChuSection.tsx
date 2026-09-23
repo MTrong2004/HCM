@@ -4,6 +4,7 @@ import React from "react";
 import AcademicPortalSection from "@/components/shared/AcademicPortalSection";
 import UncleHoVoicePlayer from "@/components/shared/UncleHoVoicePlayer";
 import EditorialReveal from "@/components/shared/EditorialReveal";
+import ArchivalPhotoPlate from "@/components/shared/ArchivalPhotoPlate";
 
 export default function DanChuSection() {
   const tabs = [
@@ -174,6 +175,20 @@ export default function DanChuSection() {
                 </div>
               </EditorialReveal>
             </div>
+
+            {/* Tư liệu hình ảnh: Bác Hồ gặp gỡ cử tri Hà Nội 1946 */}
+            <EditorialReveal delay={240}>
+              <ArchivalPhotoPlate
+                src="/images/archival/bac-ho-mit-tinh-cu-tri-1946.webp"
+                alt="Chủ tịch Hồ Chí Minh gặp gỡ cử tri Hà Nội năm 1946"
+                caption="Chủ tịch Hồ Chí Minh gặp gỡ, nói chuyện cùng cử tri Hà Nội trước thềm Tổng tuyển cử 1946 — minh chứng cho tính nhân dân và tính dân tộc sâu sắc của Nhà nước."
+                year="1946"
+                badgeText="TƯ LIỆU QUỐC GIA • 1946"
+                source="Trung tâm Lưu trữ Quốc gia III"
+                aspectRatio="16/9"
+                compact
+              />
+            </EditorialReveal>
           </div>
         </div>
       ),
@@ -319,6 +334,20 @@ export default function DanChuSection() {
               </div>
             </EditorialReveal>
 
+            {/* Tư liệu hình ảnh: Bác Hồ bỏ phiếu trong Tổng tuyển cử 1946 */}
+            <EditorialReveal delay={160}>
+              <ArchivalPhotoPlate
+                src="/images/archival/bac-ho-bo-phieu-1946.webp"
+                alt="Chủ tịch Hồ Chí Minh bỏ phiếu trong Tổng tuyển cử ngày 6/1/1946"
+                caption="Chủ tịch Hồ Chí Minh thực hiện quyền công dân, bỏ phiếu bầu cử Quốc hội khóa I tại hòm phiếu số 10 khu Trúc Bạch, Hà Nội (06/01/1946)."
+                year="1946"
+                badgeText="TỔNG TUYỂN CỬ • 06/01/1946"
+                source="Bảo tàng Lịch sử Quốc gia"
+                aspectRatio="16/9"
+                compact
+              />
+            </EditorialReveal>
+
             {/* Card Tiêu điểm 2: Cặp phạm trù 'Dân là chủ' ↔ 'Dân làm chủ' */}
             <EditorialReveal delay={160}>
               <div className="p-3.5 bg-[#fdfbf7] border border-[#e2d7c5] rounded-lg shadow-2xs space-y-2.5">
@@ -447,6 +476,19 @@ export default function DanChuSection() {
                   </div>
                 </div>
               </div>
+            </EditorialReveal>
+
+            {/* Tư liệu hình ảnh: Bác Hồ cùng cán bộ phục vụ nhân dân */}
+            <EditorialReveal delay={160}>
+              <ArchivalPhotoPlate
+                src="/images/can-bo-phuc-vu-nhan-dan.webp"
+                alt="Chủ tịch Hồ Chí Minh cùng cán bộ tiếp xúc, lắng nghe nhân dân"
+                caption="Chủ tịch Hồ Chí Minh cùng các cán bộ tiếp xúc, ân cần lắng nghe ý kiến kiều bào và nhân dân — hiện thân của tinh thần công bộc tận tụy phục vụ dân."
+                badgeText="TẬN TỤY PHỤNG SỰ"
+                source="Khu di tích Chủ tịch Hồ Chí Minh tại Phủ Chủ tịch"
+                aspectRatio="16/9"
+                compact
+              />
             </EditorialReveal>
           </div>
 

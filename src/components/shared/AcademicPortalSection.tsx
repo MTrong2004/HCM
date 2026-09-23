@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useCallback, useEffect, useRef } from "react";
-import { ArrowLeft, ArrowRight, CheckCircle2, Sparkles, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, BookOpen, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSmoothScroll } from "./SmoothScrollProvider";
 import { playSubtleClick } from "@/lib/sound-effects";
@@ -257,7 +257,7 @@ export default function AcademicPortalSection({
                 }`}
                 aria-label="Xem tóm lược luận điểm cốt lõi"
               >
-                <Sparkles className={`w-3.5 h-3.5 ${showSummary ? "text-[#ffd700]" : "text-[#7a1818]"}`} />
+                <BookOpen className={`w-3.5 h-3.5 ${showSummary ? "text-[#ffd700]" : "text-[#7a1818]"}`} />
                 <span className="hidden sm:inline">
                   {showSummary ? "Đóng tóm lược" : "Luận điểm cốt lõi"}
                 </span>

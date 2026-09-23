@@ -5,6 +5,7 @@ import AcademicPortalSection, {
   TabItem,
 } from "@/components/shared/AcademicPortalSection";
 import EditorialReveal from "@/components/shared/EditorialReveal";
+import ArchivalPhotoPlate from "@/components/shared/ArchivalPhotoPlate";
 
 export default function XayDungNhaNuocSection() {
   const tabs: TabItem[] = [
@@ -64,6 +65,20 @@ export default function XayDungNhaNuocSection() {
                   <span className="font-bold text-[#7a1818]">Gắn lập pháp với thi hành:</span> Pháp luật chỉ phát huy trọn vẹn giá trị khi đi vào đời sống; tinh thần thượng tôn pháp luật phải trở thành chuẩn mực tự giác của mọi cơ quan và mỗi công dân.
                 </div>
               </div>
+            </EditorialReveal>
+
+            {/* Tư liệu hình ảnh: Chính phủ hợp hiến 1946 */}
+            <EditorialReveal delay={160}>
+              <ArchivalPhotoPlate
+                src="/images/archival/chinh-phu-hop-hien-1946.webp"
+                alt="Chính phủ Liên hiệp Kháng chiến năm 1946 do Chủ tịch Hồ Chí Minh đứng đầu"
+                caption="Chính phủ Liên hiệp Kháng chiến ra mắt Quốc hội khóa I ngày 2/3/1946 do Chủ tịch Hồ Chí Minh đứng đầu — bộ máy điều hành hợp hiến, hợp pháp đầu tiên của nước Việt Nam mới."
+                year="1946"
+                badgeText="CHÍNH PHỦ HỢP HIẾN • 1946"
+                source="Trung tâm Lưu trữ Quốc gia III"
+                aspectRatio="16/9"
+                compact
+              />
             </EditorialReveal>
           </div>
 

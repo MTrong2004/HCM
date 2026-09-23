@@ -9,7 +9,6 @@ import {
   Scale,
   ShieldCheck,
   ChevronRight,
-  Sparkles,
 } from "lucide-react";
 import { PRESENTATION_CONTENT } from "@/content/presentation-content";
 import { useSmoothScroll } from "@/components/shared/SmoothScrollProvider";
@@ -52,8 +51,7 @@ export default function HeroStorySection() {
           {/* ========================================================= */}
           <EditorialReveal delay={0} className="space-y-1">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#7a1818]/10 text-[#7a1818] border border-[#7a1818]/20 font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-wider">
-                <Sparkles className="w-3 h-3 text-[#b58319]" />
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#7a1818]/10 text-[#7a1818] border border-[#7a1818]/20 font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-wider">
                 CHUYÊN ĐỀ TRỌNG TÂM • KỶ NIỆM <KineticNumber value={80} /> NĂM HIẾN PHÁP (1946 - 2026)
               </span>
               <span className="text-[11px] font-mono text-ink-muted">

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { X, ArrowRight, Sparkles } from "lucide-react";
+import { X, ArrowRight } from "lucide-react";
 import { playSubtleClick } from "@/lib/sound-effects";
 
 interface ChapterCurriculum {
@@ -205,8 +205,8 @@ export default function CurriculumOverviewModal({
                 CHƯƠNG {currentChapter.number}
               </span>
               {currentChapter.isCurrentInteractive && (
-                <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 flex items-center gap-1">
-                  <Sparkles className="w-3 h-3" />
+                <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
                   Đang mở chuyên đề số hóa tương tác
                 </span>
               )}

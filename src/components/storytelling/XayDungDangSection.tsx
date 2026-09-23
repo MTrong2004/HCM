@@ -5,6 +5,7 @@ import AcademicPortalSection, {
   TabItem,
 } from "@/components/shared/AcademicPortalSection";
 import EditorialReveal from "@/components/shared/EditorialReveal";
+import ArchivalPhotoPlate from "@/components/shared/ArchivalPhotoPlate";
 
 export default function XayDungDangSection() {
   const tabs: TabItem[] = [
@@ -39,6 +40,20 @@ export default function XayDungDangSection() {
                   </p>
                 </div>
               </div>
+            </EditorialReveal>
+
+            {/* Tư liệu hình ảnh: Bác Hồ tại Đại hội II năm 1951 */}
+            <EditorialReveal delay={160}>
+              <ArchivalPhotoPlate
+                src="/images/archival/bac-ho-dai-hoi-2-1951.webp"
+                alt="Chủ tịch Hồ Chí Minh tại Đại hội đại biểu toàn quốc lần thứ II năm 1951"
+                caption="Chủ tịch Hồ Chí Minh đọc Báo cáo Chính trị tại Đại hội đại biểu toàn quốc lần thứ II của Đảng (1951) — hoàn thiện đường lối cách mạng đúng đắn."
+                year="1951"
+                badgeText="ĐẠI HỘI II • 1951"
+                source="Viện Lịch sử Đảng"
+                aspectRatio="16/9"
+                compact
+              />
             </EditorialReveal>
           </div>
 
