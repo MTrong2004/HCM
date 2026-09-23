@@ -192,39 +192,17 @@ export const CANONICAL_SECTIONS: readonly CanonicalSection[] = [
     id: "phong-chong-tham-nhung",
     number: "4.3.3",
     shortTitle: "Chống tham nhũng",
-    fullTitle: "Phòng, chống tham nhũng, lãng phí, quan liêu",
+    fullTitle: "4.3.3 Phòng, chống tham nhũng, lãng phí, quan liêu",
     subtitle: "Quốc nạn giặc nội xâm, chế tài nghiêm minh & giáo dục liêm sỉ",
     hash: "#phong-chong-tham-nhung",
-    subtabs: [
-      {
-        id: "nhan-dien-van-de",
-        label: "a. Nhận diện 'Giặc ở trong lòng'",
-        shortLabel: "a. Giặc trong lòng",
-        badge: "Tham ô • Lãng phí • Quan liêu",
-      },
-      {
-        id: "ky-cuong-va-bien-phap",
-        label: "b. Kỷ cương phép nước & 5 Biện pháp",
-        shortLabel: "b. Kỷ cương & Biện pháp",
-        badge: "Không có vùng cấm",
-      },
-    ],
   },
   {
     id: "ket-luan",
-    number: "5",
+    number: "",
     shortTitle: "Ứng dụng AI",
-    fullTitle: "5.0 Ứng dụng AI",
+    fullTitle: "Ứng dụng AI",
     subtitle: "Báo cáo thực tế về các công cụ AI và quy trình đối chiếu giáo trình của nhóm",
     hash: "#ket-luan",
-    subtabs: [
-      {
-        id: "tong-quan-tat-ca-trong-1",
-        label: "Ứng dụng AI & Đối chiếu giáo trình",
-        shortLabel: "Ứng dụng AI",
-        badge: "Báo cáo thực tế",
-      },
-    ],
   },
 ] as const;
 

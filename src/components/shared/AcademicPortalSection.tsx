@@ -110,6 +110,28 @@ export default function AcademicPortalSection({
     [scrollTo]
   );
 
+  const handleStepNext = useCallback(() => {
+    playSubtleClick();
+    if (activeTabIdx < tabs.length - 1) {
+      handleTabChange(tabs[activeTabIdx + 1].id);
+    } else if (nextSection?.id) {
+      handleNavigate(nextSection.id);
+    } else {
+      stepNext();
+    }
+  }, [activeTabIdx, tabs, handleTabChange, nextSection, handleNavigate, stepNext]);
+
+  const handleStepPrev = useCallback(() => {
+    playSubtleClick();
+    if (activeTabIdx > 0) {
+      handleTabChange(tabs[activeTabIdx - 1].id);
+    } else if (prevSection?.id) {
+      handleNavigate(prevSection.id);
+    } else {
+      stepPrev();
+    }
+  }, [activeTabIdx, tabs, handleTabChange, prevSection, handleNavigate, stepPrev]);
+
   // Nhãn thông minh cho các nút điều hướng
   const hasPrev = activeTabIdx > 0 || Boolean(prevSection);
   const rawPrevText =
@@ -276,7 +298,7 @@ export default function AcademicPortalSection({
                   <button
                     type="button"
                     data-testid="stepper-prev-btn"
-                    onClick={stepPrev}
+                    onClick={handleStepPrev}
                     className="group flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#cfc3ad] bg-[#fdfcf9] hover:bg-[#f3ece0] hover:border-[#7a1818] transition-all duration-200 shadow-2xs cursor-pointer"
                     aria-label={`Mục trước: ${cleanPrevText}`}
                   >
@@ -326,7 +348,7 @@ export default function AcademicPortalSection({
                   <button
                     type="button"
                     data-testid="stepper-next-btn"
-                    onClick={stepNext}
+                    onClick={handleStepNext}
                     className="group flex items-center justify-end gap-2 px-3 py-1.5 rounded-lg border border-[#cfc3ad] bg-[#fdfcf9] hover:bg-[#f3ece0] hover:border-[#7a1818] transition-all duration-200 shadow-2xs cursor-pointer ml-auto"
                     aria-label={`Mục tiếp theo: ${cleanNextText}`}
                   >

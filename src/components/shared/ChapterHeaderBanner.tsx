@@ -80,7 +80,7 @@ const SECTION_BANNER_MAP: Record<string, SectionBannerInfo> = {
     badge: "CHƯƠNG 4",
   },
   "ket-luan": {
-    code: "5.0",
+    code: "",
     title: "Ứng dụng AI",
     parentPath: "Ứng dụng công nghệ",
     image: "/images/soan-thao-hien-phap-1946.webp",
@@ -121,28 +121,25 @@ export default function ChapterHeaderBanner({
 
   return (
     <div
-      className={`relative w-full overflow-hidden bg-[#240404] text-paper-light border-b border-[#e2d7c5] shadow-xs select-none transition-[height] duration-300 ease-in-out ${
-        isBannerCollapsed
+      className={`relative w-full overflow-hidden bg-[#240404] text-paper-light border-b border-[#e2d7c5] shadow-xs select-none transition-[height] duration-300 ease-in-out ${isBannerCollapsed
           ? "h-[38px] sm:h-[42px]"
           : "h-[145px] sm:h-[160px] md:h-[175px] lg:h-[190px] xl:h-[200px]"
-      }`}
+        }`}
     >
       {/* 1. HÌNH ẢNH NỀN BANNER NGHỆ THUẬT (ĐỒNG BỘ HOÀN HẢO VỚI BẢN VẼ GỐC DESIGNER 77) */}
       <img
         src={getAssetPath("/images/banner-designer-77.png")}
         alt="Tư tưởng Hồ Chí Minh về Đảng và Nhà nước của dân, do dân, vì dân"
-        className={`w-full h-full object-cover object-center absolute inset-0 pointer-events-none select-none z-0 transition-all duration-300 ease-in-out ${
-          isBannerCollapsed ? "opacity-15 blur-[0.5px] scale-105" : "opacity-100 scale-100"
-        }`}
+        className={`w-full h-full object-cover object-[center_40%] absolute inset-0 pointer-events-none select-none z-0 transition-all duration-300 ease-in-out ${isBannerCollapsed ? "opacity-15 blur-[0.5px] scale-105" : "opacity-100 scale-100"
+          }`}
       />
 
       {/* Lớp phủ chuyển sắc di sản khi ở chế độ thu gọn */}
       <div
-        className={`absolute inset-0 z-5 transition-opacity duration-300 pointer-events-none ${
-          isBannerCollapsed
+        className={`absolute inset-0 z-5 transition-opacity duration-300 pointer-events-none ${isBannerCollapsed
             ? "bg-gradient-to-r from-[#fcfbf7] via-[#f7f2e6]/95 to-[#fcfbf7] opacity-100"
             : "opacity-0"
-        }`}
+          }`}
       />
 
       {/* 2. LỚP ĐƯỆM KHÔNG GIAN BANNER - Chữ và danh ngôn đã được tích hợp sẵn trong hình ảnh nghệ thuật */}
@@ -150,13 +147,12 @@ export default function ChapterHeaderBanner({
 
       {/* 3. ĐƯỜNG CONG ĐỒ HỌA CHUYỂN TIẾP CHÂN BANNER (LỚP MẢNG NỀN TAB THEO MẪU IMAGE 911598) - ẨN KHI THU GỌN */}
       <div
-        className={`absolute bottom-0 left-0 right-0 z-20 pointer-events-none transition-opacity duration-300 ${
-          isBannerCollapsed ? "opacity-0" : "opacity-100 h-11 sm:h-12"
-        }`}
+        className={`absolute bottom-0 left-0 right-0 z-20 pointer-events-none transition-opacity duration-300 ${isBannerCollapsed ? "opacity-0" : "opacity-100 h-[36px] sm:h-[38px]"
+          }`}
       >
-        {/* SVG Đường cong lượn mềm: Mảng nền kem đầy đủ chiều cao bên trái, lượn sóng chữ S xuống thanh hạ thấp bên phải */}
+        {/* SVG Đường cong lượn mềm: Mảng nền kem hạ thấp 1 xíu, lượn sóng chữ S xuống thanh hạ thấp bên phải */}
         <svg
-          viewBox="0 0 1200 48"
+          viewBox="0 0 1200 38"
           preserveAspectRatio="none"
           className="w-full h-full block"
         >
@@ -174,22 +170,22 @@ export default function ChapterHeaderBanner({
 
           {/* Lớp mảng nền màu kem #fbf9f4 theo phong cách thẻ tab uốn lượn cao cấp (image_911598) */}
           <path
-            d="M 0,2 
-               L 780,2 
-               C 830,2 845,28 895,28 
-               L 1200,28 
-               L 1200,48 
-               L 0,48 Z"
+            d="M 0,3 
+               L 780,3 
+               C 830,3 845,20 895,20 
+               L 1200,20 
+               L 1200,38 
+               L 0,38 Z"
             fill="#fbf9f4"
             filter="url(#plaqueShadow)"
           />
 
           {/* Đường viền vàng ánh kim uốn lượn mềm mại trên đỉnh mảng nền */}
           <path
-            d="M 0,2 
-               L 780,2 
-               C 830,2 845,28 895,28 
-               L 1200,28"
+            d="M 0,3 
+               L 780,3 
+               C 830,3 845,20 895,20 
+               L 1200,20"
             fill="none"
             stroke="url(#goldCurveStroke)"
             strokeWidth="1.75"
@@ -199,18 +195,15 @@ export default function ChapterHeaderBanner({
 
       {/* Đường viền vàng ánh kim siêu mảnh ở chân banner khi thu gọn */}
       <div
-        className={`absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-[#d4af37]/30 via-[#c5a059]/80 to-[#d4af37]/30 z-30 pointer-events-none transition-opacity duration-300 ${
-          isBannerCollapsed ? "opacity-100" : "opacity-0"
-        }`}
+        className={`absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-[#d4af37]/30 via-[#c5a059]/80 to-[#d4af37]/30 z-30 pointer-events-none transition-opacity duration-300 ${isBannerCollapsed ? "opacity-100" : "opacity-0"
+          }`}
       />
 
       {/* 4. DẢI BREADCRUMB & NÚT ĐIỀU KHIỂN THU GỌN / MỞ RỘNG BANNER */}
       <div
-        className={`absolute left-0 right-0 z-30 pointer-events-auto flex items-center justify-between px-3 sm:px-6 md:px-8 transition-all duration-300 ${
-          isTOCDrawerOpen ? "lg:pl-[188px]" : "lg:pl-8"
-        } ${
-          isBannerCollapsed ? "inset-0 h-full" : "bottom-0 h-11 sm:h-12"
-        }`}
+        className={`absolute left-0 right-0 z-30 pointer-events-auto flex items-center justify-between px-3 sm:px-6 md:px-8 transition-all duration-300 ${isTOCDrawerOpen ? "lg:pl-[188px]" : "lg:pl-8"
+          } ${isBannerCollapsed ? "inset-0 h-full" : "bottom-0 h-[36px] sm:h-[38px]"
+          }`}
       >
         {/* Nội dung thanh Breadcrumb theo chuẩn nhận diện di sản */}
         <div className="flex items-center gap-1.5 sm:gap-2 text-[12px] sm:text-[12.5px] font-sans min-w-0 max-w-[calc(100%-120px)] sm:max-w-[72%] lg:max-w-[78%] overflow-hidden pt-0.5">
@@ -222,27 +215,27 @@ export default function ChapterHeaderBanner({
             <Home className="w-3.5 h-3.5 text-[#8c1d1d] flex-shrink-0" />
             <span className="hidden sm:inline">Trang chủ</span>
           </button>
-          
+
           <ChevronRight className="w-3.5 h-3.5 text-[#a89785] flex-shrink-0" />
-          
+
           <button
             onClick={() => handleNavClick("hero")}
             className="text-[#2b2421] hover:text-[#7a1818] cursor-pointer focus:outline-none flex-shrink-0 font-medium transition-colors"
           >
             Chương 4
           </button>
-          
+
           <ChevronRight className="w-3.5 h-3.5 text-ink-muted flex-shrink-0" />
-          
+
           <span className="hidden md:inline text-[#2b2421]/90 cursor-default truncate max-w-xs lg:max-w-md xl:max-w-lg font-normal">
             {displayParentPath}
           </span>
           <span className="md:hidden text-ink-muted">...</span>
-          
+
           <ChevronRight className="w-3.5 h-3.5 text-ink-muted flex-shrink-0" />
-          
+
           <h1 className="text-[#7a1818] font-bold truncate tracking-tight text-xs sm:text-xs font-sans inline m-0 p-0 font-normal">
-            {displayCode} {displayTitle}
+            {displayCode ? `${displayCode} ` : ""}{displayTitle}
           </h1>
         </div>
 

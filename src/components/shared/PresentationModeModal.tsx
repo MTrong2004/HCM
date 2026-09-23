@@ -129,7 +129,7 @@ const SLIDES: PresentationSlide[] = [
   },
   {
     id: "ket-luan",
-    chapter: "MỤC 5.0 • ỨNG DỤNG CÔNG NGHỆ",
+    chapter: "CHUYÊN ĐỀ • ỨNG DỤNG CÔNG NGHỆ",
     watermark: "TRÍ TUỆ NHÂN TẠO",
     sealTag: "CÔNG NGHỆ & LÝ LUẬN",
     title: "Ứng dụng AI Trong Bài Thuyết Trình Của Nhóm",

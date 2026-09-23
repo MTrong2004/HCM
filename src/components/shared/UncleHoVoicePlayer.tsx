@@ -22,9 +22,9 @@ export const HISTORICAL_VOICE_BACKGROUNDS: Record<string, VoiceBackgroundImageIn
   },
   "voice-quyen-bai-mien": {
     image: "/images/voice-bg/bac-ho-quyen-bai-mien.webp",
-    alt: "Chủ tịch Hồ Chí Minh phát biểu trước Quốc hội khóa I năm 1946",
+    alt: "Chủ tịch Hồ Chí Minh phát biểu trước Quốc hội khóa I năm 1946 tại Nhà hát Lớn Hà Nội",
     context: "Bác Hồ tại Quốc hội khóa I (1946)",
-    position: "object-[50%_30%]",
+    position: "object-[38%_25%]",
   },
   "voice-chinh-phu-vi-dan": {
     image: "/images/voice-bg/bac-ho-chinh-phu-vi-dan.webp",
@@ -39,16 +39,16 @@ export const HISTORICAL_VOICE_BACKGROUNDS: Record<string, VoiceBackgroundImageIn
     position: "object-[50%_25%]",
   },
   "voice-can-bo-day-to": {
-    image: "/images/voice-bg/bac-ho-nang-luc-lam-chu.webp",
-    alt: "Bác Hồ căn dặn cán bộ là người đầy tớ trung thành của nhân dân",
-    context: "Bác Hồ gặp gỡ cán bộ",
-    position: "object-[78%_35%]",
+    image: "/images/voice-bg/bac-ho-can-bo-day-to.webp",
+    alt: "Chủ tịch Hồ Chí Minh cùng cán bộ và chiến sĩ cận vệ tại Bắc Bộ Phủ năm 1946",
+    context: "Bác Hồ và cán bộ tại Bắc Bộ Phủ (1946)",
+    position: "object-[35%_22%]",
   },
   "voice-quyen-luc-nhan-dan": {
-    image: "/images/voice-bg/bac-ho-quyen-bai-mien.webp",
-    alt: "Toàn cảnh nhân dân tham gia Tổng tuyển cử năm 1946",
-    context: "Quốc hội & Hiến pháp 1946",
-    position: "object-[50%_30%]",
+    image: "/images/voice-bg/bac-ho-quyen-luc-nhan-dan.webp",
+    alt: "Chủ tịch Hồ Chí Minh cùng các đại biểu Quốc hội khóa I và nhân dân trước Bắc Bộ Phủ năm 1946",
+    context: "Bác Hồ cùng đại biểu Quốc hội khóa I (1946)",
+    position: "object-[50%_35%]",
   },
 };
 
@@ -343,22 +343,22 @@ export default function UncleHoVoicePlayer({
           <img
             src={getAssetPath(bgInfo.image)}
             alt={bgInfo.alt}
-            className={`absolute right-0 top-0 bottom-0 w-[60%] sm:w-[52%] md:w-[46%] h-full object-cover ${bgInfo.position} mix-blend-multiply filter contrast-[1.25] brightness-[0.96] sepia-[0.36] transition-all duration-700 ${
+            className={`absolute right-0 top-0 bottom-0 w-[55%] sm:w-[48%] md:w-[44%] h-full object-cover ${bgInfo.position} mix-blend-multiply filter contrast-[1.25] brightness-[0.98] sepia-[0.30] transition-all duration-700 ${
               isPlaying
-                ? "opacity-50 sm:opacity-55 scale-[1.03] sepia-[0.22] contrast-[1.3]"
-                : "opacity-30 sm:opacity-35 group-hover:opacity-45"
+                ? "opacity-60 sm:opacity-65 scale-[1.03] sepia-[0.18] contrast-[1.3]"
+                : "opacity-45 sm:opacity-50 group-hover:opacity-60"
             }`}
             style={{
               WebkitMaskImage:
-                "radial-gradient(ellipse 95% 85% at 85% 45%, black 40%, rgba(0, 0, 0, 0.75) 65%, transparent 95%)",
+                "radial-gradient(ellipse 95% 85% at 85% 45%, black 45%, rgba(0, 0, 0, 0.75) 70%, transparent 95%)",
               maskImage:
-                "radial-gradient(ellipse 95% 85% at 85% 45%, black 40%, rgba(0, 0, 0, 0.75) 65%, transparent 95%)",
+                "radial-gradient(ellipse 95% 85% at 85% 45%, black 45%, rgba(0, 0, 0, 0.75) 70%, transparent 95%)",
             }}
           />
 
           {/* Lớp gradient hòa trộn giấy ngà từ trái sang phải, bảo đảm vùng chữ sắc nét 100% */}
           <div
-            className="absolute inset-0 bg-gradient-to-r from-[#fcf9f2] via-[#fcf9f2]/92 via-50% sm:via-45% to-transparent pointer-events-none"
+            className="absolute inset-0 bg-gradient-to-r from-[#fcf9f2] via-[#fcf9f2]/90 via-48% sm:via-42% to-transparent pointer-events-none"
             aria-hidden="true"
           />
 
@@ -478,7 +478,7 @@ export default function UncleHoVoicePlayer({
       </div>
 
       {/* 2. NỘI DUNG CÂU NÓI CỦA BÁC: TRANG TRỌNG TRÊN NỀN GIẤY NGÀ SẮC NÉT */}
-      <div className="relative z-10 pl-3 sm:pl-3.5 border-l-3 border-[#7a1818] my-2 bg-[#fcf9f2]/85 backdrop-blur-[2px] py-1.5 px-2 rounded-r-md max-w-[92%] sm:max-w-[85%] shadow-2xs">
+      <div className="relative z-10 pl-3 sm:pl-3.5 border-l-3 border-[#7a1818] my-2 bg-[#fcf9f2]/82 backdrop-blur-[2px] py-1.5 px-2 rounded-r-md max-w-[88%] sm:max-w-[76%] shadow-2xs">
         <p className="font-serif text-[13px] sm:text-sm md:text-[14.5px] italic text-[#1f1a14] font-medium leading-relaxed">
           &ldquo;{quote.replace(/\(VOICE\)/gi, "").trim()}&rdquo;
         </p>

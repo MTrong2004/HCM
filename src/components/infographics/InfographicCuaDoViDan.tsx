@@ -43,21 +43,9 @@ export default function InfographicCuaDoViDan() {
   ];
 
   return (
-    <EditorialReveal className="my-0.5 p-3 sm:p-4 rounded-lg bg-paper-light/95 border border-accent/30 shadow-2xs">
-      <div className="text-center max-w-2xl mx-auto mb-2.5">
-        <span className="font-mono text-[11px] font-bold tracking-widest text-accent-dark uppercase block mb-0.5">
-          CHUYÊN ĐỀ TƯ LIỆU DÂN CHỦ
-        </span>
-        <h4 className="font-serif text-base sm:text-lg font-bold text-primary">
-          Bản chất Nhà nước Dân chủ: Của dân – Do dân – Vì dân
-        </h4>
-        <p className="font-sans text-xs sm:text-[13px] text-ink/80 mt-0.5">
-          Chọn từng trụ cột để nghiên cứu các luận điểm cốt lõi của Chủ tịch Hồ Chí Minh
-        </p>
-      </div>
-
+    <EditorialReveal className="p-3.5 sm:p-4 rounded-lg bg-[#fdfbf7] border border-[#e2d7c5] shadow-2xs space-y-3">
       {/* Tabs: 3 Pillars */}
-      <div className="grid grid-cols-3 gap-2 mb-2.5" role="tablist">
+      <div className="grid grid-cols-3 gap-2" role="tablist">
         {pillars.map((pillar, idx) => {
           const isActive = activeTab === idx;
           return (
@@ -66,29 +54,29 @@ export default function InfographicCuaDoViDan() {
               role="tab"
               aria-selected={isActive}
               onClick={() => setActiveTab(idx)}
-              className={`p-2.5 rounded border text-left transition-all duration-200 min-h-[44px] flex flex-col justify-between ${
+              className={`p-2.5 rounded border text-left transition-all duration-200 min-h-[44px] flex flex-col justify-between cursor-pointer ${
                 isActive
-                  ? "bg-paper border-primary shadow-2xs"
-                  : "bg-paper/40 border-accent/25 hover:border-accent hover:bg-paper/80"
+                  ? "bg-[#fdfcf9] border-[#7a1818] shadow-2xs ring-1 ring-[#7a1818]/20"
+                  : "bg-[#f7efe1]/50 border-[#e8dac5] hover:border-[#7a1818]/40 hover:bg-[#f7efe1]"
               }`}
             >
               <div>
                 <span
                   className={`font-mono text-[11px] font-bold uppercase tracking-wider block ${
-                    isActive ? "text-primary" : "text-accent-dark"
+                    isActive ? "text-[#7a1818]" : "text-[#8a7250]"
                   }`}
                 >
                   TRỤ CỘT {pillar.num}
                 </span>
                 <span
                   className={`font-serif text-sm sm:text-base font-bold ${
-                    isActive ? "text-primary" : "text-ink"
+                    isActive ? "text-[#7a1818]" : "text-ink"
                   }`}
                 >
                   {pillar.title}
                 </span>
               </div>
-              <span className={`font-sans text-xs font-semibold italic mt-0.5 ${isActive ? "text-primary/90" : "text-accent-dark"}`}>
+              <span className={`font-sans text-xs font-semibold italic mt-0.5 ${isActive ? "text-[#7a1818]/90" : "text-[#8a7250]"}`}>
                 {pillar.subtitle}
               </span>
             </button>
@@ -97,15 +85,15 @@ export default function InfographicCuaDoViDan() {
       </div>
 
       {/* Active Pillar Details */}
-      <div key={activeTab} className="p-3 sm:p-4 rounded bg-paper border border-accent/25 editorial-tab-panel">
-        <h5 className="font-serif text-sm sm:text-base font-bold text-primary mb-1">
+      <div key={activeTab} className="p-3.5 sm:p-4 rounded-md bg-[#fdfcf9] border border-[#e2d7c5] shadow-3xs editorial-tab-panel">
+        <h5 className="font-serif text-sm sm:text-base font-bold text-[#7a1818] mb-1">
           Ý nghĩa cốt lõi: Nhà nước {pillars[activeTab].title}
         </h5>
         <p className="font-sans text-xs sm:text-[13.5px] text-ink leading-relaxed mb-2.5">
           {pillars[activeTab].desc}
         </p>
-        <div className="space-y-1.5 pt-2 border-t border-accent/20">
-          <span className="text-xs font-mono uppercase text-accent-dark font-bold tracking-wider block">
+        <div className="space-y-1.5 pt-2 border-t border-[#ebd8c2]">
+          <span className="text-xs font-mono uppercase text-[#7a1818] font-bold tracking-wider block">
             Luận điểm then chốt:
           </span>
           <ul className="space-y-1.5 pl-1">
@@ -114,7 +102,7 @@ export default function InfographicCuaDoViDan() {
                 key={dIdx}
                 className="flex items-start gap-2 text-xs sm:text-[13px] text-ink leading-relaxed"
               >
-                <span className="text-primary font-bold text-xs mt-0.5">◆</span>
+                <span className="text-[#7a1818] font-bold text-xs mt-0.5">◆</span>
                 <span>{detail}</span>
               </li>
             ))}

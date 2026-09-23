@@ -13,6 +13,7 @@ import { gsap, ScrollTrigger } from "@/lib/gsap";
 import {
   CANONICAL_SECTIONS,
   CANONICAL_SECTION_IDS,
+  getSectionById,
 } from "@/content/canonical-sections";
 import { playSubtleClick } from "@/lib/sound-effects";
 
@@ -358,6 +359,13 @@ export default function SmoothScrollProvider({
     }
 
     // Đã ở tab cuối cùng (hoặc section không có subtabs) -> chuyển tiếp sang section tiếp theo
+    if (activeSection === "xay-dung-nha-nuoc") {
+      // Khi ở 4.3.2, bấm tiếp theo nhảy sang luôn Ứng dụng AI (bỏ qua 4.3.3)
+      setSubtabDirection(1);
+      scrollTo("ket-luan", -56, true);
+      return;
+    }
+
     if (secIdx < CANONICAL_SECTIONS.length - 1) {
       const nextSec = CANONICAL_SECTIONS[secIdx + 1];
       setSubtabDirection(1);
@@ -396,6 +404,21 @@ export default function SmoothScrollProvider({
     }
 
     // Đã ở tab đầu tiên -> lùi về section trước
+    if (activeSection === "ket-luan") {
+      // Khi ở Ứng dụng AI, lùi lại trở về thẳng 4.3.2 Xây dựng Nhà nước
+      const prevSec = getSectionById("xay-dung-nha-nuoc");
+      setSubtabDirection(-1);
+      scrollTo("xay-dung-nha-nuoc", -56, true);
+      if (prevSec?.subtabs && prevSec.subtabs.length > 0) {
+        const lastTab = prevSec.subtabs[prevSec.subtabs.length - 1];
+        setActiveSubtabMap((prev) => ({
+          ...prev,
+          "xay-dung-nha-nuoc": lastTab.id,
+        }));
+      }
+      return;
+    }
+
     if (secIdx > 0) {
       const prevSec = CANONICAL_SECTIONS[secIdx - 1];
       setSubtabDirection(-1);

@@ -133,7 +133,7 @@ export default function ConclusionSection() {
   return (
     <AcademicPortalSection
       id="ket-luan"
-      code="MỤC 5.0"
+      code="CHUYÊN ĐỀ"
       title="ỨNG DỤNG AI"
       parentPath="Ứng dụng công nghệ"
       bannerHeading="BÁO CÁO ỨNG DỤNG AI TRONG BÀI THUYẾT TRÌNH CỦA NHÓM"
