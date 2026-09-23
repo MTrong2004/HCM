@@ -112,7 +112,7 @@ export default function SmoothScrollProvider({
     "trong-sach-vung-manh": "kiem-soat-quyen-luc",
     "xay-dung-dang": "phuong-dien-duong-loi",
     "xay-dung-nha-nuoc": "phap-luat-quyen-luc",
-    "phong-chong-tham-nhung": "nhan-dien-van-de",
+    "ket-luan": "tong-quan-tat-ca-trong-1",
   });
   const [subtabDirection, setSubtabDirection] = useState<1 | -1>(1);
 
@@ -121,6 +121,11 @@ export default function SmoothScrollProvider({
   const toggleBannerCollapsed = useCallback(() => {
     setIsBannerCollapsed((prev) => !prev);
   }, []);
+
+  const activeSectionRef = useRef<string>(activeSection);
+  useEffect(() => {
+    activeSectionRef.current = activeSection;
+  }, [activeSection]);
 
   const isNavigatingRef = useRef<boolean>(false);
 
@@ -363,6 +368,11 @@ export default function SmoothScrollProvider({
           [nextSec.id]: nextSec.subtabs![0].id,
         }));
       }
+    } else {
+      // Đã ở trang cuối cùng -> quay lại trang đầu (hero)
+      const firstSec = CANONICAL_SECTIONS[0];
+      setSubtabDirection(1);
+      scrollTo(firstSec.id, -56, true);
     }
   }, [activeSection, activeSubtabMap, scrollTo]);
 
@@ -461,29 +471,33 @@ export default function SmoothScrollProvider({
           const deltaY = scrollY - lastScrollY;
           lastScrollY = scrollY;
 
-          // Chống hiện tượng giật rung dao động (oscillation jitter loop) khi cuộn lên / nội dung ngắn:
-          // 1. Chỉ tự động thu gọn banner khi cuộn XUỐNG rõ rệt (scrollY > 70 và deltaY > 0)
-          // 2. Không tự động mở bung banner khi cuộn ngược lên giữa chừng (Zero-Reading-Jump Principle)
-          // 3. Chỉ mở lại banner khi cuộn về đỉnh trang (scrollY <= 5), đang cuộn lên (deltaY <= 0),
-          //    VÀ trang phải có đủ độ dài cuộn (totalScroll > 180) để việc thay đổi chiều cao banner không làm triệt tiêu thanh cuộn gây kẹt lưng chừng.
-          // 4. Áp dụng thời gian trễ hồi (cooldown > 400ms) để không bị đảo chiều liên tục giữa các frame.
-          if (now - lastToggleTime > 400) {
-            if (scrollY > 70 && deltaY > 0) {
-              setIsBannerCollapsed((prev) => {
-                if (!prev) {
-                  lastToggleTime = now;
-                  return true;
-                }
-                return prev;
-              });
-            } else if (scrollY <= 5 && deltaY < 0 && totalScroll > 180) {
-              setIsBannerCollapsed((prev) => {
-                if (prev) {
-                  lastToggleTime = now;
-                  return false;
-                }
-                return prev;
-              });
+          // Xử lý thu gọn / mở rộng banner:
+          // 1. Khi đang ở trang chủ (hero): Giữ nguyên ảnh bìa mở rộng, KHÔNG bao giờ auto-collapse
+          //    để người dùng trải nghiệm trọn vẹn trang bìa và không bị mất thanh cuộn/giật màn hình.
+          if (activeSectionRef.current === "hero") {
+            setIsBannerCollapsed((prev) => (prev ? false : prev));
+          } else {
+            // 2. Với các chương học khác (nội dung dài):
+            // - Tự động thu gọn khi cuộn xuống rõ rệt (scrollY > 120, deltaY > 0, totalScroll > 150)
+            // - Tự động mở lại khi cuộn ngược lên gần đỉnh (scrollY <= 30 hoặc deltaY < -10 && scrollY < 80)
+            if (now - lastToggleTime > 300) {
+              if (scrollY > 120 && deltaY > 0 && totalScroll > 150) {
+                setIsBannerCollapsed((prev) => {
+                  if (!prev) {
+                    lastToggleTime = now;
+                    return true;
+                  }
+                  return prev;
+                });
+              } else if (scrollY <= 30 || (deltaY < -10 && scrollY < 80)) {
+                setIsBannerCollapsed((prev) => {
+                  if (prev) {
+                    lastToggleTime = now;
+                    return false;
+                  }
+                  return prev;
+                });
+              }
             }
           }
 
@@ -508,13 +522,22 @@ export default function SmoothScrollProvider({
       }
     };
 
+    // Khi người dùng cuộn bánh xe chuột hướng lên ở đỉnh trang, lập tức khôi phục ảnh bìa
+    const handleWheel = (e: WheelEvent) => {
+      if (e.deltaY < 0 && window.scrollY <= 15) {
+        setIsBannerCollapsed(false);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll, { passive: true });
+    window.addEventListener("wheel", handleWheel, { passive: true });
     handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
+      window.removeEventListener("wheel", handleWheel);
     };
   }, []);
 

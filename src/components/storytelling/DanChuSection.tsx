@@ -88,7 +88,7 @@ export default function DanChuSection() {
               <EditorialReveal delay={80}>
                 <div className="p-3 bg-[#fdfbf7] border border-[#e2d7c5] rounded-lg shadow-3xs space-y-1">
                   <div className="font-serif font-bold text-xs sm:text-[13px] text-[#7a1818] flex items-center gap-1.5">
-                    <span className="text-[#b58319] text-xs">✦</span> Tính định hướng XHCN
+                    <span className="text-[#7a1818] text-xs">✦</span> Tính định hướng XHCN
                   </div>
                   <p className="text-xs text-ink leading-relaxed">
                     Đưa đất nước phát triển đi lên chủ nghĩa xã hội và chủ nghĩa cộng sản là mục tiêu cách mạng nhất quán của Hồ Chí Minh.
@@ -99,7 +99,7 @@ export default function DanChuSection() {
               <EditorialReveal delay={160}>
                 <div className="p-3 bg-[#fdfbf7] border border-[#e2d7c5] rounded-lg shadow-3xs space-y-1">
                   <div className="font-serif font-bold text-xs sm:text-[13px] text-[#7a1818] flex items-center gap-1.5">
-                    <span className="text-[#b58319] text-xs">✦</span> Nguyên tắc vận hành
+                    <span className="text-[#7a1818] text-xs">✦</span> Nguyên tắc vận hành
                   </div>
                   <p className="text-xs text-ink leading-relaxed">
                     Tổ chức và hoạt động theo nguyên tắc <strong>tập trung dân chủ</strong>.
@@ -129,7 +129,7 @@ export default function DanChuSection() {
             <div className="space-y-3 py-1">
               <EditorialReveal delay={80}>
                 <div className="flex items-start gap-3 pb-3 border-b border-dashed border-[#e2d7c5]">
-                  <span className="font-serif font-bold text-xl sm:text-2xl text-[#b58319] leading-none shrink-0 w-7">
+                  <span className="font-serif font-bold text-xl sm:text-2xl text-[#7a1818] leading-none shrink-0 w-7">
                     01
                   </span>
                   <div className="space-y-0.5">
@@ -145,7 +145,7 @@ export default function DanChuSection() {
 
               <EditorialReveal delay={160}>
                 <div className="flex items-start gap-3 pb-3 border-b border-dashed border-[#e2d7c5]">
-                  <span className="font-serif font-bold text-xl sm:text-2xl text-[#b58319] leading-none shrink-0 w-7">
+                  <span className="font-serif font-bold text-xl sm:text-2xl text-[#7a1818] leading-none shrink-0 w-7">
                     02
                   </span>
                   <div className="space-y-0.5">
@@ -161,7 +161,7 @@ export default function DanChuSection() {
 
               <EditorialReveal delay={240}>
                 <div className="flex items-start gap-3">
-                  <span className="font-serif font-bold text-xl sm:text-2xl text-[#b58319] leading-none shrink-0 w-7">
+                  <span className="font-serif font-bold text-xl sm:text-2xl text-[#7a1818] leading-none shrink-0 w-7">
                     03
                   </span>
                   <div className="space-y-0.5">
@@ -184,9 +184,9 @@ export default function DanChuSection() {
       label: "b. Nhà nước của nhân dân",
       badge: "Dân là chủ & Đầy tớ",
       content: (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
-          {/* Cột trái (7 cols trên LG): Định vị quyền lực & Hai hình thức dân chủ */}
-          <div className="lg:col-span-7 space-y-3">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-start">
+          {/* Cột trái (6 cols trên LG): Định vị quyền lực, Voice 1 & Hai hình thức dân chủ */}
+          <div className="lg:col-span-6 space-y-3">
             {/* Card Tiêu điểm: Quyền lực tối cao thuộc về Nhân dân */}
             <EditorialReveal delay={80}>
               <div className="p-3.5 sm:p-4 bg-[#fdfbf7] border border-[#e2d7c5] border-l-4 border-l-[#7a1818] rounded-lg shadow-2xs space-y-2.5">
@@ -202,15 +202,13 @@ export default function DanChuSection() {
                   <strong>“dân là chủ”</strong> khẳng định vị thế tối cao của nhân dân.
                 </p>
 
-                {/* Editorial Callout: Trích dẫn kinh điển của Bác */}
-                <div className="p-2.5 sm:p-3 bg-[#f7eedf]/80 border border-[#e8dac5] rounded-md relative overflow-hidden">
-                  <p className="font-serif italic text-xs sm:text-[13.5px] md:text-sm text-[#5c0d0d] font-semibold leading-relaxed">
-                    “Trong Nhà nước Việt Nam Dân chủ Cộng hòa của chúng ta, tất cả mọi quyền lực đều là của nhân dân.”
-                  </p>
-                  <div className="text-right text-[10.5px] sm:text-xs text-ink-muted mt-1 font-sans">
-                    — Hồ Chí Minh (VOICE)
-                  </div>
-                </div>
+                {/* TƯ LIỆU ÂM THANH 1: Tất cả mọi quyền lực đều là của Nhân dân */}
+                <UncleHoVoicePlayer
+                  id="voice-quyen-luc-nhan-dan"
+                  title="Tất cả mọi quyền lực đều là của Nhân dân"
+                  quote="Trong Nhà nước Việt Nam Dân chủ Cộng hòa của chúng ta, tất cả mọi quyền lực đều là của nhân dân."
+                  sourceContext="Hồ Chí Minh: Báo cáo về Dự thảo Hiến pháp sửa đổi (1959)"
+                />
 
                 {/* Hai hình thức thực thi quyền lực: Trình bày dạng thẻ đôi đối xứng */}
                 <div className="pt-1.5 border-t border-[#ebd8c2]">
@@ -220,7 +218,7 @@ export default function DanChuSection() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     <div className="p-3 bg-[#fdfcf9] border border-[#e2d7c5] rounded-md shadow-3xs space-y-1">
                       <span className="font-serif font-bold text-xs sm:text-[13px] text-[#7a1818] flex items-center gap-1.5">
-                        <span className="text-[#b58319] text-xs">✦</span> Dân chủ trực tiếp
+                        <span className="text-[#7a1818] text-xs">✦</span> Dân chủ trực tiếp
                       </span>
                       <p className="text-xs text-ink leading-relaxed">
                         Nhân dân trực tiếp quyết định mọi vấn đề liên quan đến vận mệnh của quốc gia, dân tộc và quyền lợi của dân chúng.
@@ -228,7 +226,7 @@ export default function DanChuSection() {
                     </div>
                     <div className="p-3 bg-[#fdfcf9] border border-[#e2d7c5] rounded-md shadow-3xs space-y-1">
                       <span className="font-serif font-bold text-xs sm:text-[13px] text-[#7a1818] flex items-center gap-1.5">
-                        <span className="text-[#b58319] text-xs">✦</span> Dân chủ gián tiếp
+                        <span className="text-[#7a1818] text-xs">✦</span> Dân chủ gián tiếp
                       </span>
                       <p className="text-xs text-ink leading-relaxed">
                         Nhân dân thực thi quyền lực của mình thông qua các đại diện mà họ lựa chọn, bầu ra và những thiết chế quyền lực mà họ lập nên.
@@ -243,7 +241,7 @@ export default function DanChuSection() {
             <EditorialReveal delay={160}>
               <div className="p-3 bg-[#fdfbf7] border border-[#e2d7c5] rounded-lg shadow-3xs space-y-1.5">
                 <div className="font-serif font-bold text-xs sm:text-[13px] text-[#7a1818] flex items-center gap-1.5">
-                  <span className="text-[#b58319] text-xs">✦</span> Quyền lực “thừa ủy quyền” trong dân chủ gián tiếp
+                  <span className="text-[#7a1818] text-xs">✦</span> Quyền lực “thừa ủy quyền” trong dân chủ gián tiếp
                 </div>
                 <p className="text-xs text-ink leading-relaxed">
                   Tự bản thân nhà nước không có quyền lực. Quyền lực của nhà nước là do nhân dân ủy thác. Các cơ quan quyền lực nhà nước cùng với đội ngũ cán bộ cần có trách nhiệm <em>“gánh vác việc chung cho dân, chứ không phải để đè đầu dân”</em>.
@@ -252,8 +250,8 @@ export default function DanChuSection() {
             </EditorialReveal>
           </div>
 
-          {/* Cột phải (5 cols trên LG): Cán bộ là đầy tớ & Quyền bãi miễn của Dân */}
-          <div className="lg:col-span-5 space-y-3">
+          {/* Cột phải (6 cols trên LG): Cán bộ là đầy tớ, Voice 2, Quyền kiểm soát & Voice 3 */}
+          <div className="lg:col-span-6 space-y-3">
             <EditorialReveal delay={240}>
               <div className="p-3.5 sm:p-4 bg-[#fdfbf7] border border-[#e2d7c5] rounded-lg shadow-2xs space-y-2.5">
                 <div className="flex items-center gap-2">
@@ -263,18 +261,13 @@ export default function DanChuSection() {
                   </h3>
                 </div>
 
-                {/* Trích dẫn danh ngôn về công bộc/đầy tớ */}
-                <div className="p-2.5 sm:p-3 bg-[#f7eedf]/80 border border-[#e8dac5] rounded-md space-y-2">
-                  <p className="font-serif italic text-xs sm:text-[13px] text-ink leading-relaxed">
-                    “Dân làm chủ thì Chủ tịch, Bộ trưởng, thứ trưởng, uỷ viên này uỷ viên khác là làm gì? Làm đầy tớ. Làm đầy tớ cho nhân dân, chứ không phải là làm quan cách mạng.”
-                  </p>
-                  <p className="font-serif italic text-xs sm:text-[13px] text-ink leading-relaxed border-t border-[#ebd8c2] pt-1.5">
-                    “Nước ta là nước dân chủ, địa vị cao nhất là dân, vì dân là chủ. Trong bộ máy cách mạng, từ người quét nhà, nấu ăn cho đến Chủ tịch một nước đều là phân công làm đầy tớ cho dân.”
-                  </p>
-                  <div className="text-right text-[10.5px] sm:text-xs text-ink-muted font-sans">
-                    — Hồ Chí Minh (VOICE)
-                  </div>
-                </div>
+                {/* TƯ LIỆU ÂM THANH 2: Cán bộ là người đầy tớ của Nhân dân */}
+                <UncleHoVoicePlayer
+                  id="voice-can-bo-day-to"
+                  title="Cán bộ là người đầy tớ của Nhân dân"
+                  quote="Dân làm chủ thì Chủ tịch, Bộ trưởng, thứ trưởng, uỷ viên này uỷ viên khác là làm gì? Làm đầy tớ. Làm đầy tớ cho nhân dân, chứ không phải là làm quan cách mạng... Trong bộ máy cách mạng, từ người quét nhà, nấu ăn cho đến Chủ tịch một nước đều là phân công làm đầy tớ cho dân."
+                  sourceContext="Hồ Chí Minh: Huấn thị về vai trò công bộc của cán bộ"
+                />
 
                 {/* Quyền kiểm soát, bãi miễn và giải tán thiết chế */}
                 <div className="p-2.5 bg-[#fcf8f0] border border-[#e2d7c5] rounded-md text-xs text-ink leading-relaxed space-y-1">
@@ -288,7 +281,7 @@ export default function DanChuSection() {
               </div>
             </EditorialReveal>
 
-            {/* TƯ LIỆU ÂM THANH DUY NHẤT VÀ TRỌNG TÂM CỦA TIỂU MỤC */}
+            {/* TƯ LIỆU ÂM THANH 3: Quyền bãi miễn đại biểu và quyền đuổi Chính phủ */}
             <UncleHoVoicePlayer
               id="voice-quyen-bai-mien"
               title="Quyền bãi miễn đại biểu và quyền đuổi Chính phủ"
@@ -297,7 +290,7 @@ export default function DanChuSection() {
             />
 
             <div className="p-2.5 bg-[#fdfcf9] border border-[#e2d7c5] rounded-md text-xs text-ink leading-relaxed">
-              <span className="text-[#b58319] font-bold mr-1">▪</span>
+              <span className="text-[#7a1818] font-bold mr-1">▪</span>
               Luật pháp dân chủ là công cụ thực thi quyền lực của nhân dân, là phương tiện để kiểm soát quyền lực nhà nước.
             </div>
           </div>
@@ -331,7 +324,7 @@ export default function DanChuSection() {
             <EditorialReveal delay={160}>
               <div className="p-3.5 bg-[#fdfbf7] border border-[#e2d7c5] rounded-lg shadow-2xs space-y-2.5">
                 <div className="font-serif font-bold text-xs sm:text-[13px] text-[#7a1818] flex items-center gap-1.5 uppercase tracking-wider">
-                  <span className="text-[#b58319] text-xs">✦</span> Vị thế và Bổn phận của người chủ
+                  <span className="text-[#7a1818] text-xs">✦</span> Vị thế và Bổn phận của người chủ
                 </div>
                 <p className="text-xs text-ink leading-relaxed">
                   Khái niệm <strong>“dân làm chủ”</strong> gắn liền <strong>“dân là chủ”</strong>:
@@ -370,13 +363,13 @@ export default function DanChuSection() {
                 </div>
                 <div className="p-3 bg-[#f6efe4] border border-[#e5dac8] rounded-md space-y-2 text-xs sm:text-[13px] text-ink">
                   <div className="font-serif font-bold text-xs sm:text-[13px] text-[#7a1818] flex items-center gap-1.5">
-                    <span className="text-[#b58319] text-xs">✦</span> Trách nhiệm của Nhà nước:
+                    <span className="text-[#7a1818] text-xs">✦</span> Trách nhiệm của Nhà nước:
                   </div>
                   <p className="leading-relaxed">
                     Nhà nước phải tạo mọi điều kiện để nhân dân thực hiện đầy đủ các quyền và nghĩa vụ làm chủ. Cán bộ, đảng viên có trách nhiệm tôn trọng quyền làm chủ của nhân dân.
                   </p>
                   <div className="font-serif font-bold text-xs sm:text-[13px] text-[#7a1818] flex items-center gap-1.5 border-t border-[#dfd2be] pt-2">
-                    <span className="text-[#b58319] text-xs">✦</span> Giáo dục & Tự giác phấn đấu:
+                    <span className="text-[#7a1818] text-xs">✦</span> Giáo dục & Tự giác phấn đấu:
                   </div>
                   <p className="leading-relaxed text-ink-muted">
                     Nhà nước do nhân dân cần coi trọng việc giáo dục nhân dân, đồng thời nhân dân cũng phải tự giác phấn đấu để có đủ <strong>năng lực làm chủ</strong>, thực hiện quyền dân chủ của mình.
@@ -385,12 +378,12 @@ export default function DanChuSection() {
               </div>
             </EditorialReveal>
 
-            {/* VOICE 4: Năng lực làm chủ của nhân dân */}
+            {/* VOICE: Năng lực làm chủ của nhân dân */}
             <UncleHoVoicePlayer
               id="voice-nang-luc-lam-chu"
               title="Năng lực làm chủ của Nhân dân lao động"
               quote="Chúng ta là những người lao động làm chủ nước nhà. Muốn làm chủ được tốt, phải có năng lực làm chủ."
-              sourceContext="Hồ Chí Minh (VOICE)"
+              sourceContext="Hồ Chí Minh: Huấn thị về năng lực làm chủ của nhân dân"
             />
           </div>
         </div>
@@ -459,7 +452,7 @@ export default function DanChuSection() {
               id="voice-chinh-phu-vi-dan"
               title="Mục đích duy nhất của Chính phủ: Mưu tự do, hạnh phúc cho dân"
               quote="Các công việc của Chính phủ làm phải nhằm vào một mục đích duy nhất là mưu tự do hạnh phúc cho mọi người. Cho nên Chính phủ nhân dân bao giờ cũng phải đặt quyền lợi dân lên trên hết thảy. Việc gì có lợi cho dân thì làm. Việc gì có hại cho dân thì phải tránh."
-              sourceContext="Hồ Chí Minh (VOICE)"
+              sourceContext="Hồ Chí Minh: Thư gửi Ủy ban nhân dân các kỳ, tỉnh, huyện và làng (17/10/1945)"
             />
           </div>
 

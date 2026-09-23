@@ -74,9 +74,9 @@ const SECTION_BANNER_MAP: Record<string, SectionBannerInfo> = {
     code: "4.3.3",
     title: "Phòng, chống tham nhũng, lãng phí, quan liêu",
     parentPath: "4.3. Vận dụng tư tưởng Hồ Chí Minh",
-    image: "/images/can-bo-phuc-vu-nhan-dan.webp",
+    image: "/images/nha-nuoc-trong-sach-vung-manh-hero.webp",
     quote:
-      "Tham ô, lãng phí và bệnh quan liêu là kẻ thù của nhân dân, của bộ đội và của Chính phủ... là thứ 'giặc nội xâm'.",
+      "Tham ô, lãng phí và bệnh quan liêu là kẻ thù của nhân dân, của bộ đội và của Chính phủ. Nó là giặc ở trong lòng, là bạn đồng minh của thực dân và phong kiến.",
     badge: "CHƯƠNG 4",
   },
   "ket-luan": {
@@ -207,7 +207,7 @@ export default function ChapterHeaderBanner({
       {/* 4. DẢI BREADCRUMB & NÚT ĐIỀU KHIỂN THU GỌN / MỞ RỘNG BANNER */}
       <div
         className={`absolute left-0 right-0 z-30 pointer-events-auto flex items-center justify-between px-3 sm:px-6 md:px-8 transition-all duration-300 ${
-          isTOCDrawerOpen ? "lg:pl-[164px]" : "lg:pl-8"
+          isTOCDrawerOpen ? "lg:pl-[188px]" : "lg:pl-8"
         } ${
           isBannerCollapsed ? "inset-0 h-full" : "bottom-0 h-11 sm:h-12"
         }`}
@@ -226,20 +226,20 @@ export default function ChapterHeaderBanner({
           <ChevronRight className="w-3.5 h-3.5 text-[#a89785] flex-shrink-0" />
           
           <button
-            onClick={() => handleNavClick("dan-chu")}
+            onClick={() => handleNavClick("hero")}
             className="text-[#2b2421] hover:text-[#7a1818] cursor-pointer focus:outline-none flex-shrink-0 font-medium transition-colors"
           >
             Chương 4
           </button>
           
-          <ChevronRight className="w-3.5 h-3.5 text-[#a89785] flex-shrink-0" />
+          <ChevronRight className="w-3.5 h-3.5 text-ink-muted flex-shrink-0" />
           
           <span className="hidden md:inline text-[#2b2421]/90 cursor-default truncate max-w-xs lg:max-w-md xl:max-w-lg font-normal">
             {displayParentPath}
           </span>
           <span className="md:hidden text-ink-muted">...</span>
           
-          <ChevronRight className="w-3.5 h-3.5 text-[#a89785] flex-shrink-0" />
+          <ChevronRight className="w-3.5 h-3.5 text-ink-muted flex-shrink-0" />
           
           <h1 className="text-[#7a1818] font-bold truncate tracking-tight text-xs sm:text-xs font-sans inline m-0 p-0 font-normal">
             {displayCode} {displayTitle}
@@ -255,7 +255,7 @@ export default function ChapterHeaderBanner({
               playSubtleClick();
               toggleBannerCollapsed();
             }}
-            className="inline-flex items-center gap-1 sm:gap-1.5 px-2 py-1 rounded-md text-[11px] font-sans font-medium text-[#7a1818] bg-[#fbf9f4]/90 hover:bg-[#ede3d1] border border-[#d4af37]/50 shadow-2xs transition-all cursor-pointer flex-shrink-0 group"
+            className="inline-flex items-center gap-1 sm:gap-1.5 px-2 py-1 rounded-md text-xs font-sans font-semibold text-[#7a1818] bg-[#fbf9f4]/90 hover:bg-[#ede3d1] border border-[#d4af37]/50 shadow-2xs transition-all cursor-pointer flex-shrink-0 group"
             aria-label={isBannerCollapsed ? "Mở rộng ảnh bìa" : "Thu gọn ảnh bìa"}
           >
             {isBannerCollapsed ? (

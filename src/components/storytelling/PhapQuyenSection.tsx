@@ -97,7 +97,7 @@ export default function PhapQuyenSection() {
                     Thực tiễn hành động xây dựng bộ máy hợp hiến
                   </h3>
                 </div>
-                <JusticeScalesIcon className="w-5 h-5 text-[#b58319]/60" />
+                <JusticeScalesIcon className="w-5 h-5 text-[#7a1818]/70" />
               </div>
 
               {/* Dòng thời gian Timeline Trục Dọc Màu Đỏ Nối 3 Mốc */}
@@ -179,11 +179,11 @@ export default function PhapQuyenSection() {
               </div>
               <ul className="space-y-1.5 text-xs sm:text-[13px] text-ink leading-relaxed">
                 <li className="flex items-start gap-2">
-                  <span className="text-[#b58319] font-bold">▪</span>
+                  <span className="text-[#7a1818] font-bold">▪</span>
                   <span>Hồ Chí Minh <strong>2 lần tham gia chỉ đạo soạn thảo Hiến pháp</strong> (Hiến pháp năm 1946 và Hiến pháp 1959).</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#b58319] font-bold">▪</span>
+                  <span className="text-[#7a1818] font-bold">▪</span>
                   <span>
                     Ký lệnh công bố <strong>16 đạo luật</strong>, <strong>613 sắc lệnh</strong> (trong đó có <strong>243 sắc lệnh về tổ chức Nhà nước và pháp luật</strong>) cùng nhiều văn bản dưới luật.
                   </span>

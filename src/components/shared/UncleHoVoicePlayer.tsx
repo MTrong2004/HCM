@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { Play, Pause, Volume2, RotateCcw, Sparkles } from "lucide-react";
+import { Play, Pause, Volume2, RotateCcw } from "lucide-react";
 import { playSubtleClick } from "@/lib/sound-effects";
 import { getAssetPath } from "@/lib/assets";
 
@@ -431,12 +431,6 @@ export default function UncleHoVoicePlayer({
           </div>
 
           <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-1.5 mb-0.5">
-              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9.5px] sm:text-[10.5px] font-mono font-bold uppercase tracking-wider bg-[#7a1818]/10 text-[#7a1818] border border-[#7a1818]/20 shadow-2xs">
-                <Sparkles className="w-2.5 h-2.5 text-[#8b1e1e]" />
-                <span>GIỌNG NÓI CHỦ TỊCH HỒ CHÍ MINH</span>
-              </span>
-            </div>
             <h5 className="font-serif font-bold text-xs sm:text-sm text-[#1f1a14] leading-snug line-clamp-2">
               {title}
             </h5>
@@ -488,20 +482,20 @@ export default function UncleHoVoicePlayer({
         <p className="font-serif text-[13px] sm:text-sm md:text-[14.5px] italic text-[#1f1a14] font-medium leading-relaxed">
           &ldquo;{quote.replace(/\(VOICE\)/gi, "").trim()}&rdquo;
         </p>
-        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 mt-1.5 pt-1 border-t border-[#ebd8c2]/70 text-[10.5px] sm:text-[11.5px] text-[#735d43] font-sans">
+        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 mt-1.5 pt-1 border-t border-[#ebd8c2]/70 text-xs sm:text-[12.5px] text-[#4a3b2b] font-sans">
           {sourceContext && (
-            <span className="font-medium">— {sourceContext}</span>
+            <span className="font-semibold">— {sourceContext}</span>
           )}
           {bgInfo.context && (
-            <span className="text-[#8a3800] italic">
+            <span className="text-[#7a1818] italic font-medium">
               Ảnh: {bgInfo.context}
             </span>
           )}
         </div>
         {/* Chú thích học thuật minh bạch tư liệu nếu là bức thư 17/10/1945 */}
         {id === "voice-chinh-phu-vi-dan" && (
-          <div className="mt-2 pt-1 border-t border-[#ebd8c2] flex items-center gap-1.5 text-[10.5px] sm:text-[11px] text-[#8a3800] font-sans">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#c5a059]" />
+          <div className="mt-2 pt-1 border-t border-[#ebd8c2] flex items-center gap-1.5 text-xs text-[#7a1818] font-sans">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#7a1818]" />
             <span>Âm thanh tư liệu: Giọng Bác Hồ tại Lễ Độc lập 1945 (Bức thư 17/10/1945 lưu hành dạng văn bản báo chí).</span>
           </div>
         )}
@@ -527,7 +521,7 @@ export default function UncleHoVoicePlayer({
               >
                 Chọn tệp MP3/WAV
               </button>
-              <span className="text-[10px] text-ink-muted">
+              <span className="text-xs text-ink-muted">
                 hoặc lưu tại <code className="bg-[#ebd8c2] px-1 py-0.5 rounded font-mono">public/audio/bac-ho/{id}.wav</code>
               </span>
             </div>
@@ -589,8 +583,8 @@ export default function UncleHoVoicePlayer({
         </div>
 
         {/* Thông tin trạng thái và bộ đếm thời lượng */}
-        <div className="flex items-center justify-between sm:justify-end gap-2 text-[11px] font-mono text-ink-muted">
-          <span className="flex items-center gap-1 font-sans text-[10.5px]">
+        <div className="flex items-center justify-between sm:justify-end gap-2 text-xs font-mono text-ink-muted">
+          <span className="flex items-center gap-1 font-sans text-xs">
             {isPlaying ? (
               <span className="flex items-center gap-1 text-[#8b1e1e] font-semibold animate-pulse">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#8b1e1e]" />

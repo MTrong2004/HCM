@@ -7,11 +7,11 @@
   --color-primary: #8B1E1E;
   --color-primary-dark: #651414;
   --color-primary-light: #A82727;
-  --color-accent: #C6A15B;
-  --color-accent-dark: #9F7E38;
+  --color-accent: #A87D2E;
+  --color-accent-dark: #6E5014;
   --color-accent-light: #DEC285;
   --color-ink: #171717;
-  --color-ink-muted: #524E48;
+  --color-ink-muted: #443F38;
   --color-dark-bg: #151211;
   --color-dark-surface: #241E1C;
   --color-dark-border: #3A322F;
@@ -36,6 +36,7 @@ html {
   scroll-behavior: auto; /* Managed by Lenis */
   overflow-x: clip;
   max-width: 100%;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -50,7 +51,6 @@ body {
 #trong-sach-vung-manh,
 #xay-dung-dang,
 #xay-dung-nha-nuoc,
-#phong-chong-tham-nhung,
 #ket-luan,
 [data-section-id] {
   scroll-margin-top: 3.5rem;
@@ -87,6 +87,17 @@ body {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #962828;
+}
+
+/* Hide scrollbar completely */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  width: 0 !important;
+  height: 0 !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 /* Custom subtle antique paper texture pattern */

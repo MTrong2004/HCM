@@ -28,6 +28,7 @@ export interface AcademicPortalSectionProps {
   prevSection?: { id: string; label: string };
   nextSection?: { id: string; label: string };
   children?: React.ReactNode;
+  bannerHeading?: string;
 }
 
 export default function AcademicPortalSection({
@@ -40,6 +41,7 @@ export default function AcademicPortalSection({
   prevSection,
   nextSection,
   children,
+  bannerHeading,
 }: AcademicPortalSectionProps) {
   const {
     activeSubtabMap,
@@ -140,26 +142,26 @@ export default function AcademicPortalSection({
               transition={{ duration: 0.22, ease: "easeOut" }}
               className="overflow-hidden flex-shrink-0"
             >
-              <div className="bg-gradient-to-r from-[#fbf8f0] via-[#f7efe1] to-[#f4e8d4] border border-[#d8c8a8] rounded-xl p-3 sm:p-4 shadow-sm relative">
+              <div className="bg-gradient-to-r from-[#fbf8f0] via-[#f7efe1] to-[#f4e8d4] border border-[#d8c8a8] rounded-xl p-3.5 sm:p-5 shadow-sm relative">
                 <div className="flex items-start justify-between gap-3">
-                  <div className="space-y-1.5 flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="px-2 py-0.5 bg-[#7a1818] text-[#fff8ea] font-mono font-bold text-[10.5px] rounded shadow-2xs">
+                  <div className="space-y-2 flex-1 min-w-0">
+                    <div className="flex items-center gap-2.5">
+                      <span className="px-2.5 py-0.5 bg-[#7a1818] text-[#fff8ea] font-mono font-bold text-xs rounded shadow-2xs">
                         {code}
                       </span>
-                      <h4 className="font-serif font-bold text-xs uppercase text-[#7a1818] tracking-wider flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#8b1e1e]" />
-                        <span>TƯ TƯỞNG CỐT LÕI & LUẬN ĐIỂM (GIÁO TRÌNH BỘ GD&ĐT)</span>
+                      <h4 className="font-serif font-bold text-xs sm:text-sm uppercase text-[#7a1818] tracking-wider flex items-center gap-1.5">
+                        <CheckCircle2 className="w-4 h-4 text-[#8b1e1e]" />
+                        <span>{bannerHeading || "TƯ TƯỞNG CỐT LÕI & LUẬN ĐIỂM (GIÁO TRÌNH BỘ GD&ĐT)"}</span>
                       </h4>
                     </div>
 
-                    <p className="font-sans text-xs sm:text-[13px] text-ink leading-relaxed font-medium">
+                    <p className="font-sans text-sm sm:text-[15.5px] md:text-base text-ink leading-relaxed font-normal">
                       {summary}
                     </p>
 
                     {quote && (
-                      <p className="font-serif italic text-xs text-ink-muted pt-1.5 border-t border-[#dfcfb9]">
-                        &ldquo;{quote}&rdquo; — <span className="font-medium text-[#7a1818]">{quoteAuthor}</span>
+                      <p className="font-serif italic text-xs sm:text-sm md:text-[14.5px] text-ink-muted pt-2 border-t border-[#dfcfb9]">
+                        &ldquo;{quote}&rdquo; — <span className="font-semibold text-[#7a1818] not-italic">{quoteAuthor}</span>
                       </p>
                     )}
                   </div>
@@ -170,10 +172,10 @@ export default function AcademicPortalSection({
                       playSubtleClick();
                       setShowSummary(false);
                     }}
-                    className="p-1 sm:p-1.5 rounded-md text-ink-muted hover:text-[#7a1818] hover:bg-[#eadfcd] transition-colors cursor-pointer flex-shrink-0"
+                    className="p-1.5 rounded-md text-ink-muted hover:text-[#7a1818] hover:bg-[#eadfcd] transition-colors cursor-pointer flex-shrink-0"
                     aria-label="Đóng tóm lược"
                   >
-                    <X className="w-4 h-4" />
+                    <X className="w-4.5 h-4.5" />
                   </button>
                 </div>
               </div>
@@ -204,7 +206,7 @@ export default function AcademicPortalSection({
                     aria-selected={isActive}
                     data-active={isActive ? "true" : "false"}
                     onClick={() => handleTabChange(tab.id)}
-                    className={`relative min-h-[32px] sm:min-h-[36px] h-[36px] py-1 px-1.5 sm:px-3 text-center flex-1 min-w-0 font-sans text-[11px] sm:text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 focus:outline-none border-r border-[#d8cfbe] last:border-r-0 cursor-pointer ${
+                    className={`relative min-h-[40px] sm:min-h-[44px] h-[44px] py-1.5 px-2.5 sm:px-4 text-center flex-1 min-w-0 font-sans text-xs sm:text-[13.5px] md:text-[14.5px] font-semibold transition-colors flex items-center justify-center gap-1.5 focus:outline-none border-r border-[#d8cfbe] last:border-r-0 cursor-pointer ${
                       isActive
                         ? "bg-[#6b1212] text-white shadow-2xs active-tab"
                         : "bg-[#eae4d7] text-[#3d372e] hover:bg-[#ded7c8]"
@@ -226,14 +228,14 @@ export default function AcademicPortalSection({
                   playSubtleClick();
                   setShowSummary((prev) => !prev);
                 }}
-                className={`px-2 sm:px-3 py-1 text-[11px] font-sans font-semibold flex items-center gap-1.5 transition-all cursor-pointer border-l border-[#d8cfbe] flex-shrink-0 ${
+                className={`px-2.5 sm:px-3.5 py-1.5 text-xs sm:text-[13px] font-sans font-semibold flex items-center gap-1.5 transition-all cursor-pointer border-l border-[#d8cfbe] flex-shrink-0 ${
                   showSummary
                     ? "bg-[#7a1818] text-[#ffd700]"
                     : "bg-[#e5dbc9] text-[#6b1212] hover:bg-[#dbd0bd]"
                 }`}
                 aria-label="Xem tóm lược luận điểm cốt lõi"
               >
-                <Sparkles className="w-3.5 h-3.5 text-[#b58319]" />
+                <Sparkles className={`w-3.5 h-3.5 ${showSummary ? "text-[#ffd700]" : "text-[#7a1818]"}`} />
                 <span className="hidden sm:inline">
                   {showSummary ? "Đóng tóm lược" : "Luận điểm cốt lõi"}
                 </span>
@@ -313,7 +315,7 @@ export default function AcademicPortalSection({
                     );
                   })}
                 </div>
-                <span className="text-[10px] font-mono text-[#8c7e6c] tracking-tight">
+                <span className="text-xs font-mono font-bold text-ink-muted tracking-tight">
                   {activeSectionIdx >= 0 ? `${activeSectionIdx + 1} / ${CANONICAL_SECTIONS.length}` : ""}
                 </span>
               </div>

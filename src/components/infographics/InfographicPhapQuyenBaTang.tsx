@@ -86,15 +86,15 @@ export default function InfographicPhapQuyenBaTang() {
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <span
-                      className={`text-[10px] font-mono font-bold tracking-widest uppercase ${
-                        isActive ? "text-accent-light/90" : "text-accent-dark"
+                      className={`text-xs font-mono font-bold tracking-wider uppercase ${
+                        isActive ? "text-accent-light" : "text-accent-dark"
                       }`}
                     >
                       {tier.level}
                     </span>
                     <span
-                      className={`text-[11px] font-sans italic ${
-                        isActive ? "text-paper-light/80" : "text-ink-muted"
+                      className={`text-xs font-sans italic ${
+                        isActive ? "text-paper-light/90" : "text-ink/80"
                       }`}
                     >
                       {tier.tag}
@@ -115,7 +115,7 @@ export default function InfographicPhapQuyenBaTang() {
             <span className="text-xs font-mono font-bold text-accent-dark uppercase">
               {tiers[activeTier].level} —
             </span>
-            <span className="text-xs font-sans italic text-ink-muted">
+            <span className="text-xs font-sans italic text-ink/80">
               {tiers[activeTier].tag}
             </span>
           </div>
@@ -129,14 +129,14 @@ export default function InfographicPhapQuyenBaTang() {
           </p>
 
           <div className="border-t border-accent/20 pt-3.5 space-y-2">
-            <span className="text-[11px] font-mono uppercase tracking-wider text-accent-dark font-bold block">
+            <span className="text-xs font-mono uppercase tracking-wider text-accent-dark font-bold block">
               Nguyên tắc vận hành:
             </span>
             <ul className="space-y-2 pl-1">
               {tiers[activeTier].principles.map((pr, pIdx) => (
                 <li
                   key={pIdx}
-                  className="flex items-start gap-2.5 text-xs sm:text-sm text-ink/85 leading-relaxed"
+                  className="flex items-start gap-2.5 text-xs sm:text-sm text-ink leading-relaxed"
                 >
                   <span className="text-primary font-bold text-xs mt-0.5">◆</span>
                   <span>{pr}</span>

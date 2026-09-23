@@ -2,127 +2,34 @@
 
 import React, { useState, useEffect } from "react";
 
-import { useSmoothScroll } from "./SmoothScrollProvider";
 import PresentationModeModal from "./PresentationModeModal";
 import SearchCommandModal from "./SearchCommandModal";
 import CitationToolModal from "./CitationToolModal";
 import StudyNotebookDrawer from "./StudyNotebookDrawer";
-import {
-  CANONICAL_SECTIONS,
-  getSectionById,
-} from "@/content/canonical-sections";
 import {
   playSubtleClick,
   playSwoosh,
 } from "@/lib/sound-effects";
 
 export default function SectionNavigation() {
-  const {
-    activeSection,
-    scrollTo,
-  } = useSmoothScroll();
-
   const [presentationOpen, setPresentationOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [citationOpen, setCitationOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      // Khi cuộn qua banner (> 140px), hiển thị thanh navigation dính (sticky)
-      setIsScrolled(window.scrollY > 140);
-    };
-
     const handleOpenSearchModal = () => {
       setSearchOpen(true);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("open-search-modal", handleOpenSearchModal);
-    handleScroll();
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("open-search-modal", handleOpenSearchModal);
     };
   }, []);
 
-  const activeSectionData =
-    getSectionById(activeSection) || CANONICAL_SECTIONS[0];
-
-  // Các section học thuật Chương 4 đã có sẵn ChapterHeaderBanner dính ở đỉnh (thu gọn 42px), không chồng lấn Header bar
-  const hasChapterBanner = [
-    "dan-chu",
-    "phap-quyen",
-    "trong-sach-vung-manh",
-    "xay-dung-dang",
-    "xay-dung-nha-nuoc",
-    "phong-chong-tham-nhung",
-  ].includes(activeSection);
-
-  const handleNavClick = (id: string) => {
-    playSubtleClick();
-    scrollTo(id, -56, true);
-  };
-
   return (
     <>
-      {/* Top Header Bar thông minh: chỉ trượt xuống khi cuộn khỏi banner, giúp giao diện trên cùng sạch đẹp 100% khớp mockup */}
-      <header
-        className={`fixed top-0 left-0 right-0 z-40 h-11 sm:h-12 bg-[#3a0808]/95 backdrop-blur-md border-b border-[#5e1414] text-[#fbf8f0] transition-all duration-300 transform ${
-          isScrolled && !hasChapterBanner
-            ? "translate-y-0 opacity-100 shadow-md pointer-events-auto"
-            : "-translate-y-full opacity-0 pointer-events-none"
-        }`}
-      >
-        <div className="w-full px-4 sm:px-6 h-full flex items-center justify-between gap-3">
-          {/* Cột trái: Mobile Brand (chỉ hiện mobile) */}
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => handleNavClick("hero")}
-              className="md:hidden min-h-[38px] flex items-center gap-1.5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37] rounded-lg group flex-shrink-0"
-              aria-label="Về phần mở đầu tác phẩm"
-            >
-              <div className="w-6 h-6 rounded bg-[#7a1818] border border-[#d4af37]/40 text-[#fbf8f0] flex items-center justify-center font-serif font-black text-xs shadow-xs">
-                ★
-              </div>
-              <div className="flex flex-col">
-                <span className="font-serif text-[11px] font-bold text-[#fbf8f0] tracking-wide">
-                  TƯ TƯỞNG HỒ CHÍ MINH
-                </span>
-                <span className="font-mono text-[9px] text-[#d4af37]">
-                  {activeSectionData.number !== "0"
-                    ? `${activeSectionData.number} ${activeSectionData.shortTitle}`
-                    : activeSectionData.shortTitle}
-                </span>
-              </div>
-            </button>
-          </div>
-
-          {/* Cột giữa: Khẩu hiệu trung tâm theo đúng Designer_71 */}
-          <div className="hidden md:flex items-center gap-5 lg:gap-7 text-[11px] font-serif tracking-wider">
-            <button
-              onClick={() => handleNavClick("phap-quyen")}
-              className="py-0.5 px-1 border-b-[1.5px] border-[#d4af37] text-[#fff8ea] font-bold uppercase transition-colors focus:outline-none"
-            >
-              HỌC TỪ BÁC
-            </button>
-            <button
-              onClick={() => handleNavClick("dan-chu")}
-              className="py-0.5 px-1 text-[#fff8ea]/75 hover:text-white uppercase transition-colors focus:outline-none"
-            >
-              SỐNG VÌ DÂN
-            </button>
-            <button
-              onClick={() => handleNavClick("xay-dung-dang")}
-              className="py-0.5 px-1 text-[#fff8ea]/75 hover:text-white uppercase transition-colors focus:outline-none"
-            >
-              HÀNH ĐỘNG VÌ TƯƠNG LAI
-            </button>
-          </div>
-        </div>
-      </header>
-
       {/* Drawer Sổ Tay Nghiên Cứu & Tiện Ích Học Tập Toàn Diện */}
       <StudyNotebookDrawer
         onOpenPresentation={() => {
@@ -151,3 +58,4 @@ export default function SectionNavigation() {
     </>
   );
 }
+

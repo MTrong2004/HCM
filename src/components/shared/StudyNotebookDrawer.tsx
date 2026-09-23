@@ -82,8 +82,8 @@ const GLOSSARY_ITEMS: GlossaryItem[] = [
     context: "Hồ Chí Minh: Toàn tập, t. 7, tr. 357",
     definition:
       "Thứ kẻ thù nguy hiểm vì không mang gươm súng mà ẩn nấp ngay trong bộ máy, phá hoại từ bên trong, làm xói mòn uy tín của Đảng và Nhà nước, xói mòn lòng tin của nhân dân.",
-    sectionId: "phong-chong-tham-nhung",
-    sectionTitle: "4.3.3 Chống tham nhũng",
+    sectionId: "xay-dung-nha-nuoc",
+    sectionTitle: "4.3.2 Xây dựng Nhà nước",
   },
   {
     id: "glo-5",
@@ -198,12 +198,12 @@ const GOLDEN_QUOTES: GoldenQuote[] = [
   },
   {
     id: "gq-8",
-    sectionCode: "4.3.3",
-    sectionTitle: "Chống giặc nội xâm",
+    sectionCode: "4.3.2",
+    sectionTitle: "Xây dựng Nhà nước",
     quote:
       "Tham ô, lãng phí và bệnh quan liêu là kẻ thù của nhân dân, của bộ đội và của Chính phủ. Kẻ thù khá nguy hiểm, vì nó không mang gươm mang súng, mà nó nằm trong các tổ chức của ta, để làm hỏng công việc của ta... là một thứ 'giặc ở trong lòng' - giặc nội xâm.",
     source: "Hồ Chí Minh: Toàn tập, Nxb. Chính trị quốc gia Sự thật, Hà Nội, 2011, t. 7, tr. 357",
-    sectionId: "phong-chong-tham-nhung",
+    sectionId: "xay-dung-nha-nuoc",
   },
 ];
 

@@ -116,7 +116,7 @@ export const PRESENTATION_CONTENT: PresentationData = {
           quote: {
             text: "Trong Nhà nước Việt Nam Dân chủ Cộng hòa của chúng ta, tất cả mọi quyền lực đều là của nhân dân.",
             author: "Hồ Chí Minh",
-            context: "Lời khẳng định kinh điển (VOICE)",
+            context: "Lời khẳng định kinh điển",
           },
           points: [
             "Hai hình thức thực thi quyền lực dân chủ: Dân chủ trực tiếp (Nhân dân trực tiếp quyết định mọi vấn đề liên quan đến vận mệnh của quốc gia, dân tộc và quyền lợi của dân chúng) và Dân chủ gián tiếp (Nhân dân thực thi quyền lực của mình thông qua các đại diện mà họ lựa chọn, bầu ra và những thiết chế quyền lực mà họ lập nên).",
@@ -130,9 +130,9 @@ export const PRESENTATION_CONTENT: PresentationData = {
               content:
                 "Theo quan điểm của Hồ Chí Minh, trong hình thức dân chủ đại diện, mối quan hệ giữa nhân dân và đội ngũ cán bộ công quyền được xác lập rành mạch:",
               bullets: [
-                "Theo Hồ Chí Minh: 'Dân làm chủ thì Chủ tịch, Bộ trưởng, thứ trưởng, uỷ viên này uỷ viên khác là làm gì? Làm đầy tớ. Làm đầy tớ cho nhân dân, chứ không phải là làm quan cách mạng' (VOICE).",
-                "Người căn dặn: 'Nước ta là nước dân chủ, địa vị cao nhất là dân, vì dân là chủ. Trong bộ máy cách mạng, từ người quét nhà, nấu ăn cho đến Chủ tịch một nước đều là phân công làm đầy tớ cho dân' (VOICE).",
-                "Chủ tịch Hồ Chí Minh khẳng định: 'Bác mong đồng bào giúp đỡ, đôn đốc, kiểm soát và phê bình để làm trọn nhiệm vụ của mình là người đầy tớ trung thành tận tụy của nhân dân trong Nhà nước đó, nhân dân có quyền bãi miễn đại biểu Quốc hội và đại biểu Hội đồng nhân dân nếu những đại biểu ấy tỏ ra không xứng đáng với sự tín nhiệm của nhân dân, thậm chí nếu Chính phủ làm hại dân thì dân có quyền đuổi Chính phủ' (VOICE).",
+                "Theo Hồ Chí Minh: 'Dân làm chủ thì Chủ tịch, Bộ trưởng, thứ trưởng, uỷ viên này uỷ viên khác là làm gì? Làm đầy tớ. Làm đầy tớ cho nhân dân, chứ không phải là làm quan cách mạng.'",
+                "Người căn dặn: 'Nước ta là nước dân chủ, địa vị cao nhất là dân, vì dân là chủ. Trong bộ máy cách mạng, từ người quét nhà, nấu ăn cho đến Chủ tịch một nước đều là phân công làm đầy tớ cho dân.'",
+                "Chủ tịch Hồ Chí Minh khẳng định: 'Bác mong đồng bào giúp đỡ, đôn đốc, kiểm soát và phê bình để làm trọn nhiệm vụ của mình là người đầy tớ trung thành tận tụy của nhân dân trong Nhà nước đó, nhân dân có quyền bãi miễn đại biểu Quốc hội và đại biểu Hội đồng nhân dân nếu những đại biểu ấy tỏ ra không xứng đáng với sự tín nhiệm của nhân dân, thậm chí nếu Chính phủ làm hại dân thì dân có quyền đuổi Chính phủ.'",
                 "Đội ngũ cán bộ là công bộc của nhân dân, tuyệt đối không được quan liêu, hách dịch hay cậy quyền cậy thế.",
               ],
             },
@@ -145,7 +145,7 @@ export const PRESENTATION_CONTENT: PresentationData = {
           quote: {
             text: "Chúng ta là những người lao động làm chủ nước nhà. Muốn làm chủ được tốt, phải có năng lực làm chủ.",
             author: "Hồ Chí Minh",
-            context: "Bài nói chuyện tại các lớp bồi dưỡng (VOICE)",
+            context: "Bài nói chuyện tại các lớp bồi dưỡng",
           },
           points: [
             "Vị thế và Bổn phận của người chủ: Khái niệm 'dân làm chủ' gắn liền 'dân là chủ'. Nếu 'dân là chủ' xác định vị thế của nhân dân đối với quyền lực nhà nước, thì 'dân làm chủ' nhấn mạnh quyền lợi và nghĩa vụ của nhân dân với tư cách là người chủ.",
@@ -174,7 +174,7 @@ export const PRESENTATION_CONTENT: PresentationData = {
             text: "Các công việc của Chính phủ làm phải nhằm vào một mục đích duy nhất là mưu tự do hạnh phúc cho mọi người. Cho nên Chính phủ nhân dân bao giờ cũng phải đặt quyền lợi dân lên trên hết thảy. Việc gì có lợi cho dân thì làm. Việc gì có hại cho dân thì phải tránh.",
             author: "Chủ tịch Hồ Chí Minh",
             context:
-              "Thư gửi Ủy ban nhân dân các kỳ, tỉnh, huyện và làng, ngày 17/10/1945 (VOICE)",
+              "Thư gửi Ủy ban nhân dân các kỳ, tỉnh, huyện và làng, ngày 17/10/1945",
           },
           points: [
             "Mục đích duy nhất là phục vụ nhân dân: Nhà nước không có lợi ích nào khác ngoài lợi ích của nhân dân và của dân tộc.",
@@ -548,7 +548,7 @@ export const PRESENTATION_CONTENT: PresentationData = {
     subtitle: "Báo cáo thực tế về các công cụ AI (Antigravity, Copilot Chat, Gemini Notebook, ChatGPT) và quy trình đối chiếu giáo trình",
     lead: "Trong quá trình thực hiện bài thuyết trình, nhóm chúng tôi đã ứng dụng có chọn lọc các công cụ AI hàng đầu: dùng Antigravity để làm toàn bộ website, Copilot Chat để tạo ảnh minh họa các element, Gemini Notebook và ChatGPT để soạn thảo nội dung, sau đó nhóm trực tiếp đối chiếu chéo 100% với Giáo trình Tư tưởng Hồ Chí Minh chuẩn của Bộ GD&ĐT.",
     summaryBullets: [
-      "Làm Web Tương Tác với Antigravity: Ứng dụng Antigravity IDE & AI Agent để lập trình toàn bộ website bằng Next.js 16, TypeScript, Tailwind CSS, dựng sách 3D Three.js và visualizer âm thanh.",
+      "Làm Web Tương Tác với Antigravity: Ứng dụng Google Antigravity để xây dựng toàn bộ website thuyết trình: thiết kế giao diện dạng tạp chí lịch sử, mô phỏng cuốn sách 3D lật trang và tích hợp âm thanh giọng nói của Bác.",
       "Tạo Ảnh Minh Họa với Copilot Chat: Dùng Copilot Chat để tạo các hình ảnh minh họa cho các element, đồ họa nền trang trí và biểu trưng chuyên đề mang phong cách báo chí truyền thống.",
       "Soạn Thảo Nội Dung với Gemini Notebook & ChatGPT: Nạp tài liệu văn kiện vào Gemini Notebook để phân tích ngữ liệu, kết hợp ChatGPT tinh gọn dàn ý và sinh ngân hàng trắc nghiệm ôn tập.",
       "Đối Chiếu Chéo 100% Với Giáo Trình Chuẩn: Nhóm trực tiếp mở sách in Giáo trình Tư tưởng Hồ Chí Minh (Bộ GD&ĐT) để kiểm tra, đối soát từng luận điểm, trích dẫn, đảm bảo không có sai lệch.",

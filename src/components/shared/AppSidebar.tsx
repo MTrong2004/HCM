@@ -61,7 +61,8 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
     { id: "trong-sach-vung-manh", label: "4.2.3 Trong sạch" },
     { id: "xay-dung-dang", label: "4.3.1 Xây Đảng" },
     { id: "xay-dung-nha-nuoc", label: "4.3.2 Xây Nhà nước" },
-    { id: "ket-luan", label: "5.0 Ứng dụng AI" },
+    { id: "phong-chong-tham-nhung", label: "4.3.3 Chống tham nhũng" },
+    { id: "ket-luan", label: "Ứng dụng AI" },
   ];
 
   return (
@@ -84,12 +85,12 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
         </button>
       )}
 
-      {/* 1. KHỐI SIDEBAR 152px THEO ĐÚNG HÌNH MẪU CỦA NGƯỜI DÙNG */}
+      {/* 1. KHỐI SIDEBAR THEO ĐÚNG HÌNH MẪU CỦA NGƯỜI DÙNG */}
       <aside
         id="hcm-heritage-sidebar"
         data-testid="academic-app-sidebar"
         aria-label="Thanh điều hướng di sản"
-        className={`fixed top-0 bottom-0 left-0 z-40 w-[152px] select-none transition-transform duration-300 ease-out flex flex-col justify-between overflow-hidden bg-transparent rounded-tr-3xl rounded-br-3xl shadow-[5px_0_30px_rgba(0,0,0,0.22)] border-r border-t border-[#d4af37]/35 ${
+        className={`fixed top-0 bottom-0 left-0 z-40 w-[176px] select-none transition-transform duration-300 ease-out flex flex-col overflow-hidden bg-transparent rounded-tr-3xl rounded-br-3xl shadow-[5px_0_30px_rgba(0,0,0,0.22)] border-r border-t border-[#d4af37]/35 ${
           isTOCDrawerOpen ? "translate-x-0" : "-translate-x-full"
         } ${className}`}
       >
@@ -110,7 +111,7 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
         <div
           onClick={() => handleNavigate("hero")}
           aria-label="Về đầu trang: Tư tưởng Hồ Chí Minh"
-          className="relative w-full h-[150px] cursor-pointer flex-shrink-0 group overflow-hidden bg-[#6b100e] rounded-tr-3xl"
+          className="relative w-full aspect-[304/372] cursor-pointer flex-shrink-0 group overflow-hidden bg-[#6b100e] rounded-tr-3xl"
         >
           <img
             src={getAssetPath("/images/sidebar-top-2x.png")}
@@ -119,13 +120,13 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
           />
         </div>
 
-        {/* 2. MENU ĐIỀU HƯỚNG CHÍNH & MỤC LỤC BÀI HỌC (TINH GỌN THÔNG THOÁNG) */}
-        <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar flex flex-col px-1.5 pt-1.5 pb-1 space-y-1 bg-[#f9f5ec]">
+        {/* 2. MENU ĐIỀU HƯỚNG CHÍNH & MỤC LỤC BÀI HỌC (TINH GỌN THÔNG THOÁNG, KẾT THÚC SÁT CH.5) */}
+        <div className="flex-shrink-0 min-h-0 overflow-y-auto no-scrollbar flex flex-col px-1.5 pt-1 pb-1.5 space-y-1 bg-[#f9f5ec]">
           {/* Mục: Trang chủ */}
           <button
             type="button"
             onClick={() => handleNavigate("hero")}
-            className={`relative w-full h-[32px] px-2 rounded-lg flex items-center gap-2 text-left transition-all cursor-pointer ${
+            className={`relative w-full h-[30px] px-2 rounded-lg flex items-center gap-2 text-left transition-all cursor-pointer ${
               isHomeActive
                 ? "bg-[#eddcc6] text-[#5c1313] font-bold shadow-2xs"
                 : "text-[#4a3225] hover:bg-[#ede5d5] hover:text-[#7a1818] font-medium"
@@ -145,7 +146,7 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
               handleNavigate("dan-chu");
               setIsChapter4Expanded(true);
             }}
-            className={`relative w-full h-[32px] px-2 rounded-lg flex items-center gap-2 text-left transition-all cursor-pointer ${
+            className={`relative w-full h-[30px] px-2 rounded-lg flex items-center gap-2 text-left transition-all cursor-pointer ${
               isChapterActive
                 ? "bg-[#eddcc6] text-[#5c1313] font-bold shadow-2xs"
                 : "text-[#4a3225] hover:bg-[#ede5d5] hover:text-[#7a1818] font-medium"
@@ -175,15 +176,15 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
           />
 
           {/* DẢI TIÊU ĐỀ: MỤC LỤC */}
-          <div className="pt-1.5 pb-0.5 px-2 flex items-center gap-2">
-            <span className="font-serif font-bold text-[9px] uppercase tracking-wider text-[#6a1515]">
+          <div className="pt-1 pb-0.5 px-2 flex items-center gap-2">
+            <span className="font-mono font-bold text-[10.5px] uppercase tracking-wider text-[#6a1515]">
               MỤC LỤC
             </span>
             <div className="flex-1 h-[1px] bg-[#d5c3a6]" />
           </div>
 
           {/* STEPPER CÁC CHƯƠNG THEO MOCKUP */}
-          <div className="relative pl-3.5 pr-1 py-0.5 space-y-1.5">
+          <div className="relative pl-3.5 pr-1 py-0.5 space-y-1">
             {/* Đường gióng dọc nối các nút tròn */}
             <div className="absolute left-[20px] top-1.5 bottom-2 w-[1.5px] bg-[#c5a059]/70" />
 
@@ -196,7 +197,7 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
               <div className="w-3 h-3 rounded-full bg-[#c5a059] text-white flex items-center justify-center flex-shrink-0 z-10 shadow-2xs group-hover:scale-110 transition-transform">
                 <Check className="w-2 h-2 stroke-[3]" />
               </div>
-              <span className="text-[10px] font-medium text-[#6b5847] group-hover:text-[#7a1818]">Ch. 1</span>
+              <span className="text-[11px] font-semibold text-[#4a3b2c] group-hover:text-[#7a1818]">Ch. 1</span>
             </div>
 
             {/* Ch. 2: Hoàn thành (Bấm để xem đề cương) */}
@@ -208,7 +209,7 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
               <div className="w-3 h-3 rounded-full bg-[#c5a059] text-white flex items-center justify-center flex-shrink-0 z-10 shadow-2xs group-hover:scale-110 transition-transform">
                 <Check className="w-2 h-2 stroke-[3]" />
               </div>
-              <span className="text-[10px] font-medium text-[#6b5847] group-hover:text-[#7a1818]">Ch. 2</span>
+              <span className="text-[11px] font-semibold text-[#4a3b2c] group-hover:text-[#7a1818]">Ch. 2</span>
             </div>
 
             {/* Ch. 3: Hoàn thành (Bấm để xem đề cương) */}
@@ -220,11 +221,11 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
               <div className="w-3 h-3 rounded-full bg-[#c5a059] text-white flex items-center justify-center flex-shrink-0 z-10 shadow-2xs group-hover:scale-110 transition-transform">
                 <Check className="w-2 h-2 stroke-[3]" />
               </div>
-              <span className="text-[10px] font-medium text-[#6b5847] group-hover:text-[#7a1818]">Ch. 3</span>
+              <span className="text-[11px] font-semibold text-[#4a3b2c] group-hover:text-[#7a1818]">Ch. 3</span>
             </div>
 
             {/* Ch. 4: ĐANG HỌC (CHUYÊN ĐỀ SỐ HÓA TRỌNG TÂM) */}
-            <div className="space-y-1">
+            <div className="space-y-0.5">
               <div
                 onClick={() => {
                   handleNavigate("dan-chu");
@@ -234,14 +235,14 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
                 aria-label="Chương 4: Nhà nước của dân, do dân, vì dân"
               >
                 <div className="w-3.5 h-3.5 rounded-full bg-[#7a1818] ring-2 ring-[#7a1818]/25 flex items-center justify-center flex-shrink-0 z-10 shadow-2xs group-hover:scale-110 transition-transform animate-pulse" />
-                <span className="text-[10px] font-bold text-[#7a1818] group-hover:underline whitespace-nowrap flex-shrink-0">
+                <span className="text-[11px] font-bold text-[#7a1818] group-hover:underline whitespace-nowrap flex-shrink-0">
                   Ch. 4
                 </span>
-                <span className="text-[7.5px] px-1 py-0.5 rounded bg-[#7a1818]/12 text-[#7a1818] font-bold font-mono whitespace-nowrap flex-shrink-0 leading-none">
+                <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#7a1818]/15 text-[#7a1818] font-bold font-mono whitespace-nowrap flex-shrink-0 leading-none">
                   Đang học
                 </span>
                 <ChevronDown
-                  className={`w-3 h-3 text-[#7a1818] ml-auto flex-shrink-0 transition-transform ${
+                  className={`w-3.5 h-3.5 text-[#7a1818] ml-auto flex-shrink-0 transition-transform ${
                     isChapter4Expanded ? "rotate-0" : "-rotate-90"
                   }`}
                 />
@@ -249,7 +250,7 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
 
               {/* CÂY TIỂU MỤC CHI TIẾT CỦA CHƯƠNG 4 (ĐIỀU HƯỚNG THẬT) */}
               {isChapter4Expanded && (
-                <div className="pl-4 pr-0.5 py-0.5 space-y-1 border-l border-[#d4af37]/40 ml-[7px]">
+                <div className="pl-3.5 pr-0.5 py-0.5 space-y-0.5 border-l border-[#d4af37]/40 ml-[7px]">
                   {chapter4Subsections.map((sub) => {
                     const isSubActive = activeSection === sub.id;
                     return (
@@ -259,19 +260,19 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
                           e.stopPropagation();
                           handleNavigate(sub.id);
                         }}
-                        className={`flex items-center gap-1.5 py-0.5 px-1 rounded cursor-pointer transition-all group/sub ${
+                        className={`flex items-center gap-1.5 py-0.5 px-1.5 rounded cursor-pointer transition-all group/sub ${
                           isSubActive
-                            ? "bg-[#eddcc6] text-[#7a1818] font-bold"
-                            : "text-[#6b5847] hover:text-[#7a1818] hover:bg-[#ede5d6]"
+                            ? "bg-[#eddcc6] text-[#7a1818] font-bold shadow-2xs"
+                            : "text-[#4a3b2c] hover:text-[#7a1818] hover:bg-[#ede5d6]"
                         }`}
                         aria-label={sub.label}
                       >
                         <span
                           className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${
-                            isSubActive ? "bg-[#7a1818]" : "bg-[#c5a059]/60"
+                            isSubActive ? "bg-[#7a1818]" : "bg-[#c5a059]/80"
                           }`}
                         />
-                        <span className="text-[9.5px] truncate">{sub.label}</span>
+                        <span className="text-[11px] font-medium truncate">{sub.label}</span>
                       </div>
                     );
                   })}
@@ -285,14 +286,14 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
               className="relative flex items-center gap-2 cursor-pointer group"
               aria-label="Chương 5: Tư tưởng Hồ Chí Minh về đại đoàn kết dân tộc"
             >
-              <div className="w-3 h-3 rounded-full border-2 border-[#b5a593] bg-[#f9f5ec] flex items-center justify-center flex-shrink-0 z-10 group-hover:border-[#7a1818] transition-colors" />
-              <span className="text-[10px] font-medium text-[#7a6b58] group-hover:text-[#7a1818]">Ch. 5</span>
+              <div className="w-3 h-3 rounded-full border-2 border-[#8c7e6c] bg-[#f9f5ec] flex items-center justify-center flex-shrink-0 z-10 group-hover:border-[#7a1818] transition-colors" />
+              <span className="text-[11px] font-semibold text-[#524638] group-hover:text-[#7a1818]">Ch. 5</span>
             </div>
           </div>
         </div>
 
-        {/* 3. HOA SEN NGHỆ THUẬT & DẢI LỤA ĐỎ Ở ĐÁY */}
-        <div className="relative w-full h-[120px] pointer-events-none overflow-hidden mt-auto flex-shrink-0 rounded-br-3xl bg-[#f9f5ec]">
+        {/* 3. HOA SEN NGHỆ THUẬT & DẢI LỤA ĐỎ Ở ĐÁY: KÉO DÀI TỰ ĐỘNG LẤP ĐẦY DƯỚI CH.5 XUỐNG TẬN ĐÁY */}
+        <div className="relative w-full flex-1 min-h-[80px] pointer-events-none overflow-hidden rounded-br-3xl bg-[#6b100e]">
           <img
             src={getAssetPath("/images/sidebar-bottom-2x.png")}
             alt="Hoa sen và trống đồng"

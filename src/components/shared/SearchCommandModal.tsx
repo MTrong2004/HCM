@@ -73,12 +73,6 @@ const SEARCH_ITEMS: SearchItem[] = [
     desc: "Phân công, phối hợp 3 nhánh quyền lực: Lập pháp, Hành pháp, Tư pháp.",
   },
   {
-    id: "phong-chong-tham-nhung",
-    category: "Chương mục",
-    title: "4.3.3 Phòng, chống tham nhũng, lãng phí, quan liêu",
-    desc: "Nhận diện 3 căn bệnh giặc nội xâm và hệ giải pháp 4 trụ cột: Dân - Luật - Phạt - Gương.",
-  },
-  {
     id: "ket-luan",
     category: "Chuyên đề",
     title: "5.0 Ứng dụng AI Trong Bài Thuyết Trình Của Nhóm",
