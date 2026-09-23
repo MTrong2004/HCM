@@ -100,13 +100,13 @@ export const PRESENTATION_CONTENT: PresentationData = {
           ],
         },
         {
-          title: "b. 1. Nhà nước của nhân dân",
+          title: "b. Nhà nước của nhân dân",
           description:
             "Nhà nước của nhân dân là nhà nước mà tất cả mọi quyền lực trong nhà nước và trong xã hội đều thuộc về nhân dân. Nguyên lý 'dân là chủ' khẳng định vị thế tối cao của nhân dân trong xã hội và Nhà nước mới.",
           quote: {
             text: "Trong Nhà nước Việt Nam Dân chủ Cộng hòa của chúng ta, tất cả mọi quyền lực đều là của nhân dân.",
             author: "Hồ Chí Minh",
-            context: "Nguyên lý hiến định khẳng định vị thế tối cao của nhân dân",
+            context: "Lời khẳng định kinh điển (VOICE)",
           },
           points: [
             "Hai hình thức thực thi quyền lực dân chủ: Dân chủ trực tiếp (Nhân dân trực tiếp quyết định mọi vấn đề liên quan đến vận mệnh của quốc gia, dân tộc và quyền lợi của dân chúng) và Dân chủ gián tiếp (Nhân dân thực thi quyền lực của mình thông qua các đại diện mà họ lựa chọn, bầu ra và những thiết chế quyền lực mà họ lập nên).",
@@ -120,56 +120,66 @@ export const PRESENTATION_CONTENT: PresentationData = {
               content:
                 "Theo quan điểm của Hồ Chí Minh, trong hình thức dân chủ đại diện, mối quan hệ giữa nhân dân và đội ngũ cán bộ công quyền được xác lập rành mạch:",
               bullets: [
-                "Theo Hồ Chí Minh: 'Dân làm chủ thì Chủ tịch, Bộ trưởng, thứ trưởng, uỷ viên này uỷ viên khác là làm gì? Làm đầy tớ. Làm đầy tớ cho nhân dân, chứ không phải là làm quan cách mạng'.",
-                "Người căn dặn: 'Nước ta là nước dân chủ, địa vị cao nhất là dân, vì dân là chủ. Trong bộ máy cách mạng, từ người quét nhà, nấu ăn cho đến Chủ tịch một nước đều là phân công làm đầy tớ cho dân'.",
-                "Chủ tịch Hồ Chí Minh khẳng định: 'Bác mong đồng bào giúp đỡ, đôn đốc, kiểm soát và phê bình để làm trọn nhiệm vụ của mình là người đầy tớ trung thành tận tụy của nhân dân trong Nhà nước đó, nhân dân có quyền bãi miễn đại biểu Quốc hội và đại biểu Hội đồng nhân dân nếu những đại biểu ấy tỏ ra không xứng đáng với sự tín nhiệm của nhân dân, thậm chí nếu Chính phủ làm hại dân thì dân có quyền đuổi Chính phủ'.",
+                "Theo Hồ Chí Minh: 'Dân làm chủ thì Chủ tịch, Bộ trưởng, thứ trưởng, uỷ viên này uỷ viên khác là làm gì? Làm đầy tớ. Làm đầy tớ cho nhân dân, chứ không phải là làm quan cách mạng' (VOICE).",
+                "Người căn dặn: 'Nước ta là nước dân chủ, địa vị cao nhất là dân, vì dân là chủ. Trong bộ máy cách mạng, từ người quét nhà, nấu ăn cho đến Chủ tịch một nước đều là phân công làm đầy tớ cho dân' (VOICE).",
+                "Chủ tịch Hồ Chí Minh khẳng định: 'Bác mong đồng bào giúp đỡ, đôn đốc, kiểm soát và phê bình để làm trọn nhiệm vụ của mình là người đầy tớ trung thành tận tụy của nhân dân trong Nhà nước đó, nhân dân có quyền bãi miễn đại biểu Quốc hội và đại biểu Hội đồng nhân dân nếu những đại biểu ấy tỏ ra không xứng đáng với sự tín nhiệm của nhân dân, thậm chí nếu Chính phủ làm hại dân thì dân có quyền đuổi Chính phủ' (VOICE).",
                 "Đội ngũ cán bộ là công bộc của nhân dân, tuyệt đối không được quan liêu, hách dịch hay cậy quyền cậy thế.",
               ],
             },
           ],
         },
         {
-          title: "2. Nhà nước do nhân dân",
+          title: "c. Nhà nước do nhân dân",
           description:
-            "Nhà nước do nhân dân trước hết là nhà nước do nhân dân xây dựng, lập nên sau thắng lợi của cách mạng, dựa trên nền tảng pháp lý dân chủ và thông qua các quyền bầu cử, phúc quyết. Nhân dân tham gia vào các công việc của Nhà nước và có quyền kiểm tra, giám sát hoạt động của bộ máy nhà nước.",
+            "Nhà nước do nhân dân trước hết là nhà nước do chính nhân dân lập nên thông qua các trình tự, quyền lực dân chủ (bầu cử, phúc quyết,...) sau khi giành thắng lợi dưới sự lãnh đạo của Đảng Cộng sản Việt Nam.",
+          quote: {
+            text: "Chúng ta là những người lao động làm chủ nước nhà. Muốn làm chủ được tốt, phải có năng lực làm chủ.",
+            author: "Hồ Chí Minh",
+            context: "Bài nói chuyện tại các lớp bồi dưỡng (VOICE)",
+          },
+          points: [
+            "Vị thế và Bổn phận của người chủ: Khái niệm 'dân làm chủ' gắn liền 'dân là chủ'. Nếu 'dân là chủ' xác định vị thế của nhân dân đối với quyền lực nhà nước, thì 'dân làm chủ' nhấn mạnh quyền lợi và nghĩa vụ của nhân dân với tư cách là người chủ.",
+            "Trách nhiệm của Nhà nước: Nhà nước phải tạo mọi điều kiện để nhân dân thực hiện đầy đủ các quyền và nghĩa vụ làm chủ. Cán bộ, đảng viên có trách nhiệm tôn trọng quyền làm chủ của nhân dân.",
+            "Nâng cao năng lực làm chủ: Nhà nước do nhân dân cần coi trọng việc giáo dục nhân dân, đồng thời nhân dân cũng phải tự giác phấn đấu để có đủ năng lực thực hiện quyền dân chủ của mình.",
+          ],
           subSections: [
             {
-              title: "Mối quan hệ hữu cơ giữa 'Là chủ' và 'Làm chủ'",
+              title: "Nghĩa vụ công dân của người làm chủ",
               content:
-                "Chủ tịch Hồ Chí Minh khẳng định: Nhân dân không chỉ ở vị thế 'là chủ' mà còn phải tích cực 'làm chủ'. Quyền làm chủ luôn gắn với nghĩa vụ công dân:",
+                "Quyền làm chủ luôn gắn liền hữu cơ với nghĩa vụ và trách nhiệm:",
               bullets: [
                 "Tuân thủ Hiến pháp và pháp luật của Nhà nước.",
                 "Chấp hành kỷ luật lao động, giữ gìn trật tự trị an chung.",
-                "Đóng góp đúng kỳ, đúng số để xây dựng lợi ích chung.",
+                "Đóng góp công sức, trí tuệ để xây dựng lợi ích chung của đất nước.",
                 "Hăng hái tham gia công việc chung, bảo vệ tài sản công cộng và bảo vệ Tổ quốc.",
               ],
-            },
-            {
-              title: "Trách nhiệm của Nhà nước đối với năng lực làm chủ của nhân dân",
-              content:
-                "Nhà nước phải tạo điều kiện để nhân dân thực hiện đầy đủ quyền làm chủ; đồng thời coi trọng giáo dục nhân dân, nâng cao dân trí và năng lực làm chủ của nhân dân.",
             },
           ],
         },
         {
-          title: "3. Nhà nước vì nhân dân",
+          title: "d. Nhà nước vì nhân dân",
           description:
-            "Mục tiêu cao nhất của Nhà nước là phục vụ nhân dân. Nhà nước vì nhân dân là nhà nước phục vụ lợi ích và nguyện vọng chính đáng của nhân dân, không có đặc quyền, đặc lợi, thực sự trong sạch, cần, kiệm, liêm, chính. Mọi hoạt động của Nhà nước phải hướng tới tự do và hạnh phúc của nhân dân.",
+            "Bản chất của Nhà nước vì dân: Nhà nước được thành lập với mục đích duy nhất là phục vụ lợi ích và nguyện vọng của nhân dân. Nhà nước phải thực sự trong sạch, liêm khiết, hoạt động không có đặc quyền, đặc lợi.",
           quote: {
-            text: "Việc gì có lợi cho dân thì ta phải hết sức làm. Việc gì có hại cho dân thì ta phải hết sức tránh.",
+            text: "Các công việc của Chính phủ làm phải nhằm vào một mục đích duy nhất là mưu tự do hạnh phúc cho mọi người. Cho nên Chính phủ nhân dân bao giờ cũng phải đặt quyền lợi dân lên trên hết thảy. Việc gì có lợi cho dân thì làm. Việc gì có hại cho dân thì phải tránh.",
             author: "Chủ tịch Hồ Chí Minh",
             context:
-              "Thư gửi Ủy ban nhân dân các kỳ, tỉnh, huyện và làng (Báo Cứu quốc số 69, ngày 17/10/1945)",
+              "Thư gửi Ủy ban nhân dân các kỳ, tỉnh, huyện và làng, ngày 17/10/1945 (VOICE)",
           },
+          points: [
+            "Mục đích duy nhất là phục vụ nhân dân: Nhà nước không có lợi ích nào khác ngoài lợi ích của nhân dân và của dân tộc.",
+            "Xóa bỏ đặc quyền đặc lợi: Bộ máy nhà nước thực sự trong sạch, gương mẫu thực hành Cần, Kiệm, Liêm, Chính, Chí công vô tư.",
+            "Thước đo lòng dân: Thước đo của Nhà nước vì dân là được lòng dân, được dân tin, dân mến, dân yêu. Cán bộ phải vừa có đức, vừa có tài, lấy đức làm gốc.",
+          ],
           subSections: [
             {
               title: "Thước đo lòng dân và phẩm chất người cán bộ",
               content:
-                "Thước đo của Nhà nước vì dân là được lòng dân, được dân tin, dân mến, dân yêu. Cán bộ phải gần dân, hiểu dân, phục vụ dân:",
+                "Cán bộ nhà nước vừa là người đầy tớ trung thành, tận tụy phục vụ nhân dân, vừa là người lãnh đạo có trí tuệ, sáng suốt, gần gũi nhân dân và biết trọng dụng hiền tài.",
               bullets: [
-                "Bộ máy nhà nước không có đặc quyền, đặc lợi, thực sự trong sạch, gương mẫu thực hành Cần, Kiệm, Liêm, Chính, Chí công vô tư.",
-                "Cán bộ nhà nước vừa là người đầy tớ trung thành, tận tụy phục vụ nhân dân, vừa là người lãnh đạo có trí tuệ, sáng suốt, nhìn xa trông rộng, gần gũi nhân dân và biết trọng dụng hiền tài.",
-                "Người cán bộ phải có đủ cả đức và tài: lấy đức làm gốc và trau dồi tài năng để hoàn thành tốt trọng trách phụng sự nhân dân.",
+                "Bộ máy nhà nước không có đặc quyền, đặc lợi, thực sự trong sạch, cần kiệm liêm chính.",
+                "Việc gì có lợi cho dân ta phải hết sức làm, việc gì có hại cho dân ta phải hết sức tránh.",
+                "Lấy hạnh phúc, ấm no của nhân dân làm mục tiêu cao nhất của mọi chính sách, pháp luật.",
               ],
             },
           ],

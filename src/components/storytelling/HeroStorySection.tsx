@@ -89,7 +89,7 @@ export default function HeroStorySection() {
                 </div>
 
                 <div className="divide-y divide-[#dfd3bf] text-xs">
-                  <div className="py-2.5">
+                  <EditorialReveal delay={80} className="py-2.5">
                     <span className="font-bold text-[#7a1818] block mb-0.5">
                       I. Quyền lực thuộc về Nhân dân
                     </span>
@@ -97,9 +97,9 @@ export default function HeroStorySection() {
                       Xác lập quyền bầu cử phổ thông đầu phiếu; quyền làm chủ tối
                       cao thuộc về toàn thể nhân dân Việt Nam.
                     </p>
-                  </div>
+                  </EditorialReveal>
 
-                  <div className="py-2.5">
+                  <EditorialReveal delay={160} className="py-2.5">
                     <span className="font-bold text-[#7a1818] block mb-0.5">
                       II. Pháp quyền & Độc lập Tư pháp
                     </span>
@@ -107,9 +107,9 @@ export default function HeroStorySection() {
                       Nhà nước vận hành trên nền tảng Hiến pháp; tòa án xét xử
                       độc lập, chỉ tuân theo pháp luật.
                     </p>
-                  </div>
+                  </EditorialReveal>
 
-                  <div className="py-2.5">
+                  <EditorialReveal delay={240} className="py-2.5">
                     <span className="font-bold text-[#7a1818] block mb-0.5">
                       III. Chính phủ Công bộc Liêm chính
                     </span>
@@ -117,14 +117,47 @@ export default function HeroStorySection() {
                       Cán bộ là người đầy tớ trung thành của nhân dân; kiên quyết
                       chống giặc nội xâm, tham ô, lãng phí.
                     </p>
-                  </div>
+                  </EditorialReveal>
                 </div>
               </div>
 
-              <div className="pt-2 border-t border-[#dfd3bf] text-[11px] font-mono text-accent-dark">
+              <EditorialReveal delay={240} className="pt-2 border-t border-[#dfd3bf] text-[11px] font-mono text-accent-dark">
                 BẢO VẬT QUỐC GIA • LƯU TRỮ QUỐC GIA III
-              </div>
+              </EditorialReveal>
             </div>
+          </EditorialReveal>
+        </div>
+
+        {/* Khối thẻ tóm lược 3 mốc lịch sử cốt lõi */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+          <EditorialReveal delay={80} className="p-4 bg-white/80 border border-[#dfd3c0] rounded-lg shadow-xs space-y-1.5">
+            <span className="text-[10px] font-mono font-bold text-[#7a1818] uppercase tracking-wider block">
+              MỐC 01 • NĂM 1919
+            </span>
+            <h4 className="font-serif font-bold text-xs text-ink">Yêu sách Vécxây</h4>
+            <p className="text-[11px] text-ink-muted leading-relaxed">
+              Yêu sách của nhân dân An Nam đòi cải cách pháp lý và hủy bỏ tòa án đặc biệt.
+            </p>
+          </EditorialReveal>
+
+          <EditorialReveal delay={160} className="p-4 bg-white/80 border border-[#dfd3c0] rounded-lg shadow-xs space-y-1.5">
+            <span className="text-[10px] font-mono font-bold text-[#7a1818] uppercase tracking-wider block">
+              MỐC 02 • NĂM 1945
+            </span>
+            <h4 className="font-serif font-bold text-xs text-ink">Tuyên ngôn Độc lập</h4>
+            <p className="text-[11px] text-ink-muted leading-relaxed">
+              Khai sinh nước Việt Nam Dân chủ Cộng hòa, thiết lập chính thể dân chủ đầu tiên.
+            </p>
+          </EditorialReveal>
+
+          <EditorialReveal delay={240} className="p-4 bg-white/80 border border-[#dfd3c0] rounded-lg shadow-xs space-y-1.5">
+            <span className="text-[10px] font-mono font-bold text-[#7a1818] uppercase tracking-wider block">
+              MỐC 03 • NĂM 1946
+            </span>
+            <h4 className="font-serif font-bold text-xs text-ink">Hiến pháp Lập quốc</h4>
+            <p className="text-[11px] text-ink-muted leading-relaxed">
+              Bản hiến pháp đầu tiên khẳng định chủ quyền tối cao thuộc về toàn thể nhân dân.
+            </p>
           </EditorialReveal>
         </div>
       </div>

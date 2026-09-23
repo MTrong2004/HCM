@@ -6,7 +6,7 @@ import { useSmoothScroll } from "./SmoothScrollProvider";
 import { playSubtleClick } from "@/lib/sound-effects";
 
 export default function ReadingProgress() {
-  const { scrollProgress, scrollTo } = useSmoothScroll();
+  const { scrollTo } = useSmoothScroll();
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -27,20 +27,6 @@ export default function ReadingProgress() {
 
   return (
     <>
-      {/* Top Reading Progress Bar (Fixed below header or top border) */}
-      <div
-        className="fixed top-0 left-0 right-0 h-1 z-50 bg-[#e2d8c6]"
-        role="progressbar"
-        aria-valuenow={Math.round(scrollProgress)}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-label="Tiến độ đọc toàn văn tác phẩm"
-      >
-        <div
-          className="h-full bg-[#7a1414] transition-[width] duration-150 ease-out"
-          style={{ width: `${scrollProgress}%` }}
-        />
-      </div>
 
       {/* Floating Scroll-to-Top Button (Strictly hidden on mobile below sm to avoid blocking text) */}
       {showScrollTop && (

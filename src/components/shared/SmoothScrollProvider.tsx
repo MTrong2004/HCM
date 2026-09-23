@@ -10,7 +10,13 @@ import React, {
 } from "react";
 import Lenis from "lenis";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
-import { CANONICAL_SECTION_IDS } from "@/content/canonical-sections";
+import {
+  CANONICAL_SECTIONS,
+  CANONICAL_SECTION_IDS,
+} from "@/content/canonical-sections";
+import { playSubtleClick } from "@/lib/sound-effects";
+
+export type NotebookTabType = "notes" | "outline" | "quotes" | "summary";
 
 interface ScrollContextType {
   activeSection: string;
@@ -24,16 +30,43 @@ interface ScrollContextType {
   isTOCDrawerOpen: boolean;
   setIsTOCDrawerOpen: (open: boolean) => void;
   toggleTOCDrawer: () => void;
+  isStudyNotebookOpen: boolean;
+  setIsStudyNotebookOpen: (open: boolean) => void;
+  toggleStudyNotebook: () => void;
+  notebookTab: NotebookTabType;
+  setNotebookTab: (tab: NotebookTabType) => void;
+  openNotebookWithTab: (tab: NotebookTabType) => void;
+
+  // Điều hướng tuần tự tiểu mục (Subtabs) & Section
+  activeSubtabMap: Record<string, string>;
+  setActiveSubtab: (sectionId: string, subtabId: string) => void;
+  subtabDirection: 1 | -1;
+  setSubtabDirection: (dir: 1 | -1) => void;
+  stepNext: () => void;
+  stepPrev: () => void;
 }
 
 const ScrollContext = createContext<ScrollContextType>({
-  activeSection: "hero",
+  activeSection: "dan-chu",
   setActiveSection: () => {},
   scrollProgress: 0,
   scrollTo: () => {},
   isTOCDrawerOpen: false,
   setIsTOCDrawerOpen: () => {},
   toggleTOCDrawer: () => {},
+  isStudyNotebookOpen: false,
+  setIsStudyNotebookOpen: () => {},
+  toggleStudyNotebook: () => {},
+  notebookTab: "notes",
+  setNotebookTab: () => {},
+  openNotebookWithTab: () => {},
+
+  activeSubtabMap: {},
+  setActiveSubtab: () => {},
+  subtabDirection: 1,
+  setSubtabDirection: () => {},
+  stepNext: () => {},
+  stepPrev: () => {},
 });
 
 export function useSmoothScroll() {
@@ -46,10 +79,42 @@ export default function SmoothScrollProvider({
   children: React.ReactNode;
 }) {
   const lenisRef = useRef<Lenis | null>(null);
-  const [activeSection, setActiveSection] = useState<string>("phap-quyen");
+
+  // Khởi tạo activeSection từ URL hash nếu hợp lệ, mặc định là dan-chu
+  const [activeSection, setActiveSection] = useState<string>(() => {
+    if (typeof window !== "undefined") {
+      const rawHash = window.location.hash.replace(/^#/, "");
+      if (rawHash && (CANONICAL_SECTION_IDS as readonly string[]).includes(rawHash)) {
+        return rawHash;
+      }
+    }
+    return "dan-chu";
+  });
+
   const [scrollProgress, setScrollProgress] = useState<number>(0);
   const [isTOCDrawerOpen, setIsTOCDrawerOpen] = useState<boolean>(false);
+  const [isStudyNotebookOpen, setIsStudyNotebookOpen] = useState<boolean>(false);
+  const [notebookTab, setNotebookTab] = useState<NotebookTabType>("notes");
+
+  // Bản đồ lưu tab đang chọn cho từng section
+  const [activeSubtabMap, setActiveSubtabMap] = useState<Record<string, string>>({
+    "dan-chu": "ban-chat-giai-cap",
+    "phap-quyen": "hop-hien-hop-phap",
+    "trong-sach-vung-manh": "kiem-soat-quyen-luc",
+    "xay-dung-dang": "phuong-dien-duong-loi",
+    "xay-dung-nha-nuoc": "phap-luat-quyen-luc",
+    "phong-chong-tham-nhung": "nhan-dien-van-de",
+  });
+  const [subtabDirection, setSubtabDirection] = useState<1 | -1>(1);
+
   const isNavigatingRef = useRef<boolean>(false);
+
+  const setActiveSubtab = useCallback((sectionId: string, subtabId: string) => {
+    setActiveSubtabMap((prev) => {
+      if (prev[sectionId] === subtabId) return prev;
+      return { ...prev, [sectionId]: subtabId };
+    });
+  }, []);
 
   // Đồng bộ URL hash khi client hydrate xong và khi người dùng back/forward browser
   useEffect(() => {
@@ -205,29 +270,139 @@ export default function SmoothScrollProvider({
     setIsTOCDrawerOpen((prev) => !prev);
   }, []);
 
-  // Body scroll lock when TOC drawer is open
+  const toggleStudyNotebook = useCallback(() => {
+    setIsStudyNotebookOpen((prev) => !prev);
+  }, []);
+
+  const openNotebookWithTab = useCallback((tab: NotebookTabType) => {
+    setNotebookTab(tab);
+    setIsStudyNotebookOpen(true);
+  }, []);
+
+  // Body scroll lock when TOC drawer or Study Notebook is open
   useEffect(() => {
     if (typeof document === "undefined") return;
-    if (isTOCDrawerOpen) {
+    if (isTOCDrawerOpen || isStudyNotebookOpen) {
       const originalOverflow = document.body.style.overflow;
       document.body.style.overflow = "hidden";
       return () => {
         document.body.style.overflow = originalOverflow;
       };
     }
-  }, [isTOCDrawerOpen]);
+  }, [isTOCDrawerOpen, isStudyNotebookOpen]);
 
-  // Escape key listener to close drawer
+  // Escape key listener to close drawer or notebook
   useEffect(() => {
     if (typeof window === "undefined") return;
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isTOCDrawerOpen) {
-        setIsTOCDrawerOpen(false);
+      if (e.key === "Escape") {
+        if (isTOCDrawerOpen) setIsTOCDrawerOpen(false);
+        if (isStudyNotebookOpen) setIsStudyNotebookOpen(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isTOCDrawerOpen]);
+  }, [isTOCDrawerOpen, isStudyNotebookOpen]);
+
+  // -------------------------------------------------------------
+  // ĐIỀU HƯỚNG TUẦN TỰ (TAB-FIRST PROGRESSION)
+  // -------------------------------------------------------------
+  const stepNext = useCallback(() => {
+    playSubtleClick();
+    const secIdx = CANONICAL_SECTIONS.findIndex((s) => s.id === activeSection);
+    if (secIdx === -1) return;
+    const currentSec = CANONICAL_SECTIONS[secIdx];
+    const subtabs = currentSec.subtabs;
+
+    if (subtabs && subtabs.length > 0) {
+      const currentTabId = activeSubtabMap[activeSection] || subtabs[0].id;
+      const tabIdx = subtabs.findIndex((t) => t.id === currentTabId);
+      if (tabIdx >= 0 && tabIdx < subtabs.length - 1) {
+        // Chuyển sang tab kế tiếp trong cùng section
+        const nextTab = subtabs[tabIdx + 1];
+        setSubtabDirection(1);
+        setActiveSubtabMap((prev) => ({ ...prev, [activeSection]: nextTab.id }));
+        return;
+      }
+    }
+
+    // Đã ở tab cuối cùng (hoặc section không có subtabs) -> chuyển tiếp sang section tiếp theo
+    if (secIdx < CANONICAL_SECTIONS.length - 1) {
+      const nextSec = CANONICAL_SECTIONS[secIdx + 1];
+      setSubtabDirection(1);
+      scrollTo(nextSec.id, -56, true);
+      if (nextSec.subtabs && nextSec.subtabs.length > 0) {
+        setActiveSubtabMap((prev) => ({
+          ...prev,
+          [nextSec.id]: nextSec.subtabs![0].id,
+        }));
+      }
+    }
+  }, [activeSection, activeSubtabMap, scrollTo]);
+
+  const stepPrev = useCallback(() => {
+    playSubtleClick();
+    const secIdx = CANONICAL_SECTIONS.findIndex((s) => s.id === activeSection);
+    if (secIdx === -1) return;
+    const currentSec = CANONICAL_SECTIONS[secIdx];
+    const subtabs = currentSec.subtabs;
+
+    if (subtabs && subtabs.length > 0) {
+      const currentTabId = activeSubtabMap[activeSection] || subtabs[0].id;
+      const tabIdx = subtabs.findIndex((t) => t.id === currentTabId);
+      if (tabIdx > 0) {
+        // Lùi về tab trước trong cùng section
+        const prevTab = subtabs[tabIdx - 1];
+        setSubtabDirection(-1);
+        setActiveSubtabMap((prev) => ({ ...prev, [activeSection]: prevTab.id }));
+        return;
+      }
+    }
+
+    // Đã ở tab đầu tiên -> lùi về section trước
+    if (secIdx > 0) {
+      const prevSec = CANONICAL_SECTIONS[secIdx - 1];
+      setSubtabDirection(-1);
+      scrollTo(prevSec.id, -56, true);
+      // Khi lùi về section trước, chuyển đến tab cuối cùng của section đó
+      if (prevSec.subtabs && prevSec.subtabs.length > 0) {
+        const lastTab = prevSec.subtabs[prevSec.subtabs.length - 1];
+        setActiveSubtabMap((prev) => ({
+          ...prev,
+          [prevSec.id]: lastTab.id,
+        }));
+      }
+    }
+  }, [activeSection, activeSubtabMap, scrollTo]);
+
+  // Phím tắt mũi tên trái / phải toàn cục
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const target = document.activeElement as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+
+      if (isStudyNotebookOpen || isTOCDrawerOpen) return;
+
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        stepNext();
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        stepPrev();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [stepNext, stepPrev, isStudyNotebookOpen, isTOCDrawerOpen]);
 
   // Scroll-spy and scroll progress calculation
   useEffect(() => {
@@ -247,9 +422,7 @@ export default function SmoothScrollProvider({
             setScrollProgress(Math.min(100, Math.max(0, Math.round(progress))));
           }
 
-          // If currently performing animated programmatic scroll, do not let spy fight it
           if (!isNavigatingRef.current) {
-            // Scroll-position based detection with offset for fixed header
             const triggerY = scrollY + window.innerHeight * 0.35;
             for (let i = CANONICAL_SECTION_IDS.length - 1; i >= 0; i--) {
               const id = CANONICAL_SECTION_IDS[i];
@@ -280,38 +453,6 @@ export default function SmoothScrollProvider({
     };
   }, []);
 
-  // Deep-link / Hash handling on initial mount
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const rawHash = window.location.hash.replace(/^#/, "");
-    if (rawHash && (CANONICAL_SECTION_IDS as readonly string[]).includes(rawHash)) {
-      const timer = setTimeout(() => {
-        scrollTo(rawHash, -56, false);
-      }, 150);
-      return () => clearTimeout(timer);
-    }
-  }, [scrollTo]);
-
-  // Back/Forward navigation synchronization (popstate)
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const handlePopState = () => {
-      const hash = window.location.hash.replace(/^#/, "");
-      if (hash && CANONICAL_SECTION_IDS.includes(hash)) {
-        setActiveSection(hash);
-        scrollTo(hash, -56, false);
-      } else if (!hash) {
-        setActiveSection("hero");
-        scrollTo("hero", 0, false);
-      }
-    };
-
-    window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
-  }, [scrollTo]);
-
   return (
     <ScrollContext.Provider
       value={{
@@ -322,6 +463,19 @@ export default function SmoothScrollProvider({
         isTOCDrawerOpen,
         setIsTOCDrawerOpen,
         toggleTOCDrawer,
+        isStudyNotebookOpen,
+        setIsStudyNotebookOpen,
+        toggleStudyNotebook,
+        notebookTab,
+        setNotebookTab,
+        openNotebookWithTab,
+
+        activeSubtabMap,
+        setActiveSubtab,
+        subtabDirection,
+        setSubtabDirection,
+        stepNext,
+        stepPrev,
       }}
     >
       {children}

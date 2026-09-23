@@ -5,6 +5,7 @@ import SectionNavigation from "@/components/shared/SectionNavigation";
 import ReadingProgress from "@/components/shared/ReadingProgress";
 import AppSidebar from "@/components/shared/AppSidebar";
 import ChapterHeaderBanner from "@/components/shared/ChapterHeaderBanner";
+import HeroStorySection from "@/components/storytelling/HeroStorySection";
 import DanChuSection from "@/components/storytelling/DanChuSection";
 import PhapQuyenSection from "@/components/storytelling/PhapQuyenSection";
 import TrongSachVungManhSection from "@/components/storytelling/TrongSachVungManhSection";
@@ -18,24 +19,24 @@ export default function Home() {
   const { activeSection } = useSmoothScroll();
 
   return (
-    <main className="relative min-h-screen selection:bg-[#7a1818] selection:text-[#fbf8f0] bg-[#fbf9f4]">
-      {/* Permanent Academic Left Sidebar on Desktop */}
+    <main className="relative min-h-screen lg:h-screen lg:max-h-screen lg:overflow-hidden selection:bg-[#7a1818] selection:text-[#fbf8f0] bg-[#fbf9f4] flex flex-col">
+      {/* Sidebar dạng Floating Overlay bên mép trái, chỉ mở khi hover chuột */}
       <AppSidebar />
 
-      {/* Top Header Navigation & Mobile Drawer */}
+      {/* Top Header Navigation & Sổ tay nghiên cứu */}
       <SectionNavigation />
       <ReadingProgress />
 
-      {/* Main Content Area offset by Sidebar on desktop */}
-      <div className="md:pl-60 lg:pl-64 w-full min-w-0 transition-all duration-300">
-        <article className="w-full min-w-0 overflow-x-hidden pt-11 sm:pt-12 pb-6">
-          {/* Chapter 4 Hero Banner ở trên cùng theo đúng Designer_71 */}
-          <div className="w-full">
-            <ChapterHeaderBanner />
-          </div>
+      {/* Vùng nội dung chính trải rộng 100% tự nhiên không bị sidebar chèn ép */}
+      <div className="w-full min-w-0 flex flex-col flex-1 min-h-0 overflow-hidden">
+        {/* Chapter 4 Hero Banner ở trên cùng chuyển đổi theo chủ đề */}
+        <div className="w-full flex-shrink-0">
+          <ChapterHeaderBanner />
+        </div>
 
-          {/* Render Active Section tương ứng theo kiến trúc Courseware/Digital Textbook */}
-          {activeSection === "hero" && <PhapQuyenSection />}
+        {/* Khung nội dung Section: Trên desktop co giãn nằm gọn trong khung nhìn không cần cuộn trang */}
+        <article className="w-full min-w-0 flex-1 min-h-0 flex flex-col overflow-y-auto lg:overflow-hidden pt-0 pb-0">
+          {activeSection === "hero" && <HeroStorySection />}
           {activeSection === "dan-chu" && <DanChuSection />}
           {activeSection === "phap-quyen" && <PhapQuyenSection />}
           {activeSection === "trong-sach-vung-manh" && <TrongSachVungManhSection />}
