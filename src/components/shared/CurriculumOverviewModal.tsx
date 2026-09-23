@@ -207,7 +207,7 @@ export default function CurriculumOverviewModal({
               {currentChapter.isCurrentInteractive && (
                 <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 flex items-center gap-1">
                   <Sparkles className="w-3 h-3" />
-                  Đang mở chuyên đề số hóa 3D
+                  Đang mở chuyên đề số hóa tương tác
                 </span>
               )}
             </div>
@@ -247,7 +247,7 @@ export default function CurriculumOverviewModal({
                   : "Chuyên khảo số hóa hiện tại tập trung chuyên sâu vào Chương 4"}
               </div>
               <p className="text-xs text-[#6b5847]">
-                Hệ thống tương tác 3D, trích dẫn văn kiện gốc và trắc nghiệm học thuật.
+                Hệ thống tương tác đa phương tiện, trích dẫn văn kiện gốc và dữ liệu học thuật chuẩn mực.
               </p>
             </div>
 

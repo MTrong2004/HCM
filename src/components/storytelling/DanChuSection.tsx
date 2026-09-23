@@ -3,7 +3,6 @@
 import React from "react";
 import AcademicPortalSection from "@/components/shared/AcademicPortalSection";
 import UncleHoVoicePlayer from "@/components/shared/UncleHoVoicePlayer";
-import InfographicCuaDoViDan from "@/components/infographics/InfographicCuaDoViDan";
 import EditorialReveal from "@/components/shared/EditorialReveal";
 
 export default function DanChuSection() {
@@ -395,7 +394,7 @@ export default function DanChuSection() {
       badge: "Phụng sự & Liêm khiết",
       content: (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-start">
-          {/* Cột trái (6 cols trên LG): Bản chất vì dân, Lời Bác & Thẻ Cán bộ */}
+          {/* Cột trái (6 cols trên LG): Bản chất vì dân & Vai trò kép của cán bộ */}
           <div className="lg:col-span-6 space-y-3">
             {/* Box 1: Bản chất của Nhà nước vì dân */}
             <EditorialReveal delay={80}>
@@ -407,8 +406,11 @@ export default function DanChuSection() {
                   </h3>
                 </div>
                 <p className="text-xs sm:text-sm text-ink leading-relaxed">
-                  Nhà nước được thành lập với mục đích duy nhất là phục vụ lợi ích và nguyện vọng của nhân dân. Nhà nước phải thực sự trong sạch, liêm khiết, hoạt động không có đặc quyền, đặc lợi.
+                  Nhà nước được thành lập với mục đích duy nhất là phục vụ lợi ích và nguyện vọng của nhân dân. Nhà nước không có lợi ích nào khác ngoài lợi ích của nhân dân và của toàn thể dân tộc.
                 </p>
+                <div className="p-2.5 bg-[#f6efe4] border border-[#e5dac8] rounded-md text-xs text-ink leading-relaxed">
+                  <span className="font-bold text-[#7a1818]">Mục tiêu tối thượng:</span> Lấy hạnh phúc, ấm no của nhân dân làm điểm xuất phát và thước đo cao nhất của mọi chính sách, pháp luật.
+                </div>
               </div>
             </EditorialReveal>
 
@@ -431,7 +433,7 @@ export default function DanChuSection() {
                       Là người đầy tớ:
                     </span>
                     <p className="text-xs text-ink leading-relaxed">
-                      Phải trung thành, tận tụy, cần kiệm liêm chính, chí công vô tư, <em>lo trước thiên hạ, vui sau thiên hạ</em>.
+                      Phải trung thành, tận tụy, cần kiệm liêm chính, chí công vô tư, <em>“lo trước thiên hạ, vui sau thiên hạ”</em>.
                     </p>
                   </div>
 
@@ -446,19 +448,62 @@ export default function DanChuSection() {
                 </div>
               </div>
             </EditorialReveal>
-
-            {/* Tư liệu âm thanh lời Bác */}
-            <UncleHoVoicePlayer
-              id="voice-chinh-phu-vi-dan"
-              title="Mục đích duy nhất của Chính phủ: Mưu tự do, hạnh phúc cho dân"
-              quote="Các công việc của Chính phủ làm phải nhằm vào một mục đích duy nhất là mưu tự do hạnh phúc cho mọi người. Cho nên Chính phủ nhân dân bao giờ cũng phải đặt quyền lợi dân lên trên hết thảy. Việc gì có lợi cho dân thì làm. Việc gì có hại cho dân thì phải tránh."
-              sourceContext="Hồ Chí Minh: Thư gửi Ủy ban nhân dân các kỳ, tỉnh, huyện và làng (17/10/1945)"
-            />
           </div>
 
-          {/* Cột phải (6 cols trên LG): Infographic Của dân - Do dân - Vì dân */}
-          <div className="lg:col-span-6 flex flex-col justify-start">
-            <InfographicCuaDoViDan />
+          {/* Cột phải (6 cols trên LG): Nguyên tắc phụng sự & Lời dạy của Bác */}
+          <div className="lg:col-span-6 space-y-3">
+            {/* Box 3: Nguyên tắc phụng sự & Thước đo lòng dân */}
+            <EditorialReveal delay={160}>
+              <div className="p-3.5 sm:p-4 bg-[#fdfbf7] border border-[#e2d7c5] rounded-lg shadow-2xs space-y-2.5">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
+                  <h3 className="font-serif font-bold text-sm sm:text-base text-ink tracking-tight">
+                    3. Nguyên tắc phụng sự & Thước đo lòng dân
+                  </h3>
+                </div>
+
+                <div className="space-y-2 text-xs sm:text-[13px] text-ink">
+                  <div className="p-2.5 bg-[#fcf8f0] border border-[#e8dac5] rounded-md space-y-1">
+                    <span className="font-serif font-bold text-[#7a1818] block">
+                      Nguyên tắc hành động phụng sự:
+                    </span>
+                    <p className="italic text-ink leading-relaxed font-serif">
+                      “Việc gì có lợi cho dân ta phải hết sức làm, việc gì có hại cho dân ta phải hết sức tránh.”
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div className="p-2.5 bg-[#fdfcf9] border border-[#e2d7c5] rounded-md space-y-1">
+                      <span className="font-sans font-bold text-xs text-[#7a1818] flex items-center gap-1">
+                        <span>✦</span> Không đặc quyền, đặc lợi
+                      </span>
+                      <p className="text-xs text-ink-muted leading-relaxed">
+                        Nhà nước phải thực sự trong sạch, liêm khiết; kiên quyết bài trừ tệ quan liêu, hách dịch và tham nhũng.
+                      </p>
+                    </div>
+
+                    <div className="p-2.5 bg-[#fdfcf9] border border-[#e2d7c5] rounded-md space-y-1">
+                      <span className="font-sans font-bold text-xs text-[#7a1818] flex items-center gap-1">
+                        <span>✦</span> Thước đo lòng dân
+                      </span>
+                      <p className="text-xs text-ink-muted leading-relaxed">
+                        Thước đo cao nhất của Nhà nước vì dân là được lòng dân, được nhân dân tin cậy, kính trọng và thương mến.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </EditorialReveal>
+
+            {/* Tư liệu âm thanh lời Bác */}
+            <EditorialReveal delay={240}>
+              <UncleHoVoicePlayer
+                id="voice-chinh-phu-vi-dan"
+                title="Mục đích duy nhất của Chính phủ: Mưu tự do, hạnh phúc cho dân"
+                quote="Các công việc của Chính phủ làm phải nhằm vào một mục đích duy nhất là mưu tự do hạnh phúc cho mọi người. Cho nên Chính phủ nhân dân bao giờ cũng phải đặt quyền lợi dân lên trên hết thảy. Việc gì có lợi cho dân thì làm. Việc gì có hại cho dân thì phải tránh."
+                sourceContext="Hồ Chí Minh: Thư gửi Ủy ban nhân dân các kỳ, tỉnh, huyện và làng (17/10/1945)"
+              />
+            </EditorialReveal>
           </div>
         </div>
       ),

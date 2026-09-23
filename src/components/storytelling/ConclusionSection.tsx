@@ -44,7 +44,7 @@ export default function ConclusionSection() {
                 </span>
               </div>
               <p className="text-sm sm:text-[14.5px] text-ink leading-relaxed">
-                Hỗ trợ xây dựng toàn bộ website tương tác: giao diện tạp chí lịch sử, mô phỏng lật sách 3D, tích hợp âm thanh giọng Bác và thanh tra cứu nhanh (Ctrl + K).
+                Hỗ trợ xây dựng toàn bộ website tương tác: giao diện tạp chí lịch sử, trải nghiệm học tập đa phương tiện, tích hợp âm thanh giọng Bác và thanh tra cứu nhanh (Ctrl + K).
               </p>
             </div>
 

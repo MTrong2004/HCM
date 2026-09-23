@@ -2,7 +2,7 @@ export interface AssetManifestItem {
   id: string;
   section: string;
   filename: string;
-  type: "hero-image" | "supporting-image" | "3d-scene" | "infographic-svg" | "icon-svg";
+  type: "hero-image" | "supporting-image" | "infographic-svg" | "icon-svg";
   aspectRatio: string;
   minResolution: string;
   description: string;
@@ -11,38 +11,6 @@ export interface AssetManifestItem {
 }
 
 export const ASSET_MANIFEST: AssetManifestItem[] = [
-  // 3D Scenes
-  {
-    id: "scene-constitution-hero",
-    section: "Opening Hero",
-    filename: "ConstitutionHeroScene",
-    type: "3d-scene",
-    aspectRatio: "16:9",
-    minResolution: "1920x1080",
-    description: "Cảnh 3D cuốn Hiến pháp 1946, bút máy, con dấu đỏ trên bàn làm việc gỗ cổ điển với ánh sáng ấm áp.",
-    status: "ready",
-  },
-  {
-    id: "scene-justice-scale",
-    section: "4.2.2 Nhà nước pháp quyền",
-    filename: "JusticeScaleScene",
-    type: "3d-scene",
-    aspectRatio: "16:9",
-    minResolution: "1920x1080",
-    description: "Cảnh 3D cán cân công lý cân bằng theo tiến trình cuộn trang, biểu tượng cho pháp quyền nhân nghĩa.",
-    status: "ready",
-  },
-  {
-    id: "scene-power-network",
-    section: "4.2.3 Nhà nước trong sạch, vững mạnh",
-    filename: "PowerControlNetworkScene",
-    type: "3d-scene",
-    aspectRatio: "16:9",
-    minResolution: "1920x1080",
-    description: "Cảnh 3D mạng phân phối và kiểm soát quyền lực với Nhân dân là trung tâm phát quang kết nối.",
-    status: "ready",
-  },
-
   // Images 4.2.1
   {
     id: "img-dan-chu-hero",
