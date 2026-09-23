@@ -103,10 +103,10 @@ export const ASSET_MANIFEST: AssetManifestItem[] = [
     status: "placeholder",
   },
 
-  // Images 4.3.3
+  // Supporting Image: Nhà nước trong sạch, vững mạnh & Phòng chống giặc nội xâm
   {
     id: "img-phong-chong-tham-nhung-hero",
-    section: "4.3.3 Phòng, chống tham nhũng",
+    section: "4.2.3 Nhà nước trong sạch, vững mạnh",
     filename: "phong-chong-tham-nhung-lang-phi.webp",
     type: "supporting-image",
     aspectRatio: "16:9",

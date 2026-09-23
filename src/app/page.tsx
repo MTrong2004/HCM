@@ -14,6 +14,7 @@ import XayDungNhaNuocSection from "@/components/storytelling/XayDungNhaNuocSecti
 import PhongChongThamNhungSection from "@/components/storytelling/PhongChongThamNhungSection";
 import ConclusionSection from "@/components/storytelling/ConclusionSection";
 import { useSmoothScroll } from "@/components/shared/SmoothScrollProvider";
+import { getAssetPath } from "@/lib/assets";
 
 export default function Home() {
   const { activeSection, isTOCDrawerOpen } = useSmoothScroll();
@@ -23,7 +24,7 @@ export default function Home() {
       {/* Lớp nền di sản toàn trang Designer 77 với hoa văn sen vàng và chất liệu giấy cổ */}
       <div
         className="fixed inset-0 pointer-events-none z-0 bg-cover bg-center bg-no-repeat opacity-15"
-        style={{ backgroundImage: "url('/images/Designer_77_cf8575.png')" }}
+        style={{ backgroundImage: `url('${getAssetPath("/images/Designer_77_cf8575.png")}')` }}
       />
 
       {/* Sidebar dạng Floating Overlay bên mép trái */}

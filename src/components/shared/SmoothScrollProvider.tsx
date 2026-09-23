@@ -156,6 +156,22 @@ export default function SmoothScrollProvider({
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
 
+  // Guard against external theme extensions (e.g. DarkReader) altering calibrated palette
+  useEffect(() => {
+    const removeDarkStyles = () => {
+      const els = document.querySelectorAll('style.darkreader, style[class*="darkreader"]');
+      for (let i = 0; i < els.length; i++) {
+        els[i].remove();
+      }
+    };
+    removeDarkStyles();
+    if (typeof window !== "undefined" && window.MutationObserver) {
+      const observer = new MutationObserver(removeDarkStyles);
+      observer.observe(document.documentElement, { childList: true, subtree: true });
+      return () => observer.disconnect();
+    }
+  }, []);
+
   // Initialize Lenis and keep its lifecycle synchronized with reduced motion.
   useEffect(() => {
     document.documentElement.setAttribute("data-hydrated", "true");
@@ -360,9 +376,16 @@ export default function SmoothScrollProvider({
 
     // Đã ở tab cuối cùng (hoặc section không có subtabs) -> chuyển tiếp sang section tiếp theo
     if (activeSection === "xay-dung-nha-nuoc") {
-      // Khi ở 4.3.2, bấm tiếp theo nhảy sang luôn Ứng dụng AI (bỏ qua 4.3.3)
+      // 4.3.2 chuyển sang luôn Ứng dụng AI (4.3.3 chỉ để dự phòng, không thuyết trình)
       setSubtabDirection(1);
       scrollTo("ket-luan", -56, true);
+      const ketLuanSec = getSectionById("ket-luan");
+      if (ketLuanSec?.subtabs && ketLuanSec.subtabs.length > 0) {
+        setActiveSubtabMap((prev) => ({
+          ...prev,
+          "ket-luan": ketLuanSec.subtabs![0].id,
+        }));
+      }
       return;
     }
 

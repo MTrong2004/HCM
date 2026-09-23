@@ -179,8 +179,25 @@ export default function TrongSachVungManhSection() {
                   </div>
                 </div>
 
-                <div className="p-3 bg-[#f8f1e2] border-l-3 border-[#7a1818] rounded-r text-xs sm:text-[13px] text-ink leading-relaxed">
-                  Bác coi tham ô, lãng phí, quan liêu là <strong>&ldquo;giặc nội xâm&rdquo;</strong>, là &ldquo;giặc ở trong lòng&rdquo; vô cùng nguy hiểm. Căn nguyên sâu xa bắt nguồn từ <strong>chủ nghĩa cá nhân</strong>.
+                <div className="p-3 bg-[#f8f1e2] border-l-4 border-[#7a1818] rounded-r space-y-1.5 shadow-3xs">
+                  <span className="font-serif font-bold text-xs text-[#7a1818] uppercase tracking-wider block">
+                    Lời dạy của Bác về &ldquo;Giặc nội xâm&rdquo; (1952)
+                  </span>
+                  <blockquote className="font-serif italic text-xs sm:text-[13px] text-[#5c0d0d] font-semibold leading-relaxed">
+                    &ldquo;Tham ô, lãng phí và bệnh quan liêu là kẻ thù của nhân dân, của bộ đội và của Chính phủ. Nó là giặc ở trong lòng, là bạn đồng minh của thực dân và phong kiến... Tội lỗi ấy cũng nặng như tội lỗi Việt gian, mật thám.&rdquo;
+                  </blockquote>
+                  <div className="text-right text-[11px] text-ink-muted font-sans font-medium">
+                    — Hồ Chí Minh: Toàn tập, t. 7, tr. 357–358 (Giáo trình tr. 88)
+                  </div>
+                </div>
+
+                <div className="p-2.5 bg-[#fcf8f0] border border-[#e2d7c5] rounded-md space-y-1 text-xs sm:text-[12.5px] text-ink">
+                  <strong className="text-[#7a1818] block font-serif">
+                    • Kỷ cương phép nước từ các sắc lệnh năm 1946:
+                  </strong>
+                  <p className="leading-relaxed">
+                    Ngày 26-1-1946, Người ký Lệnh quy định rõ tội tham ô đến mức án cao nhất là <strong>tử hình</strong>; ngày 27-11-1946 ký Sắc lệnh phạt tội đưa và nhận hối lộ từ <strong>5 đến 20 năm tù khổ sai</strong> và phạt gấp đôi số tiền nhận hối lộ.
+                  </p>
                 </div>
               </div>
             </EditorialReveal>
@@ -201,6 +218,15 @@ export default function TrongSachVungManhSection() {
                 </p>
 
                 <div className="space-y-2">
+                  <div className="p-2.5 bg-[#fcf8f0] border border-[#e8dac5] rounded-md space-y-0.5">
+                    <strong className="text-xs sm:text-[13px] text-[#7a1818] block">
+                      • Đặc quyền, đặc lợi:
+                    </strong>
+                    <p className="text-xs sm:text-[13px] text-ink leading-relaxed">
+                      Cậy thế mình là người trong cơ quan chính quyền để cửa quyền, hách dịch, lạm quyền và vơ vét tiền của cho cá nhân.
+                    </p>
+                  </div>
+
                   <div className="p-2.5 bg-[#fcf8f0] border border-[#e8dac5] rounded-md space-y-0.5">
                     <strong className="text-xs sm:text-[13px] text-[#7a1818] block">
                       • Tư túng:
@@ -322,7 +348,7 @@ export default function TrongSachVungManhSection() {
                 <div className="flex items-center gap-2 pb-1.5 border-b border-[#dfd2be]">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
                   <h4 className="font-serif font-bold text-sm sm:text-base text-[#7a1818] tracking-tight">
-                    Hệ thống 5 biện pháp phòng, chống tiêu cực trọng yếu
+                    Hệ thống 5 biện pháp phòng, chống tiêu cực trọng yếu (Dân - Luật - Phạt - Gương)
                   </h4>
                 </div>
                 <p className="text-xs sm:text-[13px] text-ink leading-relaxed">

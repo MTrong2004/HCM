@@ -70,7 +70,7 @@ const SEARCH_ITEMS: SearchItem[] = [
     id: "xay-dung-nha-nuoc",
     category: "Chương mục",
     title: "4.3.2 Xây dựng Nhà nước & Đổi mới lãnh đạo",
-    desc: "Phân công, phối hợp 3 nhánh quyền lực: Lập pháp, Hành pháp, Tư pháp.",
+    desc: "Phân công, phối hợp 3 nhánh quyền lực; xây dựng cán bộ công bộc của nhân dân.",
   },
   {
     id: "phong-chong-tham-nhung",

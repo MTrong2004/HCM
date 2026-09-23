@@ -319,7 +319,7 @@ export const PRESENTATION_CONTENT: PresentationData = {
             "Đặc quyền, đặc lợi: Cậy mình có chức, có quyền; cửa quyền, hách dịch, hạch sách nhân dân; lợi dụng chức vụ để mưu cầu lợi ích cá nhân, xa rời mục tiêu phục vụ nhân dân.",
             "Tham ô: Lợi dụng chức vụ, quyền hạn để chiếm đoạt tài sản công của Nhà nước và nhân dân dùng vào việc tư.",
             "Lãng phí: Sử dụng nguồn lực không hiệu quả, làm thất thoát lãng phí sức lao động, thời gian và tiền của Nhà nước và nhân dân.",
-            "Quan liêu: Xa thực tế, xa nhân dân, chỉ dựa vào hội họp, chỉ thị, báo cáo trên giấy tờ; quan liêu là nguồn gốc dung túng, che chở cho tham ô và lãng phí.",
+            "Quan liêu: Xa dân, xa thực tế, chỉ dựa vào hội họp, chỉ thị, báo cáo trên giấy tờ; quan liêu là nguồn gốc dung túng, che chở cho tham ô và lãng phí.",
             "Tư túng, chia rẽ, kiêu ngạo: Tư túng (thiên vị người thân, phe nhóm hoặc lợi ích riêng, đưa người thân quen thiếu năng lực vào cơ quan nhà nước); Chia rẽ (gây mất đoàn kết trong tập thể, kéo bè kết phái, bài trừ người có năng lực nhưng không cùng phe phái); Kiêu ngạo (có chức vụ rồi coi thường người khác, tự cho mình là đúng, tự thị, không lắng nghe ý kiến đóng góp của quần chúng).",
           ],
         },
@@ -343,7 +343,7 @@ export const PRESENTATION_CONTENT: PresentationData = {
         {
           title: "4. Phương châm 'Xây đi đôi với Chống' & Biện pháp phòng chống tiêu cực",
           description:
-            "Theo tư tưởng Hồ Chí Minh, xây dựng Nhà nước trong sạch không thể chỉ tập trung vào việc 'xây' mà phải đồng thời thực hiện 'chống'. Xây là xây dựng Nhà nước dân chủ, có pháp luật, bộ máy hoạt động hiệu quả và đội ngũ cán bộ có đạo đức, trách nhiệm. Chống là chống tham ô, lãng phí, quan liêu, chủ nghĩa cá nhân và những hành vi lợi dụng quyền lực. 'Xây' để tạo ra cái tốt – 'Chống' để loại bỏ cái xấu.",
+            "Theo tư tưởng Hồ Chí Minh, xây dựng Nhà nước trong sạch không thể chỉ tập trung vào việc 'xây' mà phải đồng thời thực hiện 'chống'. Xây là xây dựng Nhà nước dân chủ, có pháp luật, bộ máy hoạt động hiệu quả và đội ngũ cán bộ có đạo đức, trách nhiệm. Chống là chống tham ô, lãng phí, quan liêu, chủ nghĩa cá nhân và những hành vi lợi dụng quyền lực; thiết lập hệ giải pháp bốn trụ cột: Dân - Luật - Phạt - Gương. 'Xây' để tạo ra cái tốt – 'Chống' để loại bỏ cái xấu.",
           points: [
             "01 — Phát huy dân chủ: Nâng cao trình độ dân chủ trong xã hội, tạo điều kiện thuận lợi để nhân dân tham gia rộng rãi và trực tiếp giám sát hoạt động của Nhà nước.",
             "02 — Tăng cường pháp luật, kiểm tra và giám sát: Quyền lực phải được đặt trong khuôn khổ pháp luật và có cơ chế kiểm tra thường xuyên, chặt chẽ.",
@@ -501,63 +501,23 @@ export const PRESENTATION_CONTENT: PresentationData = {
           "Sơ đồ phối hợp kiểm soát giữa 3 nhánh quyền lực Lập pháp - Hành pháp - Tư pháp trong khung quyền lực thuộc về Nhân dân.",
       },
     },
-
-    {
-      id: "phong-chong-tham-nhung",
-      number: "4.3.3",
-      title: "Phòng, chống tham nhũng",
-      subtitle: "Nhận diện 'giặc nội xâm' và hệ giải pháp 4 trụ cột: Dân - Luật - Phạt - Gương",
-      lead:
-        "Tham ô, lãng phí và quan liêu là những căn bệnh nguy hại làm xói mòn niềm tin của nhân dân. Kiên quyết, kiên trì phòng, chống tham nhũng là đòi hỏi sống còn để giữ vững bản chất cách mạng và sự trong sạch, vững mạnh của Nhà nước.",
-      sections: [
-        {
-          title: "Nhận diện vấn đề: Ba căn bệnh nguy hại",
-          description:
-            "Chủ tịch Hồ Chí Minh đã chỉ rõ bản chất phá hoại của ba căn bệnh tiêu cực cốt tử trong bộ máy chính quyền:",
-          points: [
-            "Tham ô: Lợi dụng chức vụ để chiếm đoạt tài sản công của Nhà nước và nhân dân làm của riêng.",
-            "Lãng phí: Sử dụng nguồn lực không hiệu quả, làm thất thoát sức lao động, thời gian và tiền của công.",
-            "Quan liêu: Xa dân, xa thực tế, chỉ dựa vào chỉ thị, giấy tờ, hội họp hình thức mà không nắm sát đời sống nhân dân.",
-          ],
-        },
-        {
-          title: "Hệ giải pháp: Bốn trụ cột cốt lõi (Dân - Luật - Phạt - Gương)",
-          description:
-            "Để triệt tiêu tận gốc mầm mống tham nhũng, lãng phí và quan liêu, tư tưởng Hồ Chí Minh xác lập hệ giải pháp 4 trụ cột đồng bộ:",
-          points: [
-            "DÂN: Nhân dân giám sát — phát huy tối đa quyền làm chủ và sự giám sát chặt chẽ của nhân dân đối với cơ quan công quyền.",
-            "LUẬT: Pháp luật, kiểm tra, giám sát — hoàn thiện thể chế pháp lý, siết chặt kỷ cương, kiểm tra và kiểm toán nghiêm ngặt.",
-            "PHẠT: Xử lý nghiêm minh — trừng trị thích đáng, kịp thời mọi hành vi sai phạm, không có vùng cấm, không có ngoại lệ.",
-            "GƯƠNG: Cán bộ nêu gương — cán bộ, đảng viên, nhất là người đứng đầu phải nêu gương Cần, Kiệm, Liêm, Chính, chí công vô tư.",
-          ],
-        },
-      ],
-      visualSummary: {
-        heroImageName: "nha-nuoc-trong-sach-vung-manh-hero.webp",
-        heroImageAlt: "Không gian làm việc minh bạch, hồ sơ kiểm tra công vụ",
-        infographicId: "infographic-quyen-luc-kiem-soat-niem-tin",
-        infographicTitle: "Bốn trụ cột phòng chống tham nhũng: Dân - Luật - Phạt - Gương",
-        motionDescription:
-          "Chuyển cảnh từ vùng tối sang vùng sáng minh bạch khi các giải pháp Dân - Luật - Phạt - Gương được kích hoạt.",
-      },
-    },
   ],
 
   conclusion: {
     title: "Ứng dụng AI Trong Bài Thuyết Trình Của Nhóm",
-    subtitle: "Báo cáo thực tế về các công cụ AI (Antigravity, Copilot Chat, Gemini Notebook, ChatGPT) và quy trình đối chiếu giáo trình",
-    lead: "Trong quá trình thực hiện bài thuyết trình, nhóm chúng tôi đã ứng dụng có chọn lọc các công cụ AI hàng đầu: dùng Antigravity để làm toàn bộ website, Copilot Chat để tạo ảnh minh họa các element, Gemini Notebook và ChatGPT để soạn thảo nội dung, sau đó nhóm trực tiếp đối chiếu chéo 100% với Giáo trình Tư tưởng Hồ Chí Minh chuẩn của Bộ GD&ĐT.",
+    subtitle: "Báo cáo thực tế về các công cụ AI (Antigravity, Copilot Chat, NotebookLM, ChatGPT) và quy trình đối chiếu giáo trình",
+    lead: "Trong quá trình thực hiện bài thuyết trình, nhóm chúng tôi đã ứng dụng có chọn lọc các công cụ AI: dùng Antigravity để xây dựng website tương tác, Copilot Chat để tạo đồ họa minh họa tư liệu, NotebookLM và ChatGPT để soạn thảo nội dung, sau đó nhóm trực tiếp đối chiếu chéo 100% với Giáo trình Tư tưởng Hồ Chí Minh chuẩn của Bộ GD&ĐT.",
     summaryBullets: [
-      "Làm Web Tương Tác với Antigravity: Ứng dụng Google Antigravity để xây dựng toàn bộ website thuyết trình: thiết kế giao diện dạng tạp chí lịch sử, mô phỏng cuốn sách 3D lật trang và tích hợp âm thanh giọng nói của Bác.",
-      "Tạo Ảnh Minh Họa với Copilot Chat: Dùng Copilot Chat để tạo các hình ảnh minh họa cho các element, đồ họa nền trang trí và biểu trưng chuyên đề mang phong cách báo chí truyền thống.",
-      "Soạn Thảo Nội Dung với Gemini Notebook & ChatGPT: Nạp tài liệu văn kiện vào Gemini Notebook để phân tích ngữ liệu, kết hợp ChatGPT tinh gọn dàn ý và sinh ngân hàng trắc nghiệm ôn tập.",
+      "Xây Dựng Website Tương Tác với Antigravity: Ứng dụng Google Antigravity để kiến trúc toàn bộ nền tảng học tập dạng tạp chí lịch sử và tích hợp kho tư liệu âm thanh giọng đọc của Bác.",
+      "Đồ Họa & Hình Ảnh Tư Liệu với Copilot Chat: Dùng Copilot Chat tạo dựng hệ thống biểu trưng, đồ họa trang trí và hình ảnh minh họa theo phong cách báo chí truyền thống.",
+      "Soạn Thảo Nội Dung với NotebookLM & ChatGPT: Nạp tài liệu văn kiện vào NotebookLM để phân tích ngữ liệu, kết hợp ChatGPT tinh gọn dàn ý và sinh ngân hàng câu hỏi ôn tập.",
       "Đối Chiếu Chéo 100% Với Giáo Trình Chuẩn: Nhóm trực tiếp mở sách in Giáo trình Tư tưởng Hồ Chí Minh (Bộ GD&ĐT) để kiểm tra, đối soát từng luận điểm, trích dẫn, đảm bảo không có sai lệch.",
       "Nguyên Tắc Làm Chủ Công Nghệ: AI là trợ lý nhân cấp năng suất thực thi, còn tư tưởng, cơ sở khoa học và trách nhiệm học thuật hoàn toàn do nhóm sinh viên trực tiếp đảm bảo.",
     ],
     finalQuote: {
       text: "Công nghệ AI giúp nhóm hiện thực hóa ý tưởng website tương tác một cách nhanh chóng, nhưng linh hồn của bài thuyết trình chính là sự chuẩn xác và nghiêm túc trong từng trang giáo trình được đối chiếu.",
       author: "Thông điệp Thực nghiệm của Nhóm Thuyết trình",
-      context: "Quy trình kết hợp giữa Antigravity, Copilot Chat, Gemini Notebook, ChatGPT & Giáo trình Bộ GD&ĐT",
+      context: "Quy trình kết hợp giữa Antigravity, Copilot Chat, NotebookLM, ChatGPT & Giáo trình Bộ GD&ĐT",
     },
     aiModules: [
       {
@@ -567,15 +527,15 @@ export const PRESENTATION_CONTENT: PresentationData = {
         description:
           "Phân công nhiệm vụ rõ ràng cho từng công cụ AI theo đúng sở trường kỹ thuật:",
         features: [
-          "Google Antigravity: Công cụ nòng cốt để làm web — lập trình toàn bộ giao diện Next.js 16, thiết kế hệ thống tab mượt mà, xử lý hiệu ứng lật sách 3D Three.js và visualizer sóng âm thanh giọng Bác.",
-          "Microsoft Copilot Chat: Dùng để tạo hình ảnh minh họa cho các element, đồ họa biểu trưng và hình nền trang trí các thẻ chuyên khảo mang phong cách bảo tàng số.",
-          "Gemini Notebook (NotebookLM): Nạp các tài liệu văn kiện, rà soát ngữ liệu lịch sử và hỗ trợ tổng hợp thông tin chuyên sâu.",
-          "ChatGPT: Hỗ trợ xây dựng dàn ý bài giảng, tinh gọn các đoạn lý luận phức tạp thành các ý chính (bullets) và sinh câu hỏi trắc nghiệm ôn tập.",
+          "Google Antigravity: Công cụ nòng cốt để phát triển website — lập trình toàn bộ giao diện Next.js 16, kiến trúc hệ thống tab mượt mà và tích hợp bộ phát âm thanh giọng Bác.",
+          "Microsoft Copilot Chat: Dùng để tạo dựng đồ họa minh họa tư liệu, biểu trưng chuyên đề và hình nền trang trí các thẻ chuyên khảo mang phong cách báo chí truyền thống.",
+          "NotebookLM: Nạp các tài liệu văn kiện, rà soát ngữ liệu lịch sử và hỗ trợ tổng hợp thông tin chuyên sâu.",
+          "ChatGPT: Hỗ trợ xây dựng dàn ý bài giảng, tinh gọn các đoạn lý luận phức tạp thành các ý chính và sinh câu hỏi trắc nghiệm ôn tập.",
         ],
         metrics: [
-          { label: "Làm Web", val: "Google Antigravity" },
-          { label: "Tạo Ảnh Element", val: "Copilot Chat" },
-          { label: "Soạn Thảo Nội Dung", val: "Gemini Notebook & ChatGPT" },
+          { label: "Nền tảng Web", val: "Google Antigravity" },
+          { label: "Đồ họa tư liệu", val: "Copilot Chat" },
+          { label: "Soạn thảo nội dung", val: "NotebookLM & ChatGPT" },
         ],
       },
       {
@@ -585,7 +545,7 @@ export const PRESENTATION_CONTENT: PresentationData = {
         description:
           "Sự kết hợp giữa trí tuệ nhân tạo và sự kiểm soát nghiêm cẩn của sinh viên đối với môn học chính trị:",
         features: [
-          "Bước 1 — Nạp nguồn vào Gemini Notebook: Tải các tài liệu, bài viết và trích đoạn văn kiện của Bác vào notebook để AI nắm bắt ngữ cảnh chính xác.",
+          "Bước 1 — Nạp nguồn vào NotebookLM: Tải các tài liệu, bài viết và trích đoạn văn kiện của Bác vào notebook để AI nắm bắt ngữ cảnh chính xác.",
           "Bước 2 — Biên soạn dàn bài bằng ChatGPT: Đặt prompt yêu cầu ChatGPT chia nhỏ các luận điểm thành các mục: Bản chất Dân chủ, Nhà nước Pháp quyền, và Nhà nước Trong sạch vững mạnh.",
           "Bước 3 — Đối chiếu trực tiếp với Giáo trình chuẩn: Từng thành viên trong nhóm lật từng trang sách Giáo trình Tư tưởng Hồ Chí Minh (Bộ GD&ĐT, NXB Chính trị quốc gia Sự thật) để rà soát từng câu trích dẫn, loại bỏ hoàn toàn các suy diễn không chính thống.",
         ],
@@ -600,17 +560,17 @@ export const PRESENTATION_CONTENT: PresentationData = {
         badge: "Phát Triển Web với Antigravity",
         title: "3. Ứng Dụng Antigravity Để Xây Dựng Website Thuyết Trình",
         description:
-          "Toàn bộ nền tảng web bảo tàng số tương tác này được lập trình với sự đồng hành của Antigravity:",
+          "Toàn bộ nền tảng web tương tác này được lập trình với sự đồng hành của Antigravity:",
         features: [
-          "Kiến trúc Next.js 16 & Tailwind CSS: Antigravity hỗ trợ viết code cấu trúc giao diện dạng tạp chí học thuật, sidebar phong cách sách đỏ Bác Hồ và thanh điều hướng dính.",
-          "Mô phỏng sách 3D lật trang (Three.js WebGL): Antigravity hỗ trợ viết thuật toán không gian 3D, ánh sáng PBR và chuyển động lật trang vật lý chân thực.",
-          "Visualizer sóng âm thanh Web Audio API: Antigravity hỗ trợ phân tích phổ tần số Fourier (FFT) giúp sóng âm nhảy theo từng lời nói của Bác.",
+          "Kiến trúc Next.js 16 & Tailwind CSS: Antigravity hỗ trợ viết code cấu trúc giao diện dạng tạp chí học thuật, sidebar điều hướng tiện lợi và thanh điều hướng dính.",
+          "Trải nghiệm tạp chí chuyên khảo số: Thiết kế bố cục báo chí trang trọng, điều hướng chuyên đề liền khối và tối ưu hóa trải nghiệm đọc cho người học.",
+          "Visualizer sóng âm thanh Web Audio API: Antigravity hỗ trợ phân tích phổ tần số Fourier (FFT) giúp sóng âm nhảy sinh động theo giọng đọc tư liệu của Bác.",
           "Tối ưu hóa và sửa lỗi tự động: Antigravity quét và sửa triệt để các lỗi type TypeScript, tối ưu responsive trên mọi kích thước màn hình.",
         ],
         metrics: [
           { label: "Trợ lý lập trình", val: "Google Antigravity" },
-          { label: "Công nghệ Web", val: "Next.js 16 • Three.js • Web Audio" },
-          { label: "Hiệu năng", val: "60 FPS mượt mà" },
+          { label: "Công nghệ Web", val: "Next.js 16 • Web Audio • Tailwind" },
+          { label: "Hiệu năng", val: "Mượt mà, ổn định" },
         ],
       },
       {
@@ -623,17 +583,17 @@ export const PRESENTATION_CONTENT: PresentationData = {
           {
             aspect: "Tạo nội dung thuyết trình",
             traditional: "Dùng ChatGPT sinh văn bản rồi copy thẳng vào slide mà không đọc lại.",
-            aiPlatform: "Dùng Gemini Notebook & ChatGPT soạn thảo, sau đó nhóm trực tiếp kiểm tra từng câu với sách giáo trình.",
+            aiPlatform: "Dùng NotebookLM & ChatGPT soạn thảo, sau đó nhóm trực tiếp kiểm tra từng câu với sách giáo trình.",
           },
           {
-            aspect: "Thiết kế đồ họa element",
+            aspect: "Thiết kế đồ họa tư liệu",
             traditional: "Tải ảnh chất lượng thấp ngẫu nhiên trên mạng, bố cục lộn xộn.",
-            aiPlatform: "Dùng Copilot Chat tạo ảnh minh họa element đồng bộ phong cách báo chí truyền thống.",
+            aiPlatform: "Dùng Copilot Chat tạo ảnh minh họa tư liệu đồng bộ phong cách báo chí truyền thống.",
           },
           {
             aspect: "Lập trình website",
             traditional: "Làm slide PowerPoint thông thường, thiếu tính tương tác trực quan.",
-            aiPlatform: "Dùng Antigravity xây dựng website bảo tàng số tương tác 3D và âm thanh giọng Bác.",
+            aiPlatform: "Dùng Antigravity xây dựng website tạp chí số tương tác và phát âm thanh giọng Bác.",
           },
           {
             aspect: "Tính trung thực khoa học",

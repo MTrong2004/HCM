@@ -1,6 +1,5 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter, JetBrains_Mono } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/shared/SmoothScrollProvider";
 
@@ -46,6 +45,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "vi_VN",
   },
+  other: {
+    "darkreader-lock": "true",
+    "darkreader": "NO-DARKREADER",
+  },
+};
+
+export const viewport: Viewport = {
+  colorScheme: "light",
 };
 
 export default function RootLayout({
@@ -59,32 +66,6 @@ export default function RootLayout({
       className={`${playfair.variable} ${inter.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
-      <head>
-        <meta name="darkreader-lock" content="true" />
-        <meta name="darkreader" content="NO-DARKREADER" />
-        <meta name="color-scheme" content="light" />
-        <Script
-          id="detect-reduced-motion"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{
-              if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-                document.documentElement.setAttribute('data-reduced-motion','true');
-              }
-              function removeDarkStyles(){
-                var els = document.querySelectorAll('style.darkreader, style[class*="darkreader"]');
-                for (var i = 0; i < els.length; i++) {
-                  els[i].remove();
-                }
-              }
-              removeDarkStyles();
-              if (window.MutationObserver) {
-                new MutationObserver(removeDarkStyles).observe(document.documentElement, { childList: true, subtree: true });
-              }
-            }catch(e){}})();`,
-          }}
-        />
-      </head>
       <body
         className="min-h-screen bg-paper text-ink selection:bg-primary selection:text-paper-light antialiased"
         suppressHydrationWarning

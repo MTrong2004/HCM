@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { X, ChevronLeft, ChevronRight, Maximize2, Minimize2, Quote } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PRESENTATION_CONTENT } from "@/content/presentation-content";
@@ -103,7 +103,7 @@ const SLIDES: PresentationSlide[] = [
     title: "Xây dựng Đảng & Trách nhiệm Thế hệ trẻ",
     subtitle: "Đảng là đạo đức, là văn minh — ngọn đuốc dẫn dắt Nhà nước",
     image: "/images/xay-dung-dang-hero.webp",
-    imageCaption: "Chân dung Chủ tịch Hồ Chí Minh năm 1946",
+    imageCaption: "Chủ tịch Hồ Chí Minh tại Đại hội Đảng (Hạt nhân lãnh đạo)",
     theses: [
       "Đảng lãnh đạo bằng đường lối khoa học, sự gương mẫu của đảng viên và kiểm tra nghiêm ngặt.",
       "Thực hiện nguyên tắc tập trung dân chủ, tự phê bình và phê bình thường xuyên.",
@@ -119,7 +119,7 @@ const SLIDES: PresentationSlide[] = [
     title: "Xây dựng Nhà nước & Ba nhánh Quyền lực",
     subtitle: "Đảng lãnh đạo — Nhà nước quản lý — Nhân dân làm chủ",
     image: "/images/xay-dung-nha-nuoc-hero.webp",
-    imageCaption: "Bác Hồ đọc Tuyên ngôn Độc lập tại Ba Đình (2/9/1945)",
+    imageCaption: "Chủ tịch Hồ Chí Minh chủ trì phiên họp Hội đồng Chính phủ (1946)",
     theses: [
       "Phân công, phối hợp và kiểm soát chặt chẽ giữa Lập pháp (Quốc hội), Hành pháp (Chính phủ), Tư pháp (Tòa án).",
       "Xây dựng đội ngũ cán bộ: 'Cần, Kiệm, Liêm, Chính, Chí công vô tư'.",
@@ -128,14 +128,32 @@ const SLIDES: PresentationSlide[] = [
     keyTakeaway: "Quyền lực nhà nước là thống nhất, có sự phân công rành mạch và kiểm soát lẫn nhau chặt chẽ.",
   },
   {
+    id: "phong-chong-tham-nhung",
+    chapter: "CHƯƠNG 4.3.3",
+    watermark: "LIÊM CHÍNH",
+    sealTag: "CHÍ CÔNG",
+    title: "Phòng, chống tham nhũng, lãng phí, quan liêu",
+    subtitle: "Nhận diện 'giặc nội xâm' và hệ giải pháp 4 trụ cột: Dân - Luật - Phạt - Gương",
+    image: "/images/nha-nuoc-trong-sach-vung-manh-hero.webp",
+    imageCaption: "Kỷ cương và phòng chống giặc nội xâm",
+    theses: [
+      "Nhận diện 3 căn bệnh nguy hại: Tham ô (chiếm đoạt của công), Lãng phí (không hiệu quả), Quan liêu (xa dân, xa thực tế).",
+      "DÂN: Phát huy quyền giám sát của nhân dân; dựa vào dân để kiểm tra, thanh lọc bộ máy.",
+      "LUẬT: Hoàn thiện pháp luật, cơ chế kiểm tra giám sát, bịt kín kẽ hở chính sách.",
+      "PHẠT: Kỷ luật nghiêm minh, không có vùng cấm, không có ngoại lệ.",
+      "GƯƠNG: Cán bộ lãnh đạo phải đi đầu nêu gương Cần, Kiệm, Liêm, Chính.",
+    ],
+    keyTakeaway: "Chặt một cành cây sâu để cứu cả cái cây — bài học muôn đời về kỷ cương và liêm chính.",
+  },
+  {
     id: "ket-luan",
     chapter: "CHUYÊN ĐỀ • ỨNG DỤNG CÔNG NGHỆ",
     watermark: "TRÍ TUỆ NHÂN TẠO",
     sealTag: "CÔNG NGHỆ & LÝ LUẬN",
     title: "Ứng dụng AI Trong Bài Thuyết Trình Của Nhóm",
     subtitle: "Báo cáo thực tế về các công cụ AI và quy trình nhóm đã ứng dụng trong nghiên cứu & làm web",
-    image: "/images/soan-thao-hien-phap-1946.webp",
-    imageCaption: "Ứng dụng AI sáng tạo kết hợp kiểm chứng học thuật có trách nhiệm của sinh viên",
+    image: "/images/can-bo-phuc-vu-nhan-dan.webp",
+    imageCaption: "Di sản tư tưởng Hồ Chí Minh — Kim chỉ nam cho thế hệ trẻ trong kỷ nguyên số",
     theses: PRESENTATION_CONTENT.conclusion.summaryBullets,
     keyTakeaway: PRESENTATION_CONTENT.conclusion.finalQuote.text,
   },
@@ -153,6 +171,32 @@ export default function PresentationModeModal({
   const [isFullscreen, setIsFullscreen] = useState(false);
   const isReduced = useReducedMotion();
 
+  const handlePrevSlide = useCallback(() => {
+    playPageTurn();
+    setSlideDirection(-1);
+    setCurrentSlide((prev) => {
+      // Khi đang ở slide Ứng dụng AI (ket-luan), lùi lại về thẳng 4.3.2 (xay-dung-nha-nuoc)
+      if (SLIDES[prev]?.id === "ket-luan") {
+        const prevIdx = SLIDES.findIndex((s) => s.id === "xay-dung-nha-nuoc");
+        if (prevIdx !== -1) return prevIdx;
+      }
+      return Math.max(0, prev - 1);
+    });
+  }, []);
+
+  const handleNextSlide = useCallback(() => {
+    playPageTurn();
+    setSlideDirection(1);
+    setCurrentSlide((prev) => {
+      // Khi đang ở 4.3.2 (xay-dung-nha-nuoc), chuyển thẳng sang Ứng dụng AI (ket-luan) vì 4.3.3 là dự phòng không thuyết trình
+      if (SLIDES[prev]?.id === "xay-dung-nha-nuoc") {
+        const nextIdx = SLIDES.findIndex((s) => s.id === "ket-luan");
+        if (nextIdx !== -1) return nextIdx;
+      }
+      return Math.min(SLIDES.length - 1, prev + 1);
+    });
+  }, []);
+
   useEffect(() => {
     if (!isOpen) return;
 
@@ -162,20 +206,16 @@ export default function PresentationModeModal({
         onClose();
       } else if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
         e.preventDefault();
-        playPageTurn();
-        setSlideDirection(1);
-        setCurrentSlide((prev) => Math.min(SLIDES.length - 1, prev + 1));
+        handleNextSlide();
       } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
         e.preventDefault();
-        playPageTurn();
-        setSlideDirection(-1);
-        setCurrentSlide((prev) => Math.max(0, prev - 1));
+        handlePrevSlide();
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, handleNextSlide, handlePrevSlide]);
 
   const toggleFullscreen = () => {
     playSubtleClick();
@@ -192,18 +232,6 @@ export default function PresentationModeModal({
     playPageTurn();
     setSlideDirection(idx >= currentSlide ? 1 : -1);
     setCurrentSlide(idx);
-  };
-
-  const handlePrevSlide = () => {
-    playPageTurn();
-    setSlideDirection(-1);
-    setCurrentSlide((prev) => Math.max(0, prev - 1));
-  };
-
-  const handleNextSlide = () => {
-    playPageTurn();
-    setSlideDirection(1);
-    setCurrentSlide((prev) => Math.min(SLIDES.length - 1, prev + 1));
   };
 
   if (!isOpen) return null;
@@ -368,6 +396,7 @@ export default function PresentationModeModal({
                   : "w-2.5 h-2.5 bg-accent/30 hover:bg-accent/60"
               }`}
               aria-label={`Trang ${idx + 1}: ${s.chapter}`}
+              title={s.chapter}
             />
           ))}
         </div>

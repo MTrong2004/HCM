@@ -455,7 +455,7 @@ export default function UncleHoVoicePlayer({
             type="button"
             onClick={handleTogglePlay}
             disabled={isLoading}
-            aria-label={isPlaying ? "Tạm dừng đoạn ghi âm" : "Nghe giọng Bác Hồ"}
+            aria-label={isPlaying ? "Tạm dừng đoạn ghi âm" : "Phát"}
             className={`flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-xs sm:text-[13px] font-serif font-bold transition-all duration-200 cursor-pointer shadow-sm select-none border whitespace-nowrap flex-shrink-0 ${
               isPlaying
                 ? "bg-gradient-to-r from-[#6e1313] to-[#8a1c1c] text-[#fff8ea] border-[#ffd700] ring-2 ring-[#ffd700]/60 shadow-[0_4px_15px_rgba(122,24,24,0.3)] amber-voice-active"
@@ -470,7 +470,7 @@ export default function UncleHoVoicePlayer({
             ) : (
               <>
                 <Play className="w-3.5 h-3.5 text-[#ffd700] fill-current" />
-                <span>Nghe giọng Bác</span>
+                <span>Phát</span>
               </>
             )}
           </button>

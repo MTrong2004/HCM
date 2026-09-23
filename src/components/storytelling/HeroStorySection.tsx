@@ -244,7 +244,7 @@ export default function HeroStorySection() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-2.5">
               <EditorialReveal delay={80}>
                 <div className="p-2.5 sm:p-3 bg-white/90 border border-[#dfd3c0] rounded-lg shadow-2xs space-y-1 h-full flex flex-col justify-between">
-                  <div>
+                  <div className="space-y-1">
                     <div className="flex items-center justify-between mb-0.5">
                       <span className="text-[11px] font-mono font-bold text-[#7a1818] uppercase tracking-wider">
                         MỐC 01 • NĂM <KineticNumber value={1919} />
@@ -256,12 +256,20 @@ export default function HeroStorySection() {
                       Nguyễn Ái Quốc gửi bản Yêu sách 8 điểm đòi cải cách pháp lý, xóa bỏ các tòa án đặc biệt và thực thi pháp quyền.
                     </p>
                   </div>
+                  <div className="p-1.5 rounded bg-[#f6efe4] border border-[#e5dac8] text-center space-y-0.5 mt-2">
+                    <span className="font-serif font-bold text-xs text-[#7a1818] block">
+                      “Trăm điều phải có thần linh pháp quyền”
+                    </span>
+                    <span className="text-[10.5px] text-ink-muted block">
+                      Khởi đầu tư tưởng lập hiến Hồ Chí Minh
+                    </span>
+                  </div>
                 </div>
               </EditorialReveal>
 
               <EditorialReveal delay={160}>
                 <div className="p-2.5 sm:p-3 bg-white/90 border border-[#dfd3c0] rounded-lg shadow-2xs space-y-1 h-full flex flex-col justify-between">
-                  <div>
+                  <div className="space-y-1">
                     <div className="flex items-center justify-between mb-0.5">
                       <span className="text-[11px] font-mono font-bold text-[#7a1818] uppercase tracking-wider">
                         MỐC 02 • NĂM <KineticNumber value={1945} />
@@ -273,15 +281,23 @@ export default function HeroStorySection() {
                       Khai sinh nước Việt Nam Dân chủ Cộng hòa, chấm dứt chính thể phong kiến - thực dân, xác lập quyền tự do dân chủ.
                     </p>
                   </div>
+                  <div className="p-1.5 rounded bg-[#f6efe4] border border-[#e5dac8] text-center space-y-0.5 mt-2">
+                    <span className="font-serif font-bold text-xs text-[#7a1818] block">
+                      “Chính quyền từ nay là của nhân dân”
+                    </span>
+                    <span className="text-[10.5px] text-ink-muted block">
+                      Khai sinh thể chế dân chủ cộng hòa
+                    </span>
+                  </div>
                 </div>
               </EditorialReveal>
 
               <EditorialReveal delay={240}>
                 <div
                   onClick={() => handleNavigate("dan-chu")}
-                  className="p-2.5 sm:p-3 bg-[#fdfbf7] hover:bg-[#fff9ef] border border-[#d4af37]/70 hover:border-[#7a1818] rounded-lg shadow-2xs space-y-1.5 h-full flex flex-col justify-between transition-all cursor-pointer group gold-foil-card"
+                  className="p-2.5 sm:p-3 bg-[#fdfbf7] hover:bg-[#fff9ef] border border-[#d4af37]/70 rounded-lg shadow-2xs space-y-1 h-full flex flex-col justify-between transition-all group cursor-pointer gold-foil-card"
                 >
-                  <div>
+                  <div className="space-y-1">
                     <div className="flex items-center justify-between mb-0.5">
                       <span className="text-[11px] font-mono font-bold text-[#7a1818] uppercase tracking-wider">
                         MỐC 03 • NĂM <KineticNumber value={1946} />
@@ -295,7 +311,7 @@ export default function HeroStorySection() {
                       Bản hiến pháp đầu tiên khẳng định chủ quyền tối cao thuộc về toàn thể nhân dân Việt Nam.
                     </p>
                   </div>
-                  <div className="pt-1.5 border-t border-[#eee2cf] flex items-center justify-between text-xs font-bold text-[#7a1818]">
+                  <div className="pt-2 border-t border-[#eee2cf] flex items-center justify-between text-xs font-bold text-[#7a1818]">
                     <span>Vào nội dung Chương 4</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
