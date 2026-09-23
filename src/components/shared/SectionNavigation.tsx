@@ -312,15 +312,15 @@ export default function SectionNavigation() {
                     onClick={() => handleNavClick(sec.id)}
                     className={`w-full min-h-[44px] text-left p-3 rounded-xl border transition-all flex items-start gap-3 group ${
                       isActive
-                        ? "bg-[#fdfaf5] text-[#7a1818] border-[#fdfaf5] shadow-md"
+                        ? "bg-primary text-paper-light border-primary shadow-md"
                         : "bg-white/5 text-[#fbf8f0] border-white/10 hover:bg-white/10 hover:border-white/25"
                     }`}
                   >
                     <span
                       className={`text-xs font-mono font-bold px-2 py-0.5 rounded flex-shrink-0 mt-0.5 ${
                         isActive
-                          ? "bg-[#7a1818] text-[#fbf8f0]"
-                          : "bg-black/30 text-[#d4af37] group-hover:bg-[#7a1818] group-hover:text-white"
+                          ? "bg-paper-light text-primary"
+                          : "bg-black/30 text-[#d4af37] group-hover:bg-primary group-hover:text-white"
                       }`}
                     >
                       {sec.number}
@@ -329,7 +329,7 @@ export default function SectionNavigation() {
                     <div className="flex-1 min-w-0">
                       <div
                         className={`font-serif font-bold text-sm leading-snug text-wrap break-words ${
-                          isActive ? "text-[#7a1818]" : "text-[#fbf8f0]"
+                          isActive ? "text-paper-light" : "text-[#fbf8f0]"
                         }`}
                       >
                         {sec.fullTitle}
@@ -337,7 +337,7 @@ export default function SectionNavigation() {
                       <div
                         className={`text-xs font-sans mt-1 leading-relaxed text-wrap break-words ${
                           isActive
-                            ? "text-[#7a1818]/85"
+                            ? "text-paper-light/90"
                             : "text-[#fbf8f0]/70 group-hover:text-white"
                         }`}
                       >
@@ -348,7 +348,7 @@ export default function SectionNavigation() {
                     <ArrowRight
                       className={`w-4 h-4 flex-shrink-0 mt-1 transition-transform ${
                         isActive
-                          ? "text-[#7a1818] translate-x-0.5"
+                          ? "text-paper-light translate-x-0.5"
                           : "text-white/40 group-hover:text-[#d4af37] group-hover:translate-x-1"
                       }`}
                     />
