@@ -5,8 +5,6 @@ import AcademicPortalSection, {
   TabItem,
 } from "@/components/shared/AcademicPortalSection";
 import { JusticeScalesIcon } from "@/components/shared/HeritageIcons";
-import HeritageJuridicalPlate from "./HeritageJuridicalPlate";
-import InfographicPhapQuyenBaTang from "@/components/infographics/InfographicPhapQuyenBaTang";
 
 export default function PhapQuyenSection() {
   const tabs: TabItem[] = [
@@ -15,144 +13,140 @@ export default function PhapQuyenSection() {
       label: "a. Nhà nước hợp hiến, hợp pháp",
       badge: "1919 — 1946",
       content: (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          {/* Cột trái: Cơ sở lý luận & nhận thức */}
-          <div className="lg:col-span-6 space-y-6">
-            <div>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
-                <h3 className="font-serif font-bold text-base sm:text-lg text-ink">
-                  1. Biểu hiện sớm (Yêu sách năm 1919)
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-stretch">
+          {/* Cột trái: Box 1 (Biểu hiện sớm) & Box 2 (Người đứng đầu Nhà nước) */}
+          <div className="md:col-span-6 space-y-2 flex flex-col justify-between">
+            {/* Box 1: Biểu hiện sớm (1919) */}
+            <div className="p-2.5 sm:p-3 bg-white border border-[#e5dac8] rounded-lg shadow-xs space-y-1.5">
+              <div className="flex items-center gap-2">
+                <span className="w-5 h-5 rounded bg-[#7a1818] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                  1
+                </span>
+                <h3 className="font-serif font-bold text-xs sm:text-sm text-[#7a1818]">
+                  Biểu hiện sớm
                 </h3>
               </div>
-              <p className="text-xs sm:text-sm text-ink-muted leading-relaxed mb-4">
-                Hồ Chí Minh luôn chú trọng xây dựng nền tảng pháp lý cho Nhà
-                nước Việt Nam mới vì Người sớm thấy rõ tầm quan trọng của Hiến
-                pháp và pháp luật trong đời sống chính trị - xã hội. Thể hiện qua
-                bản <em>Yêu sách của nhân dân An Nam</em> gửi đến Hội nghị
-                Vécxây (Pháp) năm 1919:
+              <p className="text-[11px] text-ink-muted leading-relaxed">
+                Thể hiện qua bản <em>Yêu sách của nhân dân An Nam</em> gửi đến Hội nghị Vécxây (Pháp) năm 1919 với các yêu cầu:
               </p>
 
-              {/* 3 Khối tròn đánh số đỏ 01, 02, 03 */}
-              <div className="space-y-3">
-                <div className="flex items-start gap-3 p-3 bg-[#f6efe4] border border-[#e5dac8] rounded-lg">
-                  <div className="w-7 h-7 rounded-full bg-[#7a1818] text-paper-light font-mono font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-xs">
+              {/* 3 Mục đánh số tròn 01, 02, 03 */}
+              <div className="space-y-1 pt-0.5">
+                <div className="flex items-start gap-2 p-1.5 bg-[#f8f4ec] border border-[#ebe0d0] rounded-md">
+                  <div className="w-5 h-5 rounded-full bg-[#7a1818] text-white font-mono font-bold text-[10px] flex items-center justify-center flex-shrink-0 shadow-xs">
                     01
                   </div>
-                  <p className="text-xs sm:text-sm text-ink leading-snug">
-                    Cải cách nền pháp lý ở Đông Dương, giúp người bản xứ được
-                    hưởng bảo đảm về pháp luật như người Châu Âu.
+                  <p className="text-[10.5px] text-ink leading-snug">
+                    Cải cách nền pháp lý ở Đông Dương, giúp người bản xứ được hưởng bảo đảm về pháp luật như người Châu Âu.
                   </p>
                 </div>
 
-                <div className="flex items-start gap-3 p-3 bg-[#f6efe4] border border-[#e5dac8] rounded-lg">
-                  <div className="w-7 h-7 rounded-full bg-[#7a1818] text-paper-light font-mono font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-xs">
+                <div className="flex items-start gap-2 p-1.5 bg-[#f8f4ec] border border-[#ebe0d0] rounded-md">
+                  <div className="w-5 h-5 rounded-full bg-[#7a1818] text-white font-mono font-bold text-[10px] flex items-center justify-center flex-shrink-0 shadow-xs">
                     02
                   </div>
-                  <p className="text-xs sm:text-sm text-ink leading-snug">
-                    Xoá bỏ các toà án đặc biệt dùng làm công cụ khủng bố, áp bức
-                    người dân An Nam.
+                  <p className="text-[10.5px] text-ink leading-snug">
+                    Xoá bỏ các toà án đặc biệt dùng làm công cụ khủng bố, áp bức người dân An Nam.
                   </p>
                 </div>
 
-                <div className="flex items-start gap-3 p-3 bg-[#f6efe4] border border-[#e5dac8] rounded-lg">
-                  <div className="w-7 h-7 rounded-full bg-[#7a1818] text-paper-light font-mono font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-xs">
+                <div className="flex items-start gap-2 p-1.5 bg-[#f8f4ec] border border-[#ebe0d0] rounded-md">
+                  <div className="w-5 h-5 rounded-full bg-[#7a1818] text-white font-mono font-bold text-[10px] flex items-center justify-center flex-shrink-0 shadow-xs">
                     03
                   </div>
-                  <p className="text-xs sm:text-sm text-ink leading-snug">
+                  <p className="text-[10.5px] text-ink leading-snug">
                     Thay thế chế độ ra sắc lệnh bằng chế độ ra các đạo luật.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Mục 2: Khi trở thành người đứng đầu Nhà nước */}
-            <div className="pt-4 border-t border-[#ebd8c2]">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
-                <h4 className="font-serif font-bold text-base text-ink">
-                  2. Khi trở thành người đứng đầu Nhà nước
+            {/* Box 2: Khi trở thành người đứng đầu Nhà nước */}
+            <div className="p-2 sm:p-2.5 bg-white border border-[#e5dac8] rounded-lg shadow-xs">
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className="w-5 h-5 rounded bg-[#7a1818] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                  2
+                </span>
+                <h4 className="font-serif font-bold text-xs sm:text-sm text-[#7a1818]">
+                  Khi trở thành người đứng đầu Nhà nước
                 </h4>
               </div>
-              <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-                Người càng quan tâm bảo đảm Nhà nước được tổ chức, vận hành phù
-                hợp với pháp luật và điều hành xã hội bằng pháp luật, đặt nền
-                móng cho một Nhà nước hợp hiến, hợp pháp thực thụ.
+              <p className="text-[10.5px] text-ink-muted leading-relaxed">
+                Người càng quan tâm bảo đảm Nhà nước được tổ chức, vận hành phù hợp với pháp luật và điều hành xã hội bằng pháp luật.
               </p>
             </div>
           </div>
 
-          {/* Cột phải: Thực tiễn hành động & Dòng thời gian lịch sử */}
-          <div className="lg:col-span-6 space-y-5">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
-                <h3 className="font-serif font-bold text-base sm:text-lg text-ink">
-                  3. Thực tiễn hành động lịch sử
-                </h3>
+          {/* Cột phải: Box 3 (Thực tiễn hành động - Timeline) & Callout Quote */}
+          <div className="md:col-span-6 space-y-2 flex flex-col justify-between">
+            {/* Box 3: Thực tiễn hành động */}
+            <div className="p-2.5 sm:p-3 bg-white border border-[#e5dac8] rounded-lg shadow-xs relative overflow-hidden flex-1">
+              <div className="flex items-center justify-between mb-1.5">
+                <div className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded bg-[#7a1818] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                    3
+                  </span>
+                  <h3 className="font-serif font-bold text-xs sm:text-sm text-[#7a1818]">
+                    Thực tiễn hành động
+                  </h3>
+                </div>
+                <JusticeScalesIcon className="w-5 h-5 text-[#b58319]/45" />
               </div>
-              <JusticeScalesIcon className="w-7 h-7 text-[#b58319]" />
+
+              {/* Dòng thời gian Timeline Trục Dọc Màu Đỏ Nối 3 Mốc */}
+              <div className="relative pl-5 space-y-1.5 before:absolute before:left-1.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-[#7a1818]">
+                {/* Mốc 1: 03.9.1945 */}
+                <div className="relative">
+                  <div className="absolute -left-[18px] top-1 w-2.5 h-2.5 rounded-full bg-[#7a1818] ring-2 ring-white" />
+                  <div className="p-1.5 bg-[#fcf8f0] border border-[#e8ddce] rounded-md">
+                    <div className="inline-block px-2 py-0.2 bg-[#6b1414] text-[#fff8ea] font-mono font-bold text-[9.5px] rounded-full mb-0.5 shadow-xs border border-[#d4af37]/30">
+                      03.9.1945
+                    </div>
+                    <p className="text-[10px] text-ink leading-snug">
+                      Ngay ngày 3-9-1945 (một ngày sau Tuyên ngôn độc lập), Người đề nghị Tổng tuyển cử với chế độ <strong>phổ thông đầu phiếu</strong> để lập Quốc hội, từ đó lập Chính phủ và bộ máy hợp hiến.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Mốc 2: 06.01.1946 */}
+                <div className="relative">
+                  <div className="absolute -left-[18px] top-1 w-2.5 h-2.5 rounded-full bg-[#7a1818] ring-2 ring-white" />
+                  <div className="p-1.5 bg-[#fcf8f0] border border-[#e8ddce] rounded-md">
+                    <div className="inline-block px-2 py-0.2 bg-[#6b1414] text-[#fff8ea] font-mono font-bold text-[9.5px] rounded-full mb-0.5 shadow-xs border border-[#d4af37]/30">
+                      06.01.1946
+                    </div>
+                    <p className="text-[10px] text-ink leading-snug">
+                      Tổng tuyển cử thành công (phổ thông đầu phiếu, trực tiếp, bỏ phiếu kín) cho tất cả công dân từ 18 tuổi trở lên.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Mốc 3: 02.03.1946 */}
+                <div className="relative">
+                  <div className="absolute -left-[18px] top-1 w-2.5 h-2.5 rounded-full bg-[#7a1818] ring-2 ring-white" />
+                  <div className="p-1.5 bg-[#fcf8f0] border border-[#e8ddce] rounded-md">
+                    <div className="inline-block px-2 py-0.2 bg-[#6b1414] text-[#fff8ea] font-mono font-bold text-[9.5px] rounded-full mb-0.5 shadow-xs border border-[#d4af37]/30">
+                      02.03.1946
+                    </div>
+                    <p className="text-[10px] text-ink leading-snug">
+                      Quốc hội khoá I họp phiên đầu tiên, thành lập bộ máy Nhà nước và bầu Hồ Chí Minh làm Chủ tịch Chính phủ liên hiệp đầu tiên.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Dòng thời gian Timeline Trục Dọc Màu Đỏ Nối 3 Mốc */}
-            <div className="relative pl-6 space-y-4 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-[#7a1818]">
-              {/* Mốc 1: 03.9.1945 */}
-              <div className="relative">
-                <div className="absolute -left-[23px] top-1.5 w-3 h-3 rounded-full bg-[#7a1818] ring-4 ring-[#fdfcf9]" />
-                <div className="p-3.5 bg-[#fbf6ed] border border-[#e5d7c3] rounded-lg">
-                  <div className="inline-block px-2 py-0.5 bg-[#8b2323] text-paper-light font-mono font-bold text-[11px] rounded mb-1.5 shadow-xs">
-                    03.9.1945
-                  </div>
-                  <p className="text-xs text-ink leading-relaxed">
-                    Tại phiên họp đầu tiên của Chính phủ lâm thời (một ngày sau
-                    Tuyên ngôn độc lập), Người đề nghị Tổng tuyển cử với chế độ{" "}
-                    <strong>phổ thông đầu phiếu</strong> để lập Quốc hội và ban
-                    hành Hiến pháp.
-                  </p>
-                </div>
-              </div>
-
-              {/* Mốc 2: 06.01.1946 */}
-              <div className="relative">
-                <div className="absolute -left-[23px] top-1.5 w-3 h-3 rounded-full bg-[#7a1818] ring-4 ring-[#fdfcf9]" />
-                <div className="p-3.5 bg-[#fbf6ed] border border-[#e5d7c3] rounded-lg">
-                  <div className="inline-block px-2 py-0.5 bg-[#8b2323] text-paper-light font-mono font-bold text-[11px] rounded mb-1.5 shadow-xs">
-                    06.01.1946
-                  </div>
-                  <p className="text-xs text-ink leading-relaxed">
-                    Cuộc Tổng tuyển cử đầu tiên thành công vang dội: phổ thông
-                    đầu phiếu, trực tiếp, bỏ phiếu kín cho mọi công dân từ 18
-                    tuổi trở lên, khẳng định tính chính danh pháp lý cao nhất.
-                  </p>
-                </div>
-              </div>
-
-              {/* Mốc 3: 02.03.1946 */}
-              <div className="relative">
-                <div className="absolute -left-[23px] top-1.5 w-3 h-3 rounded-full bg-[#7a1818] ring-4 ring-[#fdfcf9]" />
-                <div className="p-3.5 bg-[#fbf6ed] border border-[#e5d7c3] rounded-lg">
-                  <div className="inline-block px-2 py-0.5 bg-[#8b2323] text-paper-light font-mono font-bold text-[11px] rounded mb-1.5 shadow-xs">
-                    02.03.1946
-                  </div>
-                  <p className="text-xs text-ink leading-relaxed">
-                    Quốc hội khoá I họp phiên đầu tiên, lập Chính phủ liên hiệp
-                    đầu tiên do Hồ Chí Minh làm Chủ tịch, có đầy đủ tư cách pháp
-                    lý đối nội và đối ngoại.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Khung trích dẫn mở rộng (Callout Box) */}
-            <div className="p-4 bg-[#f8f1e2] border-l-4 border-[#7a1818] rounded-r-lg">
-              <blockquote className="font-serif italic text-xs sm:text-sm text-ink font-medium leading-relaxed">
-                “Một chế độ mà dân không biết, dân không bàn, dân không làm, dân
-                không kiểm tra, dân không thụ hưởng thì không phải là chế độ dân
-                chủ.”
+            {/* Khung trích dẫn mở rộng (Quote Card đúng Designer_71) */}
+            <div className="p-2 bg-[#eee3cb] border border-[#d8c8a8] rounded-lg shadow-xs relative">
+              <span className="text-xl font-serif text-[#7a1818]/40 leading-none select-none inline-block mr-1">
+                “
+              </span>
+              <blockquote className="font-serif italic text-[10.5px] text-ink font-medium leading-snug inline">
+                Một chế độ mà dân không biết, dân không bàn, dân không làm, dân không kiểm tra, dân không thụ hưởng thì không phải là chế độ dân chủ.
               </blockquote>
-              <p className="text-right text-[11px] font-serif font-bold text-[#7a1818] mt-2">
+              <div className="text-right text-[9.5px] font-serif font-bold text-[#7a1818] mt-0.5">
                 — Hồ Chí Minh —
-              </p>
+              </div>
             </div>
           </div>
         </div>
@@ -163,68 +157,68 @@ export default function PhapQuyenSection() {
       label: "b. Nhà nước thượng tôn pháp luật",
       badge: "Lập pháp & Kỷ cương",
       content: (
-        <div className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            {/* Cột trái: Công tác lập pháp & Đưa pháp luật vào cuộc sống */}
-            <div className="lg:col-span-6 space-y-4">
-              <div className="p-4 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
-                <h4 className="font-serif font-bold text-sm sm:text-base text-[#7a1818] mb-2">
-                  1. Nâng cao chất lượng công tác lập pháp
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-stretch">
+          {/* Cột trái: Lập pháp & Thực thi */}
+          <div className="md:col-span-6 space-y-2.5">
+            <div className="p-3 bg-white border border-[#e5dac8] rounded-lg shadow-xs space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="w-5 h-5 rounded bg-[#7a1818] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                  1
+                </span>
+                <h4 className="font-serif font-bold text-xs sm:text-sm text-[#7a1818]">
+                  Nâng cao chất lượng công tác lập pháp
                 </h4>
-                <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-                  Hồ Chí Minh 2 lần trực tiếp chỉ đạo soạn thảo Hiến pháp (Hiến
-                  pháp 1946 và Hiến pháp 1959); ký lệnh công bố 16 đạo luật,
-                  613 sắc lệnh (trong đó 243 sắc lệnh về tổ chức Nhà nước và
-                  pháp luật) cùng hàng trăm văn bản dưới luật.
-                </p>
               </div>
-
-              <div className="p-4 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
-                <h4 className="font-serif font-bold text-sm sm:text-base text-[#7a1818] mb-2">
-                  2. Đưa pháp luật vào cuộc sống & Thực thi
-                </h4>
-                <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-                  Nâng cao trình độ hiểu biết và ý thức tuân thủ pháp luật của
-                  nhân dân. Pháp luật là công cụ quyền lực của dân, giúp dân{" "}
-                  <em>
-                    “biết hưởng quyền dân chủ, biết dùng quyền dân chủ, dám nói,
-                    dám làm”
-                  </em>
-                  . Chú trọng giáo dục pháp luật cho thế hệ trẻ.
-                </p>
-              </div>
+              <p className="text-[11px] text-ink-muted leading-relaxed">
+                Hồ Chí Minh 2 lần trực tiếp chỉ đạo soạn thảo Hiến pháp (1946 và 1959); ký lệnh công bố 16 đạo luật, 613 sắc lệnh cùng hàng trăm văn bản dưới luật.
+              </p>
             </div>
 
-            {/* Cột phải: Tính nghiêm minh & Cán bộ nêu gương */}
-            <div className="lg:col-span-6 space-y-4">
-              <div className="p-4 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
-                <h4 className="font-serif font-bold text-sm sm:text-base text-[#7a1818] mb-2">
-                  3. Tính nghiêm minh của pháp luật
+            <div className="p-3 bg-white border border-[#e5dac8] rounded-lg shadow-xs space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="w-5 h-5 rounded bg-[#7a1818] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                  2
+                </span>
+                <h4 className="font-serif font-bold text-xs sm:text-sm text-[#7a1818]">
+                  Đưa pháp luật vào cuộc sống & Thực thi
                 </h4>
-                <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-                  Khoan hồng với người cải tà quy chính, trừng trị nghiêm khắc
-                  những tên phản bội đầu sỏ. Phê phán nghiêm khắc hiện tượng{" "}
-                  <em>“thưởng quá rộng, phạt không nghiêm”</em>, lẫn lộn giữa
-                  công và tội.
-                </p>
               </div>
-
-              <div className="p-4 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
-                <h4 className="font-serif font-bold text-sm sm:text-base text-[#7a1818] mb-2">
-                  4. Khuyến khích giám sát & Cán bộ nêu gương
-                </h4>
-                <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-                  Khuyến khích nhân dân phê bình, giám sát cán bộ. Cán bộ ngành
-                  hành pháp, tư pháp phải nêu gương sáng{" "}
-                  <strong>“phụng công, thủ pháp, chí công, vô tư”</strong>.
-                </p>
-              </div>
+              <p className="text-[11px] text-ink-muted leading-relaxed">
+                Nâng cao ý thức tuân thủ pháp luật của nhân dân. Pháp luật là công cụ quyền lực giúp dân <em>“biết dùng quyền dân chủ, dám nói, dám làm”</em>.
+              </p>
             </div>
           </div>
 
-          {/* Masterpiece Plate & Three Tiers Infographic */}
-          <HeritageJuridicalPlate />
-          <InfographicPhapQuyenBaTang />
+          {/* Cột phải: Nghiêm minh & Cán bộ nêu gương */}
+          <div className="md:col-span-6 space-y-2.5">
+            <div className="p-3 bg-white border border-[#e5dac8] rounded-lg shadow-xs space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="w-5 h-5 rounded bg-[#7a1818] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                  3
+                </span>
+                <h4 className="font-serif font-bold text-xs sm:text-sm text-[#7a1818]">
+                  Tính nghiêm minh của pháp luật
+                </h4>
+              </div>
+              <p className="text-[11px] text-ink-muted leading-relaxed">
+                Khoan hồng với người cải tà quy chính, trừng trị nghiêm khắc kẻ phản bội đầu sỏ. Phê phán nghiêm khắc hiện tượng <em>“thưởng quá rộng, phạt không nghiêm”</em>.
+              </p>
+            </div>
+
+            <div className="p-3 bg-white border border-[#e5dac8] rounded-lg shadow-xs space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="w-5 h-5 rounded bg-[#7a1818] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                  4
+                </span>
+                <h4 className="font-serif font-bold text-xs sm:text-sm text-[#7a1818]">
+                  Cán bộ nêu gương: Phụng công, thủ pháp
+                </h4>
+              </div>
+              <p className="text-[11px] text-ink-muted leading-relaxed">
+                Cán bộ hành pháp, tư pháp phải nêu gương <strong>“phụng công, thủ pháp, chí công, vô tư”</strong>. Bác luôn tự giác chấp hành Hiến pháp như lối ứng xử tự nhiên.
+              </p>
+            </div>
+          </div>
         </div>
       ),
     },
@@ -233,43 +227,48 @@ export default function PhapQuyenSection() {
       label: "c. Pháp quyền nhân nghĩa",
       badge: "Vì con người",
       content: (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-stretch">
           {/* Cột trái: Quyền con người toàn diện */}
-          <div className="lg:col-span-6 space-y-4">
-            <div className="p-5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg space-y-3">
-              <h4 className="font-serif font-bold text-base text-[#7a1818]">
-                1. Đảm bảo toàn diện quyền con người
-              </h4>
-              <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-                Bác tiếp cận quyền con người từ quyền tự nhiên (cao nhất là quyền
-                sống) đến các quyền chính trị, dân sự, kinh tế, văn hóa, xã hội.
+          <div className="md:col-span-6 space-y-2.5">
+            <div className="p-3 bg-white border border-[#e5dac8] rounded-lg shadow-xs space-y-1.5">
+              <div className="flex items-center gap-2">
+                <span className="w-5 h-5 rounded bg-[#7a1818] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                  1
+                </span>
+                <h4 className="font-serif font-bold text-xs sm:text-sm text-[#7a1818]">
+                  Đảm bảo toàn diện quyền con người
+                </h4>
+              </div>
+              <p className="text-[11px] text-ink leading-relaxed">
+                Tiếp cận quyền con người từ <strong>quyền tự nhiên (cao nhất là quyền sống)</strong> đến quyền tự do, bình đẳng, chính trị và kinh tế.
               </p>
-              <div className="p-3 bg-[#f5ecdc] rounded text-xs text-ink space-y-1">
-                <div className="font-bold text-[#7a1818]">Đối tượng ưu tiên:</div>
-                <p>
-                  Đặc biệt quan tâm bảo vệ phụ nữ, trẻ em và đồng bào các dân
-                  tộc thiểu số.
-                </p>
+              <div className="p-2 bg-[#f8f4ec] rounded text-[10.5px] text-ink space-y-0.5 border border-[#e8decf]">
+                <div className="font-bold text-[#7a1818]">Bảo vệ nhóm đặc thù:</div>
+                <p>Đặc biệt quan tâm đến phụ nữ, trẻ em, đồng bào dân tộc thiểu số.</p>
               </div>
             </div>
           </div>
 
           {/* Cột phải: Tính nhân văn & Khuyến thiện */}
-          <div className="lg:col-span-6 space-y-4">
-            <div className="p-5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg space-y-3">
-              <h4 className="font-serif font-bold text-base text-[#7a1818]">
-                2. Tính nhân văn và khuyến thiện của pháp luật
-              </h4>
-              <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-                Ngay khi thành lập, Chính phủ xóa bỏ luật pháp hà khắc của thực
-                dân. Pháp luật nghiêm minh nhưng công bằng, chống đối xử dã
-                man. Kể cả kẻ phản bội Tổ quốc, Người tuyên bố xử lý theo luật
-                pháp chứ <em>“không có ai bị tàn sát”</em>.
-              </p>
-              <div className="p-3 bg-[#f8f1e2] border-l-3 border-[#7a1818] rounded-r text-xs font-serif italic text-ink">
-                “Pháp luật trong Nhà nước pháp quyền phải là pháp luật vì con
-                người, lấy giáo dục, cảm hóa, thức tỉnh con người làm căn bản.”
+          <div className="md:col-span-6 space-y-2.5 flex flex-col justify-between">
+            <div className="p-3 bg-white border border-[#e5dac8] rounded-lg shadow-xs space-y-1.5">
+              <div className="flex items-center gap-2">
+                <span className="w-5 h-5 rounded bg-[#7a1818] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                  2
+                </span>
+                <h4 className="font-serif font-bold text-xs sm:text-sm text-[#7a1818]">
+                  Tính nhân văn và khuyến thiện
+                </h4>
               </div>
+              <p className="text-[11px] text-ink leading-relaxed">
+                Xóa bỏ luật pháp hà khắc. Pháp luật nghiêm minh nhưng khách quan, công bằng, tuyệt đối chống đối xử dã man.
+              </p>
+            </div>
+
+            <div className="p-2.5 bg-[#eee3cb] border border-[#d8c8a8] rounded-lg shadow-xs">
+              <blockquote className="font-serif italic text-[11px] text-ink leading-snug">
+                “Pháp luật lấy giáo dục, cảm hóa, thức tỉnh con người làm căn bản; xây dựng dựa trên nền tảng đạo đức xã hội. Pháp luật trong Nhà nước pháp quyền phải là pháp luật vì con người.”
+              </blockquote>
             </div>
           </div>
         </div>
@@ -282,10 +281,10 @@ export default function PhapQuyenSection() {
       id="phap-quyen"
       code="4.2.2"
       title="NHÀ NƯỚC PHÁP QUYỀN"
-      parentPath="4.2. Tư tưởng Hồ Chí Minh về Nhà nước của nhân dân, do nhân dân, vì nhân dân"
-      quote="Nước ta là nước dân chủ, bao nhiêu lợi ích đều vì dân, bao nhiêu quyền hạn đều của dân, bao nhiêu quyền hành và lực lượng đều ở nơi dân."
+      parentPath="4.2. Tư tưởng Hồ Chí Minh về Nhà nước của dân, do dân, vì dân"
+      quote="Nước ta là nước dân chủ, bao nhiêu lợi ích đều vì dân, bao nhiêu quyền hạn đều của dân, công việc đổi mới, xây dựng là trách nhiệm của dân..."
       quoteAuthor="Hồ Chí Minh"
-      summary="Xây dựng nền tảng pháp lý của Nhà nước Việt Nam mới trên 3 trụ cột: Nhà nước hợp hiến, hợp pháp; Nhà nước thượng tôn pháp luật; và Pháp quyền nhân nghĩa vì con người."
+      summary="Hồ Chí Minh luôn chú trọng xây dựng nền tảng pháp lý cho Nhà nước Việt Nam mới vì Người sớm thấy rõ tầm quan trọng của Hiến pháp và pháp luật trong đời sống chính trị - xã hội. Tư tưởng của Người về nhà nước pháp quyền thể hiện ở ba nội dung lớn: nhà nước hợp hiến, hợp pháp; nhà nước thượng tôn pháp luật; và pháp quyền nhân nghĩa."
       tabs={tabs}
       prevSection={{
         id: "dan-chu",

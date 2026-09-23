@@ -12,83 +12,92 @@ export default function TrongSachVungManhSection() {
     {
       id: "kiem-soat-quyen-luc",
       label: "a. Kiểm soát quyền lực nhà nước",
-      badge: "Đảng - Nhà nước - Dân",
+      badge: "Slide 1 — 4",
       content: (
         <div className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            {/* Cột trái: Vì sao phải kiểm soát quyền lực? */}
+            {/* Cột trái: Slide 1 & Slide 2 */}
             <div className="lg:col-span-6 space-y-4">
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
                 <h3 className="font-serif font-bold text-base sm:text-lg text-ink">
-                  1. Tính tất yếu của việc kiểm soát quyền lực
+                  Vì sao phải kiểm soát quyền lực? (Slide 1 & 2)
                 </h3>
               </div>
               <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-                Quyền lực là cần thiết để Nhà nước quản lý xã hội, nhưng quyền
-                lực nếu không được kiểm soát có thể dẫn đến lạm quyền, lộng
-                quyền hoặc chuyên quyền.
+                Theo tư tưởng Hồ Chí Minh, xây dựng một Nhà nước trong sạch, vững
+                mạnh không chỉ là xây dựng một bộ máy hoạt động hiệu quả mà còn
+                phải kiểm soát quyền lực và phòng, chống các biểu hiện tiêu cực.
+              </p>
+              <p className="text-xs sm:text-sm text-ink leading-relaxed">
+                Quyền lực là cần thiết để Nhà nước thực hiện chức năng quản lý xã
+                hội, nhưng quyền lực nếu không được kiểm soát có thể dẫn đến{" "}
+                <strong>lạm quyền, lộng quyền hoặc chuyên quyền</strong>. Người
+                được giao quyền lực không được tự ý sử dụng quyền lực theo ý muốn
+                cá nhân mà phải chịu sự kiểm tra, giám sát và tuân thủ pháp luật.
               </p>
 
               <div className="p-4 bg-[#f8f1e2] border-l-4 border-[#7a1818] rounded-r-lg space-y-2">
                 <div className="font-serif font-bold text-xs text-[#7a1818] uppercase">
-                  Thông điệp cốt lõi
+                  Điểm nhấn cốt lõi
                 </div>
-                <p className="text-xs sm:text-sm text-ink font-serif italic leading-relaxed">
-                  “Có quyền lực nhưng không có nghĩa là có quyền tuyệt đối. Người
-                  có quyền lực cũng phải chịu sự kiểm soát.”
-                </p>
+                <blockquote className="text-xs sm:text-sm font-serif italic text-ink font-semibold leading-relaxed">
+                  “Có quyền lực nhưng không có nghĩa là có quyền tuyệt đối.”
+                </blockquote>
                 <div className="text-[11px] font-mono text-[#7a1818] font-bold">
-                  QUYỀN LỰC → KIỂM SOÁT → TRÁCH NHIỆM → NIỀM TIN NHÂN DÂN
+                  QUYỀN LỰC → KIỂM SOÁT → TRÁCH NHIỆM → NIỀM TIN CỦA NHÂN DÂN
                 </div>
               </div>
             </div>
 
-            {/* Cột phải: Ba chủ thể kiểm soát quyền lực */}
-            <div className="lg:col-span-6 space-y-3">
+            {/* Cột phải: Slide 3 & Slide 4 */}
+            <div className="lg:col-span-6 space-y-4">
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
                 <h3 className="font-serif font-bold text-base sm:text-lg text-ink">
-                  2. Ba chủ thể kiểm soát quyền lực nhà nước
+                  Ai kiểm soát & Kiểm soát như thế nào? (Slide 3 & 4)
                 </h3>
               </div>
 
-              <div className="space-y-2.5">
-                <div className="p-3 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg flex items-center justify-between">
-                  <div>
-                    <span className="font-bold text-xs text-[#7a1818] block">
-                      ĐẢNG CỘNG SẢN
-                    </span>
-                    <span className="text-xs text-ink-muted">
-                      Kiểm soát của Đảng: Kiểm tra, giám sát cán bộ, đảng viên
-                      trong các cơ quan công quyền.
-                    </span>
+              {/* Sơ đồ 3 cấp từ Slide 3 */}
+              <div className="p-4 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg space-y-3">
+                <div className="text-xs font-serif font-bold text-[#7a1818] uppercase tracking-wider">
+                  Sơ đồ 3 chủ thể kiểm soát quyền lực (Slide 3):
+                </div>
+                <div className="space-y-2 text-xs">
+                  <div className="p-2.5 bg-[#f6efe4] border border-[#e5dac8] rounded flex items-center justify-between">
+                    <span className="font-bold text-[#7a1818]">1. ĐẢNG</span>
+                    <span className="text-ink">Kiểm tra, giám sát cán bộ</span>
+                  </div>
+                  <div className="p-2.5 bg-[#f6efe4] border border-[#e5dac8] rounded flex items-center justify-between">
+                    <span className="font-bold text-[#7a1818]">2. NHÀ NƯỚC</span>
+                    <span className="text-ink">Pháp luật – Quy định – Kiểm tra</span>
+                  </div>
+                  <div className="p-2.5 bg-[#f6efe4] border border-[#e5dac8] rounded flex items-center justify-between">
+                    <span className="font-bold text-[#7a1818]">3. NHÂN DÂN</span>
+                    <span className="text-ink">Tham gia – Giám sát – Phản ánh</span>
                   </div>
                 </div>
+              </div>
 
-                <div className="p-3 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg flex items-center justify-between">
-                  <div>
-                    <span className="font-bold text-xs text-[#7a1818] block">
-                      BỘ MÁY NHÀ NƯỚC
-                    </span>
-                    <span className="text-xs text-ink-muted">
-                      Kiểm soát trong bộ máy nhà nước: Bằng pháp luật, quy định,
-                      thanh tra, giám sát giữa các nhánh quyền lực.
-                    </span>
-                  </div>
+              {/* Slide 4: Nhân dân kiểm soát như thế nào */}
+              <div className="p-4 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg space-y-2">
+                <div className="font-bold text-xs text-[#7a1818]">
+                  Nhân dân kiểm soát quyền lực như thế nào? (Slide 4)
                 </div>
-
-                <div className="p-3 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg flex items-center justify-between">
-                  <div>
-                    <span className="font-bold text-xs text-[#7a1818] block">
-                      NHÂN DÂN LAO ĐỘNG
-                    </span>
-                    <span className="text-xs text-ink-muted">
-                      Kiểm soát của nhân dân: Tham gia quản lý xã hội, phản ánh,
-                      khiếu nại, tố cáo hành vi sai phạm đến cơ quan có thẩm
-                      quyền.
-                    </span>
-                  </div>
+                <p className="text-xs text-ink leading-relaxed">
+                  Nhân dân không trực tiếp điều hành tất cả hoạt động của Nhà nước
+                  nhưng có quyền tham gia quản lý xã hội, đóng góp ý kiến, kiểm tra,
+                  giám sát và phản ánh những hành vi sai phạm.
+                </p>
+                <p className="text-xs text-ink-muted leading-relaxed">
+                  Khi phát hiện cán bộ hoặc cơ quan có dấu hiệu vi phạm, người dân
+                  có thể phản ánh, khiếu nại hoặc tố cáo đến cơ quan, người có thẩm
+                  quyền theo quy định, chứ không nhất thiết phải phản ánh cho chính
+                  người bị phản ánh.
+                </p>
+                <div className="pt-2 border-t border-[#ebd8c2] text-xs font-serif italic text-[#7a1818] font-bold">
+                  “Người có quyền lực cũng phải chịu sự kiểm soát.”
                 </div>
               </div>
             </div>
@@ -100,81 +109,110 @@ export default function TrongSachVungManhSection() {
     },
     {
       id: "phong-chong-tieu-cuc",
-      label: "b. Phòng, chống tiêu cực (Giặc nội xâm)",
-      badge: "Nhận diện & Nguyên nhân",
+      label: "b. Phòng, chống các biểu hiện tiêu cực",
+      badge: "Slide 5 — 6",
       content: (
         <div className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            {/* Cột trái: Nhận diện biểu hiện tiêu cực */}
+            {/* Cột trái: Slide 5 - Vì sao phải phòng chống tiêu cực */}
             <div className="lg:col-span-6 space-y-4">
-              <h4 className="font-serif font-bold text-base text-[#7a1818]">
-                1. Nhận diện các biểu hiện tiêu cực trong bộ máy
-              </h4>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
+                <h3 className="font-serif font-bold text-base sm:text-lg text-ink">
+                  Vì sao phải phòng, chống tiêu cực? (Slide 5)
+                </h3>
+              </div>
               <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-                Hồ Chí Minh phê phán nghiêm khắc những thói hư tật xấu làm suy
-                yếu hiệu quả hoạt động và xói mòn niềm tin của nhân dân:
+                Theo Hồ Chí Minh, những biểu hiện tiêu cực trong bộ máy Nhà nước có
+                thể làm suy yếu hiệu quả hoạt động của Nhà nước và ảnh hưởng đến
+                niềm tin của nhân dân.
+              </p>
+              <p className="text-xs sm:text-sm text-ink leading-relaxed">
+                Vì vậy, muốn xây dựng Nhà nước trong sạch, vững mạnh thì phải chủ
+                động phát hiện và ngăn chặn những biểu hiện tiêu cực, đặc biệt là:
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="space-y-3">
                 <div className="p-3 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
                   <div className="font-bold text-xs text-[#7a1818] mb-1">
-                    Tham ô & Lãng phí
+                    1. Tham ô (Ăn cắp của công)
                   </div>
                   <p className="text-xs text-ink leading-relaxed">
-                    Lợi dụng chức vụ chiếm đoạt của công; lãng phí sức lao động,
-                    thời gian và tiền của của nhân dân.
+                    Hành vi chiếm đoạt tài sản công, biến của công thành của tư; làm
+                    tổn hại nghiêm trọng đến tài sản của Nhà nước và nhân dân.
                   </p>
                 </div>
 
                 <div className="p-3 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
                   <div className="font-bold text-xs text-[#7a1818] mb-1">
-                    Quan liêu hách dịch
+                    2. Lãng phí (Không hiệu quả)
                   </div>
                   <p className="text-xs text-ink leading-relaxed">
-                    Quan liêu: Xa rời quần chúng nhân dân, xa rời thực tế, bàn
-                    giấy hội họp, không sâu sát công việc.
+                    Lãng phí sức lao động, thời gian và tiền của của nhân dân; gây
+                    thiệt hại to lớn cho sự nghiệp phát triển kinh tế - xã hội.
                   </p>
                 </div>
 
                 <div className="p-3 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
                   <div className="font-bold text-xs text-[#7a1818] mb-1">
-                    Tư túng & Chia rẽ
+                    3. Bệnh quan liêu (Xa dân, xa thực tế)
                   </div>
                   <p className="text-xs text-ink leading-relaxed">
-                    Tư túng, chia rẽ, kiêu ngạo: thiên vị người thân, phe nhóm,
-                    gây mất đoàn kết trong tập thể.
-                  </p>
-                </div>
-
-                <div className="p-3 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
-                  <div className="font-bold text-xs text-[#7a1818] mb-1">
-                    Kiêu ngạo cậy quyền
-                  </div>
-                  <p className="text-xs text-ink leading-relaxed">
-                    Tự cao tự đại, có chút quyền hành rồi coi thường quần chúng,
-                    tự cho mình là đúng.
+                    Xa rời quần chúng nhân dân, xa rời thực tế, chỉ thích ngồi bàn
+                    giấy, hội họp rườm rà. Quan liêu là cái nôi nuôi dưỡng tham ô, lãng phí.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Cột phải: Căn nguyên căn bệnh */}
+            {/* Cột phải: Slide 6 - Những biểu hiện tiêu cực khác */}
             <div className="lg:col-span-6 space-y-4">
-              <h4 className="font-serif font-bold text-base text-[#7a1818]">
-                2. Căn nguyên căn bệnh: Chủ nghĩa cá nhân
-              </h4>
-              <div className="p-5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg space-y-3">
-                <p className="text-xs sm:text-sm text-ink leading-relaxed">
-                  Bác khẳng định <strong>chủ nghĩa cá nhân</strong> là thứ vi
-                  trùng độc hại, là <em>“bệnh mẹ sinh ra trăm thứ bệnh con”</em>
-                  . Người mắc bệnh này chỉ chăm lo vun vén cho lợi ích cá nhân,
-                  quên đi lợi ích của tập thể và nhân dân.
-                </p>
-                <div className="p-3 bg-[#f5ecdc] rounded text-xs text-ink font-serif italic">
-                  “Chủ nghĩa cá nhân là một thứ vi trùng rất độc, do nó mà sinh
-                  ra các bệnh: tham lam, lười biếng, kiêu ngạo, hiếu danh, thiếu
-                  kỷ luật...”
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
+                <h3 className="font-serif font-bold text-base sm:text-lg text-ink">
+                  Những biểu hiện tiêu cực khác (Slide 6)
+                </h3>
+              </div>
+              <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
+                Bên cạnh tham ô, lãng phí và quan liêu, Hồ Chí Minh còn phê phán
+                nhiều biểu hiện tiêu cực khác trong đội ngũ cán bộ:
+              </p>
+
+              <div className="space-y-3">
+                <div className="p-3.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg space-y-1">
+                  <div className="font-bold text-xs text-[#7a1818]">
+                    • Tư túng
+                  </div>
+                  <p className="text-xs text-ink leading-relaxed">
+                    Thiên vị người thân, phe nhóm hoặc lợi ích riêng, đưa người nhà
+                    vào vị trí không đủ phẩm chất, năng lực.
+                  </p>
                 </div>
+
+                <div className="p-3.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg space-y-1">
+                  <div className="font-bold text-xs text-[#7a1818]">
+                    • Chia rẽ
+                  </div>
+                  <p className="text-xs text-ink leading-relaxed">
+                    Gây mất đoàn kết trong tập thể, kéo bè kéo cánh, cục bộ địa
+                    phương, làm suy yếu sức mạnh của tổ chức.
+                  </p>
+                </div>
+
+                <div className="p-3.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg space-y-1">
+                  <div className="font-bold text-xs text-[#7a1818]">
+                    • Kiêu ngạo
+                  </div>
+                  <p className="text-xs text-ink leading-relaxed">
+                    Có chức vụ rồi coi thường người khác, tự cho mình là đúng, không
+                    chịu lắng nghe ý kiến đóng góp của quần chúng.
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-3.5 bg-[#f6efe4] border border-[#e5dac8] rounded-lg text-xs text-ink">
+                <strong>Hậu quả:</strong> Những biểu hiện này nếu không được ngăn
+                chặn có thể làm suy giảm tính đoàn kết và hiệu quả của bộ máy Nhà nước.
               </div>
             </div>
           </div>
@@ -184,63 +222,112 @@ export default function TrongSachVungManhSection() {
     {
       id: "xay-di-doi-voi-chong",
       label: "c. 'Xây' đi đôi với 'Chống' & Nêu gương",
-      badge: "5 Giải pháp",
+      badge: "Slide 7 — 9",
       content: (
         <div className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            {/* Cột trái: Phương châm Xây đi đôi với Chống */}
+            {/* Cột trái: Slide 7 & Slide 9 */}
             <div className="lg:col-span-6 space-y-4">
-              <div className="p-4 bg-[#f8f1e2] border-l-4 border-[#7a1818] rounded-r-lg">
-                <div className="font-serif font-bold text-xs text-[#7a1818] uppercase mb-1">
-                  Phương châm chỉ đạo
+              {/* Slide 7: "Xây" đi đôi với "Chống" */}
+              <div className="p-4 bg-[#f8f1e2] border-l-4 border-[#7a1818] rounded-r-lg space-y-2">
+                <div className="font-serif font-bold text-xs text-[#7a1818] uppercase">
+                  Slide 7 — &ldquo;Xây&rdquo; đi đôi với &ldquo;Chống&rdquo;
                 </div>
-                <div className="text-sm font-serif font-bold text-ink mb-2">
+                <div className="text-xs sm:text-sm font-serif font-bold text-ink">
                   “XÂY” ĐỂ TẠO RA CÁI TỐT — “CHỐNG” ĐỂ LOẠI BỎ CÁI XẤU
                 </div>
-                <p className="text-xs text-ink-muted leading-relaxed">
-                  Xây dựng Nhà nước dân chủ, bộ máy trong sạch gắn liền với kiên
-                  quyết loại trừ tham nhũng, lãng phí, quan liêu ra khỏi bộ máy.
+                <p className="text-xs text-ink leading-relaxed">
+                  Theo tư tưởng Hồ Chí Minh, xây dựng Nhà nước trong sạch không thể
+                  chỉ tập trung vào việc “xây” mà phải đồng thời thực hiện “chống”.
                 </p>
+                <div className="text-xs text-ink-muted space-y-1 pt-1 border-t border-[#ebd8c2]">
+                  <p><strong>Xây:</strong> Xây dựng Nhà nước dân chủ, có pháp luật, bộ máy hoạt động hiệu quả và đội ngũ cán bộ có đạo đức, trách nhiệm.</p>
+                  <p><strong>Chống:</strong> Chống tham ô, lãng phí, quan liêu, chủ nghĩa cá nhân và những hành vi lợi dụng quyền lực.</p>
+                </div>
               </div>
 
-              <div className="p-4 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
-                <div className="font-bold text-sm text-[#7a1818] mb-1">
-                  Cán bộ phải nêu gương sáng
+              {/* Slide 9: Cán bộ phải nêu gương */}
+              <div className="p-4 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg space-y-2">
+                <div className="font-serif font-bold text-xs text-[#7a1818] uppercase">
+                  Slide 9 — Cán bộ phải nêu gương
                 </div>
                 <p className="text-xs sm:text-sm text-ink leading-relaxed">
-                  Người có chức vụ càng cao thì càng phải làm gương tốt. Cán bộ
-                  phải <strong>vừa có đức, vừa có tài, trong đó đức là gốc</strong>
-                  .
+                  Hồ Chí Minh đặc biệt coi trọng vai trò của người cán bộ trong việc
+                  xây dựng Nhà nước trong sạch. Cán bộ không chỉ cần có năng lực mà
+                  còn phải có đạo đức, trách nhiệm và tinh thần phục vụ nhân dân.
                 </p>
+                <p className="text-xs text-ink-muted leading-relaxed">
+                  Người có chức vụ càng cao thì càng phải làm gương, bởi hành động
+                  của người lãnh đạo có ảnh hưởng trực tiếp đến tập thể và bộ máy mà
+                  họ quản lý.
+                </p>
+                <div className="p-2.5 bg-[#f6efe4] border border-[#e5dac8] rounded text-xs font-serif font-bold text-[#7a1818] text-center">
+                  “Cán bộ phải vừa có đức, vừa có tài, trong đó đức là gốc.”
+                </div>
               </div>
             </div>
 
-            {/* Cột phải: 5 Biện pháp phòng chống tiêu cực */}
-            <div className="lg:col-span-6 space-y-2.5">
-              <div className="font-serif font-bold text-xs text-[#7a1818] uppercase tracking-wider mb-1">
-                5 Biện pháp đồng bộ
+            {/* Cột phải: Slide 8 - 5 Biện pháp phòng, chống tiêu cực */}
+            <div className="lg:col-span-6 space-y-3">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#7a1818]" />
+                <h3 className="font-serif font-bold text-base sm:text-lg text-ink">
+                  Các biện pháp phòng, chống tiêu cực (Slide 8)
+                </h3>
               </div>
+              <p className="text-xs text-ink-muted leading-relaxed">
+                Để phòng, chống tiêu cực trong Nhà nước, Hồ Chí Minh nhấn mạnh 5 biện pháp đồng bộ:
+              </p>
 
               <div className="space-y-2">
-                <div className="p-2.5 bg-[#f6efe4] border border-[#e5dac8] rounded flex items-center gap-2.5 text-xs">
-                  <span className="font-mono font-bold text-[#7a1818]">01</span>
-                  <span>Phát huy dân chủ rộng rãi để nhân dân tham gia kiểm tra, giám sát.</span>
+                <div className="p-3 bg-[#f6efe4] border border-[#e5dac8] rounded-lg flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-[#7a1818] text-paper-light font-mono font-bold text-xs flex items-center justify-center flex-shrink-0">
+                    01
+                  </div>
+                  <div>
+                    <span className="font-bold text-xs text-[#7a1818] block">Phát huy dân chủ</span>
+                    <p className="text-xs text-ink">Tạo điều kiện để nhân dân tham gia và giám sát hoạt động của Nhà nước.</p>
+                  </div>
                 </div>
-                <div className="p-2.5 bg-[#f6efe4] border border-[#e5dac8] rounded flex items-center gap-2.5 text-xs">
-                  <span className="font-mono font-bold text-[#7a1818]">02</span>
-                  <span>Tăng cường pháp luật, hoàn thiện cơ chế thanh tra, kiểm tra thường xuyên.</span>
+
+                <div className="p-3 bg-[#f6efe4] border border-[#e5dac8] rounded-lg flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-[#7a1818] text-paper-light font-mono font-bold text-xs flex items-center justify-center flex-shrink-0">
+                    02
+                  </div>
+                  <div>
+                    <span className="font-bold text-xs text-[#7a1818] block">Tăng cường pháp luật, kiểm tra và giám sát</span>
+                    <p className="text-xs text-ink">Quyền lực phải được đặt trong khuôn khổ pháp luật và có cơ chế kiểm tra thường xuyên.</p>
+                  </div>
                 </div>
-                <div className="p-2.5 bg-[#f6efe4] border border-[#e5dac8] rounded flex items-center gap-2.5 text-xs">
-                  <span className="font-mono font-bold text-[#7a1818]">03</span>
-                  <span>Xử lý nghiêm minh mọi hành vi vi phạm, không có ngoại lệ.</span>
+
+                <div className="p-3 bg-[#f6efe4] border border-[#e5dac8] rounded-lg flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-[#7a1818] text-paper-light font-mono font-bold text-xs flex items-center justify-center flex-shrink-0">
+                    03
+                  </div>
+                  <div>
+                    <span className="font-bold text-xs text-[#7a1818] block">Xử lý nghiêm minh</span>
+                    <p className="text-xs text-ink">Sai phạm phải được phát hiện và xử lý đúng người, đúng mức độ.</p>
+                  </div>
                 </div>
-                <div className="p-2.5 bg-[#f6efe4] border border-[#e5dac8] rounded flex items-center gap-2.5 text-xs">
-                  <span className="font-mono font-bold text-[#7a1818]">04</span>
-                  <span>Cán bộ lãnh đạo phải nêu gương, cần kiệm liêm chính, chí công vô tư.</span>
+
+                <div className="p-3 bg-[#f6efe4] border border-[#e5dac8] rounded-lg flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-[#7a1818] text-paper-light font-mono font-bold text-xs flex items-center justify-center flex-shrink-0">
+                    04
+                  </div>
+                  <div>
+                    <span className="font-bold text-xs text-[#7a1818] block">Cán bộ phải nêu gương</span>
+                    <p className="text-xs text-ink">Người có chức vụ càng cao càng phải có trách nhiệm làm gương.</p>
+                  </div>
                 </div>
-                <div className="p-2.5 bg-[#f6efe4] border border-[#e5dac8] rounded flex items-center gap-2.5 text-xs">
-                  <span className="font-mono font-bold text-[#7a1818]">05</span>
-                  <span>Phát huy toàn diện sức mạnh của nhân dân trong cuộc đấu tranh phòng, chống tiêu cực.</span>
+
+                <div className="p-3 bg-[#f6efe4] border border-[#e5dac8] rounded-lg flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-[#7a1818] text-paper-light font-mono font-bold text-xs flex items-center justify-center flex-shrink-0">
+                    05
+                  </div>
+                  <div>
+                    <span className="font-bold text-xs text-[#7a1818] block">Phát huy sức mạnh của nhân dân</span>
+                    <p className="text-xs text-ink">Nhân dân tham gia phát hiện, phản ánh và đấu tranh với những biểu hiện tiêu cực.</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -260,7 +347,7 @@ export default function TrongSachVungManhSection() {
       parentPath="4.2. Tư tưởng Hồ Chí Minh về Nhà nước của nhân dân, do nhân dân, vì nhân dân"
       quote="Có quyền lực nhưng không có nghĩa là có quyền tuyệt đối. Người có quyền lực cũng phải chịu sự kiểm soát."
       quoteAuthor="Hồ Chí Minh"
-      summary="Kiểm soát quyền lực nhà nước bằng cơ chế đa tầng; kiên quyết phòng chống các biểu hiện tiêu cực như tham ô, lãng phí, quan liêu; thực hiện phương châm 'Xây' đi đôi với 'Chống' và đề cao đạo đức nêu gương của cán bộ."
+      summary="Theo tư tưởng Hồ Chí Minh, xây dựng một Nhà nước trong sạch, vững mạnh không chỉ là xây dựng bộ máy hiệu quả mà còn phải kiểm soát quyền lực bằng cơ chế Đảng - Nhà nước - Nhân dân; kiên quyết phòng chống tiêu cực và nêu cao đạo đức 'đức là gốc'."
       tabs={tabs}
       prevSection={{
         id: "phap-quyen",

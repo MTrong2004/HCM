@@ -63,7 +63,7 @@ export default function EditorialReveal({
 }: EditorialRevealProps) {
   const ref = useRef<HTMLElement | null>(null);
   const isReduced = useReducedMotion();
-  const [revealed, setRevealed] = useState(false);
+  const [revealed, setRevealed] = useState(true);
 
   useEffect(() => {
     if (isReduced) {

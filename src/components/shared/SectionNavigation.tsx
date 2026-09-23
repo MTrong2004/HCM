@@ -88,7 +88,7 @@ export default function SectionNavigation() {
 
   const handleNavClick = (id: string) => {
     playSubtleClick();
-    scrollTo(id, -72, true);
+    scrollTo(id, -56, true);
     setIsTOCDrawerOpen(false);
   };
 
@@ -101,126 +101,88 @@ export default function SectionNavigation() {
   return (
     <>
       {/* Top Header Bar theo phong cách thiết kế mẫu Designer_71 */}
-      <header className="fixed top-0 left-0 right-0 lg:left-80 z-40 h-16 bg-[#3a0808]/95 backdrop-blur-md border-b border-[#5e1414] text-[#fbf8f0] transition-all duration-300">
-        <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-full flex items-center justify-between gap-2">
-          {/* Cột trái Top Bar */}
-          <div className="flex items-center gap-3">
-            {/* Mobile Brand Button (Chỉ hiện trên mobile/tablet) */}
+      <header className="fixed top-0 left-0 right-0 md:left-60 lg:left-64 z-40 h-11 sm:h-12 bg-[#3a0808]/95 backdrop-blur-md border-b border-[#5e1414] text-[#fbf8f0] transition-all duration-300">
+        <div className="w-full px-4 sm:px-6 h-full flex items-center justify-between gap-3">
+          {/* Cột trái: Mobile Brand (chỉ hiện mobile) */}
+          <div className="flex items-center gap-2">
             <button
               onClick={() => handleNavClick("hero")}
-              className="lg:hidden min-h-[44px] min-w-[44px] flex items-center gap-2 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37] rounded-lg group flex-shrink-0"
+              className="md:hidden min-h-[38px] flex items-center gap-1.5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37] rounded-lg group flex-shrink-0"
               aria-label="Về phần mở đầu tác phẩm"
             >
-              <div className="w-8 h-8 rounded bg-[#7a1818] border border-[#d4af37]/40 text-[#fbf8f0] flex items-center justify-center font-serif font-black text-sm shadow-xs">
+              <div className="w-6 h-6 rounded bg-[#7a1818] border border-[#d4af37]/40 text-[#fbf8f0] flex items-center justify-center font-serif font-black text-xs shadow-xs">
                 ★
               </div>
               <div className="flex flex-col">
-                <span className="font-serif text-xs font-bold text-[#fbf8f0] tracking-wide">
+                <span className="font-serif text-[11px] font-bold text-[#fbf8f0] tracking-wide">
                   TƯ TƯỞNG HỒ CHÍ MINH
                 </span>
-                <span className="font-mono text-[10px] text-[#d4af37]">
+                <span className="font-mono text-[9px] text-[#d4af37]">
                   {activeSectionData.number !== "0"
                     ? `${activeSectionData.number} ${activeSectionData.shortTitle}`
                     : activeSectionData.shortTitle}
                 </span>
               </div>
             </button>
-
-            {/* Desktop Top Slogans (Học từ Bác - Sống vì Dân - Hành động vì Tương lai) */}
-            <div className="hidden lg:flex items-center gap-4 text-xs font-serif tracking-wider">
-              <span className="py-1 px-2 border-b-2 border-[#d4af37] text-[#fff8ea] font-bold uppercase cursor-default">
-                HỌC TỪ BÁC
-              </span>
-              <span className="py-1 px-2 text-[#fff8ea]/70 hover:text-white uppercase transition-colors cursor-default">
-                SỐNG VÌ DÂN
-              </span>
-              <span className="py-1 px-2 text-[#fff8ea]/70 hover:text-white uppercase transition-colors cursor-default">
-                HÀNH ĐỘNG VÌ TƯƠNG LAI
-              </span>
-            </div>
           </div>
 
-          {/* Cột giữa & phải: Tìm kiếm & Tiện ích */}
+          {/* Cột giữa: Khẩu hiệu trung tâm theo đúng Designer_71 */}
+          <div className="hidden md:flex items-center gap-5 lg:gap-7 text-[11px] font-serif tracking-wider">
+            <button
+              onClick={() => handleNavClick("phap-quyen")}
+              className="py-0.5 px-1 border-b-[1.5px] border-[#d4af37] text-[#fff8ea] font-bold uppercase transition-colors focus:outline-none"
+            >
+              HỌC TỪ BÁC
+            </button>
+            <button
+              onClick={() => handleNavClick("dan-chu")}
+              className="py-0.5 px-1 text-[#fff8ea]/75 hover:text-white uppercase transition-colors focus:outline-none"
+            >
+              SỐNG VÌ DÂN
+            </button>
+            <button
+              onClick={() => handleNavClick("xay-dung-dang")}
+              className="py-0.5 px-1 text-[#fff8ea]/75 hover:text-white uppercase transition-colors focus:outline-none"
+            >
+              HÀNH ĐỘNG VÌ TƯƠNG LAI
+            </button>
+          </div>
+
+          {/* Cột phải: Tìm kiếm & Nút Menu Drawer theo đúng Designer_71 */}
           <div className="flex items-center gap-2">
-            {/* Search Input Button */}
+            {/* Search Input Button dạng viên thuốc (Pill shape) */}
             <button
               onClick={() => {
                 playSubtleClick();
                 setSearchOpen(true);
               }}
-              className="min-h-[40px] px-3 py-1.5 rounded-full bg-black/25 border border-[#d4af37]/30 text-xs font-sans text-[#fbf8f0]/85 hover:text-white hover:border-[#d4af37] hover:bg-black/40 transition-all flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]"
+              className="h-7 sm:h-8 px-2.5 py-1 rounded-full bg-black/35 border border-[#d4af37]/35 text-[11px] font-sans text-[#fbf8f0]/85 hover:text-white hover:border-[#d4af37] hover:bg-black/50 transition-all flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]"
               title="Tìm kiếm nội dung (Ctrl+K)"
               aria-label="Tìm kiếm nội dung"
             >
-              <Search className="w-3.5 h-3.5 text-[#d4af37]" />
-              <span className="hidden sm:inline">Tìm kiếm nội dung...</span>
-              <span className="hidden md:inline text-[10px] bg-white/10 px-1.5 py-0.5 rounded border border-white/15">
+              <Search className="w-3 h-3 text-[#d4af37]" />
+              <span className="text-[11px]">Tìm kiếm...</span>
+              <span className="hidden lg:inline text-[9px] bg-white/10 px-1 py-0.2 rounded border border-white/15">
                 ⌘K
               </span>
             </button>
 
-            {/* Trình chiếu (Slide Deck) */}
-            <button
-              onClick={() => {
-                playSwoosh();
-                setPresentationOpen(true);
-              }}
-              className="hidden sm:inline-flex min-h-[40px] items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#7a1818]/80 border border-[#d4af37]/40 text-xs font-mono font-bold text-[#fff8ea] hover:bg-[#8a1d1d] transition-all shadow-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]"
-              title="Bật chế độ thuyết trình"
-              aria-label="Bật chế độ thuyết trình"
-            >
-              <Presentation className="w-3.5 h-3.5 text-[#d4af37]" />
-              <span className="hidden md:inline">Trình chiếu</span>
-            </button>
-
-            {/* Trích dẫn */}
-            <button
-              onClick={() => {
-                playSubtleClick();
-                setCitationOpen(true);
-              }}
-              className="hidden md:inline-flex min-h-[40px] items-center gap-1 px-2.5 py-1.5 rounded-lg border border-white/20 bg-white/5 text-xs font-mono text-[#fbf8f0]/80 hover:text-white hover:border-white/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]"
-              title="Trích dẫn học thuật"
-              aria-label="Trích dẫn học thuật"
-            >
-              <BookMarked className="w-3.5 h-3.5 text-[#d4af37]" />
-              <span>Trích dẫn</span>
-            </button>
-
-            {/* Âm thanh */}
-            <button
-              onClick={handleSoundToggle}
-              className={`min-h-[40px] min-w-[40px] flex items-center justify-center p-2 rounded-lg border transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37] ${
-                soundMuted
-                  ? "border-white/15 text-white/50 hover:text-white hover:bg-white/10"
-                  : "border-[#d4af37]/50 text-[#d4af37] bg-black/20 hover:bg-black/30"
-              }`}
-              title={soundMuted ? "Bật âm thanh tương tác" : "Tắt âm thanh tương tác"}
-              aria-label="Bật tắt âm thanh tương tác"
-            >
-              {soundMuted ? (
-                <VolumeX className="w-4 h-4" />
-              ) : (
-                <Volume2 className="w-4 h-4" />
-              )}
-            </button>
-
-            {/* Nút Mục lục Drawer (cho Mobile hoặc Quick access) */}
+            {/* Nút Hamburger Menu mở Drawer điều hướng */}
             <button
               ref={tocTriggerRef}
               onClick={toggleTOCDrawer}
               aria-expanded={isTOCDrawerOpen}
               aria-controls="editorial-toc-drawer"
-              className="min-h-[44px] min-w-[44px] flex items-center justify-center p-2 rounded-lg border border-[#d4af37]/40 bg-[#7a1818] text-[#fbf8f0] hover:bg-[#8e1d1d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37] shadow-xs"
+              className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-md border border-[#d4af37]/40 bg-[#7a1818] text-[#fbf8f0] hover:bg-[#8e1d1d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37] shadow-xs transition-colors"
               aria-label={
                 isTOCDrawerOpen ? "Đóng mục lục tác phẩm" : "Mở mục lục tác phẩm"
               }
-              title="Mục lục tác phẩm"
+              title="Mục lục & Tiện ích"
             >
               {isTOCDrawerOpen ? (
-                <X className="w-5 h-5 text-[#d4af37]" />
+                <X className="w-3.5 h-3.5 text-[#d4af37]" />
               ) : (
-                <Menu className="w-5 h-5" />
+                <Menu className="w-3.5 h-3.5" />
               )}
             </button>
           </div>
@@ -269,17 +231,17 @@ export default function SectionNavigation() {
                 </button>
               </div>
 
-              {/* Mobile Quick Actions inside Drawer */}
-              <div className="sm:hidden grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-white/15">
+              {/* Quick Actions inside Drawer */}
+              <div className="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-white/15">
                 <button
                   onClick={() => {
                     setIsTOCDrawerOpen(false);
                     playSwoosh();
                     setPresentationOpen(true);
                   }}
-                  className="min-h-[44px] px-3 py-2 rounded-lg bg-[#7a1818] border border-[#d4af37]/40 text-xs font-mono font-bold text-[#fff8ea] hover:bg-[#8e1d1d] transition-all flex items-center justify-center gap-1.5 shadow-xs"
+                  className="min-h-[40px] px-2 py-1.5 rounded-lg bg-[#7a1818] border border-[#d4af37]/40 text-xs font-mono font-bold text-[#fff8ea] hover:bg-[#8e1d1d] transition-all flex items-center justify-center gap-1 shadow-xs"
                 >
-                  <Presentation className="w-4 h-4 text-[#d4af37]" />
+                  <Presentation className="w-3.5 h-3.5 text-[#d4af37]" />
                   <span>Trình chiếu</span>
                 </button>
 
@@ -289,10 +251,27 @@ export default function SectionNavigation() {
                     playSubtleClick();
                     setCitationOpen(true);
                   }}
-                  className="min-h-[44px] px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-xs font-mono text-[#fbf8f0] hover:bg-white/20 transition-all flex items-center justify-center gap-1.5 shadow-xs"
+                  className="min-h-[40px] px-2 py-1.5 rounded-lg bg-white/10 border border-white/20 text-xs font-mono text-[#fbf8f0] hover:bg-white/20 transition-all flex items-center justify-center gap-1 shadow-xs"
                 >
-                  <BookMarked className="w-4 h-4 text-[#d4af37]" />
+                  <BookMarked className="w-3.5 h-3.5 text-[#d4af37]" />
                   <span>Trích dẫn</span>
+                </button>
+
+                <button
+                  onClick={handleSoundToggle}
+                  className="min-h-[40px] px-2 py-1.5 rounded-lg bg-white/10 border border-white/20 text-xs font-mono text-[#fbf8f0] hover:bg-white/20 transition-all flex items-center justify-center gap-1 shadow-xs"
+                >
+                  {soundMuted ? (
+                    <>
+                      <VolumeX className="w-3.5 h-3.5 text-[#d4af37]" />
+                      <span>Bật âm</span>
+                    </>
+                  ) : (
+                    <>
+                      <Volume2 className="w-3.5 h-3.5 text-[#d4af37]" />
+                      <span>Tắt âm</span>
+                    </>
+                  )}
                 </button>
               </div>
             </div>

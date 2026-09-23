@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/shared/SmoothScrollProvider";
 
@@ -47,15 +48,41 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="vi" className={`${playfair.variable} ${inter.variable}`}>
+    <html
+      lang="vi"
+      className={`${playfair.variable} ${inter.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        <script
+        <meta name="darkreader-lock" content="true" />
+        <meta name="darkreader" content="NO-DARKREADER" />
+        <meta name="color-scheme" content="light" />
+        <Script
+          id="detect-reduced-motion"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.setAttribute('data-reduced-motion','true');}}catch(e){}})();`,
+            __html: `(function(){try{
+              if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+                document.documentElement.setAttribute('data-reduced-motion','true');
+              }
+              function removeDarkStyles(){
+                var els = document.querySelectorAll('style.darkreader, style[class*="darkreader"]');
+                for (var i = 0; i < els.length; i++) {
+                  els[i].remove();
+                }
+              }
+              removeDarkStyles();
+              if (window.MutationObserver) {
+                new MutationObserver(removeDarkStyles).observe(document.documentElement, { childList: true, subtree: true });
+              }
+            }catch(e){}})();`,
           }}
         />
       </head>
-      <body className="min-h-screen bg-paper text-ink selection:bg-primary selection:text-paper-light antialiased">
+      <body
+        className="min-h-screen bg-paper text-ink selection:bg-primary selection:text-paper-light antialiased"
+        suppressHydrationWarning
+      >
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>

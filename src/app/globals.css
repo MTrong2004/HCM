@@ -23,16 +23,23 @@
 }
 
 :root {
-  --background: #F5EFE3;
+  color-scheme: light only !important;
+  --background: #fbf9f4;
   --foreground: #171717;
 }
 
 html {
-  background-color: #F5EFE3;
+  color-scheme: light only !important;
+  background-color: #fbf9f4 !important;
   color: #171717;
   scroll-behavior: auto; /* Managed by Lenis */
   overflow-x: clip;
   max-width: 100%;
+}
+
+body {
+  color-scheme: light only !important;
+  background-color: #fbf9f4 !important;
 }
 
 /* Canonical Section Anchors Scroll Margin for fixed header clearance */
@@ -45,17 +52,40 @@ html {
 #phong-chong-tham-nhung,
 #ket-luan,
 [data-section-id] {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 3.5rem;
 }
 
 body {
-  background-color: #F5EFE3;
+  background-color: #fbf9f4 !important;
   color: #171717;
   font-family: var(--font-body);
   overflow-x: clip;
   max-width: 100%;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Sleek Scrollbar for Sidebar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #732121 rgba(0, 0, 0, 0.15);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #732121;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #962828;
 }
 
 /* Custom subtle antique paper texture pattern */
@@ -341,21 +371,15 @@ body {
 /* 1. Default fallback: 100% visible, no transform, no layout shift */
 .editorial-reveal,
 [data-reveal-state] {
-  opacity: 1;
-  transform: none;
+  opacity: 1 !important;
+  transform: none !important;
 }
 
-/* 2. Hydrated normal motion state (only active when JS hydrated and NOT reduced motion) */
-html[data-hydrated="true"]:not([data-reduced-motion="true"]) [data-reveal-state="pending"] {
-  opacity: 0;
-  transform: translateY(12px);
-  will-change: opacity, transform;
-}
-
+/* 2. Ensure all content is immediately visible without hiding or flashing */
+html[data-hydrated="true"]:not([data-reduced-motion="true"]) [data-reveal-state="pending"],
 html[data-hydrated="true"]:not([data-reduced-motion="true"]) [data-reveal-state="revealed"] {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1), transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 /* Stagger delays */

@@ -46,18 +46,29 @@ export default function SmoothScrollProvider({
   children: React.ReactNode;
 }) {
   const lenisRef = useRef<Lenis | null>(null);
-  const [activeSection, setActiveSection] = useState<string>(() => {
-    if (typeof window !== "undefined") {
-      const rawHash = window.location.hash.replace(/^#/, "");
-      if (rawHash && (CANONICAL_SECTION_IDS as readonly string[]).includes(rawHash)) {
-        return rawHash;
-      }
-    }
-    return "hero";
-  });
+  const [activeSection, setActiveSection] = useState<string>("phap-quyen");
   const [scrollProgress, setScrollProgress] = useState<number>(0);
   const [isTOCDrawerOpen, setIsTOCDrawerOpen] = useState<boolean>(false);
   const isNavigatingRef = useRef<boolean>(false);
+
+  // Đồng bộ URL hash khi client hydrate xong và khi người dùng back/forward browser
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const rawHash = window.location.hash.replace(/^#/, "");
+    if (rawHash && (CANONICAL_SECTION_IDS as readonly string[]).includes(rawHash)) {
+      window.requestAnimationFrame(() => {
+        setActiveSection(rawHash);
+      });
+    }
+    const handleHashChange = () => {
+      const newHash = window.location.hash.replace(/^#/, "");
+      if (newHash && (CANONICAL_SECTION_IDS as readonly string[]).includes(newHash)) {
+        setActiveSection(newHash);
+      }
+    };
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
 
   // Initialize Lenis and keep its lifecycle synchronized with reduced motion.
   useEffect(() => {
@@ -140,12 +151,6 @@ export default function SmoothScrollProvider({
     ) => {
       const targetId =
         typeof target === "string" ? target.replace(/^#/, "") : target.id;
-      const el =
-        typeof target === "string"
-          ? document.getElementById(targetId)
-          : target;
-
-      if (!el) return;
 
       isNavigatingRef.current = true;
       setActiveSection(targetId);
@@ -157,25 +162,41 @@ export default function SmoothScrollProvider({
         }
       }
 
+      const el =
+        typeof target === "string"
+          ? document.getElementById(targetId)
+          : target;
+
       const isReduced =
         typeof window !== "undefined" &&
         (document.documentElement.getAttribute("data-reduced-motion") === "true" ||
           window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
-      if (lenisRef.current && !isReduced) {
-        lenisRef.current.scrollTo(el, { offset, duration: 1.1 });
+      if (el) {
+        if (lenisRef.current && !isReduced) {
+          lenisRef.current.scrollTo(el, { offset, duration: 0.9 });
+        } else {
+          const targetY =
+            el.getBoundingClientRect().top + window.scrollY + offset;
+          window.scrollTo({
+            top: Math.max(0, targetY),
+            behavior: isReduced ? "auto" : "smooth",
+          });
+        }
       } else {
-        const targetY =
-          el.getBoundingClientRect().top + window.scrollY + offset;
-        window.scrollTo({
-          top: Math.max(0, targetY),
-          behavior: isReduced ? "auto" : "smooth",
-        });
+        if (lenisRef.current && !isReduced) {
+          lenisRef.current.scrollTo(0, { duration: 0.6 });
+        } else if (typeof window !== "undefined") {
+          window.scrollTo({
+            top: 0,
+            behavior: isReduced ? "auto" : "smooth",
+          });
+        }
       }
 
       setTimeout(() => {
         isNavigatingRef.current = false;
-      }, 1200);
+      }, 1000);
     },
     []
   );
@@ -228,28 +249,16 @@ export default function SmoothScrollProvider({
 
           // If currently performing animated programmatic scroll, do not let spy fight it
           if (!isNavigatingRef.current) {
-            // Edge 1: top of page
-            if (scrollY < 80) {
-              setActiveSection("hero");
-            }
-            // Edge 2: bottom of page
-            else if (
-              scrollY + window.innerHeight >=
-              document.documentElement.scrollHeight - 60
-            ) {
-              setActiveSection("ket-luan");
-            } else {
-              // Scroll-position based detection with offset for fixed header
-              const triggerY = scrollY + window.innerHeight * 0.35;
-              for (let i = CANONICAL_SECTION_IDS.length - 1; i >= 0; i--) {
-                const id = CANONICAL_SECTION_IDS[i];
-                const el = document.getElementById(id);
-                if (el) {
-                  const elTop = el.getBoundingClientRect().top + scrollY;
-                  if (elTop <= triggerY) {
-                    setActiveSection(id);
-                    break;
-                  }
+            // Scroll-position based detection with offset for fixed header
+            const triggerY = scrollY + window.innerHeight * 0.35;
+            for (let i = CANONICAL_SECTION_IDS.length - 1; i >= 0; i--) {
+              const id = CANONICAL_SECTION_IDS[i];
+              const el = document.getElementById(id);
+              if (el) {
+                const elTop = el.getBoundingClientRect().top + scrollY;
+                if (elTop <= triggerY) {
+                  setActiveSection(id);
+                  break;
                 }
               }
             }
@@ -278,7 +287,7 @@ export default function SmoothScrollProvider({
     const rawHash = window.location.hash.replace(/^#/, "");
     if (rawHash && (CANONICAL_SECTION_IDS as readonly string[]).includes(rawHash)) {
       const timer = setTimeout(() => {
-        scrollTo(rawHash, -72, false);
+        scrollTo(rawHash, -56, false);
       }, 150);
       return () => clearTimeout(timer);
     }
@@ -292,7 +301,7 @@ export default function SmoothScrollProvider({
       const hash = window.location.hash.replace(/^#/, "");
       if (hash && CANONICAL_SECTION_IDS.includes(hash)) {
         setActiveSection(hash);
-        scrollTo(hash, -72, false);
+        scrollTo(hash, -56, false);
       } else if (!hash) {
         setActiveSection("hero");
         scrollTo("hero", 0, false);

@@ -9,73 +9,87 @@ export default function PhongChongThamNhungSection() {
   const tabs: TabItem[] = [
     {
       id: "nhan-dien-van-de",
-      label: "a. Nhận diện vấn đề (Giặc nội xâm)",
-      badge: "Tham ô - Lãng phí - Quan liêu",
+      label: "a. Nhận diện 'Giặc ở trong lòng'",
+      badge: "Tham ô • Lãng phí • Quan liêu",
       content: (
         <div className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             {/* Cột trái: Nhận diện ba căn bệnh nguy hại */}
             <div className="lg:col-span-6 space-y-4">
               <h4 className="font-serif font-bold text-base text-[#7a1818]">
-                1. Ba hiểm họa “giặc ở trong lòng”
+                1. Nhận diện đúng bản chất hiểm họa “giặc nội xâm”
               </h4>
               <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-                Hồ Chí Minh chỉ rõ ba căn bệnh hiểm nghèo tàn phá sự nghiệp cách
-                mạng từ bên trong:
+                Bác coi tham ô, lãng phí, quan liêu là{" "}
+                <strong>“giặc ở trong lòng”</strong>, <strong>“giặc nội xâm”</strong> –
+                kẻ thù phá hoại sự nghiệp cách mạng từ bên trong:
               </p>
 
               <div className="space-y-3">
-                <div className="p-3 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
+                <div className="p-3.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
                   <div className="font-bold text-xs text-[#7a1818] mb-1">
-                    Tham ô (Ăn cắp của công)
+                    • Tham ô (Ăn cắp của công)
                   </div>
                   <p className="text-xs text-ink leading-relaxed">
                     Lợi dụng chức vụ quyền hạn để chiếm đoạt tài sản công, biến
-                    của chung thành của riêng. Bác coi tham ô là hành động trộm
-                    cắp của nhân dân.
+                    của chung thành của riêng. Bác coi tham ô là hành vi ăn cắp tiền
+                    của của nhân dân.
                   </p>
                 </div>
 
-                <div className="p-3 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
+                <div className="p-3.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
                   <div className="font-bold text-xs text-[#7a1818] mb-1">
-                    Lãng phí (Tội ác với nhân dân)
+                    • Lãng phí (Không hiệu quả)
                   </div>
                   <p className="text-xs text-ink leading-relaxed">
                     Lãng phí sức lao động, thời gian và tiền của của Nhà nước và
-                    nhân dân. Bác khẳng định lãng phí tuy không lấy của công
-                    nhưng kết quả có hại không kém gì tham ô.
+                    nhân dân. Tuy không trực tiếp chiếm đoạt tài sản nhưng kết quả
+                    tai hại không hiệu quả, nguy hiểm không kém gì tham ô.
                   </p>
                 </div>
 
-                <div className="p-3 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
+                <div className="p-3.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg">
                   <div className="font-bold text-xs text-[#7a1818] mb-1">
-                    Bệnh quan liêu (Nguồn gốc của tội lỗi)
+                    • Quan liêu (Xa dân, xa thực tế)
                   </div>
                   <p className="text-xs text-ink leading-relaxed">
-                    Xa rời thực tế, xa rời quần chúng nhân dân; chỉ thích ngồi
-                    phòng giấy chỉ tay năm ngón, hội họp rườm rà. Quan liêu là cái
-                    nôi dung dưỡng tham ô, lãng phí.
+                    Xa rời thực tế, xa rời quần chúng nhân dân; chỉ thích ngồi phòng
+                    giấy chỉ tay năm ngón, hách dịch, cửa quyền. Bệnh quan liêu là
+                    cội nguồn dung dưỡng tham ô, lãng phí.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Cột phải: Tác hại tàn phá lòng tin */}
+            {/* Cột phải: Tác hại tàn phá lòng tin sinh tử */}
             <div className="lg:col-span-6 space-y-4">
               <h4 className="font-serif font-bold text-base text-[#7a1818]">
-                2. Tác hại sống còn đối với chế độ
+                2. Tác hại sống còn đối với lòng tin của Nhân dân
               </h4>
               <div className="p-5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg space-y-3">
                 <p className="text-xs sm:text-sm text-ink leading-relaxed">
-                  Bác cảnh báo: Tham nhũng, lãng phí, quan liêu làm biến chất
-                  đội ngũ cán bộ, phá vỡ kỷ cương pháp luật và nguy hiểm nhất là{" "}
-                  <strong>làm xói mòn niềm tin của nhân dân</strong> vào Đảng và
-                  Nhà nước.
+                  Bác cảnh báo: Tham ô, lãng phí, quan liêu làm mục ruỗng bộ máy
+                  nhà nước, thoái hóa cán bộ và nguy hiểm nhất là{" "}
+                  <strong>làm xói mòn lòng tin sinh tử của nhân dân</strong> vào chế
+                  độ và sự lãnh đạo của Đảng.
                 </p>
-                <div className="p-3 bg-[#f8f1e2] border-l-3 border-[#7a1818] rounded-r text-xs font-serif italic text-ink">
-                  “Tham ô, lãng phí và bệnh quan liêu là kẻ thù của nhân dân, của
-                  bộ đội và của Chính phủ. Nó là giặc ở trong lòng, là bạn đồng
-                  minh của thực dân và phong kiến.”
+
+                <div className="p-4 bg-[#f8f1e2] border-l-4 border-[#7a1818] rounded-r-lg space-y-1.5">
+                  <span className="font-serif font-bold text-xs text-[#7a1818] uppercase">
+                    Lời dạy bất hủ của Bác Hồ
+                  </span>
+                  <blockquote className="font-serif italic text-xs sm:text-sm text-ink leading-relaxed">
+                    “Tham ô, lãng phí và bệnh quan liêu là kẻ thù của nhân dân, của
+                    bộ đội và của Chính phủ. Nó là giặc ở trong lòng, là bạn đồng
+                    minh của thực dân và phong kiến.”
+                  </blockquote>
+                </div>
+
+                <div className="p-3 bg-[#f6efe4] border border-[#e5dac8] rounded text-xs text-ink">
+                  <strong>Trọng tâm hiện nay:</strong> Kiên quyết đấu tranh chống
+                  thói quan liêu, hách dịch, cửa quyền, sách nhiễu nhân dân trong bộ
+                  máy hành chính; thực hành tiết kiệm triệt để trong các cơ quan nhà
+                  nước và trong đội ngũ cán bộ, công chức.
                 </div>
               </div>
             </div>
@@ -84,85 +98,96 @@ export default function PhongChongThamNhungSection() {
       ),
     },
     {
-      id: "he-giai-phap-bon-tru-cot",
-      label: "b. Hệ giải pháp Bốn trụ cột",
-      badge: "Dân - Luật - Phạt - Gương",
+      id: "ky-cuong-va-bien-phap",
+      label: "b. Kỷ cương phép nước & 5 Biện pháp",
+      badge: "Không có vùng cấm",
       content: (
         <div className="space-y-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Trụ cột 1: DÂN */}
-            <div className="p-4 bg-[#fbf8f0] border border-[#e8dfcf] rounded-xl flex flex-col justify-between shadow-xs">
-              <div>
-                <div className="w-8 h-8 rounded-full bg-[#7a1818] text-paper-light font-serif font-black text-sm flex items-center justify-center mb-3">
-                  DÂN
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            {/* Cột trái: Nguyên tắc kỷ cương phép nước */}
+            <div className="lg:col-span-6 space-y-4">
+              <h4 className="font-serif font-bold text-base text-[#7a1818]">
+                1. Giữ vững nguyên tắc kỷ cương phép nước
+              </h4>
+              <div className="p-5 bg-[#f8f1e2] border-l-4 border-[#7a1818] rounded-r-lg space-y-3">
+                <div className="font-serif font-bold text-xs text-[#7a1818] uppercase">
+                  Nguyên tắc cốt lõi
                 </div>
-                <h5 className="font-serif font-bold text-sm text-ink mb-1.5">
-                  Dựa vào Nhân dân
-                </h5>
-                <p className="text-xs text-ink-muted leading-relaxed">
-                  Phát huy dân chủ, tạo điều kiện để nhân dân tham gia kiểm tra,
-                  giám sát cán bộ và phát giác kịp thời hành vi tiêu cực.
+                <blockquote className="text-sm sm:text-base font-serif font-bold text-ink leading-snug">
+                  “Không có vùng cấm, không có ngoại lệ, bất kể người đó là ai.”
+                </blockquote>
+                <p className="text-xs text-ink leading-relaxed">
+                  Bất kỳ ai lợi dụng quyền lực để tham nhũng, lãng phí, sách nhiễu
+                  đều phải bị xử lý nghiêm minh trước pháp luật, giữ vững tính nghiêm
+                  minh của Nhà nước pháp quyền.
                 </p>
               </div>
-              <div className="mt-3 pt-2 border-t border-[#ede2d2] text-[11px] font-mono text-[#7a1818] font-bold">
-                DÂN LÀ GỐC
+
+              <div className="p-4 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg space-y-2">
+                <div className="font-bold text-xs text-[#7a1818]">
+                  Cơ chế phòng ngừa ba tầng khép kín:
+                </div>
+                <div className="grid grid-cols-3 gap-2 text-center text-xs">
+                  <div className="p-2 bg-[#f6efe4] rounded border border-[#e5dac8]">
+                    <span className="font-bold text-[#7a1818] block">KHÔNG THỂ</span>
+                    <span className="text-[11px] text-ink-muted">Thể chế kín kẽ</span>
+                  </div>
+                  <div className="p-2 bg-[#f6efe4] rounded border border-[#e5dac8]">
+                    <span className="font-bold text-[#7a1818] block">KHÔNG DÁM</span>
+                    <span className="text-[11px] text-ink-muted">Chế tài nghiêm khắc</span>
+                  </div>
+                  <div className="p-2 bg-[#f6efe4] rounded border border-[#e5dac8]">
+                    <span className="font-bold text-[#7a1818] block">KHÔNG CẦN</span>
+                    <span className="text-[11px] text-ink-muted">Đãi ngộ xứng đáng</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Trụ cột 2: LUẬT */}
-            <div className="p-4 bg-[#fbf8f0] border border-[#e8dfcf] rounded-xl flex flex-col justify-between shadow-xs">
-              <div>
-                <div className="w-8 h-8 rounded-full bg-[#7a1818] text-paper-light font-serif font-black text-sm flex items-center justify-center mb-3">
-                  LUẬT
-                </div>
-                <h5 className="font-serif font-bold text-sm text-ink mb-1.5">
-                  Thượng tôn Pháp luật
-                </h5>
-                <p className="text-xs text-ink-muted leading-relaxed">
-                  Hoàn thiện hệ thống thể chế, pháp luật chặt chẽ, minh bạch; bịt
-                  kín mọi kẽ hở không để ai có thể lợi dụng tham nhũng.
-                </p>
-              </div>
-              <div className="mt-3 pt-2 border-t border-[#ede2d2] text-[11px] font-mono text-[#7a1818] font-bold">
-                KỶ CƯƠNG PHÉP NƯỚC
-              </div>
-            </div>
+            {/* Cột phải: 5 Biện pháp phòng chống tiêu cực */}
+            <div className="lg:col-span-6 space-y-3">
+              <h4 className="font-serif font-bold text-base text-[#7a1818]">
+                2. 5 Biện pháp phòng, chống tiêu cực của Bác
+              </h4>
+              <p className="text-xs text-ink-muted leading-relaxed">
+                Vận dụng tư tưởng Hồ Chí Minh trong phòng, chống tham nhũng hiện nay:
+              </p>
 
-            {/* Trụ cột 3: PHẠT */}
-            <div className="p-4 bg-[#fbf8f0] border border-[#e8dfcf] rounded-xl flex flex-col justify-between shadow-xs">
-              <div>
-                <div className="w-8 h-8 rounded-full bg-[#7a1818] text-paper-light font-serif font-black text-sm flex items-center justify-center mb-3">
-                  PHẠT
+              <div className="space-y-2 text-xs">
+                <div className="p-2.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg flex items-center gap-2.5">
+                  <span className="w-5 h-5 rounded-full bg-[#7a1818] text-white flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                    01
+                  </span>
+                  <span><strong>Phát huy dân chủ:</strong> Tạo điều kiện để nhân dân tham gia và giám sát hoạt động Nhà nước.</span>
                 </div>
-                <h5 className="font-serif font-bold text-sm text-ink mb-1.5">
-                  Nghiêm minh, Không ngoại lệ
-                </h5>
-                <p className="text-xs text-ink-muted leading-relaxed">
-                  Xử lý nghiêm khắc, đúng người đúng tội; không có vùng cấm,
-                  không có ngoại lệ, bất kể người vi phạm giữ chức vụ gì.
-                </p>
-              </div>
-              <div className="mt-3 pt-2 border-t border-[#ede2d2] text-[11px] font-mono text-[#7a1818] font-bold">
-                TRỪNG TRỊ THÍCH ĐÁNG
-              </div>
-            </div>
 
-            {/* Trụ cột 4: GƯƠNG */}
-            <div className="p-4 bg-[#fbf8f0] border border-[#e8dfcf] rounded-xl flex flex-col justify-between shadow-xs">
-              <div>
-                <div className="w-8 h-8 rounded-full bg-[#7a1818] text-paper-light font-serif font-black text-sm flex items-center justify-center mb-3">
-                  GƯƠNG
+                <div className="p-2.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg flex items-center gap-2.5">
+                  <span className="w-5 h-5 rounded-full bg-[#7a1818] text-white flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                    02
+                  </span>
+                  <span><strong>Tăng cường pháp luật & giám sát:</strong> Quyền lực phải đặt trong khuôn khổ pháp luật và kiểm tra thường xuyên.</span>
                 </div>
-                <h5 className="font-serif font-bold text-sm text-ink mb-1.5">
-                  Cán bộ Nêu gương
-                </h5>
-                <p className="text-xs text-ink-muted leading-relaxed">
-                  Cán bộ lãnh đạo phải đi đầu làm gương về liêm khiết; tu dưỡng
-                  đạo đức cách mạng: Cần, Kiệm, Liêm, Chính, Chí công vô tư.
-                </p>
-              </div>
-              <div className="mt-3 pt-2 border-t border-[#ede2d2] text-[11px] font-mono text-[#7a1818] font-bold">
-                ĐỨC LÀ GỐC
+
+                <div className="p-2.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg flex items-center gap-2.5">
+                  <span className="w-5 h-5 rounded-full bg-[#7a1818] text-white flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                    03
+                  </span>
+                  <span><strong>Xử lý nghiêm minh:</strong> Sai phạm phải được phát hiện và xử lý đúng người, đúng mức độ.</span>
+                </div>
+
+                <div className="p-2.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg flex items-center gap-2.5">
+                  <span className="w-5 h-5 rounded-full bg-[#7a1818] text-white flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                    04
+                  </span>
+                  <span><strong>Cán bộ phải nêu gương:</strong> Người có chức vụ càng cao càng phải có trách nhiệm làm gương.</span>
+                </div>
+
+                <div className="p-2.5 bg-[#fbf8f0] border border-[#e8dfcf] rounded-lg flex items-center gap-2.5">
+                  <span className="w-5 h-5 rounded-full bg-[#7a1818] text-white flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                    05
+                  </span>
+                  <span><strong>Phát huy sức mạnh Nhân dân:</strong> Nhân dân tham gia phát hiện, phản ánh và đấu tranh với tiêu cực.</span>
+                </div>
               </div>
             </div>
           </div>
@@ -174,12 +199,12 @@ export default function PhongChongThamNhungSection() {
   return (
     <AcademicPortalSection
       id="phong-chong-tham-nhung"
-      code="4.3.3"
-      title="PHÒNG, CHỐNG THAM NHŨNG"
-      parentPath="4.3. Vận dụng xây dựng Đảng và Nhà nước"
-      quote="Tham ô, lãng phí và bệnh quan liêu là kẻ thù của nhân dân, của bộ đội và của Chính phủ. Nó là giặc ở trong lòng, là bạn đồng minh của giặc ngoại xâm."
+      code="VẬN DỤNG"
+      title="ĐẤU TRANH PHÒNG, CHỐNG “GIẶC NỘI XÂM”"
+      parentPath="4.3. Vận dụng xây dựng Đảng và Nhà nước — Trọng tâm mục 4.3.2"
+      quote="Tham ô, lãng phí và bệnh quan liêu là kẻ thù của nhân dân, của bộ đội và của Chính phủ. Nó là giặc ở trong lòng, là bạn đồng minh của thực dân và phong kiến."
       quoteAuthor="Hồ Chí Minh"
-      summary="Nhận diện hiểm họa ba căn bệnh 'giặc nội xâm' (Tham ô, Lãng phí, Quan liêu) và xây dựng hệ giải pháp đồng bộ trên Bốn trụ cột: Dân - Luật - Phạt - Gương."
+      summary="Nhận diện đúng bản chất tham ô, lãng phí, quan liêu là 'giặc nội xâm' phá hoại sự nghiệp cách mạng từ bên trong; kiên quyết giữ vững nguyên tắc 'Không có vùng cấm, không có ngoại lệ, bất kể người đó là ai' và xây dựng cơ chế phòng ngừa đồng bộ kết hợp Dân - Luật - Phạt - Gương."
       tabs={tabs}
       prevSection={{
         id: "xay-dung-nha-nuoc",
@@ -187,7 +212,7 @@ export default function PhongChongThamNhungSection() {
       }}
       nextSection={{
         id: "ket-luan",
-        label: "5.0 Kết luận & Tham khảo →",
+        label: "Tổng kết & Tài liệu tham khảo →",
       }}
     />
   );
