@@ -202,7 +202,6 @@ export default function AssetPlaceholder({
                   ? "text-accent-light/80 hover:text-accent-light hover:bg-dark-surface"
                   : "text-ink-muted hover:text-primary hover:bg-paper-dark/30"
               }`}
-              title="Phóng to ảnh"
               aria-label="Phóng to ảnh"
             >
               <Maximize2 className="w-4 h-4" />

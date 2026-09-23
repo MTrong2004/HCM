@@ -572,8 +572,7 @@ export function Book3DViewerModal({ isOpen, onClose }: Book3DViewerModalProps) {
                   ? "bg-dark-surface/80 border-accent/20 text-ink-muted hover:text-paper-light"
                   : "bg-[#8B1E1E]/80 border-accent/60 text-[#FFF2B2] shadow-[0_0_15px_rgba(212,175,55,0.3)]"
               }`}
-              title={soundMuted ? "Bật âm thanh hiệu ứng" : "Tắt âm thanh hiệu ứng"}
-              aria-label="Bật tắt âm thanh"
+              aria-label={soundMuted ? "Bật âm thanh hiệu ứng" : "Tắt âm thanh hiệu ứng"}
             >
               {soundMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
             </button>
@@ -585,7 +584,7 @@ export function Book3DViewerModal({ isOpen, onClose }: Book3DViewerModalProps) {
                 setShowQR(true);
               }}
               className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-semibold bg-[#1F1714]/90 border border-[#D4AF37]/40 text-[#FFF2B2] hover:bg-[#8B1E1E]/50 hover:border-[#D4AF37] transition-all"
-              title="Chia sẻ mã QR"
+              aria-label="Chia sẻ mã QR"
             >
               <QrCode className="w-3.5 h-3.5 text-[#D4AF37]" />
               <span className="hidden sm:inline">Chia Sẻ QR</span>
@@ -595,7 +594,6 @@ export function Book3DViewerModal({ isOpen, onClose }: Book3DViewerModalProps) {
             <button
               onClick={toggleFullscreen}
               className="p-2.5 rounded-full bg-[#1F1714]/90 border border-[#D4AF37]/40 text-[#FFF2B2] hover:border-[#D4AF37] transition-all"
-              title="Toàn màn hình"
               aria-label="Toàn màn hình"
             >
               {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
@@ -608,8 +606,7 @@ export function Book3DViewerModal({ isOpen, onClose }: Book3DViewerModalProps) {
                 onClose();
               }}
               className="p-2.5 rounded-full bg-[#8B1E1E] border border-[#D4AF37] text-white hover:bg-[#A82020] transition-transform hover:scale-105 shadow-lg"
-              title="Đóng sách 3D"
-              aria-label="Đóng sách 3D"
+              aria-label="Đóng sách 3D (Esc)"
             >
               <X className="w-4 h-4" />
             </button>

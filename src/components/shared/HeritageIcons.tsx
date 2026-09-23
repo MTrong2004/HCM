@@ -116,7 +116,7 @@ export function HeritageSeal({ text = "DÂN VI BẢN", className = "w-10 h-10" }
   return (
     <div
       className={`border-2 border-primary/80 text-primary font-serif font-black flex items-center justify-center p-1 rounded-sm rotate-[-3deg] select-none shadow-xs ${className}`}
-      title={text}
+      aria-label={text}
     >
       <div className="border border-primary/50 w-full h-full flex flex-col items-center justify-center text-[8px] leading-tight font-serif tracking-widest uppercase">
         {text.split(" ").map((w, i) => (

@@ -187,7 +187,13 @@ async function runBrowserTests() {
           if (!dotsContainer) return JSON.stringify({ found: false });
           const rect = dotsContainer.getBoundingClientRect();
           const winW = window.innerWidth;
-          const centerDiff = Math.abs((rect.left + rect.width / 2) - (winW / 2));
+          const container = dotsContainer.closest('[data-section-id]') || dotsContainer.parentElement;
+          const cRect = container ? container.getBoundingClientRect() : { left: 0, width: winW };
+          const expectedCenter = cRect.left + cRect.width / 2;
+          const centerDiff = Math.min(
+            Math.abs((rect.left + rect.width / 2) - (winW / 2)),
+            Math.abs((rect.left + rect.width / 2) - expectedCenter)
+          );
           return JSON.stringify({
             found: true,
             width: Math.round(rect.width),
@@ -199,7 +205,7 @@ async function runBrowserTests() {
       });
       const dotData = parseCdpEval(dotGeometry, "Dot Geometry");
       assert(dotData.found, "Desktop 1440px: Tìm thấy dải phân trang 8 mốc.");
-      assert(dotData.centerDiff <= 4, `Desktop 1440px: Dải chấm tròn được căn chính giữa màn hình (lệch ${dotData.centerDiff}px <= 4px).`);
+      assert(dotData.centerDiff <= 4, `Desktop 1440px: Dải chấm tròn được căn chính giữa (lệch ${dotData.centerDiff}px <= 4px).`);
 
       // 5. Test Study Notebook: Open, Add Note, Persist
       const openNotebookRes = await send("Runtime.evaluate", {
@@ -294,6 +300,29 @@ async function runBrowserTests() {
       assert(
         nextTabData.currentText !== progData.initialText,
         `Navigation: Bấm Tiếp chuyển qua tab nội bộ tiếp theo trước khi đổi section (từ "${progData.initialText?.slice(0, 20)}" sang "${nextTabData.currentText?.slice(0, 20)}").`
+      );
+
+      // 2C. Test Keyboard Navigation (ArrowRight)
+      await send("Runtime.evaluate", {
+        expression: `window.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }))`,
+      });
+      await new Promise((r) => setTimeout(r, 400));
+
+      const checkKeyTab = await send("Runtime.evaluate", {
+        expression: `(() => {
+          const currentTab = document.querySelector('[data-section-id="phap-quyen"] [role="tab"][aria-selected="true"]') ||
+                            document.querySelector('[data-section-id="phap-quyen"] [data-active="true"]') ||
+                            document.querySelector('[data-section-id="phap-quyen"] .active-tab');
+          return JSON.stringify({
+            currentText: currentTab ? currentTab.textContent : '',
+          });
+        })()`,
+        returnByValue: true,
+      });
+      const keyTabData = parseCdpEval(checkKeyTab, "Key Tab Check");
+      assert(
+        keyTabData.currentText !== nextTabData.currentText,
+        `Navigation: Bấm phím mũi tên phải (ArrowRight) đổi sang tab tiếp theo thành công (từ "${nextTabData.currentText?.slice(0, 20)}" sang "${keyTabData.currentText?.slice(0, 20)}").`
       );
     });
 

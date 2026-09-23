@@ -487,7 +487,7 @@ export default function StudyNotebookDrawer({
                 if (onOpenPresentation) onOpenPresentation();
               }}
               className="min-h-[32px] px-2 py-1 rounded bg-[#7a1818] border border-[#d4af37]/40 text-[10.5px] font-medium text-[#fff8ea] hover:bg-[#8e1d1d] transition-all flex items-center justify-center gap-1 shadow-xs cursor-pointer"
-              title="Mở chế độ trình chiếu toàn màn hình"
+              aria-label="Mở chế độ trình chiếu toàn màn hình"
             >
               <Presentation className="w-3 h-3 text-[#d4af37]" />
               <span>Trình chiếu</span>
@@ -499,7 +499,7 @@ export default function StudyNotebookDrawer({
                 if (onOpenCitation) onOpenCitation();
               }}
               className="min-h-[32px] px-2 py-1 rounded bg-white/10 border border-white/15 text-[10.5px] font-medium text-[#fbf8f0] hover:bg-white/20 transition-all flex items-center justify-center gap-1 shadow-xs cursor-pointer"
-              title="Tạo trích dẫn chuẩn học thuật APA / MLA / Harvard"
+              aria-label="Tạo trích dẫn chuẩn học thuật APA / MLA / Harvard"
             >
               <BookMarked className="w-3 h-3 text-[#d4af37]" />
               <span>Trích dẫn</span>
@@ -508,7 +508,7 @@ export default function StudyNotebookDrawer({
             <button
               onClick={handleSoundToggle}
               className="min-h-[32px] px-2 py-1 rounded bg-white/10 border border-white/15 text-[10.5px] font-medium text-[#fbf8f0] hover:bg-white/20 transition-all flex items-center justify-center gap-1 shadow-xs cursor-pointer"
-              title="Bật/Tắt âm thanh tương tác"
+              aria-label="Bật/Tắt âm thanh tương tác"
             >
               {soundMuted ? (
                 <>
@@ -695,7 +695,7 @@ export default function StudyNotebookDrawer({
                           <button
                             onClick={() => handleCopyText(note.content, note.id)}
                             className="p-1 rounded text-white/60 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
-                            title="Sao chép nội dung"
+                            aria-label="Sao chép nội dung"
                           >
                             {copiedId === note.id ? (
                               <Check className="w-3 h-3 text-emerald-400" />
@@ -706,7 +706,7 @@ export default function StudyNotebookDrawer({
                           <button
                             onClick={() => handleDeleteNote(note.id)}
                             className="p-1 rounded text-white/60 hover:text-red-400 hover:bg-white/10 transition-colors cursor-pointer"
-                            title="Xóa ghi chú"
+                            aria-label="Xóa ghi chú"
                           >
                             <Trash2 className="w-3 h-3" />
                           </button>
@@ -909,7 +909,7 @@ export default function StudyNotebookDrawer({
                         <button
                           onClick={() => handleCopyText(`"${q.quote}" — ${q.source}`, q.id)}
                           className="p-1 rounded text-white/60 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
-                          title="Sao chép trích dẫn"
+                          aria-label="Sao chép trích dẫn"
                         >
                           {copiedId === q.id ? (
                             <Check className="w-3 h-3 text-emerald-400" />
@@ -957,7 +957,7 @@ export default function StudyNotebookDrawer({
                 <button
                   onClick={handleCopyAllTheses}
                   className="px-2.5 py-1 rounded bg-[#d4af37] text-[#420a0d] hover:bg-[#ffd700] text-[10.5px] font-bold flex items-center gap-1 transition-all cursor-pointer shadow-xs"
-                  title="Sao chép toàn bộ 5 luận điểm"
+                  aria-label="Sao chép toàn bộ 5 luận điểm"
                 >
                   {copiedId === "all-theses" ? (
                     <>

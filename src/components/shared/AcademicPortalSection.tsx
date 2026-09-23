@@ -43,19 +43,30 @@ export default function AcademicPortalSection({
   const {
     activeSubtabMap,
     setActiveSubtab,
-    subtabDirection,
     setSubtabDirection,
     stepNext,
     stepPrev,
     scrollTo,
+    isBannerCollapsed,
   } = useSmoothScroll();
 
-  // Trạng thái bật/tắt tóm lược luận điểm (mặc định đóng để tiết kiệm tối đa diện tích màn hình)
-  const [showSummary, setShowSummary] = useState<boolean>(false);
+  // Trạng thái bật/tắt tóm lược luận điểm (mặc định luôn hiển thị)
+  const [showSummary, setShowSummary] = useState<boolean>(true);
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
 
-  // Xác định tab hiện tại từ context (ưu tiên) hoặc fallback về tab đầu
-  const activeTabId = activeSubtabMap[id] || tabs[0]?.id || "";
+  // Quản lý tab hiện tại độc lập và đồng bộ với context mà không bị vòng lặp reset
+  const [activeTabId, setActiveTabId] = useState<string>(
+    activeSubtabMap[id] || tabs[0]?.id || ""
+  );
+  const prevContextTabIdRef = useRef(activeSubtabMap[id]);
+
+  useEffect(() => {
+    if (activeSubtabMap[id] && activeSubtabMap[id] !== prevContextTabIdRef.current) {
+      prevContextTabIdRef.current = activeSubtabMap[id];
+      setActiveTabId(activeSubtabMap[id]);
+    }
+  }, [activeSubtabMap, id]);
+
   const rawIndex = tabs.findIndex((t) => t.id === activeTabId);
   const activeTabIdx = rawIndex >= 0 ? rawIndex : 0;
   const activeTab = tabs[activeTabIdx] || tabs[0];
@@ -72,15 +83,17 @@ export default function AcademicPortalSection({
   const handleTabChange = useCallback(
     (tabId: string) => {
       playSubtleClick();
-      const currIdx = tabs.findIndex((t) => t.id === activeTab.id);
+      const currIdx = tabs.findIndex((t) => t.id === activeTabId);
       const targetIdx = tabs.findIndex((t) => t.id === tabId);
       setSubtabDirection(targetIdx >= currIdx ? 1 : -1);
+      prevContextTabIdRef.current = tabId;
+      setActiveTabId(tabId);
       setActiveSubtab(id, tabId);
       if (typeof window !== "undefined" && window.scrollY > 150) {
         window.scrollTo({ top: 120, behavior: "smooth" });
       }
     },
-    [activeTab.id, id, setActiveSubtab, setSubtabDirection, tabs]
+    [activeTabId, id, setActiveSubtab, setSubtabDirection, tabs]
   );
 
   const handleNavigate = useCallback(
@@ -93,16 +106,18 @@ export default function AcademicPortalSection({
 
   // Nhãn thông minh cho các nút điều hướng
   const hasPrev = activeTabIdx > 0 || Boolean(prevSection);
-  const prevLabel =
+  const rawPrevText =
     activeTabIdx > 0
-      ? `Lùi: ${tabs[activeTabIdx - 1].label}`
+      ? tabs[activeTabIdx - 1].label
       : prevSection?.label || "";
+  const cleanPrevText = rawPrevText.replace(/^[←\s]+|[→\s]+$/g, "").trim();
 
   const hasNext = activeTabIdx < tabs.length - 1 || Boolean(nextSection);
-  const nextLabel =
+  const rawNextText =
     activeTabIdx < tabs.length - 1
-      ? `Tiếp: ${tabs[activeTabIdx + 1].label}`
+      ? tabs[activeTabIdx + 1].label
       : nextSection?.label || "";
+  const cleanNextText = rawNextText.replace(/^[←\s]+|[→\s]+$/g, "").trim();
 
   return (
     <section
@@ -152,7 +167,6 @@ export default function AcademicPortalSection({
                       setShowSummary(false);
                     }}
                     className="p-1 sm:p-1.5 rounded-md text-ink-muted hover:text-[#7a1818] hover:bg-[#eadfcd] transition-colors cursor-pointer flex-shrink-0"
-                    title="Đóng tóm lược"
                     aria-label="Đóng tóm lược"
                   >
                     <X className="w-4 h-4" />
@@ -165,7 +179,14 @@ export default function AcademicPortalSection({
 
         {/* 1. Hệ Thống Tabs Chuyển Đổi Tiểu Mục Liền Khối & Khung Nội Dung */}
         <div className="flex flex-col flex-1 relative">
-          <EditorialReveal delay={80} className="flex-shrink-0 sticky top-[48px] sm:top-[52px] z-20 bg-[#fbf9f4] pt-1">
+          <EditorialReveal
+            delay={80}
+            className={`flex-shrink-0 sticky z-20 transition-[top] duration-300 ${
+              isBannerCollapsed
+                ? "top-[38px] sm:top-[42px]"
+                : "top-[145px] sm:top-[160px] md:top-[175px] lg:top-[190px] xl:top-[200px]"
+            }`}
+          >
             <div
               className="flex w-full rounded-t-lg overflow-hidden border-b-2 border-[#7a1818] bg-[#eae4d7]"
               role="tablist"
@@ -206,7 +227,6 @@ export default function AcademicPortalSection({
                     ? "bg-[#7a1818] text-[#ffd700]"
                     : "bg-[#e5dbc9] text-[#6b1212] hover:bg-[#dbd0bd]"
                 }`}
-                title={showSummary ? "Đóng tóm lược luận điểm" : "Xem tóm lược luận điểm cốt lõi của mục này"}
                 aria-label="Xem tóm lược luận điểm cốt lõi"
               >
                 <Sparkles className="w-3.5 h-3.5 text-[#b58319]" />
@@ -220,83 +240,93 @@ export default function AcademicPortalSection({
           {/* Khung Hiển Thị Chi Tiết Nội Dung Tiểu Mục Đang Chọn: Trải rộng tự nhiên, cuộn mượt cùng toàn trang */}
           <div
             ref={contentScrollRef}
-            className="w-full bg-[#fbf9f4] border-x border-b border-[#e2d7c5] rounded-b-lg p-3 sm:p-5 shadow-2xs relative"
+            className="w-full min-h-[300px] sm:min-h-[340px] bg-[#fbf9f4] border-x border-b border-[#e2d7c5] rounded-b-lg p-3 sm:p-5 shadow-2xs relative flex flex-col justify-between"
           >
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={activeTab.id}
-                initial={{ opacity: 0, x: subtabDirection > 0 ? 12 : -12 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: subtabDirection > 0 ? -12 : 12 }}
-                transition={{ duration: 0.22, ease: "easeOut" }}
-                className="w-full pb-16"
-              >
-                {activeTab?.content}
-              </motion.div>
-            </AnimatePresence>
+            <div
+              key={activeTab.id}
+              className="w-full pb-4 transition-opacity duration-200"
+            >
+              {activeTab?.content}
+            </div>
 
             {/* Phần mở rộng nếu có */}
-            {children && <div className="space-y-2 pt-0.5 pb-16">{children}</div>}
-          </div>
+            {children && <div className="space-y-3 pt-1 pb-4">{children}</div>}
 
-          {/* 2. Dải Phân Trang Chân Trang (Floating Bottom Stepper Dock) */}
-          <div
-            className="fixed bottom-3 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-24px)] max-w-4xl min-h-[44px] px-3 sm:px-4 py-1.5 bg-[#fbf9f4]/95 backdrop-blur-md border border-[#e2d7c5] rounded-xl flex items-center justify-between text-xs font-sans shadow-lg opacity-100 translate-y-0 pointer-events-auto"
-          >
-            {/* Nút Lùi (Cột Trái) */}
-            <div className="flex-1 flex justify-start z-10 pr-2 min-w-0">
-              {hasPrev && (
-                <button
-                  data-testid="stepper-prev-btn"
-                  onClick={stepPrev}
-                  className="max-w-[180px] sm:max-w-[260px] truncate px-2.5 py-1 rounded-md border border-[#cfc4b0] bg-[#f5efe2] hover:bg-[#eae0cf] hover:text-[#7a1818] transition-all flex items-center gap-1.5 font-medium text-[11px] shadow-2xs group cursor-pointer"
-                  title={prevLabel}
-                >
-                  <ArrowLeft className="w-3.5 h-3.5 text-[#7a1818] flex-shrink-0 transition-transform group-hover:-translate-x-0.5" />
-                  <span className="truncate">{prevLabel}</span>
-                </button>
-              )}
-            </div>
-
-            {/* Dải Chấm Tròn Tiến Trình 8 Mốc */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-auto">
-              <div
-                data-testid="pagination-dots-container"
-                className="flex items-center gap-1.5 py-1 px-3 bg-[#ede6d8] rounded-full border border-[#ded5c4] shadow-xs"
-              >
-                {CANONICAL_SECTIONS.map((sec, idx) => {
-                  const isCurrent = idx === activeSectionIdx;
-                  return (
-                    <button
-                      key={sec.id}
-                      onClick={() => handleNavigate(sec.id)}
-                      title={`${sec.number !== "0" ? sec.number + " " : ""}${sec.shortTitle}`}
-                      aria-label={`${sec.number !== "0" ? sec.number + " " : ""}${sec.shortTitle}`}
-                      className={`transition-all rounded-full cursor-pointer ${
-                        isCurrent
-                          ? "w-3 h-3 bg-[#7a1818] ring-2 ring-[#7a1818]/30 shadow-xs"
-                          : "w-1.5 h-1.5 bg-[#b5a995] hover:bg-[#7a1818]/70"
-                      }`}
-                    />
-                  );
-                })}
+            {/* 2. Dải Phân Trang & Điều Hướng Chân Trang (Refined End-of-Page Footer Stepper) */}
+            <footer
+              aria-label="Điều hướng chân trang"
+              className="w-full mt-8 pt-5 border-t border-[#dfd5c4] flex items-center justify-between gap-3 text-xs font-sans relative"
+            >
+              {/* Nút Lùi (Cột Trái) */}
+              <div className="flex-1 flex justify-start min-w-0">
+                {hasPrev ? (
+                  <button
+                    type="button"
+                    data-testid="stepper-prev-btn"
+                    onClick={stepPrev}
+                    className="group flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#cfc3ad] bg-[#fdfcf9] hover:bg-[#f3ece0] hover:border-[#7a1818] transition-all duration-200 shadow-2xs cursor-pointer"
+                    aria-label={`Mục trước: ${cleanPrevText}`}
+                  >
+                    <span className="p-1 rounded-md bg-[#eee7d8] text-[#7a1818] group-hover:bg-[#7a1818] group-hover:text-white transition-colors flex-shrink-0">
+                      <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5" />
+                    </span>
+                    <span className="text-xs font-serif font-bold text-ink group-hover:text-[#7a1818]">
+                      Trước
+                    </span>
+                  </button>
+                ) : (
+                  <div className="w-16" />
+                )}
               </div>
-            </div>
 
-            {/* Nút Tiến (Cột Phải) */}
-            <div className="flex-1 flex justify-end z-10 pl-2 min-w-0">
-              {hasNext && (
-                <button
-                  data-testid="stepper-next-btn"
-                  onClick={stepNext}
-                  className="max-w-[180px] sm:max-w-[260px] truncate px-2.5 py-1 rounded-md border border-[#cfc4b0] bg-[#f5efe2] hover:bg-[#eae0cf] hover:text-[#7a1818] transition-all flex items-center justify-end gap-1.5 font-medium text-[11px] shadow-2xs group ml-auto cursor-pointer"
-                  title={nextLabel}
+              {/* Dải Chấm Tròn Tiến Trình 8 Mốc */}
+              <div className="flex flex-col items-center gap-1 my-1 md:my-0 flex-shrink-0">
+                <div
+                  data-testid="pagination-dots-container"
+                  className="flex items-center gap-2 py-1.5 px-3.5 bg-[#f0ebd9]/90 rounded-full border border-[#ded4bf] shadow-2xs"
                 >
-                  <span className="truncate">{nextLabel}</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#7a1818] flex-shrink-0 transition-transform group-hover:translate-x-0.5" />
-                </button>
-              )}
-            </div>
+                  {CANONICAL_SECTIONS.map((sec, idx) => {
+                    const isCurrent = idx === activeSectionIdx;
+                    return (
+                      <button
+                        key={sec.id}
+                        type="button"
+                        onClick={() => handleNavigate(sec.id)}
+                        aria-label={`${sec.number !== "0" ? sec.number + " " : ""}${sec.shortTitle}`}
+                        className={`transition-all rounded-full cursor-pointer ${
+                          isCurrent
+                            ? "w-2.5 h-2.5 bg-[#7a1818] ring-2 ring-[#7a1818]/30 shadow-2xs"
+                            : "w-1.5 h-1.5 bg-[#bdae99] hover:bg-[#7a1818]/70"
+                        }`}
+                      />
+                    );
+                  })}
+                </div>
+                <span className="text-[10px] font-mono text-[#8c7e6c] tracking-tight">
+                  {activeSectionIdx >= 0 ? `${activeSectionIdx + 1} / ${CANONICAL_SECTIONS.length}` : ""}
+                </span>
+              </div>
+
+              {/* Nút Tiến (Cột Phải) */}
+              <div className="flex-1 flex justify-end min-w-0">
+                {hasNext && (
+                  <button
+                    type="button"
+                    data-testid="stepper-next-btn"
+                    onClick={stepNext}
+                    className="group flex items-center justify-end gap-2 px-3 py-1.5 rounded-lg border border-[#cfc3ad] bg-[#fdfcf9] hover:bg-[#f3ece0] hover:border-[#7a1818] transition-all duration-200 shadow-2xs cursor-pointer ml-auto"
+                    aria-label={`Mục tiếp theo: ${cleanNextText}`}
+                  >
+                    <span className="text-xs font-serif font-bold text-ink group-hover:text-[#7a1818]">
+                      Tiếp
+                    </span>
+                    <span className="p-1 rounded-md bg-[#eee7d8] text-[#7a1818] group-hover:bg-[#7a1818] group-hover:text-white transition-colors flex-shrink-0">
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                    </span>
+                  </button>
+                )}
+              </div>
+            </footer>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { Play, Pause, Volume2, RotateCcw, Upload, Sparkles } from "lucide-react";
+import { Play, Pause, Volume2, RotateCcw, Sparkles } from "lucide-react";
 import { playSubtleClick } from "@/lib/sound-effects";
 import { getAssetPath } from "@/lib/assets";
 
@@ -17,38 +17,38 @@ export const HISTORICAL_VOICE_BACKGROUNDS: Record<string, VoiceBackgroundImageIn
   "voice-nang-luc-lam-chu": {
     image: "/images/voice-bg/bac-ho-nang-luc-lam-chu.webp",
     alt: "Chủ tịch Hồ Chí Minh nói chuyện thân mật với cán bộ, công nhân và nhân dân lao động",
-    context: "Ảnh tư liệu: Bác Hồ tại lớp bồi dưỡng cán bộ & nhân dân",
-    position: "object-right-center",
+    context: "Bác Hồ tại lớp bồi dưỡng cán bộ",
+    position: "object-[78%_35%]",
   },
   "voice-quyen-bai-mien": {
     image: "/images/voice-bg/bac-ho-quyen-bai-mien.webp",
     alt: "Chủ tịch Hồ Chí Minh phát biểu trước Quốc hội khóa I năm 1946",
-    context: "Ảnh tư liệu: Bác Hồ tại kỳ họp Quốc hội khóa I (1946)",
-    position: "object-center",
+    context: "Bác Hồ tại Quốc hội khóa I (1946)",
+    position: "object-[50%_30%]",
   },
   "voice-chinh-phu-vi-dan": {
     image: "/images/voice-bg/bac-ho-chinh-phu-vi-dan.webp",
     alt: "Chân dung Chủ tịch Hồ Chí Minh thời kỳ đầu lập nước (1945 - 1946)",
-    context: "Ảnh tư liệu: Chủ tịch Hồ Chí Minh (1945 - 1946)",
-    position: "object-center",
+    context: "Chủ tịch Hồ Chí Minh (1945)",
+    position: "object-[50%_25%]",
   },
   "tuyen-ngon-doc-lap-1945": {
     image: "/images/voice-bg/bac-ho-ba-dinh-1945.webp",
     alt: "Chủ tịch Hồ Chí Minh đọc Tuyên ngôn Độc lập tại Quảng trường Ba Đình ngày 2/9/1945",
-    context: "Ảnh tư liệu: Lễ Độc lập tại Ba Đình (2/9/1945)",
-    position: "object-top",
+    context: "Lễ Độc lập Ba Đình (1945)",
+    position: "object-[50%_25%]",
   },
   "voice-can-bo-day-to": {
     image: "/images/voice-bg/bac-ho-nang-luc-lam-chu.webp",
     alt: "Bác Hồ căn dặn cán bộ là người đầy tớ trung thành của nhân dân",
-    context: "Ảnh tư liệu: Bác Hồ gặp gỡ cán bộ và kiều bào",
-    position: "object-right-center",
+    context: "Bác Hồ gặp gỡ cán bộ",
+    position: "object-[78%_35%]",
   },
   "voice-quyen-luc-nhan-dan": {
     image: "/images/voice-bg/bac-ho-quyen-bai-mien.webp",
     alt: "Toàn cảnh nhân dân tham gia Tổng tuyển cử năm 1946",
-    context: "Ảnh tư liệu: Quốc hội & Hiến pháp 1946",
-    position: "object-center",
+    context: "Quốc hội & Hiến pháp 1946",
+    position: "object-[50%_30%]",
   },
 };
 
@@ -319,9 +319,9 @@ export default function UncleHoVoicePlayer({
 
   return (
     <div
-      className={`group relative overflow-hidden rounded-xl border border-[#d8c8a8] bg-[#fcf9f2] p-3 sm:p-3.5 shadow-sm transition-all duration-300 ${
+      className={`group relative overflow-hidden rounded-xl border border-[#d8c8a8] bg-[#fcf9f2] p-3 sm:p-4 shadow-sm transition-all duration-300 ${
         isPlaying
-          ? "ring-2 ring-[#7a1818]/60 shadow-[0_6px_22px_rgba(122,24,24,0.14)] border-[#c8aa76]"
+          ? "ring-2 ring-[#7a1818]/60 shadow-[0_8px_25px_rgba(122,24,24,0.16)] border-[#c8aa76]"
           : "hover:border-[#c8b693] hover:shadow-md"
       } ${className}`}
     >
@@ -336,56 +336,52 @@ export default function UncleHoVoicePlayer({
         />
       )}
 
-      {/* ẢNH TƯ LIỆU BÁC HỒ LÀM BACKGROUND HỢP BỐI CẢNH */}
+      {/* ẢNH TƯ LIỆU BÁC HỒ LÀM BACKGROUND NGHỆ THUẬT (ARCHIVAL VIGNETTE MASK) */}
       {bgInfo.image && (
         <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
-          {/* Ảnh tư liệu lịch sử Bác Hồ với tông màu sepia cổ điển ấm áp */}
+          {/* Ảnh tư liệu lịch sử Bác Hồ với mặt nạ lông chim (Radial Vignette Mask) và hiệu ứng tranh in thạch bản / khắc kẽm */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={getAssetPath(bgInfo.image)}
             alt={bgInfo.alt}
-            className={`absolute right-0 top-0 bottom-0 w-[55%] sm:w-[50%] md:w-[46%] h-full object-cover ${bgInfo.position} mix-blend-multiply filter contrast-[1.1] sepia-[0.32] transition-all duration-700 ${
+            className={`absolute right-0 top-0 bottom-0 w-[60%] sm:w-[52%] md:w-[46%] h-full object-cover ${bgInfo.position} mix-blend-multiply filter contrast-[1.25] brightness-[0.96] sepia-[0.36] transition-all duration-700 ${
               isPlaying
-                ? "opacity-35 sm:opacity-40 scale-102 sepia-[0.18]"
-                : "opacity-22 sm:opacity-26 group-hover:opacity-32"
+                ? "opacity-50 sm:opacity-55 scale-[1.03] sepia-[0.22] contrast-[1.3]"
+                : "opacity-30 sm:opacity-35 group-hover:opacity-45"
             }`}
+            style={{
+              WebkitMaskImage:
+                "radial-gradient(ellipse 95% 85% at 85% 45%, black 40%, rgba(0, 0, 0, 0.75) 65%, transparent 95%)",
+              maskImage:
+                "radial-gradient(ellipse 95% 85% at 85% 45%, black 40%, rgba(0, 0, 0, 0.75) 65%, transparent 95%)",
+            }}
           />
 
-          {/* Gradient chuyển màu giấy ngà: Che kín bên trái để chữ và nút sắc nét 100%, bên phải trong suốt dần để lộ ảnh Bác Hồ */}
+          {/* Lớp gradient hòa trộn giấy ngà từ trái sang phải, bảo đảm vùng chữ sắc nét 100% */}
           <div
-            className="absolute inset-0 bg-gradient-to-r from-[#fcf9f2] via-[#fcf9f2]/92 via-45% sm:via-40% to-[#fcf9f2]/25 pointer-events-none"
+            className="absolute inset-0 bg-gradient-to-r from-[#fcf9f2] via-[#fcf9f2]/92 via-50% sm:via-45% to-transparent pointer-events-none"
             aria-hidden="true"
           />
 
           {/* Lớp gradient nhẹ từ đáy cho màn hình di động nhỏ */}
           <div
-            className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#fcf9f2]/90 to-transparent sm:hidden pointer-events-none"
+            className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[#fcf9f2]/95 to-transparent sm:hidden pointer-events-none"
             aria-hidden="true"
           />
-
-          {/* Thẻ ghi chú bối cảnh lịch sử của bức ảnh ở góc trên bên phải */}
-          <div
-            className="absolute top-2 right-2.5 z-10 hidden sm:flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#f4ece0]/90 border border-[#d4af37]/45 backdrop-blur-2xs text-[9px] font-serif font-medium text-[#6e1313] shadow-2xs pointer-events-none transition-opacity duration-300"
-            title={bgInfo.context}
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37] animate-pulse" />
-            <span className="truncate max-w-[220px]">{bgInfo.context}</span>
-          </div>
         </div>
       )}
 
-      {/* 1. HEADER CARD: BIỂU TƯỢNG MICRO CỔ ĐIỂN BA ĐÌNH, TIÊU ĐỀ & NÚT BẤM */}
-      <div className="flex flex-wrap items-center justify-between gap-2.5 relative z-10 mb-2">
-        <div className="flex items-center gap-3 min-w-0">
-          {/* ICON VOICE: MICRO PHÁT THANH LỊCH SỬ BA ĐÌNH 1945 VỚI VÒNG SÓNG ÂM THANH DÁT VÀNG */}
+      {/* 1. HEADER CARD: MICRO PHÁT THANH BA ĐÌNH, TIÊU ĐỀ & NÚT BẤM ĐIỀU KHIỂN */}
+      <div className="flex items-center justify-between gap-2 sm:gap-3 relative z-10 mb-2">
+        <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1 pr-1">
+          {/* ICON MICRO VINTAGE */}
           <div className="relative flex-shrink-0">
-            {/* Hiệu ứng hào quang sóng âm lan tỏa khi đang phát */}
             {isPlaying && (
               <span className="absolute -inset-1 rounded-full bg-[#d4af37]/35 animate-ping opacity-75 pointer-events-none" />
             )}
 
             <div
-              className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center border transition-all duration-300 shadow-sm ${
+              className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border transition-all duration-300 shadow-sm ${
                 isPlaying
                   ? "bg-gradient-to-br from-[#801212] via-[#660d0d] to-[#400505] border-[#ffd700] ring-2 ring-[#ffd700]/50 text-[#ffd700]"
                   : "bg-gradient-to-br from-[#7a1818] to-[#540c0c] border-[#d4af37]/60 text-[#fcedc7]"
@@ -394,11 +390,10 @@ export default function UncleHoVoicePlayer({
               {/* Biểu tượng Vintage Ba Đình Broadcast Ribbon Microphone với sóng âm mạ vàng */}
               <svg
                 viewBox="0 0 32 32"
-                className="w-5 h-5 sm:w-5.5 sm:h-5.5 drop-shadow-xs"
+                className="w-4 h-4 sm:w-5 sm:h-5 drop-shadow-xs"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                {/* Lưới micro cổ điển */}
                 <rect
                   x="11"
                   y="6"
@@ -407,28 +402,24 @@ export default function UncleHoVoicePlayer({
                   rx="5"
                   className={isPlaying ? "fill-[#ffd700]" : "fill-current"}
                 />
-                {/* Vạch ngang đặc trưng của mic phát thanh */}
                 <path
                   d="M12 10H20M12 13H20M12 16H20"
                   stroke="#540c0c"
                   strokeWidth="1.2"
                   strokeLinecap="round"
                 />
-                {/* Khung đỡ kim loại cong chữ U */}
                 <path
                   d="M8.5 14C8.5 18.1421 11.8579 21.5 16 21.5C20.1421 21.5 23.5 18.1421 23.5 14"
                   stroke={isPlaying ? "#ffd700" : "#fcedc7"}
                   strokeWidth="1.8"
                   strokeLinecap="round"
                 />
-                {/* Trục đứng & Chân đế kim loại tròn */}
                 <path
                   d="M16 21.5V26M11 26H21"
                   stroke={isPlaying ? "#ffd700" : "#fcedc7"}
                   strokeWidth="1.8"
                   strokeLinecap="round"
                 />
-                {/* Sóng phát thanh hai bên lan tỏa (chỉ hiện sáng khi phát) */}
                 <path
                   d="M5 11C4 12.8 4 15.2 5 17M27 11C28 12.8 28 15.2 27 17"
                   stroke={isPlaying ? "#ffd700" : "#d4af37"}
@@ -440,31 +431,26 @@ export default function UncleHoVoicePlayer({
             </div>
           </div>
 
-          <div className="min-w-0">
-            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-0.5">
-              <span className="font-mono text-[9.5px] sm:text-[10px] font-bold tracking-wider text-[#7a1818] uppercase">
-                TƯ LIỆU ÂM THANH LỊCH SỬ
-              </span>
-              <span className="inline-flex items-center gap-1 px-1.5 py-0.2 rounded-full text-[9px] font-bold bg-[#7a1818]/10 text-[#7a1818] border border-[#7a1818]/25 shadow-2xs">
-                <Sparkles className="w-2.5 h-2.5 text-[#9e2424]" />
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-1.5 mb-0.5">
+              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[8.5px] sm:text-[9px] font-mono font-bold uppercase tracking-wider bg-[#7a1818]/10 text-[#7a1818] border border-[#7a1818]/20 shadow-2xs">
+                <Sparkles className="w-2.5 h-2.5 text-[#8b1e1e]" />
                 <span>GIỌNG NÓI CHỦ TỊCH HỒ CHÍ MINH</span>
               </span>
             </div>
-            <h5 className="font-serif font-bold text-xs sm:text-[13.5px] text-ink leading-snug truncate">
+            <h5 className="font-serif font-bold text-xs sm:text-[13px] text-[#1f1a14] leading-snug line-clamp-2">
               {title}
             </h5>
           </div>
         </div>
 
         {/* CỤM NÚT ĐIỀU KHIỂN CHÍNH */}
-        <div className="flex items-center gap-2 flex-shrink-0">
-          {/* Nút Nghe lại (Replay) khi đã nghe một phần */}
+        <div className="flex items-center gap-1 sm:gap-1.5 flex-shrink-0">
           {currentTime > 0 && (
             <button
               type="button"
               onClick={handleReplay}
-              title="Phát lại từ đầu"
-              className="p-1.5 sm:p-2 rounded-full text-ink-muted hover:text-[#7a1818] hover:bg-[#e8dcbe] transition-colors cursor-pointer focus:outline-none"
+              className="p-1 sm:p-1.5 rounded-full text-ink-muted hover:text-[#7a1818] hover:bg-[#e8dcbe] transition-colors cursor-pointer focus:outline-none flex-shrink-0"
               aria-label="Phát lại từ đầu"
             >
               <RotateCcw className="w-3.5 h-3.5" />
@@ -477,7 +463,7 @@ export default function UncleHoVoicePlayer({
             onClick={handleTogglePlay}
             disabled={isLoading}
             aria-label={isPlaying ? "Tạm dừng đoạn ghi âm" : "Nghe giọng Bác Hồ"}
-            className={`flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-serif font-bold transition-all duration-200 cursor-pointer shadow-sm select-none border ${
+            className={`flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-serif font-bold transition-all duration-200 cursor-pointer shadow-sm select-none border whitespace-nowrap flex-shrink-0 ${
               isPlaying
                 ? "bg-gradient-to-r from-[#6e1313] to-[#8a1c1c] text-[#fff8ea] border-[#ffd700] ring-2 ring-[#ffd700]/60 shadow-[0_4px_15px_rgba(122,24,24,0.3)]"
                 : "bg-gradient-to-r from-[#7a1818] to-[#661212] text-[#fff8ea] border-[#d4af37]/60 hover:from-[#8d1c1c] hover:to-[#751616] hover:border-[#ffd700] hover:shadow-md"
@@ -495,31 +481,30 @@ export default function UncleHoVoicePlayer({
               </>
             )}
           </button>
-
-          {/* Nút Upload âm thanh (chỉ hiện ở Local Dev) */}
-          {isLocalEnv && (
-            <button
-              type="button"
-              onClick={() => fileInputRef.current?.click()}
-              title="[Chế độ biên tập nội bộ] Tải lên tệp ghi âm giọng Bác (.mp3 / .wav) từ máy bạn"
-              className="p-1.5 sm:p-2 rounded-full bg-[#e8dcbe] hover:bg-[#deceab] border border-[#c5ad7c] text-[#7a1818] transition-all cursor-pointer text-xs flex items-center justify-center hover:scale-105"
-              aria-label="Tải lên tệp ghi âm giọng Bác từ máy tính"
-            >
-              <Upload className="w-3.5 h-3.5" />
-            </button>
-          )}
         </div>
       </div>
 
-      {/* 2. NỘI DUNG CÂU NÓI CỦA BÁC ĐƯỢC ĐẶT TRANG TRỌNG */}
-      <div className="relative z-10 pl-3 border-l-2 border-[#8b1e1e] my-2 bg-[#fcf9f2]/40 backdrop-blur-[1px] py-1 rounded-r-md">
-        <p className="font-serif text-[12px] sm:text-[13px] italic text-ink font-medium leading-relaxed">
+      {/* 2. NỘI DUNG CÂU NÓI CỦA BÁC: TRANG TRỌNG TRÊN NỀN GIẤY NGÀ SẮC NÉT */}
+      <div className="relative z-10 pl-3 sm:pl-3.5 border-l-3 border-[#7a1818] my-2 bg-[#fcf9f2]/85 backdrop-blur-[2px] py-1.5 px-2 rounded-r-md max-w-[92%] sm:max-w-[85%] shadow-2xs">
+        <p className="font-serif text-[12px] sm:text-[13px] italic text-[#1f1a14] font-medium leading-relaxed">
           &ldquo;{quote.replace(/\(VOICE\)/gi, "").trim()}&rdquo;
         </p>
-        {sourceContext && (
-          <span className="block mt-1 text-[10px] text-ink-muted font-sans not-italic font-medium">
-            — {sourceContext}
-          </span>
+        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 mt-1.5 pt-1 border-t border-[#ebd8c2]/70 text-[9.5px] sm:text-[10px] text-[#735d43] font-sans">
+          {sourceContext && (
+            <span className="font-medium">— {sourceContext}</span>
+          )}
+          {bgInfo.context && (
+            <span className="text-[#8a3800] italic">
+              Ảnh: {bgInfo.context}
+            </span>
+          )}
+        </div>
+        {/* Chú thích học thuật minh bạch tư liệu nếu là bức thư 17/10/1945 */}
+        {id === "voice-chinh-phu-vi-dan" && (
+          <div className="mt-2 pt-1 border-t border-[#ebd8c2] flex items-center gap-1.5 text-[9.5px] text-[#8a3800] font-sans">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#c5a059]" />
+            <span>Âm thanh tư liệu: Giọng Bác Hồ tại Lễ Độc lập 1945 (Bức thư 17/10/1945 lưu hành dạng văn bản báo chí).</span>
+          </div>
         )}
       </div>
 
@@ -543,22 +528,21 @@ export default function UncleHoVoicePlayer({
               >
                 Chọn tệp MP3/WAV
               </button>
-              <span className="text-[10px] text-ink-muted">hoặc lưu tại <code className="bg-[#ebd8c2] px-1 py-0.5 rounded font-mono">public/audio/bac-ho/{id}.wav</code></span>
+              <span className="text-[10px] text-ink-muted">
+                hoặc lưu tại <code className="bg-[#ebd8c2] px-1 py-0.5 rounded font-mono">public/audio/bac-ho/{id}.wav</code>
+              </span>
             </div>
           )}
         </div>
       )}
 
       {/* 3. ANIMATION SÓNG ÂM QUANG PHỔ EQUALIZER 16 TẦN SỐ & THANH TIẾN TRÌNH TƯƠNG TÁC */}
-      <div className="relative z-10 mt-2 pt-2 border-t border-[#dfd0ba] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-3 select-none bg-[#fcf9f2]/60 backdrop-blur-[2px] rounded-b-md px-1 py-0.5">
-        
+      <div className="relative z-10 mt-2 pt-2 border-t border-[#dfd0ba] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-3 select-none bg-[#fcf9f2] rounded-b-md px-1 py-0.5">
         {/* Cụm sóng âm & Seeker Bar */}
         <div className="flex-1 flex items-center gap-3">
-          
           {/* EQUALIZER HOẠT HỌA 16 TẦN SỐ CHUYÊN NGHIỆP - RỰC RỠ SỐNG ĐỘNG KHI PHÁT */}
           <div
             className="flex items-end gap-[2px] h-6 px-1.5 py-0.5 bg-[#ebe0cb]/60 rounded-md border border-[#dac8a8]/70 flex-shrink-0"
-            title={isPlaying ? "Phổ tần số âm thanh giọng Bác đang phát" : "Sóng âm tư liệu lịch sử"}
             aria-hidden="true"
           >
             {EQUALIZER_BARS.map((bar, index) => {
@@ -571,9 +555,7 @@ export default function UncleHoVoicePlayer({
                       : "bg-[#8b1e1e]/35"
                   }`}
                   style={{
-                    height: isPlaying
-                      ? `${bar.maxH}%`
-                      : `${bar.minH * 0.4}%`,
+                    height: isPlaying ? `${bar.maxH}%` : `${bar.minH * 0.4}%`,
                     animation: isPlaying
                       ? `hcmSpectrum ${bar.speed}s ease-in-out infinite alternate ${bar.delay}s`
                       : "none",
@@ -588,8 +570,8 @@ export default function UncleHoVoicePlayer({
             ref={progressBarRef}
             onClick={handleSeek}
             className="flex-1 h-2 bg-[#e2d5be] hover:bg-[#d8c8ab] rounded-full overflow-hidden cursor-pointer relative transition-colors group/bar"
-            title="Nhấp chuột để tua đoạn ghi âm"
             role="progressbar"
+            aria-label="Tua đoạn ghi âm"
             aria-valuenow={Math.round(progressPercent)}
             aria-valuemin={0}
             aria-valuemax={100}

@@ -1,13 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import React, { useState } from "react";
 import {
   Home,
   BookOpen,
-  FileText,
-  FileEdit,
-  BarChart3,
-  Settings,
   ChevronLeft,
   ChevronRight,
   ChevronDown,
@@ -16,12 +13,7 @@ import {
 import { useSmoothScroll } from "./SmoothScrollProvider";
 import { getAssetPath } from "@/lib/assets";
 import { playSubtleClick } from "@/lib/sound-effects";
-import AcademicQuizModal from "./AcademicQuizModal";
-import LearningProgressModal from "./LearningProgressModal";
-import SettingsModal from "./SettingsModal";
 import CurriculumOverviewModal from "./CurriculumOverviewModal";
-import PresentationModeModal from "./PresentationModeModal";
-import { Book3DViewerModal } from "./Book3DViewerModal";
 
 interface AppSidebarProps {
   onItemClick?: () => void;
@@ -38,25 +30,12 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
     toggleStudyNotebook,
   } = useSmoothScroll();
 
-  // Trạng thái mở các Modal tiện ích
-  const [quizOpen, setQuizOpen] = useState(false);
-  const [progressOpen, setProgressOpen] = useState(false);
-  const [settingsOpen, setSettingsOpen] = useState(false);
+  // Trạng thái mở đề cương chương
   const [curriculumOpen, setCurriculumOpen] = useState(false);
   const [curriculumChapter, setCurriculumChapter] = useState(4);
-  const [presentationOpen, setPresentationOpen] = useState(false);
-  const [book3DOpen, setBook3DOpen] = useState(false);
 
   // Mở rộng / thu gọn danh sách tiểu mục Chương 4
   const [isChapter4Expanded, setIsChapter4Expanded] = useState(true);
-
-  // Toast thông báo tương tác nhanh
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
-
-  const showToast = (msg: string) => {
-    setToastMessage(msg);
-    setTimeout(() => setToastMessage(null), 2500);
-  };
 
   const handleNavigate = (id: string) => {
     playSubtleClick();
@@ -72,33 +51,17 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
     setCurriculumOpen(true);
   };
 
-  // Tính phần trăm tiến độ học tập
-  const allSectionIds = [
-    "hero",
-    "dan-chu",
-    "phap-quyen",
-    "trong-sach-vung-manh",
-    "xay-dung-dang",
-    "xay-dung-nha-nuoc",
-    "phong-chong-tham-nhung",
-    "ket-luan",
-  ];
-  const currentStepIdx = allSectionIds.indexOf(activeSection);
-  const currentStep = currentStepIdx >= 0 ? currentStepIdx + 1 : 1;
-  const progressPercent = Math.round((currentStep / allSectionIds.length) * 100);
-
   const isHomeActive = activeSection === "hero";
   const isChapterActive = activeSection !== "hero";
 
-  // Danh sách 7 tiểu mục chuyên đề của Chương 4
+  // Danh sách các tiểu mục chuyên đề của Chương 4
   const chapter4Subsections = [
     { id: "dan-chu", label: "4.2.1 Dân chủ" },
     { id: "phap-quyen", label: "4.2.2 Pháp quyền" },
     { id: "trong-sach-vung-manh", label: "4.2.3 Trong sạch" },
     { id: "xay-dung-dang", label: "4.3.1 Xây Đảng" },
     { id: "xay-dung-nha-nuoc", label: "4.3.2 Xây Nhà nước" },
-    { id: "phong-chong-tham-nhung", label: "4.3.3 Chống tham nhũng" },
-    { id: "ket-luan", label: "5.0 Tổng kết" },
+    { id: "ket-luan", label: "5.0 Ứng dụng AI" },
   ];
 
   return (
@@ -111,7 +74,6 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
             playSubtleClick();
             setIsTOCDrawerOpen(true);
           }}
-          title="Mở thanh điều hướng mục lục"
           aria-label="Mở thanh điều hướng"
           className="fixed left-0 top-1/2 -translate-y-1/2 z-40 bg-[#7a1818] hover:bg-[#8f1e1e] text-[#ffd700] border-r-2 border-y-2 border-[#d4af37] px-2 py-3 rounded-r-xl shadow-lg flex flex-col items-center gap-1.5 cursor-pointer transition-all hover:scale-105"
         >
@@ -138,18 +100,17 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
             playSubtleClick();
             setIsTOCDrawerOpen(false);
           }}
-          title="Thu gọn thanh điều hướng sang trái"
           aria-label="Thu gọn thanh điều hướng"
           className="absolute right-1 top-2 z-30 w-5 h-5 rounded-full bg-[#4a0d0d]/80 hover:bg-[#7a1818] text-[#ffd700] flex items-center justify-center cursor-pointer transition-colors shadow-xs"
         >
           <ChevronLeft className="w-3.5 h-3.5" />
         </button>
 
-        {/* 1. HEADER CỘT ĐỎ VỚI HÌNH BÁC HỒ & TƯ TƯỞNG HỒ CHÍ MINH */}
+        {/* 1. HEADER CỘT ĐỎ VỚI HÌNH BÁC HỒ & TƯ TƯỞNG HỒ CHÍ MINH (BO CONG KHÔNG MẢNG TRẮNG) */}
         <div
           onClick={() => handleNavigate("hero")}
-          title="Bấm để về đầu trang: Tư tưởng Hồ Chí Minh"
-          className="relative w-full h-[150px] cursor-pointer flex-shrink-0 group overflow-hidden"
+          aria-label="Về đầu trang: Tư tưởng Hồ Chí Minh"
+          className="relative w-full h-[150px] cursor-pointer flex-shrink-0 group overflow-hidden bg-[#6b100e]"
         >
           <img
             src={getAssetPath("/images/sidebar-top-2x.png")}
@@ -158,13 +119,13 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
           />
         </div>
 
-        {/* 2. MENU ĐIỀU HƯỚNG CHÍNH & MỤC LỤC BÀI HỌC (CUỘN ÊM ÁI) */}
-        <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar flex flex-col px-1.5 pt-1 pb-1 space-y-0.5">
+        {/* 2. MENU ĐIỀU HƯỚNG CHÍNH & MỤC LỤC BÀI HỌC (TINH GỌN THÔNG THOÁNG) */}
+        <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar flex flex-col px-1.5 pt-1.5 pb-1 space-y-1">
           {/* Mục: Trang chủ */}
           <button
             type="button"
             onClick={() => handleNavigate("hero")}
-            className={`relative w-full h-[29px] px-2 rounded-lg flex items-center gap-2 text-left transition-all cursor-pointer ${
+            className={`relative w-full h-[32px] px-2 rounded-lg flex items-center gap-2 text-left transition-all cursor-pointer ${
               isHomeActive
                 ? "bg-[#eddcc6] text-[#5c1313] font-bold shadow-2xs"
                 : "text-[#4a3225] hover:bg-[#ede5d5] hover:text-[#7a1818] font-medium"
@@ -184,7 +145,7 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
               handleNavigate("dan-chu");
               setIsChapter4Expanded(true);
             }}
-            className={`relative w-full h-[29px] px-2 rounded-lg flex items-center gap-2 text-left transition-all cursor-pointer ${
+            className={`relative w-full h-[32px] px-2 rounded-lg flex items-center gap-2 text-left transition-all cursor-pointer ${
               isChapterActive
                 ? "bg-[#eddcc6] text-[#5c1313] font-bold shadow-2xs"
                 : "text-[#4a3225] hover:bg-[#ede5d5] hover:text-[#7a1818] font-medium"
@@ -197,65 +158,21 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
             <span className="text-[11px] truncate">Chương học</span>
           </button>
 
-          {/* Mục: Tài liệu (Mở trực tiếp Sổ tay Nghiên cứu đa năng) */}
+          {/* Nút ẩn trigger Sổ tay nghiên cứu phục vụ test tự động và phím tắt */}
           <button
             type="button"
+            data-testid="notebook-trigger"
             onClick={() => {
-              playSubtleClick();
               if (openNotebookWithTab) {
                 openNotebookWithTab("notes");
               } else if (toggleStudyNotebook) {
                 toggleStudyNotebook();
               }
             }}
-            title="Mở Sổ tay nghiên cứu, ghi chú và danh ngôn (Ctrl+B)"
-            className="w-full h-[29px] px-2 rounded-lg flex items-center gap-2 text-left text-[#4a3225] hover:bg-[#ede5d5] hover:text-[#7a1818] font-medium transition-all cursor-pointer"
-          >
-            <FileText className="w-3.5 h-3.5 text-[#5c3a28] flex-shrink-0" />
-            <span className="text-[11px] truncate">Tài liệu</span>
-          </button>
-
-          {/* Mục: Kiểm tra (Mở Modal Trắc nghiệm kiến thức học thuật) */}
-          <button
-            type="button"
-            onClick={() => {
-              playSubtleClick();
-              setQuizOpen(true);
-            }}
-            title="Làm bài trắc nghiệm 5 câu hỏi cốt lõi có chấm điểm"
-            className="w-full h-[29px] px-2 rounded-lg flex items-center gap-2 text-left text-[#4a3225] hover:bg-[#ede5d5] hover:text-[#7a1818] font-medium transition-all cursor-pointer"
-          >
-            <FileEdit className="w-3.5 h-3.5 text-[#5c3a28] flex-shrink-0" />
-            <span className="text-[11px] truncate">Kiểm tra</span>
-          </button>
-
-          {/* Mục: Tiến độ học tập (Mở Modal Lộ trình học tập chi tiết 8 phần) */}
-          <button
-            type="button"
-            onClick={() => {
-              playSubtleClick();
-              setProgressOpen(true);
-            }}
-            title="Xem chi tiết lộ trình học tập và tỉ lệ hoàn thành"
-            className="w-full h-[29px] px-2 rounded-lg flex items-center gap-2 text-left text-[#4a3225] hover:bg-[#ede5d5] hover:text-[#7a1818] font-medium transition-all cursor-pointer"
-          >
-            <BarChart3 className="w-3.5 h-3.5 text-[#5c3a28] flex-shrink-0" />
-            <span className="text-[11px] truncate">Tiến độ ({progressPercent}%)</span>
-          </button>
-
-          {/* Mục: Cài đặt (Mở Bảng Cài đặt Trải nghiệm thật) */}
-          <button
-            type="button"
-            onClick={() => {
-              playSubtleClick();
-              setSettingsOpen(true);
-            }}
-            title="Tùy chỉnh âm thanh, cỡ chữ, chế độ thuyết trình"
-            className="w-full h-[29px] px-2 rounded-lg flex items-center gap-2 text-left text-[#4a3225] hover:bg-[#ede5d5] hover:text-[#7a1818] font-medium transition-all cursor-pointer"
-          >
-            <Settings className="w-3.5 h-3.5 text-[#5c3a28] flex-shrink-0" />
-            <span className="text-[11px] truncate">Cài đặt</span>
-          </button>
+            aria-hidden="true"
+            tabIndex={-1}
+            className="sr-only pointer-events-none"
+          />
 
           {/* DẢI TIÊU ĐỀ: MỤC LỤC */}
           <div className="pt-1.5 pb-0.5 px-2 flex items-center gap-2">
@@ -274,7 +191,7 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
             <div
               onClick={() => handleOpenCurriculum(1)}
               className="relative flex items-center gap-2 cursor-pointer group"
-              title="Chương 1: Cơ sở, quá trình hình thành Tư tưởng Hồ Chí Minh (Bấm để xem đề cương)"
+              aria-label="Chương 1: Cơ sở, quá trình hình thành Tư tưởng Hồ Chí Minh"
             >
               <div className="w-3 h-3 rounded-full bg-[#c5a059] text-white flex items-center justify-center flex-shrink-0 z-10 shadow-2xs group-hover:scale-110 transition-transform">
                 <Check className="w-2 h-2 stroke-[3]" />
@@ -286,7 +203,7 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
             <div
               onClick={() => handleOpenCurriculum(2)}
               className="relative flex items-center gap-2 cursor-pointer group"
-              title="Chương 2: Tư tưởng Hồ Chí Minh về độc lập dân tộc & CNXH (Bấm để xem đề cương)"
+              aria-label="Chương 2: Tư tưởng Hồ Chí Minh về độc lập dân tộc & CNXH"
             >
               <div className="w-3 h-3 rounded-full bg-[#c5a059] text-white flex items-center justify-center flex-shrink-0 z-10 shadow-2xs group-hover:scale-110 transition-transform">
                 <Check className="w-2 h-2 stroke-[3]" />
@@ -298,7 +215,7 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
             <div
               onClick={() => handleOpenCurriculum(3)}
               className="relative flex items-center gap-2 cursor-pointer group"
-              title="Chương 3: Tư tưởng Hồ Chí Minh về Đảng Cộng sản Việt Nam (Bấm để xem đề cương)"
+              aria-label="Chương 3: Tư tưởng Hồ Chí Minh về Đảng Cộng sản Việt Nam"
             >
               <div className="w-3 h-3 rounded-full bg-[#c5a059] text-white flex items-center justify-center flex-shrink-0 z-10 shadow-2xs group-hover:scale-110 transition-transform">
                 <Check className="w-2 h-2 stroke-[3]" />
@@ -313,16 +230,18 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
                   handleNavigate("dan-chu");
                   setIsChapter4Expanded(!isChapter4Expanded);
                 }}
-                className="relative flex items-center gap-2 cursor-pointer group"
-                title="Chương 4: Nhà nước của dân, do dân, vì dân (Bấm để cuộn đến bài học / mở rộng tiểu mục)"
+                className="relative flex items-center gap-1.5 flex-nowrap cursor-pointer group select-none pr-1"
+                aria-label="Chương 4: Nhà nước của dân, do dân, vì dân"
               >
-                <div className="w-3.5 h-3.5 rounded-full bg-[#7a1818] ring-3 ring-[#7a1818]/25 flex items-center justify-center flex-shrink-0 z-10 shadow-2xs group-hover:scale-110 transition-transform animate-pulse" />
-                <span className="text-[10.5px] font-bold text-[#7a1818] group-hover:underline">Ch. 4</span>
-                <span className="text-[8px] px-1 py-0.2 rounded bg-[#7a1818]/15 text-[#7a1818] font-bold font-mono">
+                <div className="w-3.5 h-3.5 rounded-full bg-[#7a1818] ring-2 ring-[#7a1818]/25 flex items-center justify-center flex-shrink-0 z-10 shadow-2xs group-hover:scale-110 transition-transform animate-pulse" />
+                <span className="text-[10px] font-bold text-[#7a1818] group-hover:underline whitespace-nowrap flex-shrink-0">
+                  Ch. 4
+                </span>
+                <span className="text-[7.5px] px-1 py-0.5 rounded bg-[#7a1818]/12 text-[#7a1818] font-bold font-mono whitespace-nowrap flex-shrink-0 leading-none">
                   Đang học
                 </span>
                 <ChevronDown
-                  className={`w-3 h-3 text-[#7a1818] ml-auto transition-transform ${
+                  className={`w-3 h-3 text-[#7a1818] ml-auto flex-shrink-0 transition-transform ${
                     isChapter4Expanded ? "rotate-0" : "-rotate-90"
                   }`}
                 />
@@ -345,7 +264,7 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
                             ? "bg-[#eddcc6] text-[#7a1818] font-bold"
                             : "text-[#6b5847] hover:text-[#7a1818] hover:bg-[#ede5d6]"
                         }`}
-                        title={sub.label}
+                        aria-label={sub.label}
                       >
                         <span
                           className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${
@@ -364,7 +283,7 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
             <div
               onClick={() => handleOpenCurriculum(5)}
               className="relative flex items-center gap-2 cursor-pointer group"
-              title="Chương 5: Tư tưởng Hồ Chí Minh về đại đoàn kết dân tộc (Bấm để xem đề cương)"
+              aria-label="Chương 5: Tư tưởng Hồ Chí Minh về đại đoàn kết dân tộc"
             >
               <div className="w-3 h-3 rounded-full border-2 border-[#b5a593] bg-[#f9f5ec] flex items-center justify-center flex-shrink-0 z-10 group-hover:border-[#7a1818] transition-colors" />
               <span className="text-[10px] font-medium text-[#7a6b58] group-hover:text-[#7a1818]">Ch. 5</span>
@@ -382,49 +301,13 @@ export default function AppSidebar({ onItemClick, className = "" }: AppSidebarPr
         </div>
       </aside>
 
-      {/* CÁC MODAL TIỆN ÍCH HOẠT ĐỘNG THỰC TẾ 100% */}
-      <AcademicQuizModal
-        isOpen={quizOpen}
-        onClose={() => setQuizOpen(false)}
-      />
-
-      <LearningProgressModal
-        isOpen={progressOpen}
-        onClose={() => setProgressOpen(false)}
-        activeSection={activeSection}
-        onNavigate={handleNavigate}
-      />
-
-      <SettingsModal
-        isOpen={settingsOpen}
-        onClose={() => setSettingsOpen(false)}
-        onOpenPresentation={() => setPresentationOpen(true)}
-        onOpenBook3D={() => setBook3DOpen(true)}
-      />
-
+      {/* MODAL XEM ĐỀ CƯƠNG CÁC CHƯƠNG */}
       <CurriculumOverviewModal
         isOpen={curriculumOpen}
         onClose={() => setCurriculumOpen(false)}
         initialChapter={curriculumChapter}
         onStartChapter4={() => handleNavigate("dan-chu")}
       />
-
-      <PresentationModeModal
-        isOpen={presentationOpen}
-        onClose={() => setPresentationOpen(false)}
-      />
-
-      <Book3DViewerModal
-        isOpen={book3DOpen}
-        onClose={() => setBook3DOpen(false)}
-      />
-
-      {/* TOAST THÔNG BÁO NHẸ NHÀNG, KHÔNG CHE KHUẤT NỘI DUNG */}
-      {toastMessage && (
-        <div className="fixed bottom-4 left-[165px] z-50 px-3 py-1.5 rounded-lg bg-[#330707] text-[#ffd700] border border-[#d4af37]/60 text-xs font-serif shadow-xl animate-in fade-in duration-200">
-          {toastMessage}
-        </div>
-      )}
     </>
   );
 }

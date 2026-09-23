@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React from "react";
 import { Home, ChevronRight, ChevronUp, ChevronDown } from "lucide-react";
 import { getAssetPath } from "@/lib/assets";
 import { useSmoothScroll } from "./SmoothScrollProvider";
@@ -82,12 +81,12 @@ const SECTION_BANNER_MAP: Record<string, SectionBannerInfo> = {
   },
   "ket-luan": {
     code: "5.0",
-    title: "Tổng kết & Nguồn tư liệu lưu trữ",
+    title: "Ứng dụng AI & Tổng kết",
     parentPath: "Di sản trường tồn của Chủ tịch Hồ Chí Minh",
     image: "/images/soan-thao-hien-phap-1946.webp",
     quote:
       "Dân ta phải biết sử ta, Cho tường gốc tích nước nhà Việt Nam.",
-    badge: "TỔNG KẾT",
+    badge: "ỨNG DỤNG AI",
   },
 };
 
@@ -119,7 +118,7 @@ export default function ChapterHeaderBanner({
       className={`relative w-full overflow-hidden bg-[#240404] text-paper-light border-b border-[#e2d7c5] shadow-xs select-none transition-[height] duration-300 ease-in-out ${
         isBannerCollapsed
           ? "h-[38px] sm:h-[42px]"
-          : "h-[135px] sm:h-[150px] md:h-[165px] lg:h-[175px] xl:h-[185px]"
+          : "h-[145px] sm:h-[160px] md:h-[175px] lg:h-[190px] xl:h-[200px]"
       }`}
     >
       {/* 1. HÌNH ẢNH NỀN BANNER NGHỆ THUẬT (ĐỒNG BỘ HOÀN HẢO VỚI BẢN VẼ GỐC DESIGNER 77) */}
@@ -143,46 +142,48 @@ export default function ChapterHeaderBanner({
       {/* 2. LỚP ĐƯỆM KHÔNG GIAN BANNER - Chữ và danh ngôn đã được tích hợp sẵn trong hình ảnh nghệ thuật */}
       <div className="relative z-10 w-full h-full pointer-events-none" />
 
-      {/* 3. ĐƯỜNG CONG ĐỒ HỌA CHUYỂN TIẾP CHÂN BANNER (THEO CHUẨN MOCKUP) - ẨN MỜ KHI BANNER THU GỌN */}
+      {/* 3. ĐƯỜNG CONG ĐỒ HỌA CHUYỂN TIẾP CHÂN BANNER (LỚP MẢNG NỀN TAB THEO MẪU IMAGE 911598) - ẨN KHI THU GỌN */}
       <div
         className={`absolute bottom-0 left-0 right-0 z-20 pointer-events-none transition-opacity duration-300 ${
-          isBannerCollapsed ? "opacity-0" : "opacity-100 h-8 sm:h-9"
+          isBannerCollapsed ? "opacity-0" : "opacity-100 h-11 sm:h-12"
         }`}
       >
-        {/* SVG Đường cong lượn mềm: Tab phẳng bên trái, chuyển bậc mềm, lượn dốc xuống bên phải theo mockup */}
+        {/* SVG Đường cong lượn mềm: Mảng nền kem đầy đủ chiều cao bên trái, lượn sóng chữ S xuống thanh hạ thấp bên phải */}
         <svg
-          viewBox="0 0 1200 60"
+          viewBox="0 0 1200 48"
           preserveAspectRatio="none"
           className="w-full h-full block"
         >
           <defs>
             <linearGradient id="goldCurveStroke" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#d4af37" stopOpacity="0.4" />
-              <stop offset="40%" stopColor="#c5a059" stopOpacity="0.8" />
-              <stop offset="85%" stopColor="#d4af37" stopOpacity="0.95" />
-              <stop offset="100%" stopColor="#e5c365" stopOpacity="0.9" />
+              <stop offset="0%" stopColor="#d4af37" stopOpacity="0.5" />
+              <stop offset="35%" stopColor="#c5a059" stopOpacity="0.85" />
+              <stop offset="70%" stopColor="#d4af37" stopOpacity="0.95" />
+              <stop offset="100%" stopColor="#e5c365" stopOpacity="0.85" />
             </linearGradient>
-            <filter id="curveShadow" x="-5%" y="-10%" width="110%" height="130%">
-              <feDropShadow dx="0" dy="-1" stdDeviation="1.5" floodColor="#000" floodOpacity="0.25" />
+            <filter id="plaqueShadow" x="-2%" y="-30%" width="104%" height="160%">
+              <feDropShadow dx="0" dy="-1.5" stdDeviation="2" floodColor="#000" floodOpacity="0.22" />
             </filter>
           </defs>
 
-          {/* Vùng mảng nền màu kem #fbf9f4 ăn khớp hoàn hảo với nền trang */}
+          {/* Lớp mảng nền màu kem #fbf9f4 theo phong cách thẻ tab uốn lượn cao cấp (image_911598) */}
           <path
-            d="M 0,22 
-               L 940,22 
-               C 1035,22 1120,38 1200,60 
-               L 1200,60 
-               L 0,60 Z"
+            d="M 0,2 
+               L 780,2 
+               C 830,2 845,28 895,28 
+               L 1200,28 
+               L 1200,48 
+               L 0,48 Z"
             fill="#fbf9f4"
-            filter="url(#curveShadow)"
+            filter="url(#plaqueShadow)"
           />
 
-          {/* Đường viền vàng đồng: Chạy thẳng ngang toàn bộ và CHỈ uốn lượn xuống ở mép phải */}
+          {/* Đường viền vàng ánh kim uốn lượn mềm mại trên đỉnh mảng nền */}
           <path
-            d="M 0,22 
-               L 940,22 
-               C 1035,22 1120,38 1200,60"
+            d="M 0,2 
+               L 780,2 
+               C 830,2 845,28 895,28 
+               L 1200,28"
             fill="none"
             stroke="url(#goldCurveStroke)"
             strokeWidth="1.75"
@@ -199,63 +200,69 @@ export default function ChapterHeaderBanner({
 
       {/* 4. DẢI BREADCRUMB & NÚT ĐIỀU KHIỂN THU GỌN / MỞ RỘNG BANNER */}
       <div
-        className={`absolute left-0 right-0 z-30 pointer-events-auto flex items-center justify-between px-3 sm:px-6 md:px-12 transition-all duration-300 ${
-          isBannerCollapsed ? "inset-0 h-full" : "bottom-0 h-8 sm:h-9"
+        className={`absolute left-0 right-0 z-30 pointer-events-auto flex items-center justify-between px-3 sm:px-6 md:px-8 transition-all duration-300 ${
+          isBannerCollapsed ? "inset-0 h-full" : "bottom-0 h-11 sm:h-12"
         }`}
       >
-        {/* Nội dung thanh Breadcrumb */}
-        <div className="flex items-center gap-1.5 text-[11px] font-sans text-ink-muted min-w-0 max-w-[calc(100%-110px)] sm:max-w-[calc(100%-140px)] overflow-hidden">
+        {/* Nội dung thanh Breadcrumb theo chuẩn nhận diện di sản */}
+        <div className="flex items-center gap-1.5 sm:gap-2 text-[12px] sm:text-[12.5px] font-sans min-w-0 max-w-[calc(100%-120px)] sm:max-w-[72%] lg:max-w-[78%] overflow-hidden pt-0.5">
           <button
             onClick={() => handleNavClick("hero")}
-            className="inline-flex items-center gap-1 text-[#6b1212] font-semibold hover:underline cursor-pointer focus:outline-none flex-shrink-0"
+            className="inline-flex items-center gap-1.5 text-[#7a1818] font-semibold hover:underline cursor-pointer focus:outline-none flex-shrink-0"
+            aria-label="Về đầu trang"
           >
-            <Home className="w-3.5 h-3.5 text-[#8c1d1d]" />
-            <span>Trang chủ</span>
+            <Home className="w-3.5 h-3.5 text-[#8c1d1d] flex-shrink-0" />
+            <span className="hidden sm:inline">Trang chủ</span>
           </button>
-          <ChevronRight className="w-3 h-3 text-[#bba895] flex-shrink-0" />
+          
+          <ChevronRight className="w-3.5 h-3.5 text-[#a89785] flex-shrink-0" />
+          
           <button
             onClick={() => handleNavClick("dan-chu")}
-            className="hover:text-ink cursor-pointer focus:outline-none flex-shrink-0 font-medium"
+            className="text-[#2b2421] hover:text-[#7a1818] cursor-pointer focus:outline-none flex-shrink-0 font-medium transition-colors"
           >
             Chương 4
           </button>
-          <ChevronRight className="w-3 h-3 text-[#bba895] flex-shrink-0" />
-          <span className="hidden sm:inline hover:text-ink cursor-default truncate max-w-xs md:max-w-md lg:max-w-xl">
+          
+          <ChevronRight className="w-3.5 h-3.5 text-[#a89785] flex-shrink-0" />
+          
+          <span className="hidden md:inline text-[#2b2421]/90 cursor-default truncate max-w-xs lg:max-w-md xl:max-w-lg font-normal">
             {displayParentPath}
           </span>
-          <span className="sm:hidden text-ink-muted">...</span>
-          <ChevronRight className="w-3 h-3 text-[#bba895] flex-shrink-0" />
-          <span className="text-[#7a1818] font-bold truncate">
+          <span className="md:hidden text-ink-muted">...</span>
+          
+          <ChevronRight className="w-3.5 h-3.5 text-[#a89785] flex-shrink-0" />
+          
+          <span className="text-[#7a1818] font-bold truncate tracking-tight">
             {displayCode} {displayTitle}
           </span>
         </div>
 
-        {/* Nút bấm chuyển đổi thu gọn / mở rộng banner thủ công (Chế độ đọc tập trung) */}
-        <button
-          onClick={() => {
-            playSubtleClick();
-            toggleBannerCollapsed();
-          }}
-          className="inline-flex items-center gap-1 sm:gap-1.5 px-2 py-0.5 sm:py-1 rounded-md text-[11px] font-sans font-medium text-[#7a1818] bg-[#fbf9f4]/90 hover:bg-[#ede3d1] border border-[#d4af37]/50 shadow-2xs transition-all cursor-pointer flex-shrink-0 group"
-          title={
-            isBannerCollapsed
-              ? "Mở rộng ảnh bìa chủ đề"
-              : "Thu gọn ảnh bìa để mở rộng tối đa không gian học tập"
-          }
-          aria-label={isBannerCollapsed ? "Mở rộng ảnh bìa" : "Thu gọn ảnh bìa"}
-        >
-          {isBannerCollapsed ? (
-            <>
-              <ChevronDown className="w-3.5 h-3.5 text-[#7a1818] transition-transform group-hover:translate-y-0.5" />
-              <span className="hidden sm:inline">Mở ảnh bìa</span>
-            </>
-          ) : (
-            <>
-              <ChevronUp className="w-3.5 h-3.5 text-[#7a1818] transition-transform group-hover:-translate-y-0.5" />
-              <span className="hidden sm:inline">Thu gọn ảnh</span>
-            </>
-          )}
-        </button>
+        {/* Nhóm điều khiển: Thu gọn / mở rộng banner */}
+        <div className="flex items-center gap-1 sm:gap-1.5 flex-shrink-0">
+
+          {/* Nút bấm chuyển đổi thu gọn / mở rộng banner thủ công (Chế độ đọc tập trung) */}
+          <button
+            onClick={() => {
+              playSubtleClick();
+              toggleBannerCollapsed();
+            }}
+            className="inline-flex items-center gap-1 sm:gap-1.5 px-2 py-1 rounded-md text-[11px] font-sans font-medium text-[#7a1818] bg-[#fbf9f4]/90 hover:bg-[#ede3d1] border border-[#d4af37]/50 shadow-2xs transition-all cursor-pointer flex-shrink-0 group"
+            aria-label={isBannerCollapsed ? "Mở rộng ảnh bìa" : "Thu gọn ảnh bìa"}
+          >
+            {isBannerCollapsed ? (
+              <>
+                <ChevronDown className="w-3.5 h-3.5 text-[#7a1818] transition-transform group-hover:translate-y-0.5" />
+                <span className="hidden sm:inline">Mở ảnh bìa</span>
+              </>
+            ) : (
+              <>
+                <ChevronUp className="w-3.5 h-3.5 text-[#7a1818] transition-transform group-hover:-translate-y-0.5" />
+                <span className="hidden sm:inline">Thu gọn ảnh</span>
+              </>
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );

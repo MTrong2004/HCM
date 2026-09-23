@@ -259,14 +259,14 @@ export default function PresentationModeModal({
           <button
             onClick={toggleFullscreen}
             className="p-2 rounded-lg border border-accent/30 hover:bg-dark-surface text-accent-light transition-colors"
-            title="Bật/Tắt toàn màn hình"
+            aria-label="Bật/Tắt toàn màn hình"
           >
             {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
           </button>
           <button
             onClick={onClose}
             className="p-2 rounded-lg border border-accent/30 hover:bg-primary/30 text-paper-light transition-colors"
-            title="Thoát chế độ thuyết trình (Esc)"
+            aria-label="Thoát chế độ thuyết trình (Esc)"
           >
             <X className="w-5 h-5" />
           </button>
@@ -366,7 +366,7 @@ export default function PresentationModeModal({
                   ? "w-8 h-2.5 bg-accent"
                   : "w-2.5 h-2.5 bg-accent/30 hover:bg-accent/60"
               }`}
-              title={`Trang ${idx + 1}: ${s.chapter}`}
+              aria-label={`Trang ${idx + 1}: ${s.chapter}`}
             />
           ))}
         </div>

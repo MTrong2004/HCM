@@ -222,6 +222,16 @@ export default function SmoothScrollProvider({
     };
   }, []);
 
+  // Cập nhật lại kích thước tính toán của Lenis khi chiều cao banner thay đổi
+  useEffect(() => {
+    if (lenisRef.current) {
+      const timer = setTimeout(() => {
+        lenisRef.current?.resize();
+      }, 350);
+      return () => clearTimeout(timer);
+    }
+  }, [isBannerCollapsed]);
+
   // Scroll to section with consistent offset and optional hash push
   const scrollTo = useCallback(
     (
@@ -391,7 +401,7 @@ export default function SmoothScrollProvider({
     }
   }, [activeSection, activeSubtabMap, scrollTo]);
 
-  // Phím tắt mũi tên trái / phải toàn cục
+  // Phím tắt mũi tên trái / phải toàn cục (Đổi trang / tiểu mục)
   useEffect(() => {
     if (typeof window === "undefined") return;
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -400,12 +410,18 @@ export default function SmoothScrollProvider({
         target &&
         (target.tagName === "INPUT" ||
           target.tagName === "TEXTAREA" ||
+          target.tagName === "SELECT" ||
           target.isContentEditable)
       ) {
         return;
       }
 
-      if (isStudyNotebookOpen || isTOCDrawerOpen) return;
+      // Không đổi trang nếu đang mở modal (như Sổ tay nghiên cứu, Cài đặt, Trắc nghiệm, Thước phim)
+      if (isStudyNotebookOpen) return;
+      const hasOpenModal = Boolean(
+        document.querySelector('[role="dialog"], [aria-modal="true"]')
+      );
+      if (hasOpenModal) return;
 
       if (e.key === "ArrowRight") {
         e.preventDefault();
@@ -418,24 +434,57 @@ export default function SmoothScrollProvider({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [stepNext, stepPrev, isStudyNotebookOpen, isTOCDrawerOpen]);
+  }, [stepNext, stepPrev, isStudyNotebookOpen]);
 
   // Scroll-spy and scroll progress calculation
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     let ticking = false;
+    let lastScrollY = window.scrollY;
+    let lastToggleTime = 0;
 
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const scrollY = window.scrollY;
-          const totalScroll =
-            document.documentElement.scrollHeight - window.innerHeight;
+          const scrollHeight = document.documentElement.scrollHeight;
+          const innerHeight = window.innerHeight;
+          const totalScroll = scrollHeight - innerHeight;
 
           if (totalScroll > 0) {
             const progress = (scrollY / totalScroll) * 100;
             setScrollProgress(Math.min(100, Math.max(0, Math.round(progress))));
+          }
+
+          const now = Date.now();
+          const deltaY = scrollY - lastScrollY;
+          lastScrollY = scrollY;
+
+          // Chống hiện tượng giật rung dao động (oscillation jitter loop) khi cuộn lên / nội dung ngắn:
+          // 1. Chỉ tự động thu gọn banner khi cuộn XUỐNG rõ rệt (scrollY > 70 và deltaY > 0)
+          // 2. Không tự động mở bung banner khi cuộn ngược lên giữa chừng (Zero-Reading-Jump Principle)
+          // 3. Chỉ mở lại banner khi cuộn về đỉnh trang (scrollY <= 5), đang cuộn lên (deltaY <= 0),
+          //    VÀ trang phải có đủ độ dài cuộn (totalScroll > 180) để việc thay đổi chiều cao banner không làm triệt tiêu thanh cuộn gây kẹt lưng chừng.
+          // 4. Áp dụng thời gian trễ hồi (cooldown > 400ms) để không bị đảo chiều liên tục giữa các frame.
+          if (now - lastToggleTime > 400) {
+            if (scrollY > 70 && deltaY > 0) {
+              setIsBannerCollapsed((prev) => {
+                if (!prev) {
+                  lastToggleTime = now;
+                  return true;
+                }
+                return prev;
+              });
+            } else if (scrollY <= 5 && deltaY < 0 && totalScroll > 180) {
+              setIsBannerCollapsed((prev) => {
+                if (prev) {
+                  lastToggleTime = now;
+                  return false;
+                }
+                return prev;
+              });
+            }
           }
 
           if (!isNavigatingRef.current) {

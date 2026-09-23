@@ -82,8 +82,7 @@ export default function LearningProgressModal({
               onClose();
             }}
             className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-[#ffd700] flex items-center justify-center transition-colors focus:outline-none cursor-pointer"
-            title="Đóng (Esc)"
-            aria-label="Đóng bảng tiến độ"
+            aria-label="Đóng bảng tiến độ (Esc)"
           >
             <X className="w-4 h-4" />
           </button>

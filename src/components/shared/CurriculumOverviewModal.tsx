@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { X, BookOpen, CheckCircle, ArrowRight, Sparkles } from "lucide-react";
+import { X, ArrowRight, Sparkles } from "lucide-react";
 import { playSubtleClick } from "@/lib/sound-effects";
 
 interface ChapterCurriculum {
@@ -95,10 +95,16 @@ export default function CurriculumOverviewModal({
   onStartChapter4,
 }: CurriculumOverviewModalProps) {
   const [selectedChapterNum, setSelectedChapterNum] = useState<number>(initialChapter);
+  const [prevInitialChapter, setPrevInitialChapter] = useState(initialChapter);
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
 
-  useEffect(() => {
+  if (isOpen && (!prevIsOpen || initialChapter !== prevInitialChapter)) {
+    setPrevIsOpen(isOpen);
+    setPrevInitialChapter(initialChapter);
     setSelectedChapterNum(initialChapter);
-  }, [initialChapter, isOpen]);
+  } else if (!isOpen && prevIsOpen) {
+    setPrevIsOpen(false);
+  }
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -156,8 +162,7 @@ export default function CurriculumOverviewModal({
               onClose();
             }}
             className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-[#ffd700] flex items-center justify-center transition-colors focus:outline-none cursor-pointer"
-            title="Đóng (Esc)"
-            aria-label="Đóng đề cương giáo trình"
+            aria-label="Đóng đề cương giáo trình (Esc)"
           >
             <X className="w-4 h-4" />
           </button>
