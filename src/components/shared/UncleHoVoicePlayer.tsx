@@ -114,7 +114,7 @@ export default function UncleHoVoicePlayer({
   const [customAudioUrl, setCustomAudioUrl] = useState<string | null>(null);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [duration, setDuration] = useState<number>(initialDuration);
-  const [useMp3Fallback, setUseMp3Fallback] = useState<boolean>(false);
+  const [useWavFallback, setUseWavFallback] = useState<boolean>(false);
   const [showMissingNotice, setShowMissingNotice] = useState<boolean>(false);
   const [isLocalEnv] = useState<boolean>(() => {
     if (process.env.NODE_ENV === "development") return true;
@@ -141,10 +141,10 @@ export default function UncleHoVoicePlayer({
     position: imagePosition || defaultBg.position || "object-center",
   };
 
-  // Đường dẫn tệp âm thanh lịch sử thật bảo đảm chạy đúng cả local lẫn GitHub Pages
+  // Đường dẫn tệp âm thanh: Ưu tiên MP3 chuẩn nén web nhẹ, tương thích 100% Safari iOS và Vercel CDN, tự động fallback WAV
   const rawPath =
     audioSrc ||
-    (useMp3Fallback ? `/audio/bac-ho/${id}.mp3` : `/audio/bac-ho/${id}.wav`);
+    (useWavFallback ? `/audio/bac-ho/${id}.wav` : `/audio/bac-ho/${id}.mp3`);
   const activeSrc = customAudioUrl || getAssetPath(rawPath);
 
   const stopPlayback = () => {
@@ -197,8 +197,8 @@ export default function UncleHoVoicePlayer({
     };
 
     const onError = () => {
-      if (!useMp3Fallback && !customAudioUrl && !audioSrc) {
-        setUseMp3Fallback(true);
+      if (!useWavFallback && !customAudioUrl && !audioSrc) {
+        setUseWavFallback(true);
       } else {
         if (!initialDuration) {
           setHasRealAudio(false);
@@ -221,7 +221,7 @@ export default function UncleHoVoicePlayer({
       audio.removeEventListener("error", onError);
       audio.pause();
     };
-  }, [activeSrc, customAudioUrl, audioSrc, useMp3Fallback, id, initialDuration]);
+  }, [activeSrc, customAudioUrl, audioSrc, useWavFallback, id, initialDuration]);
 
   // Xử lý nạp file âm thanh riêng ở máy Local
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -270,11 +270,13 @@ export default function UncleHoVoicePlayer({
         setIsPlaying(true);
         setIsLoading(false);
         setShowMissingNotice(false);
-      } catch {
-        setHasRealAudio(false);
+      } catch (err) {
+        console.warn("Audio play error:", err);
         setIsPlaying(false);
         setIsLoading(false);
-        setShowMissingNotice(true);
+        if (hasRealAudio === false) {
+          setShowMissingNotice(true);
+        }
       }
     }
   };
