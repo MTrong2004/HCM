@@ -67,11 +67,11 @@ export interface UncleHoVoicePlayerProps {
 
 // Bảng thời lượng chính xác của các tư liệu ghi âm Bác Hồ để tránh hiển thị 0:00 / 0:00
 const HISTORICAL_VOICE_DURATIONS: Record<string, number> = {
-  "voice-can-bo-day-to": 41,
+  "voice-can-bo-day-to": 24,
   "voice-chinh-phu-vi-dan": 62,
   "voice-nang-luc-lam-chu": 50,
-  "voice-quyen-bai-mien": 45,
-  "voice-quyen-luc-nhan-dan": 47,
+  "voice-quyen-bai-mien": 33,
+  "voice-quyen-luc-nhan-dan": 7,
   "tuyen-ngon-doc-lap-1945": 520,
 };
 
