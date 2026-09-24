@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useSyncExternalStore } from "react";
 import { Play, Pause, Volume2, RotateCcw } from "lucide-react";
 import { playSubtleClick } from "@/lib/sound-effects";
 import { getAssetPath } from "@/lib/assets";
@@ -116,17 +116,21 @@ export default function UncleHoVoicePlayer({
   const [duration, setDuration] = useState<number>(initialDuration);
   const [useWavFallback, setUseWavFallback] = useState<boolean>(false);
   const [showMissingNotice, setShowMissingNotice] = useState<boolean>(false);
-  const [isLocalEnv] = useState<boolean>(() => {
-    if (process.env.NODE_ENV === "development") return true;
-    if (typeof window !== "undefined") {
-      return (
-        window.location.hostname === "localhost" ||
-        window.location.hostname === "127.0.0.1" ||
-        window.location.hostname.endsWith(".local")
-      );
-    }
-    return false;
-  });
+  const isLocalEnv = useSyncExternalStore(
+    () => () => {},
+    () => {
+      if (process.env.NODE_ENV === "development") return true;
+      if (typeof window !== "undefined") {
+        return (
+          window.location.hostname === "localhost" ||
+          window.location.hostname === "127.0.0.1" ||
+          window.location.hostname.endsWith(".local")
+        );
+      }
+      return false;
+    },
+    () => false
+  );
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -274,7 +278,7 @@ export default function UncleHoVoicePlayer({
         console.warn("Audio play error:", err);
         setIsPlaying(false);
         setIsLoading(false);
-        if (hasRealAudio === false) {
+        if (!hasRealAudio || (!initialDuration && !customAudioUrl)) {
           setShowMissingNotice(true);
         }
       }

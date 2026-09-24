@@ -53,11 +53,11 @@ interface ScrollContextType {
 }
 
 const ScrollContext = createContext<ScrollContextType>({
-  activeSection: "dan-chu",
+  activeSection: "hero",
   setActiveSection: () => {},
   scrollProgress: 0,
   scrollTo: () => {},
-  isTOCDrawerOpen: false,
+  isTOCDrawerOpen: true,
   setIsTOCDrawerOpen: () => {},
   toggleTOCDrawer: () => {},
   isStudyNotebookOpen: false,
@@ -90,16 +90,8 @@ export default function SmoothScrollProvider({
 }) {
   const lenisRef = useRef<Lenis | null>(null);
 
-  // Khởi tạo activeSection từ URL hash nếu hợp lệ, mặc định là dan-chu
-  const [activeSection, setActiveSection] = useState<string>(() => {
-    if (typeof window !== "undefined") {
-      const rawHash = window.location.hash.replace(/^#/, "");
-      if (rawHash && (CANONICAL_SECTION_IDS as readonly string[]).includes(rawHash)) {
-        return rawHash;
-      }
-    }
-    return "dan-chu";
-  });
+  // Khởi tạo activeSection mặc định là "hero" để bảo đảm khớp 100% giữa SSR và Client Hydration
+  const [activeSection, setActiveSection] = useState<string>("hero");
 
   const [scrollProgress, setScrollProgress] = useState<number>(0);
   const [isTOCDrawerOpen, setIsTOCDrawerOpen] = useState<boolean>(true);
@@ -152,8 +144,20 @@ export default function SmoothScrollProvider({
         setActiveSection(newHash);
       }
     };
+    const handlePopState = () => {
+      const newHash = window.location.hash.replace(/^#/, "");
+      if (newHash && (CANONICAL_SECTION_IDS as readonly string[]).includes(newHash)) {
+        setActiveSection(newHash);
+      } else if (!newHash) {
+        setActiveSection("hero");
+      }
+    };
     window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+      window.removeEventListener("popstate", handlePopState);
+    };
   }, []);
 
   // Guard against external theme extensions (e.g. DarkReader) altering calibrated palette
